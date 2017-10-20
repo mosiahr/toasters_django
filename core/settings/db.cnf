@@ -1,0 +1,5 @@
+[client]
+database = 'toaster'
+user = 'toast'
+password = 'mo555ya'
+default-character-set = utf8
