@@ -10,23 +10,21 @@
 {% endblock %}
 
 {% block content %}
-<div class="row small-up-1 medium-up-2 large-up-3">
+    <div class="row small-up-1 medium-up-2 large-up-3">
 
+        {% for toaster in toasters %}
 
-{% for toaster in toasters %}
+            <div class="column">
+                <div class="callout">
+                    <p><img src="https://placehold.it/400x370&text=Pegasi B" alt="image of a planet called Pegasi B">
+                    </p>
+                    <p class="lead"><a href="{% url 'toast:toaster_detail' pk=toaster.id %}">{{ toaster }}</a></p>
+                </div>
+            </div>
 
-<div class="column">
-<div class="callout">
-{#        <p>Pegasi B</p>#}
-    <p><img src="https://placehold.it/400x370&text=Pegasi B" alt="image of a planet called Pegasi B"></p>
-    <p class="lead"><a href="{% url 'toast:toaster_detail' pk=toaster.id %}">{{ toaster }}</a></p>
-{#        <p class="subheader">Find Earth-like planets life outside the Solar System</p>#}
-</div>
-</div>
+        {% empty %}
+            <p>No toasters yet.</p>
+        {% endfor %}
 
-{% empty %}
-    <p>No toasters yet.</p>
-{% endfor %}
-
-</div>
+    </div>
 {% endblock %}

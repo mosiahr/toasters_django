@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Detail
+{% endblock %}
+
+{% block header %}
+    <h1 class="subheader">{{ tag.name }}</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <h3>{{ tag.name }}</h3>
+
+
+        <ul class="row">
+            {% for toaster in toasters %}
+                <li><a href="{% url 'toast:toaster_detail' pk=toaster.id %}">{{ toaster }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
