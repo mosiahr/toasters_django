@@ -19,9 +19,10 @@ class Toaster(models.Model):
     phone = models.CharField(max_length=50, verbose_name='Телефон')
     site = models.CharField(max_length=50, verbose_name='Сайт')
     description = models.TextField(blank=True, verbose_name='Описание')
-    timestamp = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    img = models.ImageField(upload_to='img', verbose_name='Картинка')
     tags = models.ManyToManyField(Tag)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name

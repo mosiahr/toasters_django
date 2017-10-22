@@ -12,10 +12,15 @@ def hello(request):
 class ToasterListView(ListView):
     model = Toaster
 
-    def get_context_data(self, **kwargs):
-        context = super(ToasterListView, self).get_context_data(**kwargs)
-        context.update({'toasters': Toaster.objects.all()})
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super(ToasterListView, self).get_context_data(**kwargs)
+    #     context.update({'toasters': Toaster.objects.all()})
+    #     return context
+
+    context_object_name = 'toasters'
+
+    def get_queryset(self):
+        return Toaster.objects.all()
 
 
 class ToasterDetailView(DetailView):
@@ -36,12 +41,10 @@ class TagListView(ListView):
 class TagDetailView(DetailView):
     model = Tag
 
-    slug_url_kwarg = 'slug'
+    slug_field = 'slug'
 
     def get_context_data(self, **kwargs):
         context = super(TagDetailView, self).get_context_data(**kwargs)
         context.update({'toasters': Toaster.objects.filter(tags=Tag.objects.get(slug=self.object.slug))})
         return context
 
-    # def get_queryset(self):
-    #     return Toaster.objects.filter(slug=self.slug)

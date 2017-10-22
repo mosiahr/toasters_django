@@ -16,9 +16,9 @@
 
             <div class="column">
                 <div class="callout">
-                    <p><img src="https://placehold.it/400x370&text=Pegasi B" alt="image of a planet called Pegasi B">
+                    <p><img src="{{ MEDIA_URL }}{{ toaster.img }}" alt="{{ toaster.name }}">
                     </p>
-                    <p class="lead"><a href="{% url 'toast:toaster_detail' pk=toaster.id %}">{{ toaster }}</a></p>
+                    <p class="lead"><a href="{% url 'toast:toaster_detail' pk=toaster.id %}">{{ toaster.name }}</a></p>
                 </div>
             </div>
 
