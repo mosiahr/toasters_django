@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.views.generic import ListView, DetailView
 
@@ -6,6 +6,7 @@ from .models import Toaster, Tag
 
 from django.utils.datastructures import MultiValueDictKeyError
 
+from .forms import ToasterLocationForm
 
 
 def hello(request):
@@ -34,22 +35,28 @@ class TagDetailView(DetailView):
 
 class ToasterListView(ListView):
     model = Toaster
-
-    # def get_context_data(self, **kwargs):
-    #     context = super(ToasterListView, self).get_context_data(**kwargs)
-    #     context.update({'toasters': Toaster.objects.all()})
-    #     return context
-
     context_object_name = 'toasters'
+    form_class = ToasterLocationForm
+
+    def get_context_data(self, **kwargs):
+        context = super(ToasterListView, self).get_context_data(**kwargs)
+        if self.request.method == 'GET':
+            form = self.form_class(self.request.GET)
+            if form.is_valid():
+                context.update({'form': form})
+        else:
+            form = self.form_class()
+        context.update({'form': form})
+        return context
 
     def get_queryset(self):
         try:
-            if self.request.GET['location']:
-                location = self.request.GET['location']
+            if self.request.GET['location_select']:
+                location = self.request.GET['location_select']
                 return Toaster.pub_objects.filter(locations__slug=location)
         except MultiValueDictKeyError:
             pass
-        return Toaster.pub_objects.all()
+        return Toaster.pub_objects.all().order_by('-created')
 
 
 class ToasterDetailView(DetailView):
