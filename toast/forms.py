@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from django.forms import ModelForm, ModelChoiceField, MultiValueField
-from .models import ToasterLocation, Toaster
+from .models import ToasterLocation
 
 
 class ToasterLocationForm(ModelForm):
@@ -10,9 +10,19 @@ class ToasterLocationForm(ModelForm):
         model = ToasterLocation
         fields = ['location_select']
 
-    location_select = ModelChoiceField(queryset=None,  to_field_name='slug')
+    location_select = ModelChoiceField(
+        queryset=None,
+        to_field_name='slug',
+        empty_label='выбрать',
+        required=False,
+        label='Город',
+        # initial={'name': u'Кировоград'}
+    )
 
     def __init__(self, *args, **kwargs):
+        t = ToasterLocation.objects.filter(name='Киев')
+        print(dir(t))
+        print(t[0].name)
         super(ToasterLocationForm, self).__init__(*args, **kwargs)
         # self.fields['location_select'].queryset = Toaster.pub_objects.filter(locations__slug=location)
         self.fields['location_select'].queryset = ToasterLocation.objects.all()
