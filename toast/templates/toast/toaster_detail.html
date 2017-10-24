@@ -4,13 +4,13 @@
     {{ toaster.name }}
 {% endblock %}
 
-{% block header %}
-    <h1 class="subheader">{{ toaster.name }}</h1>
-{% endblock %}
+{#{% block header %}#}
+{#    <h1 class="subheader">{{ toaster.name }}</h1>#}
+{#{% endblock %}#}
 
 {% block content %}
     <div class="row">
-        <div class="medium-6 columns">
+        <div class="medium-5 large-5 columns">
             <img class="thumbnail" src="{{ MEDIA_URL }}{{ toaster.img }}">
             <div class="row small-up-4">
                 <div class="column">
@@ -27,9 +27,9 @@
                 </div>
             </div>
         </div>
-        <div class="medium-6 large-5 columns">
+        <div class="medium-7 large-7 columns">
 
-            <h3>{{ toaster.name }}</h3>
+            <h3 class="subheader">{{ toaster.name }}</h3>
             <div class="">
                 {% for tag in toaster.tags.all %}
                    <span class="label success"> <a href="{% url 'toast:tag_detail' slug=tag.slug %}">{{ tag }}</a></span>
@@ -68,6 +68,7 @@
 
     </div>
     <div class="column row">
+    <h4>Информация</h4>
         {{ toaster.description }}
     </div>
 

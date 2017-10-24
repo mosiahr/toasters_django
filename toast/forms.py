@@ -16,13 +16,10 @@ class ToasterLocationForm(ModelForm):
         empty_label='выбрать',
         required=False,
         label='Город',
-        # initial={'name': u'Кировоград'}
+        # initial={'name': 'Киев'}
     )
 
     def __init__(self, *args, **kwargs):
-        t = ToasterLocation.objects.filter(name='Киев')
-        print(dir(t))
-        print(t[0].name)
         super(ToasterLocationForm, self).__init__(*args, **kwargs)
         # self.fields['location_select'].queryset = Toaster.pub_objects.filter(locations__slug=location)
         self.fields['location_select'].queryset = ToasterLocation.objects.all()

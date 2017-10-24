@@ -1,16 +1,10 @@
 from django.shortcuts import render, redirect
-
 from django.views.generic import ListView, DetailView
 
-from .models import Toaster, Tag
-
-from django.utils.datastructures import MultiValueDictKeyError
-
+from .models import Toaster, Tag, ToasterLocation
 from .forms import ToasterLocationForm
 
-
-def hello(request):
-    return render(request, 'core/base.html', {'hello': 'hello world !!!'} )
+from django.utils.datastructures import MultiValueDictKeyError
 
 
 class TagListView(ListView):
@@ -40,13 +34,18 @@ class ToasterListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ToasterListView, self).get_context_data(**kwargs)
+        header = None
         if self.request.method == 'GET':
             form = self.form_class(self.request.GET)
             if form.is_valid():
                 context.update({'form': form})
+            try:
+                header = ToasterLocation.objects.get(slug=self.request.GET['location_select']).name
+            except:
+                pass
         else:
             form = self.form_class()
-        context.update({'form': form})
+        context.update({'form': form, 'header': header})
         return context
 
     def get_queryset(self):
