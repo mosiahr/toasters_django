@@ -30,7 +30,7 @@ class Tag(ToastAbstractModel):
     slug = models.SlugField(max_length=140, blank=True, null=True)
 
 
-class ToasterLocation(ToastAbstractModel):
+class Location(ToastAbstractModel):
     name = models.CharField(max_length=120, unique=True, verbose_name='Город')
     slug = models.SlugField(max_length=140, blank=True, null=True)
 
@@ -43,7 +43,7 @@ class Toaster(ToastAbstractModel):
     site = models.CharField(max_length=50, verbose_name='Сайт')
     description = models.TextField(blank=True, verbose_name='Описание')
     img = models.ImageField(upload_to='img', verbose_name='Картинка')
-    locations = models.ManyToManyField(ToasterLocation, verbose_name='Город')
+    locations = models.ManyToManyField(Location, verbose_name='Город')
     tags = models.ManyToManyField(Tag)
 
     def get_locations(self):

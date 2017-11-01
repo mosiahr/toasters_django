@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 
-from .models import Toaster, Tag, ToasterLocation
+from .models import Toaster, Tag, Location
 from .forms import ToasterLocationForm
 
 from django.utils.datastructures import MultiValueDictKeyError
@@ -40,7 +40,7 @@ class ToasterListView(ListView):
             if form.is_valid():
                 context.update({'form': form})
             try:
-                header = ToasterLocation.objects.get(slug=self.request.GET['location_select']).name
+                header = Location.objects.get(slug=self.request.GET['location_select']).name
             except:
                 pass
         else:

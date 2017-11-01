@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 
 from django.forms import ModelForm, ModelChoiceField, MultiValueField
-from .models import ToasterLocation
+from .models import Location
 
 
 class ToasterLocationForm(ModelForm):
     class Meta:
-        model = ToasterLocation
+        model = Location
         fields = ['location_select']
 
     location_select = ModelChoiceField(
@@ -22,4 +22,4 @@ class ToasterLocationForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(ToasterLocationForm, self).__init__(*args, **kwargs)
         # self.fields['location_select'].queryset = Toaster.pub_objects.filter(locations__slug=location)
-        self.fields['location_select'].queryset = ToasterLocation.objects.all()
+        self.fields['location_select'].queryset = Location.objects.all()

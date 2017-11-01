@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (
     Toaster,
-    ToasterLocation,
+    Location,
     Tag,
 )
 
@@ -31,9 +31,9 @@ class ToasterLocationAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
     class Meta:
-        model = ToasterLocation
+        model = Location
 
 
 admin.site.register(Toaster, ToasterAdmin)
-admin.site.register(ToasterLocation, ToasterLocationAdmin)
+admin.site.register(Location, ToasterLocationAdmin)
 admin.site.register(Tag, TagAdmin)
