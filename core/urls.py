@@ -21,11 +21,14 @@ import django.views.static
 from django.conf import settings
 from django.conf.urls import include
 
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^toasters/', include('toast.urls', namespace='toast')),
     url(r'^media/(?P<path>.*)$', django.views.static.serve, {'document_root': settings.MEDIA_ROOT}),
 
+    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
 ]
 
 # if settings.DEBUG:
