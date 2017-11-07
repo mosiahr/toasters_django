@@ -53,10 +53,15 @@
     </div>
     <div class="top-bar-right">
         <ul class="menu">
-            <li>{{ user }}</li>
-            <li><a href="#">My Account</a></li>
-            <li><a class="button" href="{% url 'accounts:login' %}">Login</a></li>
-            <li><a class="button" href="{% url 'accounts:logout' %}">Logout</a></li>
+            {% if user.username %}
+                <li><a href="#">{{ user }}</a></li>
+                <li><a class="button" href="{% url 'accounts:logout' %}">{% trans 'Log out' %}</a></li>
+            {% else %}
+                <li><a class="button" href="{% url 'accounts:register' %}">{% trans 'Register' %}</a></li>
+                <li><a class="button" href="{% url 'accounts:login' %}">{% trans "Log in" %}</a></li>
+            {% endif %}
+
+
         </ul>
     </div>
 </div>

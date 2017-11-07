@@ -1,15 +1,25 @@
 {% extends 'core/base.html' %}
+{% load i18n %}
 
 {% block title %}
-    Login
+    {% trans "Log in" %}
 {% endblock %}
 
 {% block content %}
     <div class="row">
-    <div class="small-10 medium-4 large-3 columns">
-    <form action="" method="post">{% csrf_token %}
-        {{ form }}
-        <input class="button secondary small" type="submit" value="OK"/>
-    </form>
-    </div> </div>
+        <div class="card small-9 medium-5 large-4 float-center">
+            <div class="card-divider">
+                <h4>{{ title }}</h4>
+            </div>
+            <img src="{{ MEDIA_URL }}img_site/765887.jpg" alt="" class="card-image">
+            <div class="card-section">
+                <form action="" method="post">{% csrf_token %}
+                    {{ form }}
+                    <input class="button success small" type="submit" value="OK"/>
+                    <a class="button small"  href="{% url 'accounts:register' %}">{% trans 'Register' %}</a>
+                </form>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}

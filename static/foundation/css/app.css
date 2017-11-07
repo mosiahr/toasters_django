@@ -2,3 +2,14 @@
     /*font-size: 36px;*/
     /*color: #fda6db;*/
 /*}*/
+
+.card-section {
+  -ms-flex: 1 0 auto;
+      flex: 1 0 auto;
+  /*padding: 1rem;*/
+    margin-top: 1rem;
+}
+  .card-section > :last-child {
+    margin-bottom: 0; }
+
+
