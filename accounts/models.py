@@ -68,6 +68,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
+        permissions = set()
 
     def __str__(self):
         return self.email
@@ -77,16 +78,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.email
-
-    def has_perm(self, perm, obj=None):
-        return True
-
-    def has_module_perms(self, app_label):
-        return True
-
-    # def add_view(self, request, form_url='', extra_context=None):
-    #     return TemplateResponse(request, 'accounts/add_form.html')
-
 
     @property
     def is_active(self):

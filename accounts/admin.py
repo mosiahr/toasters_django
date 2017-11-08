@@ -23,14 +23,19 @@ class UserAdmin(BaseUserAdmin):
     list_display = ('email', 'active', 'staff', 'admin', 'last_login', 'date_joined', 'update')
     list_filter = ('admin', 'staff', 'active')
     fieldsets = (
-        ('{} {} {}'.format(_('Email address'), _('and'), _('Password')), {'fields': ('email', 'password', )}),
+        ('{} {} {}'.format(_('Email address'), _('and'), _('Password')), {'fields': ('email', 'password',)}),
         # (_('Personal info'), {'fields': ()}),
         (_('Permissions'), {
             # 'classes': ('collapse',),  # hide (show)
             'fields': (('admin', 'staff', 'active'),)
         }),
         # (_('Important dates'), {'fields': ('update',)}),
-        # (_('User permissions:'), {'fields': ('user_permissions',)}),
+        (_('User permissions:'), {
+            'fields':
+                ('user_permissions',
+                 # 'groups',
+                 )
+        }),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
