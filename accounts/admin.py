@@ -1,18 +1,17 @@
 from django.contrib import admin
-
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import ugettext as _
 
-
-# from .forms import UserAdminCreationForm, UserAdminChangeForm
 from .forms import UserAdminCreationForm, UserAdminChangeForm
 
 User = get_user_model()
 
 
+@admin.register(User)
 class UserAdmin(BaseUserAdmin):
+    add_form_template = 'admin/add_form.html'
     # The forms to add and change user instances
     form = UserAdminChangeForm
     add_form = UserAdminCreationForm
@@ -21,13 +20,17 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'admin', 'last_login', 'date_joined', 'update')
+    list_display = ('email', 'active', 'staff', 'admin', 'last_login', 'date_joined', 'update')
     list_filter = ('admin', 'staff', 'active')
     fieldsets = (
-        (None, {'fields': ('email', 'password', )}),
+        ('{} {} {}'.format(_('Email address'), _('and'), _('Password')), {'fields': ('email', 'password', )}),
         # (_('Personal info'), {'fields': ()}),
-        (_('Permissions'), {'fields': ('admin', 'staff', 'active')}),
+        (_('Permissions'), {
+            # 'classes': ('collapse',),  # hide (show)
+            'fields': (('admin', 'staff', 'active'),)
+        }),
         # (_('Important dates'), {'fields': ('update',)}),
+        # (_('User permissions:'), {'fields': ('user_permissions',)}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
@@ -40,12 +43,12 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ()
+    empty_value_display = '-empty-'
+    list_display_links = ('email',)
+    list_editable = ('active',)  #edit
 
     class Meta:
         model = User
-
-
-admin.site.register(User, UserAdmin)
 
 
 # Remove Group Model from admin. We're not using it.

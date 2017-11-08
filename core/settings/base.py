@@ -117,7 +117,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -142,5 +142,6 @@ LOGIN_URL = 'login'    # LOGIN_URL = '/accounts/login/'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'toast:toasters'
 
+DATETIME_FORMAT = 'Y-m-d H:i'
 
 

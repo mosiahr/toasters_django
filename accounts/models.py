@@ -4,10 +4,11 @@ from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import (
     AbstractBaseUser,
-    BaseUserManager
+    BaseUserManager,
+    PermissionsMixin
 )
 
-# from toast.models import Toaster
+from django.template.response import TemplateResponse
 
 
 class UserManager(BaseUserManager):
@@ -51,18 +52,13 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
-    # username = models.CharField(max_length=255, unique=True)
+class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
     active = models.BooleanField(default=True)  # can login
     staff = models.BooleanField(default=False)  # staff user non superuser
     admin = models.BooleanField(default=False)  #superuser
     date_joined  = models.DateTimeField(_('date joined'), auto_now_add=True)
-
-    # timestamp = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
-    # confirm = models.BooleanField(default=False)
-    # confirm_date = models.DateTimeField(default=False)
 
     USERNAME_FIELD = 'email'  # used as the unique identifier.
     REQUIRED_FIELDS = [] # ['full_name'] #python manage.py createsuperuser
@@ -74,19 +70,22 @@ class User(AbstractBaseUser):
         verbose_name_plural = _('users')
 
     def __str__(self):
-        return self.get_username()
+        return self.email
 
     def get_full_name(self):
         return self.email
 
     def get_short_name(self):
-        return self.get_full_name()
+        return self.email
 
     def has_perm(self, perm, obj=None):
         return True
 
     def has_module_perms(self, app_label):
         return True
+
+    # def add_view(self, request, form_url='', extra_context=None):
+    #     return TemplateResponse(request, 'accounts/add_form.html')
 
 
     @property
@@ -98,7 +97,7 @@ class User(AbstractBaseUser):
         return self.staff
 
     @property
-    def is_admin(self):
+    def is_superuser(self):
         return self.admin
 
 
