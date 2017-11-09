@@ -1,5 +1,4 @@
 from django.db import models
-# from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import (
@@ -7,8 +6,6 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin
 )
-
-from django.template.response import TemplateResponse
 
 
 class UserManager(BaseUserManager):
@@ -57,7 +54,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     active = models.BooleanField(default=True)  # can login
     staff = models.BooleanField(default=False)  # staff user non superuser
     admin = models.BooleanField(default=False)  #superuser
-    date_joined  = models.DateTimeField(_('date joined'), auto_now_add=True)
+    date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'email'  # used as the unique identifier.
@@ -90,33 +87,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def is_superuser(self):
         return self.admin
-
-
-# class UserProfile(models.Model):
-#     user = models.OneToOneField(User, verbose_name=_('user'), blank=True)
-#     avatar = models.ImageField(
-#         upload_to='img_profile',
-#         blank=True,
-#         verbose_name='Аватарка'
-#     )
-#
-#     def __str__(self):
-#         return self.user.username
-#
-#     def save(self, *args, **kwargs):
-#         try:
-#             this_record = UserProfile.objects.get(id=self.id)
-#             if this_record.avatar != self.avatar:
-#                 this_record.avatar.delete(save=False)
-#         except:
-#             pass
-#         super(UserProfile, self).save(*args, **kwargs)
-#
-#     class Meta:
-#         ordering = ['user']
-#         verbose_name = 'профиль'
-#         verbose_name_plural = 'профили'
-
-
-
-
