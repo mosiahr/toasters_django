@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'toast',
     'accounts',
+    'toast',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

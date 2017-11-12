@@ -23,7 +23,8 @@ class UserAdmin(BaseUserAdmin):
     list_display = ('email', 'active', 'staff', 'admin', 'last_login', 'date_joined', 'update')
     list_filter = ('admin', 'staff', 'active')
     fieldsets = (
-        ('{} {} {}'.format(_('Email address'), _('and'), _('Password')), {'fields': ('email', 'password',)}),
+        ('{} {} {}'.format(_('Email address'), _('and'), _('Password')),
+         {'fields': ('email', 'password',)}),
         # (_('Personal info'), {'fields': ()}),
         (_('Permissions'), {
             # 'classes': ('collapse',),  # hide (show)

@@ -8,6 +8,9 @@ from django.contrib.auth.forms import (
 )
 from django.forms.utils import ErrorList
 
+from django.utils.translation import ugettext as _
+
+
 
 class DivErrorList(ErrorList):
     def __init__(self, initlist=None, error_class=None):
@@ -23,6 +26,7 @@ class MyAuthenticationForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(MyAuthenticationForm, self).__init__(*args, **kwargs)
         self.error_class = DivErrorList
+
 
 ########
 
@@ -117,3 +121,50 @@ class UserAdminChangeForm(forms.ModelForm):
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
+
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(
+        label=_('Email'),
+        widget = forms.TextInput(attrs={'autofocus': True}),
+    )
+    password = forms.CharField(
+        label=_("Password"),
+        strip=False,
+        widget=forms.PasswordInput,
+    )
+
+    error_messages = {
+        'invalid_login': _(
+            "Please enter a correct %(username)s and password. Note that both "
+            "fields may be case-sensitive."
+        ),
+        'inactive': _("This account is inactive."),
+    }
+
+    def __init__(self, request=None, *args, **kwargs):
+        """
+        The 'request' parameter is set for custom auth use by subclasses.
+        The form data comes in via the standard 'data' kwarg.
+        """
+        self.request = request
+        super(LoginForm, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        email = self.cleaned_data.get('email')
+        password = self.cleaned_data.get('password')
+
+        user = authenticate(self.request, username=email, password=password)
+        if user is None:
+            raise forms.ValidationError("Invalid credentials")
+        login(self.request, user)
+        self.user = user
+        return self.cleaned_data
+
+
+
+
+
+
+
+

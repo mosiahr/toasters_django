@@ -10,3 +10,6 @@ urlpatterns = [
     url(r'^logout/', logout, name='logout'),
     url(r'^register/', register, name='register'),
 ]
+
+
+

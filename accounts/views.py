@@ -9,8 +9,11 @@ from .forms import (
     # RegisterForm,
     # UpdateUserForm,
     # AddFieldToRegister
+
+    LoginForm,
 )
 from django.utils.translation import ugettext as _
+
 
 # from .models import UserProfile
 # from django.contrib.auth import get_user_model
@@ -55,14 +58,16 @@ def register(request):
     return render(request, 'register.html', context)
 
 def login(request):
-    if request.user.is_authenticated:
-        auth.logout(request)
+    # if request.user.is_authenticated:
+    #     auth.logout(request)
     template_response = views.login(request,
                                     template_name='login.html',
-                                    # authentication_form=MyAuthenticationForm,
+                                    authentication_form=LoginForm,
                                     extra_context={
                                         'title': _('Log in'),
+                                        # 'user': request.user,
                                     })
+                                    # extra_context={'next': '/games/all/'})
                                     # extra_context={'next': '/games/all/'})
     return template_response
 
