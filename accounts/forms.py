@@ -12,6 +12,7 @@ from django.utils.translation import ugettext as _
 
 
 
+
 class DivErrorList(ErrorList):
     def __init__(self, initlist=None, error_class=None):
         super(ErrorList, self).__init__(initlist)
@@ -148,23 +149,64 @@ class LoginForm(forms.Form):
         The form data comes in via the standard 'data' kwarg.
         """
         self.request = request
+        self.user_cache = None
         super(LoginForm, self).__init__(*args, **kwargs)
 
     def clean(self):
         email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
+#        qs = User.objects.filter(email=email)
+#
+#        if qs.exists():
+#            if qs.filter(active=False).exists():
+#                self.confirm_login_allowed(self.user_cache)
+#
+#        user_cache = authenticate(self.request, username=email, password=password)
+#        if user_cache is None:
+#            raise forms.ValidationError(
+#                self.error_messages['invalid_login'],
+#                code='invalid_login',
+#                params={'username': 'email'}
+#            )
 
-        user = authenticate(self.request, username=email, password=password)
-        if user is None:
-            raise forms.ValidationError("Invalid credentials")
-        login(self.request, user)
-        self.user = user
+
+        if email is not None and password:
+            self.user_cache = authenticate(self.request, username=email, password=password)
+            if self.user_cache is None:
+                 raise forms.ValidationError(
+                    self.error_messages['invalid_login'],
+                        code='invalid_login',
+                        params={'username': 'email'},
+                    )
+            else:
+                self.confirm_login_allowed(self.user_cache)
+
+            login(self.request, self.user_cache)
+        #self.user = self.user_cache
         return self.cleaned_data
 
+    def confirm_login_allowed(self, user):
+        """
+        Controls whether the given User may log in. This is a policy setting,
+        independent of end-user authentication. This default behavior is to
+        allow login by active users, and reject login by inactive users.
 
+        If the given user cannot log in, this method should raise a
+        ``forms.ValidationError``.
 
+        If the given user may log in, this method should return None.
+        """
+        if not user.is_active:
+            raise forms.ValidationError(
+                    self.error_messages['inactive'],
+                    code='inactive',
+                )
 
+    def get_user_id(self):
+        if self.user_cache:
+            return self.user_cache.id
+        return None
 
-
-
+    def get_user(self):
+        return self.user_cache
 

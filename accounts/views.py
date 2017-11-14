@@ -1,7 +1,16 @@
 from django.shortcuts import render,  redirect
 from django.contrib.auth import views
 from django.contrib import auth
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    PasswordChangeForm,
+    UserCreationForm,
+    UserChangeForm,
+)
+
+
+from django.views.generic import FormView
+
 
 from .forms import (
     MyAuthenticationForm,
@@ -57,20 +66,33 @@ def register(request):
         # context['profile_form'] = AddFieldToRegister()
     return render(request, 'register.html', context)
 
-def login(request):
-    # if request.user.is_authenticated:
-    #     auth.logout(request)
-    template_response = views.login(request,
-                                    template_name='login.html',
-                                    authentication_form=LoginForm,
-                                    extra_context={
-                                        'title': _('Log in'),
-                                        # 'user': request.user,
-                                    })
-                                    # extra_context={'next': '/games/all/'})
-                                    # extra_context={'next': '/games/all/'})
-    return template_response
+#def login(request):
+#    # if request.user.is_authenticated:
+#    #     auth.logout(request)
+#    template_response = views.login(request,
+#                                    template_name='login.html',
+#                                    authentication_form=LoginForm,
+#                                    extra_context={
+#                                        'title': _('Log in'),
+#                                        # 'user': request.user,
+#                                    })
+#                                    # extra_context={'next': '/games/all/'})
+#                                    # extra_context={'next': '/games/all/'})
+#    return template_response
 
+
+from toast.views import ToasterListView
+
+class LoginView(FormView):
+    form_class = LoginForm
+    success_url = '/toasters/'
+    template_name = 'accounts/login.html'
+    default_next = '/'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
 
 def logout(request):
     auth.logout(request)
