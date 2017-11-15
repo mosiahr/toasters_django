@@ -12,4 +12,19 @@
   .card-section > :last-child {
     margin-bottom: 0; }
 
+.helptext {
+    font-size: 12px;
+}
 
+.helptext > ul {
+    list-style-type: none;
+}
+
+.errorlist {
+    font-size: 16px;
+    color: red;
+}
+
+.errorlist > li {
+    list-style-type: none;
+}

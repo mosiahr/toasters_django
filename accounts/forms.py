@@ -213,13 +213,21 @@ class LoginForm(forms.Form):
 
 class RegisterForm(forms.ModelForm):
     """ A form for creating new users"""
+    error_messages = {
+        'password_mismatch': _("The two password fields didn't match."),
+    }
+
     password1 = forms.CharField(
         label = _('Password'),
-        widget=forms.PasswordInput
+        widget=forms.PasswordInput,
+        strip=False,
+        help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
         label = _('Password confirmation'),
-        widget=forms.PasswordInput
+        widget=forms.PasswordInput,
+        strip=True,
+        help_text=_("Enter the same password as before, for verification."),
     )
 
     class Meta:
@@ -232,7 +240,13 @@ class RegisterForm(forms.ModelForm):
         password2 = self.cleaned_data.get("password2")
 
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Password don't match")
+            raise forms.ValidationError(
+                self.error_messages['password_mismatch'],
+                code='password_mismatch'
+                )
+        self.instance.email = self.cleaned_data.get('email')
+        password_validation.validate_password(self.cleaned_data.get('password2'), self.instance)
+
         return password2
 
     def save(self, commit=True):
