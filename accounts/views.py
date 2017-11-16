@@ -1,4 +1,5 @@
 from django.shortcuts import render,  redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import views
 from django.contrib import auth
 from django.contrib.auth.forms import (
@@ -9,7 +10,7 @@ from django.contrib.auth.forms import (
 )
 
 
-from django.views.generic import FormView, CreateView
+from django.views.generic import FormView, CreateView, DetailView
 
 
 from .forms import (
@@ -84,9 +85,16 @@ from django.utils.translation import ugettext as _
 
 from toast.views import ToasterListView
 
+class AccountHomeView(LoginRequiredMixin, DetailView):
+    template_name = 'accounts/home.html'
+
+    def get_object(self):
+        return self.request.user
+
+
 class LoginView(FormView):
     form_class = LoginForm
-    success_url = '/toasters/'
+    success_url = '/accounts/'
     template_name = 'accounts/login.html'
     default_next = '/'
 

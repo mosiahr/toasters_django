@@ -139,8 +139,8 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_URL = 'login'    # LOGIN_URL = '/accounts/login/'
-LOGOUT_URL = 'logout'
+LOGIN_URL = 'accounts:login'    # LOGIN_URL = '/accounts/login/'
+LOGOUT_URL = 'accounts:logout'
 LOGIN_REDIRECT_URL = 'toast:toasters'
 
 DATETIME_FORMAT = 'Y-m-d H:i'

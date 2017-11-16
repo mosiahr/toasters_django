@@ -1,0 +1,18 @@
+{% extends 'core/base.html'  %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Accounts" %}
+{% endblock %}
+
+{% block content  %}
+<div class="row">
+    <div class="card small-9 medium-5 large-4 float-center">
+        <div class="card-divider">
+            <h4>{% trans "Accounts" %}</h4>
+            {{ user  }}
+        </div>
+    </div>
+                                                                                                         
+</div>
+{% endblock %}
