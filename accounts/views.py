@@ -114,7 +114,3 @@ class RegisterView(CreateView):
         return context
 
 
-
-def logout(request):
-    auth.logout(request)
-    return redirect('/toasters/')
