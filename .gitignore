@@ -6,4 +6,5 @@ db.sqlite3
 media/*
 .ropeproject/*
 */.ropeproject/*
+core/email.py
 

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from core.settings import email_conf
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -26,6 +27,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# confirmation email
+EMAIL_USE_TLS = email_conf.EMAIL_USE_TLS
+EMAIL_HOST = email_conf.EMAIL_HOST
+EMAIL_HOST_USER = email_conf.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = email_conf.EMAIL_HOST_PASSWORD
+EMAIL_PORT = email_conf.EMAIL_PORT
+DEFAULT_FROM_EMAIL = 'Python ecommerce <hungrypy@gmail.com>'
+BASE_URL = '127.0.0.1:8000'
 
 # Application definition
 

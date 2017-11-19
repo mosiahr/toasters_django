@@ -57,7 +57,7 @@
                 <li><a class="" href="{% url 'accounts:home' %}">{{ user }}</a></li>
                 <li><a class="button" href="{% url 'accounts:logout' %}">{% trans 'Log out' %}</a></li>
             {% else %}
-                <li><a class="button" href="{% url 'accounts:register' %}">{% trans 'Register' %}</a></li>
+                <li><a class="button" href="{% url 'accounts:register' %}">{% trans 'Sign up' %}</a></li>
                 <li><a class="button" href="{% url 'accounts:login' %}">{% trans "Log in" %}</a></li>
             {% endif %}
 
