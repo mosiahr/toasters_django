@@ -20,15 +20,15 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'active', 'staff', 'admin', 'last_login', 'date_joined', 'update')
-    list_filter = ('admin', 'staff', 'active')
+    list_display = ('id', 'email', 'is_active', 'staff', 'admin', 'last_login', 'date_joined', 'update')
+    list_filter = ('admin', 'staff', 'is_active')
     fieldsets = (
         ('{} {} {}'.format(_('Email address'), _('and'), _('Password')),
          {'fields': ('email', 'password',)}),
         # (_('Personal info'), {'fields': ()}),
         (_('Permissions'), {
             # 'classes': ('collapse',),  # hide (show)
-            'fields': (('admin', 'staff', 'active'),)
+            'fields': (('admin', 'staff', 'is_active'),)
         }),
         # (_('Important dates'), {'fields': ('update',)}),
         (_('User permissions:'), {
@@ -51,7 +51,7 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = ()
     empty_value_display = '-empty-'
     list_display_links = ('email',)
-    list_editable = ('active',)  #edit
+    list_editable = ('is_active',)  #edit
 
     class Meta:
         model = User

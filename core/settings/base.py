@@ -33,8 +33,11 @@ EMAIL_HOST = email_conf.EMAIL_HOST
 EMAIL_HOST_USER = email_conf.EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = email_conf.EMAIL_HOST_PASSWORD
 EMAIL_PORT = email_conf.EMAIL_PORT
-DEFAULT_FROM_EMAIL = 'Python ecommerce <hungrypy@gmail.com>'
+#DEFAULT_FROM_EMAIL = 'Python ecommerce <hungrypy@gmail.com>'
 BASE_URL = '127.0.0.1:8000'
+
+# Email Backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Application definition
 

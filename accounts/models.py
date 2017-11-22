@@ -55,7 +55,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=255,
         unique=True
     )
-    active = models.BooleanField(default=True)  # can login
+    is_active = models.BooleanField(default=True)  # can login
     staff = models.BooleanField(default=False)  # staff user non superuser
     admin = models.BooleanField(default=False)  #superuser
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
@@ -80,9 +80,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.email
 
-    @property
-    def is_active(self):
-        return self.active
+    #@property
+    #def is_active(self):
+    #    return self.active
 
     @property
     def is_staff(self):
@@ -91,3 +91,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def is_superuser(self):
         return self.admin
+
+
+
