@@ -9,23 +9,14 @@ from django.template.loader import get_template
 
 User = get_user_model()
 
-#user_logged_in = Signal(providing_args=['instance', 'request'])
-
-@receiver(post_save, sender=User)
-def post_save_user_model_receiver(sender, instance, created, *args, **kwargs):
-    if created:
-        try:
-            print('Hello')
-            #User.objects.create(user=instance)
-        except:
-            pass
-
 @receiver(post_save, sender=User)
 def user_save_handler(sender, instance, created, *args, **kwargs):
     if created:
         if settings.DEBUG:
             print("%s saved." % instance)
-        send_activate(instance.email)
+        obj = User.objects.get(pk=instance.id)
+        print(obj, instance.id)
+        obj.send_activate()
 
 @receiver(post_delete, sender=User)
 def user_delete_handler(sender, **kwargs):
@@ -46,10 +37,10 @@ def send_activate(email):
     print(email)
     send_email = send_mail(
         subject='Activate your account at toasters.com.',
-        message='Hello',
+        message=get_template('accounts/email/verify.txt').render(context),
         from_email=settings.EMAIL_HOST_USER,
         recipient_list=[email],
-        html_message=get_template('accounts/active_email.html').render(context),
+        html_message=get_template('accounts/email/verify.html').render(context),
         fail_silently=False,
     )
     return send_email
