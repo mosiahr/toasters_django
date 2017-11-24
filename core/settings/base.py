@@ -155,8 +155,8 @@ LOGIN_URL = 'accounts:login'    # LOGIN_URL = '/accounts/login/'
 LOGOUT_URL = 'accounts:logout'
 LOGIN_REDIRECT_URL = 'toast:toasters'
 
-LOGOUT_REDIRECT_URL = 'toast:toasters'
+
+#LOGOUT_REDIRECT_URL = '/'
 
 DATETIME_FORMAT = 'Y-m-d H:i'
-
 
