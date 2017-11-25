@@ -247,6 +247,13 @@ class RegisterForm(forms.ModelForm):
 
 
 class UserDetailChangeForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(UserDetailChangeForm, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.id:
+            self.fields['email'].required = False
+            self.fields['email'].widget.attrs['disabled'] = 'disabled'
+
     full_name = forms.CharField(label='Name', required=False,
                                 widget=forms.TextInput(attrs={
                                     # "class": 'form-control',
@@ -254,11 +261,13 @@ class UserDetailChangeForm(forms.ModelForm):
                                     })
                                 )
 
-    email = forms.EmailField(
-        label=_('Email'),
-        widget=forms.TextInput(attrs={"disabled": "disabled"}),
-    )
-
     class Meta:
         model = User
         fields = ['full_name', 'email']
+
+    def clean_email(self):
+        instance = getattr(self, 'instance', None)
+        if instance:
+            return instance.email
+        else:
+            return self.cleaned_data['email']
