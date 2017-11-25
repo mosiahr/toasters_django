@@ -64,7 +64,7 @@ class UserAdminCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email',)
+        fields = ('email', 'full_name')
 
     def __init__(self, *args, **kwargs):
         super(UserAdminCreationForm, self).__init__(*args, **kwargs)
@@ -109,7 +109,7 @@ class UserAdminChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('full_name', 'email', 'password', 'is_active', 'admin')
 
     def __init__(self, *args, **kwargs):
         super(UserAdminChangeForm, self).__init__(*args, **kwargs)
@@ -155,20 +155,6 @@ class LoginForm(forms.Form):
     def clean(self):
         email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
-#        qs = User.objects.filter(email=email)
-#
-#        if qs.exists():
-#            if qs.filter(active=False).exists():
-#                self.confirm_login_allowed(self.user_cache)
-#
-#        user_cache = authenticate(self.request, username=email, password=password)
-#        if user_cache is None:
-#            raise forms.ValidationError(
-#                self.error_messages['invalid_login'],
-#                code='invalid_login',
-#                params={'username': 'email'}
-#            )
-
 
         if email is not None and password:
             self.user_cache = authenticate(self.request, username=email, password=password)
@@ -182,7 +168,6 @@ class LoginForm(forms.Form):
                 self.confirm_login_allowed(self.user_cache)
 
             login(self.request, self.user_cache)
-        #self.user = self.user_cache
         return self.cleaned_data
 
     def confirm_login_allowed(self, user):
@@ -261,3 +246,13 @@ class RegisterForm(forms.ModelForm):
         return user
 
 
+class UserDetailChangeForm(forms.ModelForm):
+    full_name = forms.CharField(label='Name', required=False,
+                                widget=forms.TextInput(attrs={
+                                    "class": 'form-control',
+                                    "autofocus": True})
+                                )
+
+    class Meta:
+        model = User
+        fields = ['full_name']

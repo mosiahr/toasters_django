@@ -11,6 +11,7 @@ from .views import (
     LoginView,
     RegisterView,
     AppLogoutView,
+    UserDetailUpdateView,
 )
 
 
@@ -25,5 +26,7 @@ urlpatterns = [
 
     url(r'^activate/(?P<uidb64>[0-9A-Za-z]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         AccountActivateView.as_view(), name='activate'),
+
+    url(r'^details/$', UserDetailUpdateView.as_view(), name='user-update'),
 ]
 

@@ -2,17 +2,29 @@
 {% load i18n %}
 
 {% block title %}
-    {% trans "Accounts" %}
+    {{ title }}
 {% endblock %}
 
 {% block content  %}
 <div class="row">
     <div class="card small-9 medium-5 large-4 float-center">
         <div class="card-divider">
-            <h4>{% trans "Accounts" %}</h4>
-            {{ user  }}
+            <h4>{{ title }}</h4>
+        </div>
+        <div class="card-section no-bullet">
+            {% if user.full_name %}
+                <li>{{ user.full_name }}</li>
+            {% endif %}
+            <li>{{ user.email  }}</li>
+
         </div>
     </div>
-                                                                                                         
+    <div class='card'>
+        <h4 class="card-divider">Account Details</h4>
+        <div class="card-section no-bullet">
+            <li><a href='{% url "accounts:user-update" %}'>Update Details</a></li>
+            <li><a href='#'>Change Password</a></li>
+        </div>
+    </div>
 </div>
 {% endblock %}

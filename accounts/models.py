@@ -64,6 +64,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=255,
         unique=True
     )
+    full_name = models.CharField(max_length=255, blank=True, null=True)
     is_active = models.BooleanField(default=True)  # can login
     staff = models.BooleanField(default=False)  # staff user non superuser
     admin = models.BooleanField(default=False)  #superuser
@@ -84,6 +85,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
     def get_full_name(self):
+        if self.full_name:
+            return self.full_name
         return self.email
 
     def get_short_name(self):

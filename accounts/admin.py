@@ -11,7 +11,7 @@ User = get_user_model()
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
-    add_form_template = 'admin/add_form.html'
+    add_form_template = 'accounts/admin/add_form.html'
     # The forms to add and change user instances
     form = UserAdminChangeForm
     add_form = UserAdminCreationForm
@@ -20,12 +20,12 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('id', 'email', 'is_active', 'staff', 'admin', 'last_login', 'date_joined', 'update')
+    list_display = ('id', 'email', 'full_name', 'is_active', 'staff', 'admin', 'last_login', 'date_joined', 'update')
     list_filter = ('admin', 'staff', 'is_active')
     fieldsets = (
         ('{} {} {}'.format(_('Email address'), _('and'), _('Password')),
          {'fields': ('email', 'password',)}),
-        # (_('Personal info'), {'fields': ()}),
+        (_('Personal info'), {'fields': ('full_name',)}),
         (_('Permissions'), {
             # 'classes': ('collapse',),  # hide (show)
             'fields': (('admin', 'staff', 'is_active'),)

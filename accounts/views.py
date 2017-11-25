@@ -2,6 +2,7 @@ from django.shortcuts import render,  redirect
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import views
+from django.urls import reverse
 from django.contrib import auth
 from django.contrib.auth.forms import (
     AuthenticationForm,
@@ -11,7 +12,7 @@ from django.contrib.auth.forms import (
 )
 
 
-from django.views.generic import FormView, CreateView, DetailView, View
+from django.views.generic import FormView, CreateView, DetailView, View, UpdateView
 from django.views.generic.edit import FormMixin
 
 from django.utils.encoding import force_bytes, force_text
@@ -26,6 +27,7 @@ from .forms import (
 
     LoginForm,
     RegisterForm,
+    UserDetailChangeForm,
 )
 from django.utils.translation import ugettext as _
 
@@ -40,11 +42,18 @@ User = get_user_model()
 
 from toast.views import ToasterListView
 
+
 class AccountHomeView(LoginRequiredMixin, DetailView):
     template_name = 'accounts/home.html'
 
-    def get_object(self):
+    def get_object(self, queryset=None):
         return self.request.user
+
+    def get_context_data(self, **kwargs):
+        context = super(AccountHomeView, self).get_context_data(**kwargs)
+        context['title'] = _('Accounts')
+        return context
+
 
 class AccountActivateView(View):
     def get(self, request, uidb64, token):
@@ -60,6 +69,7 @@ class AccountActivateView(View):
         else:
             return HttpResponse('Activation link is invalid!')
 
+
 class LoginView(FormView):
     form_class = LoginForm
     success_url = '/accounts/'
@@ -71,6 +81,7 @@ class LoginView(FormView):
         kwargs['request'] = self.request
         return kwargs
 
+
 class RegisterView(CreateView):
     form_class = RegisterForm
     template_name = 'accounts/register.html'
@@ -81,5 +92,22 @@ class RegisterView(CreateView):
         context['title'] = _('Register')
         return context
 
+
 class AppLogoutView(views.LogoutView):
     next_page = '/accounts/login/'
+
+
+class UserDetailUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = UserDetailChangeForm
+    template_name = 'accounts/detail_update_view.html'
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(UserDetailUpdateView, self).get_context_data(*args, **kwargs)
+        context['title'] = 'Change Your Account Details'
+        return context
+
+    def get_success_url(self):
+        return reverse("accounts:home")
