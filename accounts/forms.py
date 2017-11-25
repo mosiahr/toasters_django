@@ -249,10 +249,16 @@ class RegisterForm(forms.ModelForm):
 class UserDetailChangeForm(forms.ModelForm):
     full_name = forms.CharField(label='Name', required=False,
                                 widget=forms.TextInput(attrs={
-                                    "class": 'form-control',
-                                    "autofocus": True})
+                                    # "class": 'form-control',
+                                    "autofocus": True,
+                                    })
                                 )
+
+    email = forms.EmailField(
+        label=_('Email'),
+        widget=forms.TextInput(attrs={"disabled": "disabled"}),
+    )
 
     class Meta:
         model = User
-        fields = ['full_name']
+        fields = ['full_name', 'email']
