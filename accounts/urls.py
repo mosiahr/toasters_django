@@ -12,6 +12,7 @@ from .views import (
     RegisterView,
     AppLogoutView,
     UserDetailUpdateView,
+    UserPasswordChangeView,
 )
 
 
@@ -20,12 +21,9 @@ urlpatterns = [
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', AppLogoutView.as_view(), name='logout'),
     url(r'^register/$', RegisterView.as_view(), name='register'),
-  #  url(r'^email/confirm/(?P<key>[0-9A-Za-z]+)/$',
-  #          AccountEmailActivateView.as_view(),
-  #          name='email-activate'),
-
     url(r'^activate/(?P<uidb64>[0-9A-Za-z]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         AccountActivateView.as_view(), name='activate'),
+    url(r'^password/$', UserPasswordChangeView.as_view(), name='change_password'),
 
     url(r'^details/$', UserDetailUpdateView.as_view(), name='user-update'),
 ]

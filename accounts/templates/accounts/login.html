@@ -15,8 +15,8 @@
             <div class="card-section">
                 <form action="" method="post">{% csrf_token %}
                     {{ form }}
-                    <input class="button success small" type="submit" value="OK"/>
-                    <a class="button small"  href="{% url 'accounts:register' %}">{% trans 'Register' %}</a>
+                    <button type='submit' class='button success small expanded'>{% trans "Log in" %}</button>
+                    <a class="button small expanded"  href="{% url 'accounts:register' %}">{% trans 'Register' %}</a>
                 </form>
             </div>
         </div>

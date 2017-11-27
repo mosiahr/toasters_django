@@ -11,7 +11,6 @@ from django.contrib.auth.forms import (
     UserChangeForm,
 )
 
-
 from django.views.generic import FormView, CreateView, DetailView, View, UpdateView
 from django.views.generic.edit import FormMixin
 
@@ -19,28 +18,23 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
 from .forms import (
-    MyAuthenticationForm,
-    # MyPasswordChangeForm,
-    # RegisterForm,
-    # UpdateUserForm,
-    # AddFieldToRegister
-
     LoginForm,
     RegisterForm,
     UserDetailChangeForm,
 )
 from django.utils.translation import ugettext as _
 
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+
+from django.contrib.auth import update_session_auth_hash
 
 from .tokens import account_activation_token
+from .messages import ErrorMessageMixin
 
-# from .models import UserProfile
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
-
-
-from toast.views import ToasterListView
 
 
 class AccountHomeView(LoginRequiredMixin, DetailView):
@@ -51,7 +45,7 @@ class AccountHomeView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AccountHomeView, self).get_context_data(**kwargs)
-        context['title'] = _('Accounts')
+        context['title'] = _('Account')
         return context
 
 
@@ -82,10 +76,12 @@ class LoginView(FormView):
         return kwargs
 
 
-class RegisterView(CreateView):
+class RegisterView(SuccessMessageMixin, ErrorMessageMixin, CreateView):
     form_class = RegisterForm
     template_name = 'accounts/register.html'
     success_url = '/accounts/login/'
+    success_message = "%(email)s was created successfully"
+    error_message = 'Please correct the error below.'
 
     def get_context_data(self, **kwargs):
         context = super(RegisterView, self).get_context_data(**kwargs)
@@ -97,9 +93,15 @@ class AppLogoutView(views.LogoutView):
     next_page = '/accounts/login/'
 
 
-class UserDetailUpdateView(LoginRequiredMixin, UpdateView):
+class UserDetailUpdateView(LoginRequiredMixin,
+                           SuccessMessageMixin,
+                           ErrorMessageMixin,
+                           UpdateView):
+
     form_class = UserDetailChangeForm
     template_name = 'accounts/detail_update_view.html'
+    success_message = _("%(email)s was updated successfully")
+    error_message = _('Please correct the errors below.')
 
     def get_object(self, queryset=None):
         return self.request.user
@@ -111,3 +113,50 @@ class UserDetailUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse("accounts:home")
+
+# def change_password(request):
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(request.user, request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             update_session_auth_hash(request, user)  # Important!
+#             messages.success(request, 'Your password was successfully updated!')
+#             return redirect('accounts:home')
+#         else:
+#             messages.error(request, 'Please correct the error below.')
+#     else:
+#         form = PasswordChangeForm(request.user)
+#     return render(request, 'accounts/change_password.html', {
+#         'form': form
+#     })
+
+
+class UserPasswordChangeView(LoginRequiredMixin,
+                             SuccessMessageMixin,
+                             ErrorMessageMixin,
+                             FormView):
+    form_class = PasswordChangeForm
+    template_name = 'accounts/change_password.html'
+    success_message = _("Your password was successfully updated!")
+    error_message = _('Please correct the errors below.')
+
+    def get_form_kwargs(self):
+        kwargs = super(UserPasswordChangeView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        form.save()
+        # Updating the password logs out all other sessions for the user
+        # except the current one.
+
+        update_session_auth_hash(self.request, form.user)
+        return super(UserPasswordChangeView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse("accounts:home")
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(UserPasswordChangeView, self).get_context_data(*args, **kwargs)
+        context['title'] = _('Password change')
+        return context

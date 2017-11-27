@@ -1,0 +1,13 @@
+{% for message in messages %}
+{#    <div data-alert class="callout small {{ message.tags }} round text-center">#}
+{#        {{ message }}#}
+{#        <a href="#" class="close">&times;</a>#}
+{#    </div>#}
+
+    <div class="{{ message.tags }} callout small text-center" data-closable="slide-out-right">
+        {{ message }}
+        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endfor %}

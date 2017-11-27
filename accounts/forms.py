@@ -9,27 +9,6 @@ from django.forms.utils import ErrorList
 
 from django.utils.translation import ugettext as _
 
-
-
-
-class DivErrorList(ErrorList):
-    def __init__(self, initlist=None, error_class=None):
-        super(ErrorList, self).__init__(initlist)
-
-        if error_class is None:
-            self.error_class = 'alert alert-danger'
-        else:
-            self.error_class = 'alert alert-danger {}'.format(error_class)
-
-
-class MyAuthenticationForm(AuthenticationForm):
-    def __init__(self, *args, **kwargs):
-        super(MyAuthenticationForm, self).__init__(*args, **kwargs)
-        self.error_class = DivErrorList
-
-
-########
-
 from django import forms
 from django.contrib.auth import (
     authenticate, get_user_model, password_validation,
@@ -37,6 +16,7 @@ from django.contrib.auth import (
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 User = get_user_model()
 
@@ -207,7 +187,7 @@ class RegisterForm(forms.ModelForm):
     #    strip=False,
     #)
     password1 = forms.CharField(
-        label = _('Password'),
+        label=_('Password'),
         widget=forms.PasswordInput,
         help_text=password_validation.password_validators_help_text_html(),
     )
@@ -233,7 +213,6 @@ class RegisterForm(forms.ModelForm):
                 )
         self.instance.email = self.cleaned_data.get('email')
         password_validation.validate_password(self.cleaned_data.get('password2'), self.instance)
-
         return password2
 
     def save(self, commit=True):
@@ -249,7 +228,7 @@ class RegisterForm(forms.ModelForm):
 class UserDetailChangeForm(forms.ModelForm):
     email = forms.EmailField(
         label=_('Email'),
-        widget=forms.TextInput(attrs={'disabled': True}),
+        widget=forms.TextInput(attrs={'readonly': True}),
         required=False,
         help_text='Can not change email'
     )
@@ -273,3 +252,4 @@ class UserDetailChangeForm(forms.ModelForm):
             return instance.email
         else:
             return self.cleaned_data['email']
+
