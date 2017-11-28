@@ -247,19 +247,21 @@ class RegisterForm(forms.ModelForm):
 
 
 class UserDetailChangeForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(UserDetailChangeForm, self).__init__(*args, **kwargs)
-        instance = getattr(self, 'instance', None)
-        if instance and instance.id:
-            self.fields['email'].required = False
-            self.fields['email'].widget.attrs['disabled'] = 'disabled'
+    email = forms.EmailField(
+        label=_('Email'),
+        widget=forms.TextInput(attrs={'disabled': True}),
+        required=False,
+        help_text='Can not change email'
+    )
 
-    full_name = forms.CharField(label='Name', required=False,
-                                widget=forms.TextInput(attrs={
-                                    # "class": 'form-control',
-                                    "autofocus": True,
-                                    })
-                                )
+    full_name = forms.CharField(
+        label='Name',
+        required=False,
+        widget=forms.TextInput(attrs={
+            # "class": 'form-control',
+            "autofocus": True,
+        })
+    )
 
     class Meta:
         model = User
