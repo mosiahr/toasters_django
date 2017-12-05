@@ -15,6 +15,7 @@
             <div class="card-section">
                 <form action="" method="post">{% csrf_token %}
                     {{ form }}
+                    <a href="{% url 'accounts:password_reset' %}">Забыли пароль ?</a>
                     <button type='submit' class='button success small expanded'>{% trans "Log in" %}</button>
                     <a class="button small expanded"  href="{% url 'accounts:register' %}">{% trans 'Register' %}</a>
                 </form>

@@ -106,13 +106,22 @@ class UserAdminChangeForm(forms.ModelForm):
 
 class LoginForm(forms.Form):
     email = forms.EmailField(
-        label=_('Email'),
-        widget = forms.TextInput(attrs={'autofocus': True}),
+        label=_(''),
+        widget=forms.TextInput(
+            attrs={
+                'autofocus': True,
+                'placeholder': _('Email')
+            }
+        ),
     )
     password = forms.CharField(
-        label=_("Password"),
+        label=_(''),
         strip=False,
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': _('Password')
+            }
+        ),
     )
 
     error_messages = {
