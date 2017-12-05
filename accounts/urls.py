@@ -7,18 +7,12 @@ from django.contrib.auth import views as auth_views
 from .views import (
     AccountHomeView,
     AccountActivateView,
-  #  AccountEmailActivateView,
     LoginView,
     RegisterView,
     AppLogoutView,
     UserDetailUpdateView,
     UserPasswordChangeView,
 )
-
-from django.contrib.auth.forms import (
-    AuthenticationForm, PasswordChangeForm, PasswordResetForm, SetPasswordForm,
-)
-
 
 urlpatterns = [
     url(r'^$', AccountHomeView.as_view(), name='home'),

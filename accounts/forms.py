@@ -190,19 +190,31 @@ class RegisterForm(forms.ModelForm):
     error_messages = {
         'password_mismatch': _("The two password fields didn't match."),
     }
-    #email = forms.EmailField(
-    #    label=_('Email'),
-    #    widget = forms.TextInput(attrs={'autofocus': True}),
-    #    strip=False,
-    #)
+    email = forms.EmailField(
+        label='',
+        widget=forms.TextInput(
+            attrs={
+                'autofocus': True,
+                'placeholder': _('Email')
+            }
+        ),
+    )
     password1 = forms.CharField(
-        label=_('Password'),
-        widget=forms.PasswordInput,
+        label='',
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': _('Password')
+            }
+        ),
         help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
-        label = _('Password confirmation'),
-        widget=forms.PasswordInput,
+        label='',
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': _('Password confirmation')
+            }
+        ),
         help_text=_("Enter the same password as before, for verification."),
     )
 
