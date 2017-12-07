@@ -64,11 +64,16 @@ class AccountActivateView(View):
             return HttpResponse('Activation link is invalid!')
 
 
-class LoginView(FormView):
+class LoginView(SuccessMessageMixin,
+                ErrorMessageMixin,
+                FormView):
+
     form_class = LoginForm
     success_url = '/accounts/'
     template_name = 'accounts/login.html'
     default_next = '/'
+    success_message = _("Login successful")
+    error_message = _('Please correct the errors below.')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
