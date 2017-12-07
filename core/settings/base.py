@@ -169,3 +169,6 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.ERROR: 'alert',
 }
+
+LOCALE_PATHS = (
+    BASE_DIR + '/accounts/locale', )

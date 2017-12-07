@@ -1,4 +1,5 @@
 {% extends "core/base.html" %}
+{% load i18n %}
 
 {% block title %}
     {{ title }}
@@ -16,8 +17,8 @@
                     <input type='hidden' name='next' value='{{ next_url }}'/>
                 {% endif %}
                 {{ form }}<br>
-                <button type='submit' class='button success small expanded'>Save</button>
-                <a class='button small expanded' href='{% url "accounts:change_password" %}'>Change Password</a>
+                <button type='submit' class='button success small expanded'>{% trans "Save" %}</button>
+                <a class='button small expanded' href='{% url "accounts:change_password" %}'>{% trans "Change Password" %}</a>
             </form>
         </div>
     </div>

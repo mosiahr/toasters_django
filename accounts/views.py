@@ -59,9 +59,9 @@ class AccountActivateView(View):
         if user is not None and account_activation_token.check_token(user, token):
             user.is_active = True
             user.save()
-            return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+            return HttpResponse(_('Thank you for your email confirmation. Now you can login your account.'))
         else:
-            return HttpResponse('Activation link is invalid!')
+            return HttpResponse(_('Activation link is invalid!'))
 
 
 class LoginView(SuccessMessageMixin,
@@ -72,7 +72,7 @@ class LoginView(SuccessMessageMixin,
     success_url = '/accounts/'
     template_name = 'accounts/login.html'
     default_next = '/'
-    success_message = _("Login successful")
+    success_message = _("Login successful!")
     error_message = _('Please correct the errors below.')
 
     def get_form_kwargs(self):
@@ -85,8 +85,8 @@ class RegisterView(SuccessMessageMixin, ErrorMessageMixin, CreateView):
     form_class = RegisterForm
     template_name = 'accounts/register.html'
     success_url = '/accounts/login/'
-    success_message = "%(email)s was created successfully"
-    error_message = 'Please correct the error below.'
+    success_message = _("%(email)s was created successfully")
+    error_message = _('Please correct the errors below.')
 
     def get_context_data(self, **kwargs):
         context = super(RegisterView, self).get_context_data(**kwargs)
@@ -105,7 +105,7 @@ class UserDetailUpdateView(LoginRequiredMixin,
 
     form_class = UserDetailChangeForm
     template_name = 'accounts/detail_update_view.html'
-    success_message = _("%(email)s was updated successfully")
+    success_message = _("Your account %(email)s was updated successfully!")
     error_message = _('Please correct the errors below.')
 
     def get_object(self, queryset=None):
@@ -113,7 +113,7 @@ class UserDetailUpdateView(LoginRequiredMixin,
 
     def get_context_data(self, *args, **kwargs):
         context = super(UserDetailUpdateView, self).get_context_data(*args, **kwargs)
-        context['title'] = 'Change Your Account Details'
+        context['title'] = _('Change Your Account Details')
         return context
 
     def get_success_url(self):

@@ -106,7 +106,7 @@ class UserAdminChangeForm(forms.ModelForm):
 
 class LoginForm(forms.Form):
     email = forms.EmailField(
-        label=_(''),
+        label='',
         widget=forms.TextInput(
             attrs={
                 'autofocus': True,
@@ -115,7 +115,7 @@ class LoginForm(forms.Form):
         ),
     )
     password = forms.CharField(
-        label=_(''),
+        label='',
         strip=False,
         widget=forms.PasswordInput(
             attrs={
@@ -251,11 +251,11 @@ class UserDetailChangeForm(forms.ModelForm):
         label=_('Email'),
         widget=forms.TextInput(attrs={'readonly': True}),
         required=False,
-        help_text='Can not change email'
+        help_text=_('Email address can not be changed.')
     )
 
     full_name = forms.CharField(
-        label='Name',
+        label=_('Name'),
         required=False,
         widget=forms.TextInput(attrs={
             # "class": 'form-control',

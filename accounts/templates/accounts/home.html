@@ -19,10 +19,10 @@
         </div>
     </div>
     <div class='card small-9 medium-4 large-4 float-left'>
-        <h4 class="card-divider">Account Details</h4>
+        <h4 class="card-divider">{% trans "Account Details" %}</h4>
         <div class="card-section no-bullet">
-            <li><a href='{% url "accounts:user-update" %}'>Update Details</a></li>
-            <li><a href='{% url "accounts:change_password" %}'>Change Password</a></li>
+            <li><a href='{% url "accounts:user-update" %}'>{% trans "Update Account Details" %}</a></li>
+            <li><a href='{% url "accounts:change_password" %}'>{% trans "Change Password" %}</a></li>
         </div>
     </div>
 </div>
