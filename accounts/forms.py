@@ -260,6 +260,7 @@ class UserDetailChangeForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             # "class": 'form-control',
             "autofocus": True,
+            'placeholder': ''
         })
     )
 

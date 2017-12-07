@@ -28,3 +28,8 @@
 .errorlist > li {
     list-style-type: none;
 }
+
+.icon {
+    font-size: 18px;
+    color: black;
+}
