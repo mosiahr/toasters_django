@@ -1,0 +1,26 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+    <div class="card small-9 medium-5 large-4 float-center">
+        <div class="card-divider">
+            {% if title %}<h4 class=''>{{ title }}</h4>{% endif %}
+        </div>
+        <div class="card-section">
+            <form method='POST' action='{% if action_url %}{{ action_url }}{% endif %}'> {% csrf_token %}
+                {% if next_url %}
+                    <input type='hidden' name='next' value='{{ next_url }}'/>
+                {% endif %}
+                {{ form }}<br>
+                <button type='submit' class='button success small expanded'>{% trans "Save" %}</button>
+                <a class='button small expanded' href='{% url "accounts:change_password" %}'>{% trans "Change Password" %}</a>
+            </form>
+        </div>
+    </div>
+    </div>
+{% endblock %}

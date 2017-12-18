@@ -15,10 +15,12 @@ def user_save_handler(sender, instance, created, *args, **kwargs):
         if settings.DEBUG:
             print("%s saved." % instance)
         obj = User.objects.get(pk=instance.id)
-        obj.send_activate()
+        if obj.is_active is not True:
+            obj.send_activate()
 
 @receiver(post_delete, sender=User)
 def user_delete_handler(sender, **kwargs):
     if settings.DEBUG:
         print("%s deleted." % kwargs['instance'])
+
 

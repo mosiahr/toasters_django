@@ -54,7 +54,7 @@
     <div class="top-bar-right">
         <ul class="menu">
             {% if user.is_authenticated %}
-                {% if user.full_name != '' %}
+                {% if user.full_name != '' and user.full_name != None%}
                     <li><a class="" href="{% url 'accounts:home' %}">
                         <span class="icon">
                         <i class="fi-torso "></i></span>

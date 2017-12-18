@@ -12,6 +12,7 @@ from django.contrib.auth.forms import (
 )
 
 from django.views.generic import FormView, CreateView, DetailView, View, UpdateView
+from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import FormMixin
 
 from django.utils.encoding import force_bytes, force_text
@@ -23,8 +24,8 @@ from .forms import (
     UserDetailChangeForm,
 )
 from django.utils.translation import ugettext as _
+from django.template.response import TemplateResponse
 
-from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
 from django.contrib.auth import update_session_auth_hash
@@ -50,7 +51,9 @@ class AccountHomeView(LoginRequiredMixin, DetailView):
 
 
 class AccountActivateView(View):
-    def get(self, request, uidb64, token):
+    template_name = 'accounts/activate_done.html'
+
+    def get(self, request, uidb64, token, **kwargs):
         try:
             uid = force_text(urlsafe_base64_decode(uidb64))
             user = User.objects.get(pk=uid)
@@ -59,9 +62,16 @@ class AccountActivateView(View):
         if user is not None and account_activation_token.check_token(user, token):
             user.is_active = True
             user.save()
-            return HttpResponse(_('Thank you for your email confirmation. Now you can login your account.'))
+
+            msg = _('Thank you for your email confirmation. Now you can login your account.')
         else:
-            return HttpResponse(_('Activation link is invalid!'))
+            msg = _('Activation link is invalid!')
+
+        context = {
+            'title': _('Email confirmation'),
+            'msg': msg
+        }
+        return render(request, self.template_name, context)
 
 
 class LoginView(SuccessMessageMixin,
@@ -76,16 +86,22 @@ class LoginView(SuccessMessageMixin,
     error_message = _('Please correct the errors below.')
 
     def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
+        kwargs = super(LoginView, self).get_form_kwargs()
         kwargs['request'] = self.request
         return kwargs
 
+    def get(self, request, *args, **kwargs):
+        # if the user is authorized, then redirect to the success url
+        if auth.get_user(request).is_authenticated:
+            return redirect(self.success_url)
+        else:
+            return self.render_to_response(self.get_context_data())
 
 class RegisterView(SuccessMessageMixin, ErrorMessageMixin, CreateView):
     form_class = RegisterForm
     template_name = 'accounts/register.html'
     success_url = '/accounts/login/'
-    success_message = _("%(email)s was created successfully")
+    success_message = _("Account %(email)s was created successfully!")
     error_message = _('Please correct the errors below.')
 
     def get_context_data(self, **kwargs):
@@ -138,7 +154,6 @@ class UserPasswordChangeView(LoginRequiredMixin,
         form.save()
         # Updating the password logs out all other sessions for the user
         # except the current one.
-
         update_session_auth_hash(self.request, form.user)
         return super(UserPasswordChangeView, self).form_valid(form)
 
@@ -148,4 +163,4 @@ class UserPasswordChangeView(LoginRequiredMixin,
     def get_context_data(self, *args, **kwargs):
         context = super(UserPasswordChangeView, self).get_context_data(*args, **kwargs)
         context['title'] = _('Password change')
-        return context
+        return CONTEXT

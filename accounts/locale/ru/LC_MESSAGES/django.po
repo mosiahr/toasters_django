@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-08 00:36+0200\n"
+"POT-Creation-Date: 2017-12-09 05:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,6 +133,10 @@ msgstr "Детали аккаунта"
 msgid "Update Account Details"
 msgstr "Редактирование вашего аккаунта"
 
+#: templates/accounts/home.html:26
+msgid "Update Profile"
+msgstr ""
+
 #: templates/accounts/login.html:5 templates/accounts/login.html:12
 #: templates/accounts/login.html:19
 #: templates/password_reset/password_reset_complete.html:12
@@ -143,7 +147,7 @@ msgstr ""
 msgid "Forgotten your password?"
 msgstr "Забыли пароль?"
 
-#: templates/accounts/login.html:20 views.py:93
+#: templates/accounts/login.html:20 views.py:103
 msgid "Register"
 msgstr "Регистрация"
 
@@ -213,44 +217,50 @@ msgstr ""
 msgid "Password reset on %(site_name)s"
 msgstr ""
 
-#: views.py:48
+#: views.py:49
 msgid "Account"
 msgstr "Аккаунт"
 
-#: views.py:62
+#: views.py:66
 msgid "Thank you for your email confirmation. Now you can login your account."
 msgstr ""
+"Спасибо за ваше подтверждение по электронной почте. Теперь вы можете войти в "
+"свою учетную запись."
 
-#: views.py:64
+#: views.py:68
 msgid "Activation link is invalid!"
-msgstr ""
+msgstr "Ссылка активации недействительна!"
 
-#: views.py:75
+#: views.py:71
+msgid "Email confirmation"
+msgstr "Подтверждение электонной почты"
+
+#: views.py:85
 msgid "Login successful!"
 msgstr "Авторизация успешна!"
 
-#: views.py:76 views.py:89 views.py:109 views.py:130
+#: views.py:86 views.py:99 views.py:124 views.py:145
 msgid "Please correct the errors below."
 msgstr ""
 
-#: views.py:88
+#: views.py:98
 #, python-format
-msgid "%(email)s was created successfully"
-msgstr ""
+msgid "Account %(email)s was created successfully!"
+msgstr "Учетная запись %(email)s была успешно создана!"
 
-#: views.py:108
+#: views.py:123
 #, python-format
 msgid "Your account %(email)s was updated successfully!"
 msgstr "Ваша учетная запись %(email)s была успешно обновлена!"
 
-#: views.py:116
+#: views.py:131
 msgid "Change Your Account Details"
 msgstr "Редактирование вашего аккаунта"
 
-#: views.py:129
+#: views.py:144
 msgid "Your password was successfully updated!"
 msgstr "Ваш пароль был успешно изменен!"
 
-#: views.py:150
+#: views.py:165
 msgid "Password change"
 msgstr ""

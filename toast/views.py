@@ -1,11 +1,60 @@
-from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
+from django.shortcuts import render, redirect, reverse
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from .models import Toaster, Tag, Location
 from .forms import ToasterLocationForm
 
 from django.utils.datastructures import MultiValueDictKeyError
 
+from django.utils.translation import ugettext as _
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from accounts.messages import ErrorMessageMixin
+
+from .models import Profile
+from .forms import ProfileCreateForm
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+
+class ProfileCreateView(LoginRequiredMixin,
+                        SuccessMessageMixin,
+                        ErrorMessageMixin,
+                        CreateView):
+    form_class = ProfileCreateForm
+    template_name = 'accounts/detail_update_view.html'
+    success_message = _("Your account %(email)s was updated successfully!")
+    error_message = _('Please correct the errors below.')
+
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProfileCreateView, self).get_context_data(*args, **kwargs)
+        context['title'] = _('Change Your Account Details')
+        return context
+
+    def get_success_url(self):
+        return reverse("accounts:home")
+
+    def form_valid(self, form):
+        """
+        If the form is valid, save the associated model.
+        """
+        # user = User.objects.get(pk=id)
+        self.object = form.save()
+        return super(ProfileCreateView, self).form_valid(form)
+
+
+# class ProfileView(SuccessMessageMixin, ErrorMessageMixin, CreateView):
+#     form_class = RegisterForm
+#     template_name = 'accounts/register.html'
+#     success_url = '/accounts/login/'
+#     success_message = _("%(email)s was created successfully")
+#     error_message = _('Please correct the errors below.')
 
 class TagListView(ListView):
     model = Tag

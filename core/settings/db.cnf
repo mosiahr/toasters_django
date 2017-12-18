@@ -1,7 +1,7 @@
 [client]
 database = 'toaster'
 user = 'toast'
-password = 'mo555ya'
+password = 'mo555yadjango'
 default-character-set = utf8
 
 [mysql]
