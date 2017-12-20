@@ -11,17 +11,8 @@
 {% block content %}
     <div class="row">
 
-        <div class="small-10 medium-4 large-3 columns">
-            <div class="column">
-                <div class="callout">
-                    <form action="" method="get">
-                        {#        {% csrf_token %}#}
-                        {{ form }}
-                        <input class="button secondary small" type="submit" value="ПРОКАЗАТЬ"/>
-                    </form>
-                </div>
-            </div>
-        </div>
+        {# FORM FILTER #}
+        {% include 'toast/include/form_filter.html' %}
 
         <div class="small-12 medium-8 large-9 float-left">
         <h3 class="subheader text-center">Тамада и ведущий на свадьбу{% if header %}: {{ header }}{% endif %}</h3>

@@ -72,8 +72,9 @@
                 {% if user.is_authenticated %}
                 {% if user.full_name != '' and user.full_name != None%}
                     <li><a class="" href="{% url 'accounts:home' %}">
-                        <span class="icon">
-                        <i class="fi-torso "></i></span>
+{#                        <span class="icon">#}
+{#                        <i class="fi-torso "></i></span>#}
+                        <i class="fa fa-user-o fa-lg" aria-hidden="true"></i>
                         {{ user.full_name }}</a></li>
                 {% else %}
                     <li><a class="" href="{% url 'accounts:home' %}">{{ user }}</a></li>
@@ -124,5 +125,6 @@
 <script>
     $(document).foundation();
 </script>
+{#<script src="{% static 'js/app.js' %}"></script>#}
 </body>
 </html>

@@ -129,3 +129,10 @@
   font-weight: bold;
 }
 
+.form-filter-city {
+
+}
+.form-filter-city:before{
+  font-family: "FontAwesome";
+  content: "\f041";
+}

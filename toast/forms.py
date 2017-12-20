@@ -20,9 +20,9 @@ class ToasterLocationForm(forms.ModelForm):
     location_select = forms.ModelChoiceField(
         queryset=None,
         to_field_name='slug',
-        empty_label='выбрать',
+        empty_label=_('choose'),    #выбрать
         required=False,
-        label='Город',
+        label=_('City'),
         # initial={'name': 'Киев'}
     )
 
