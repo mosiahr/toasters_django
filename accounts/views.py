@@ -97,6 +97,7 @@ class LoginView(SuccessMessageMixin,
         else:
             return self.render_to_response(self.get_context_data())
 
+
 class RegisterView(SuccessMessageMixin, ErrorMessageMixin, CreateView):
     form_class = RegisterForm
     template_name = 'accounts/register.html'
@@ -163,4 +164,4 @@ class UserPasswordChangeView(LoginRequiredMixin,
     def get_context_data(self, *args, **kwargs):
         context = super(UserPasswordChangeView, self).get_context_data(*args, **kwargs)
         context['title'] = _('Password change')
-        return CONTEXT
+        return context
