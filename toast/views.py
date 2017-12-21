@@ -28,7 +28,6 @@ class ProfileCreateView(LoginRequiredMixin,
     success_message = _("Your account %(email)s was updated successfully!")
     error_message = _('Please correct the errors below.')
 
-
     def get_object(self, queryset=None):
         return self.request.user
 
