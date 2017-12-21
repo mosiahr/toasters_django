@@ -72,12 +72,12 @@
                 {% if user.is_authenticated %}
                 {% if user.full_name != '' and user.full_name != None%}
                     <li><a class="" href="{% url 'accounts:home' %}">
-{#                        <span class="icon">#}
-{#                        <i class="fi-torso "></i></span>#}
                         <i class="fa fa-user-o fa-lg" aria-hidden="true"></i>
                         {{ user.full_name }}</a></li>
                 {% else %}
-                    <li><a class="" href="{% url 'accounts:home' %}">{{ user }}</a></li>
+                    <li><a class="" href="{% url 'accounts:home' %}">
+                        <i class="fa fa-user-o fa-lg" aria-hidden="true"></i>
+                        {{ user }}</a></li>
                 {% endif %}
                 <li><a class="button" href="{% url 'accounts:logout' %}">{% trans 'Log out' %}</a></li>
                 {% else %}

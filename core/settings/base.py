@@ -27,6 +27,7 @@ SECRET_KEY = 'nqi&8s7i_^7d_a+=wcj5bg5nir+&j#4$zfss!#((!h2)o+o3&c'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+DEFAULT_DOMAIN = 'toasters.biz.ua'
 
 # confirmation email
 EMAIL_USE_TLS = email_conf.EMAIL_USE_TLS

@@ -9,6 +9,7 @@ from django.template.loader import get_template
 
 User = get_user_model()
 
+
 @receiver(post_save, sender=User)
 def user_save_handler(sender, instance, created, *args, **kwargs):
     if created:
@@ -17,6 +18,7 @@ def user_save_handler(sender, instance, created, *args, **kwargs):
         obj = User.objects.get(pk=instance.id)
         if obj.is_active is not True:
             obj.send_activate()
+
 
 @receiver(post_delete, sender=User)
 def user_delete_handler(sender, **kwargs):

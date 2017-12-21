@@ -114,19 +114,28 @@ class User(AbstractBaseUser, PermissionsMixin):
             }
         )
         path = "{base}{path}".format(base=base_url, path=key_path)
+        site_name = settings.DEFAULT_DOMAIN
         context = {
             'email': self.email,
             'path': path,
+            'site_name': site_name
         }
 
         message_txt = get_template('accounts/email/verify.txt').render(context)
+        message_html = get_template('accounts/email/verify.html').render(context)
 
-        email = EmailMessage(
-            subject='Activate your account at toasters.com.',
-            body=message_txt,
-            from_email=settings.EMAIL_HOST_USER,
-            to=[self.email],
-        )
+        subject = _('Activate your account at to') + ' ' + site_name
+        from_email, to = settings.EMAIL_HOST_USER, self.email
 
-        return email.send(fail_silently=False)
+        msg = EmailMultiAlternatives(subject, message_txt, from_email, [to])
+        msg.attach_alternative(message_html, "text/html")
+
+        # email = EmailMessage(
+        #     subject='Activate your account at toasters.com.',
+        #     body=message_html,
+        #     from_email=settings.EMAIL_HOST_USER,
+        #     to=[self.email],
+        # )
+
+        return msg.send(fail_silently=False)
 

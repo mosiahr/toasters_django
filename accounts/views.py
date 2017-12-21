@@ -101,7 +101,7 @@ class LoginView(SuccessMessageMixin,
 class RegisterView(SuccessMessageMixin, ErrorMessageMixin, CreateView):
     form_class = RegisterForm
     template_name = 'accounts/register.html'
-    success_url = '/accounts/login/'
+    success_url = '/accounts/register/done/'
     success_message = _("Account %(email)s was created successfully!")
     error_message = _('Please correct the errors below.')
 
@@ -109,6 +109,19 @@ class RegisterView(SuccessMessageMixin, ErrorMessageMixin, CreateView):
         context = super(RegisterView, self).get_context_data(**kwargs)
         context['title'] = _('Register')
         return context
+
+
+class DoneRegisterView(View):
+    template_name = 'accounts/register_done.html'
+
+    def get(self, request, **kwargs):
+        msg = _("Please confirm your email address  to complete the registration.")
+
+        context = {
+            'title': _("Register is done"),
+            'msg': msg
+        }
+        return render(request, self.template_name, context)
 
 
 class AppLogoutView(views.LogoutView):
