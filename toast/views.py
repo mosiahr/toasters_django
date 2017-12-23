@@ -12,8 +12,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from accounts.messages import ErrorMessageMixin
 
-from .models import Profile
-from .forms import ProfileCreateForm
+from profiles.models import Profile
+from profiles.forms import ProfileCreateForm
 
 from django.contrib.auth import get_user_model
 User = get_user_model()

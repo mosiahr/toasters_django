@@ -4,7 +4,7 @@
 # from django.forms import ModelForm, ModelChoiceField, MultiValueField
 from django import forms
 
-from .models import Location, Profile
+from .models import Location
 
 
 from django.utils.translation import ugettext as _
@@ -32,35 +32,35 @@ class ToasterLocationForm(forms.ModelForm):
         self.fields['location_select'].queryset = Location.objects.all()
 
 
-class ProfileCreateForm(forms.ModelForm):
-    # user = forms.ChoiceField(widget=forms.HiddenInput())
-
-    name = forms.CharField(
-        label=_('Name'),
-        required=False,
-        widget=forms.TextInput(attrs={
-            # "class": 'form-control',
-            "autofocus": True,
-            'placeholder': ''
-        })
-    )
-
-    email = forms.EmailField(
-        label=_('Email'),
-        # widget=forms.TextInput(attrs={'readonly': True}),
-        required=False,
-    )
-
-    class Meta:
-        model = Profile
-        # fields = ['full_name', 'email']
-        fields = ('name', 'address', 'email', 'phone', 'site', 'description', 'img', 'locations', 'tags')
-
-    #
-    # def save(self, commit=True):
-    #     # Save the provided password in hashed format
-    #     user = super(ProfileCreateForm, self).save(commit=False)
-    #     user.user_id = User.objects.get(pk=)
-    #     if commit:
-    #         user.save()
-    #     return user
+# class ProfileCreateForm(forms.ModelForm):
+#     # user = forms.ChoiceField(widget=forms.HiddenInput())
+#
+#     name = forms.CharField(
+#         label=_('Name'),
+#         required=False,
+#         widget=forms.TextInput(attrs={
+#             # "class": 'form-control',
+#             "autofocus": True,
+#             'placeholder': ''
+#         })
+#     )
+#
+#     email = forms.EmailField(
+#         label=_('Email'),
+#         # widget=forms.TextInput(attrs={'readonly': True}),
+#         required=False,
+#     )
+#
+#     class Meta:
+#         model = Profile
+#         # fields = ['full_name', 'email']
+#         fields = ('name', 'address', 'email', 'phone', 'site', 'description', 'img', 'locations', 'tags')
+#
+#     #
+#     # def save(self, commit=True):
+#     #     # Save the provided password in hashed format
+#     #     user = super(ProfileCreateForm, self).save(commit=False)
+#     #     user.user_id = User.objects.get(pk=)
+#     #     if commit:
+#     #         user.save()
+#     #     return user
