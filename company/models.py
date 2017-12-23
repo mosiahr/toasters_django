@@ -11,19 +11,27 @@ class Tag(MainAbstractModel):
     name = models.CharField(max_length=120, unique=True, verbose_name=_('Tag name'))
     slug = models.SlugField(max_length=140, blank=True, null=True)
 
+    class Meta:
+        verbose_name = _('Tag')
+        verbose_name_plural = _('Tags')
+
 
 class Location(MainAbstractModel):
     name = models.CharField(max_length=120, unique=True, verbose_name=_('City'))
     slug = models.SlugField(max_length=140, blank=True, null=True)
 
+    class Meta:
+        verbose_name = _('Location')
+        verbose_name_plural = _('Locations')
+
 
 class TypeCompany(MainAbstractModel):
-    name = models.CharField(max_length=120, unique=True, verbose_name=_('Type company'))
+    name = models.CharField(max_length=120, unique=True, verbose_name=_('Company type'))
     slug = models.SlugField(max_length=140, blank=True, null=True)
 
     class Meta:
-        verbose_name = _('Type company')
-        verbose_name_plural = _('Type companies')
+        verbose_name = _('Company type')
+        verbose_name_plural = _('Company types')
 
 
 class Company(MainAbstractModel):
