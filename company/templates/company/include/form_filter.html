@@ -1,0 +1,18 @@
+{% load i18n %}
+<div class="small-10 medium-4 large-3 columns">
+    <div class="column">
+        <div class="callout">
+            <form action="" method="get">
+                {#        {% csrf_token %}#}
+                                        {{ form }}
+{#                {% for field in form %}#}
+{#                    <label for="{{ field.name }}">#}
+{#                        <i class="fa fa-map-marker fa-lg" aria-hidden="true"></i> {{ field.label }}#}
+{#                    </label>#}
+{#                    {{ field }}#}
+{#                {% endfor %}#}
+                <input class="button secondary small" type="submit" value={% trans "Show" %} />
+            </form>
+        </div>
+    </div>
+</div>
