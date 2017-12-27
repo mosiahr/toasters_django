@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import TypeCompany, Location, Tag, Company
+from .models import TypeCompany, Location, Tag, Company, Price
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -29,7 +29,19 @@ class TagAdmin(admin.ModelAdmin):
         model = Tag
 
 
+@admin.register(Price)
+class PriceAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    ordering = ['id']
+
+    class Meta:
+        model = Price
+
+
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
+
     class Meta:
         model = Company
+
+

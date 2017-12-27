@@ -34,6 +34,15 @@ class TypeCompany(MainAbstractModel):
         verbose_name_plural = _('Company types')
 
 
+class Price(MainAbstractModel):
+    name = models.CharField(max_length=120, unique=True, verbose_name=_('Price'))
+    slug = models.SlugField(max_length=140, blank=True, null=True)
+
+    class Meta:
+        verbose_name = _('Price')
+        verbose_name_plural = _('Prices')
+
+
 class Company(MainAbstractModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=140, unique=False, verbose_name=_('Name'), blank=True)
@@ -46,6 +55,7 @@ class Company(MainAbstractModel):
     img = models.ImageField(upload_to='img', verbose_name=_('Logo'), blank=True)
     locations = models.ManyToManyField(Location, verbose_name=_('City'), blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
+    price = models.ForeignKey(Price,  on_delete=models.CASCADE, blank=True)
 
     def get_locations(self):
         return "\n".join([l.name for l in self.locations.all()])
