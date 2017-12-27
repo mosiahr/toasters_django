@@ -76,7 +76,7 @@ class CompanyListView(ListView):
 
             if self.request.GET['price']:
                 price = self.request.GET['price']
-                return Company.pub_objects.filter(type__slug=price)
+                return Company.pub_objects.filter(price__slug=price)
 
         except MultiValueDictKeyError:
             pass
