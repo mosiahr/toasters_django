@@ -8,6 +8,7 @@ User = get_user_model()
 @admin.register(TypeCompany)
 class TypeCompanyAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
+    ordering = ['name']
 
     class Meta:
         model = TypeCompany

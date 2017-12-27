@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import ugettext as _
-
 from core.models_abstract import MainAbstractModel
 
 from django.contrib.auth import get_user_model
@@ -23,6 +22,7 @@ class Location(MainAbstractModel):
     class Meta:
         verbose_name = _('Location')
         verbose_name_plural = _('Locations')
+        ordering = ['name']
 
 
 class TypeCompany(MainAbstractModel):
@@ -32,6 +32,7 @@ class TypeCompany(MainAbstractModel):
     class Meta:
         verbose_name = _('Company type')
         verbose_name_plural = _('Company types')
+        ordering = ['name']
 
 
 class Price(MainAbstractModel):
