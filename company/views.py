@@ -36,46 +36,33 @@ class CompanyListView(ListView):
 
     def get_queryset(self):
         try:
+            location = self.request.GET['location_select']
+            type_company = self.request.GET['type_company']
+            price = self.request.GET['price']
             if self.request.GET['location_select'] and self.request.GET['type_company'] and self.request.GET['price']:
-                location = self.request.GET['location_select']
-                type_company = self.request.GET['type_company']
-                price = self.request.GET['price']
-
                 return Company.pub_objects.filter(locations__slug=location,
                                                   type__slug=type_company,
                                                   price__slug=price)
 
             if self.request.GET['location_select'] and self.request.GET['type_company']:
-                location = self.request.GET['location_select']
-                type_company = self.request.GET['type_company']
-
                 return Company.pub_objects.filter(locations__slug=location,
                                                   type__slug=type_company)
 
             if self.request.GET['type_company'] and self.request.GET['price']:
-                type_company = self.request.GET['type_company']
-                price = self.request.GET['price']
-
                 return Company.pub_objects.filter(type__slug=type_company,
                                                   price__slug=price)
 
             if self.request.GET['location_select'] and self.request.GET['price']:
-                location = self.request.GET['location_select']
-                price = self.request.GET['price']
-
                 return Company.pub_objects.filter(locations__slug=location,
                                                   price__slug=price)
 
             if self.request.GET['location_select']:
-                location = self.request.GET['location_select']
                 return Company.pub_objects.filter(locations__slug=location)
 
             if self.request.GET['type_company']:
-                type_company = self.request.GET['type_company']
                 return Company.pub_objects.filter(type__slug=type_company)
 
             if self.request.GET['price']:
-                price = self.request.GET['price']
                 return Company.pub_objects.filter(price__slug=price)
 
         except MultiValueDictKeyError:
