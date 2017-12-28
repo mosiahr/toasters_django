@@ -36,19 +36,19 @@ class CompanyLocationForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(CompanyLocationForm, self).__init__(*args, **kwargs)
 
-        self.fields['location_select'] = forms.ChoiceField(
-            label=_('City'),
-            choices=self.LOCATION,
-            required=False,
-            # initial={'location_select': 'Киев'},
-            initial=self.LOCATION[0][0]
-        )
-
         self.fields['type_company'] = forms.ChoiceField(
             choices=self.TYPE,
             required=False,
             label=_('Type'),
             widget=forms.Select()
+        )
+
+        self.fields['location_select'] = forms.ChoiceField(
+            label=_('City'),
+            choices=self.LOCATION,
+            required=False,
+            # initial={'location_select': 'Киев'},
+            initial=self.LOCATION[0][0],
         )
 
         self.fields['price'] = forms.ChoiceField(
@@ -58,5 +58,6 @@ class CompanyLocationForm(forms.Form):
             widget=forms.Select()
         )
 
-
+        self.fields['type_company'].initial = 'vedushie-tamada'
+    field_order = ('type_company', 'location_select', 'price')
 

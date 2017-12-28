@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-23 03:53+0200\n"
+"POT-Creation-Date: 2017-12-30 11:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,31 +20,39 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: apps.py:7 models.py:54
+#: apps.py:8 models.py:65
 msgid "Company"
 msgstr "Компания"
 
-#: models.py:11
-msgid "Tag name"
-msgstr "Имя тэга"
-
-#: models.py:15
-msgid "Tag"
-msgstr "Тэг"
-
-#: models.py:16
-msgid "Tags"
-msgstr "Тэги"
-
-#: models.py:20 models.py:47
+#: forms.py:40 models.py:19 models.py:57
 msgid "City"
 msgstr "Город"
 
-#: models.py:24
+#: forms.py:50 models.py:50
+msgid "Type"
+msgstr "Тип"
+
+#: forms.py:57 models.py:39 models.py:43
+msgid "Price"
+msgstr "Стоимость"
+
+#: models.py:10
+msgid "Tag name"
+msgstr "Имя тэга"
+
+#: models.py:14
+msgid "Tag"
+msgstr "Тэг"
+
+#: models.py:15
+msgid "Tags"
+msgstr "Тэги"
+
+#: models.py:23
 msgid "Location"
 msgstr "Место проведения"
 
-#: models.py:25
+#: models.py:24
 msgid "Locations"
 msgstr "Места проведения"
 
@@ -56,38 +64,42 @@ msgstr "Тип компании"
 msgid "Company types"
 msgstr "Типы компании"
 
-#: models.py:39
+#: models.py:44
+msgid "Prices"
+msgstr "Цены"
+
+#: models.py:49
 msgid "Name"
 msgstr "Имя"
 
-#: models.py:40
-msgid "Type"
-msgstr "Тип"
-
-#: models.py:41
+#: models.py:51
 msgid "Address"
 msgstr "Адрес"
 
-#: models.py:42
+#: models.py:52
 msgid "email"
 msgstr ""
 
-#: models.py:43
+#: models.py:53
 msgid "Phone"
 msgstr "Телефон"
 
-#: models.py:44
+#: models.py:54
 msgid "Site"
 msgstr "Сайт"
 
-#: models.py:45
+#: models.py:55
 msgid "Description"
 msgstr "Описание"
 
-#: models.py:46
+#: models.py:56
 msgid "Logo"
 msgstr "Логотип"
 
-#: models.py:55
+#: models.py:66
 msgid "Companies"
 msgstr "Компании"
+
+#: templates/company/include/form_filter.html:15
+msgid "Show"
+msgstr ""

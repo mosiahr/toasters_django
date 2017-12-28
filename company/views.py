@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.utils.datastructures import MultiValueDictKeyError
 from django.db.models import Q
 
-from .models import Company, Location
+from .models import Company, Location, TypeCompany, Price
 from .forms import CompanyLocationForm
 
 
@@ -15,22 +15,49 @@ class CompanyListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(CompanyListView, self).get_context_data(**kwargs)
         header = None
+
         if self.request.method == 'GET':
+            # try:
+            #     if self.request.GET['location_select'] is not None\
+            #             or self.request.GET['type_company'] is not None \
+            #             or self.request.GET['price'] is not None:
+            #         print('he')
+            #         form = self.form_class(self.request.GET)
+            #     else:
+            #         form = self.form_class()
+            # except Exception as e:
+            #     print(e)
+            #     form = self.form_class()
+
             form = self.form_class(self.request.GET)
-            # form = self.form_class(self.request.GET, initial={'location_select': 'kiev'})
-            # form.fields['location_select'].initial = 'kiev'
 
             if form.is_valid():
                 context.update({'form': form})
+
             try:
-                header = Location.objects.get(slug=self.request.GET['location_select']).name
+                location_select_name = Location.objects.get(slug=self.request.GET['location_select']).name
             except:
-                pass
+                location_select_name = None
+
+            try:
+                type_company_name = TypeCompany.objects.get(slug=self.request.GET['type_company']).name
+            except:
+                type_company_name = None
+
+            try:
+                price_name = Price.objects.get(slug=self.request.GET['price']).name
+            except:
+                price_name = None
+
+            header = {
+                'location': location_select_name,
+                'type': type_company_name,
+                'price': price_name,
+            }
 
         else:
-            # form = self.form_class(initial={'location_select': 'kiev'})
             form = self.form_class()
-            # form.fields['location_select'].initial = 'kiev'
+
         context.update({'form': form, 'header': header})
         return context
 

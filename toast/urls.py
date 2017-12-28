@@ -4,7 +4,7 @@
 from django.conf.urls import url
 
 from .views import (
-    ProfileCreateView,
+    # ProfileCreateView,
     ToasterListView,
     ToasterDetailView,
     TagListView,
@@ -17,5 +17,5 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/$', ToasterDetailView.as_view(), name='toaster_detail'),
     url(r'tags/$', TagListView.as_view(), name='tags'),
     url(r'^tags/(?P<slug>[-\w]+)/$', TagDetailView.as_view(), name='tag_detail'),
-    url(r'^profile_update/$', ProfileCreateView.as_view(), name='profile-update'),
+    # url(r'^profile_update/$', ProfileCreateView.as_view(), name='profile-update'),
 ]
