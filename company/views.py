@@ -11,24 +11,14 @@ class CompanyListView(ListView):
     model = Company
     context_object_name = 'companies'
     form_class = CompanyLocationForm
+    # initial = {'type_company': 'vedushie-tamada'}
+    template_name = 'company/company_list.html'
 
     def get_context_data(self, **kwargs):
         context = super(CompanyListView, self).get_context_data(**kwargs)
         header = None
 
         if self.request.method == 'GET':
-            # try:
-            #     if self.request.GET['location_select'] is not None\
-            #             or self.request.GET['type_company'] is not None \
-            #             or self.request.GET['price'] is not None:
-            #         print('he')
-            #         form = self.form_class(self.request.GET)
-            #     else:
-            #         form = self.form_class()
-            # except Exception as e:
-            #     print(e)
-            #     form = self.form_class()
-
             form = self.form_class(self.request.GET)
 
             if form.is_valid():

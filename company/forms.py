@@ -29,9 +29,9 @@ User = get_user_model()
 
 
 class CompanyLocationForm(forms.Form):
-    LOCATION = [('', '---------')] + [(l.slug, l.name) for l in Location.objects.all()]
-    TYPE = [('', '---------')] + [(t.slug, t.name) for t in TypeCompany.objects.all()]
-    PRICE = [('', '---------')] + [(p.slug, p.name) for p in Price.objects.all()]
+    LOCATION = [('', 'Любой')] + [(l.slug, l.name) for l in Location.objects.all()]
+    TYPE = [('', 'Любой')] + [(t.slug, t.name) for t in TypeCompany.objects.all()]
+    PRICE = [('', 'Любая')] + [(p.slug, p.name) for p in Price.objects.all()]
 
     def __init__(self, *args, **kwargs):
         super(CompanyLocationForm, self).__init__(*args, **kwargs)
@@ -58,6 +58,6 @@ class CompanyLocationForm(forms.Form):
             widget=forms.Select()
         )
 
-        self.fields['type_company'].initial = 'vedushie-tamada'
+        # self.fields['type_company'].initial = 'vedushie-tamada'
     field_order = ('type_company', 'location_select', 'price')
 
