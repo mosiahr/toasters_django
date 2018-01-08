@@ -1,7 +1,6 @@
 .idea/*
 *.pyc
 __pycache__/*
-core/db.cnf
 db.sqlite3
 media/*
 .ropeproject/*
