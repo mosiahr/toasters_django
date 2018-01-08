@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 11:36+0200\n"
+"POT-Creation-Date: 2018-01-08 10:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,86 +20,113 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: apps.py:8 models.py:65
+#: apps.py:8 models.py:71
 msgid "Company"
 msgstr "Компания"
 
-#: forms.py:40 models.py:19 models.py:57
-msgid "City"
-msgstr "Город"
-
-#: forms.py:50 models.py:50
+#: forms.py:27 models.py:51 templates/company/company_list.html:21
 msgid "Type"
 msgstr "Тип"
 
-#: forms.py:57 models.py:39 models.py:43
+#: forms.py:32 models.py:20 models.py:58 templates/company/company_list.html:20
+msgid "City"
+msgstr "Город"
+
+#: forms.py:41 models.py:40 models.py:44 models.py:60
+#: templates/company/company_list.html:22
 msgid "Price"
 msgstr "Стоимость"
 
-#: models.py:10
+#: models.py:11
 msgid "Tag name"
 msgstr "Имя тэга"
 
-#: models.py:14
+#: models.py:15
 msgid "Tag"
 msgstr "Тэг"
 
-#: models.py:15
+#: models.py:16 models.py:59
 msgid "Tags"
 msgstr "Тэги"
 
-#: models.py:23
+#: models.py:24
 msgid "Location"
 msgstr "Место проведения"
 
-#: models.py:24
+#: models.py:25
 msgid "Locations"
 msgstr "Места проведения"
 
-#: models.py:29 models.py:33
+#: models.py:30 models.py:34
 msgid "Company type"
 msgstr "Тип компании"
 
-#: models.py:34
+#: models.py:35
 msgid "Company types"
 msgstr "Типы компании"
 
-#: models.py:44
+#: models.py:45
 msgid "Prices"
 msgstr "Цены"
 
-#: models.py:49
+#: models.py:50
 msgid "Name"
 msgstr "Имя"
 
-#: models.py:51
+#: models.py:52
 msgid "Address"
 msgstr "Адрес"
 
-#: models.py:52
+#: models.py:53
 msgid "email"
 msgstr ""
 
-#: models.py:53
+#: models.py:54
 msgid "Phone"
 msgstr "Телефон"
 
-#: models.py:54
+#: models.py:55
 msgid "Site"
 msgstr "Сайт"
 
-#: models.py:55
+#: models.py:56
 msgid "Description"
 msgstr "Описание"
 
-#: models.py:56
+#: models.py:57
 msgid "Logo"
 msgstr "Логотип"
 
-#: models.py:66
+#: models.py:72
 msgid "Companies"
 msgstr "Компании"
+
+#: templates/company/company_form.html:18
+msgid "Add company"
+msgstr "Добавить компанию"
 
 #: templates/company/include/form_filter.html:15
 msgid "Show"
 msgstr ""
+
+#: views.py:116
+#, python-format
+msgid "Company %(name)s was created successfully!"
+msgstr "Компания %(name)s была создана успешно! "
+
+#: views.py:117 views.py:159
+msgid "Please correct the errors below."
+msgstr ""
+
+#: views.py:118
+msgid "Add Company"
+msgstr "Добавление компании"
+
+#: views.py:158
+#, python-format
+msgid "Сompany %(name)s was updated successfully!"
+msgstr "Компания %(name)s была успешно обновлена!"
+
+#: views.py:160
+msgid "Сhange of company"
+msgstr "Изменение компании"

@@ -3,29 +3,14 @@ from django import forms
 from django.utils.translation import ugettext as _
 from django.contrib.auth import get_user_model
 
-from .models import Location, TypeCompany, Price
+from .models import (
+    Location,
+    TypeCompany,
+    Price,
+    Company
+)
 
 User = get_user_model()
-
-
-# class CompanyLocationForm(forms.ModelForm):
-#     class Meta:
-#         model = Location
-#         fields = ['location_select']
-#
-#     location_select = forms.ModelChoiceField(
-#         queryset=None,
-#         to_field_name='slug',
-#         empty_label=_('choose'),    #выбрать
-#         required=False,
-#         label=_('City'),
-#         # initial={'name': 'Киев'}
-#     )
-#
-#     def __init__(self, *args, **kwargs):
-#         super(CompanyLocationForm, self).__init__(*args, **kwargs)
-#         # self.fields['location_select'].queryset = Company.pub_objects.filter(locations__slug=location)
-#         self.fields['location_select'].queryset = Location.objects.all()
 
 
 class CompanyLocationForm(forms.Form):
@@ -47,7 +32,6 @@ class CompanyLocationForm(forms.Form):
             label=_('City'),
             choices=self.LOCATION,
             required=False,
-            # initial={'location_select': 'Киев'},
             initial=self.LOCATION[0][0],
         )
 
@@ -60,4 +44,18 @@ class CompanyLocationForm(forms.Form):
 
         # self.fields['type_company'].initial = 'vedushie-tamada'
     field_order = ('type_company', 'location_select', 'price')
+
+
+class CompanyAddForm(forms.ModelForm):
+    class Meta:
+        model = Company
+        # fields = ('user', 'email')
+        exclude = ["user", 'publish']
+
+
+class CompanyUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Company
+        # fields = ('user', 'email')
+        exclude = ["user", 'publish']
 

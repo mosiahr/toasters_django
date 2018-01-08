@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-21 04:07+0200\n"
+"POT-Creation-Date: 2018-01-08 10:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "User permissions:"
 msgstr ""
 
-#: apps.py:6
+#: apps.py:7
 msgid "Accounts"
 msgstr "Аккаунты"
 
@@ -125,7 +125,7 @@ msgid "Save"
 msgstr ""
 
 #: templates/accounts/detail_update_view.html:21
-#: templates/accounts/home.html:25
+#: templates/accounts/home.html:28
 msgid "Change Password"
 msgstr "Изменить пароль"
 
@@ -155,17 +155,29 @@ msgstr ""
 msgid "The %(site_name)s team"
 msgstr ""
 
-#: templates/accounts/home.html:22
+#: templates/accounts/home.html:25
 msgid "Account Details"
 msgstr "Детали аккаунта"
 
-#: templates/accounts/home.html:24
+#: templates/accounts/home.html:27
 msgid "Update Account Details"
 msgstr "Редактирование вашего аккаунта"
 
-#: templates/accounts/home.html:26
-msgid "Update Profile"
-msgstr ""
+#: templates/accounts/home.html:32
+msgid "Your company"
+msgstr "Ваша компания"
+
+#: templates/accounts/home.html:35
+msgid "View company"
+msgstr "Посмотреть компанию"
+
+#: templates/accounts/home.html:36
+msgid "Update company"
+msgstr "Обновить компанию"
+
+#: templates/accounts/home.html:38
+msgid "Add company"
+msgstr "Добавить компанию"
 
 #: templates/accounts/login.html:5 templates/accounts/login.html:12
 #: templates/accounts/login.html:19
@@ -202,7 +214,7 @@ msgid ""
 "exists with the email you entered. You should receive them shortly."
 msgstr ""
 
-#: templates/password_reset/password_reset_done.html:13 views.py:119
+#: templates/password_reset/password_reset_done.html:13
 msgid ""
 "If you don't receive an email, please make sure you've entered the address "
 "you registered with, and check your spam folder."
@@ -260,7 +272,7 @@ msgstr "Подтверждение электонной почты"
 msgid "Login successful!"
 msgstr "Авторизация успешна!"
 
-#: views.py:86 views.py:106 views.py:141 views.py:162
+#: views.py:86 views.py:106 views.py:139 views.py:160
 msgid "Please correct the errors below."
 msgstr ""
 
@@ -275,23 +287,23 @@ msgstr ""
 "Пожалуйста, подтвердите свой адрес электронной почты, чтобы завершить "
 "регистрацию."
 
-#: views.py:123
+#: views.py:121
 msgid "Register is done"
 msgstr "Регистрация выполнена"
 
-#: views.py:140
+#: views.py:138
 #, python-format
 msgid "Your account %(email)s was updated successfully!"
 msgstr "Ваша учетная запись %(email)s была успешно обновлена!"
 
-#: views.py:148
+#: views.py:146
 msgid "Change Your Account Details"
 msgstr "Редактирование вашего аккаунта"
 
-#: views.py:161
+#: views.py:159
 msgid "Your password was successfully updated!"
 msgstr "Ваш пароль был успешно изменен!"
 
-#: views.py:181
+#: views.py:179
 msgid "Password change"
 msgstr ""

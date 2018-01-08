@@ -1,10 +1,24 @@
 from django.shortcuts import render, redirect, reverse
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, View
 from django.utils.datastructures import MultiValueDictKeyError
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.views.generic.edit import FormMixin
+
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+
+from django.utils.translation import ugettext as _
 
 from .models import Company, Location, TypeCompany, Price
-from .forms import CompanyLocationForm
+from .forms import CompanyLocationForm, CompanyAddForm, CompanyUpdateForm
+from .messages import ErrorMessageMixin
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 class CompanyListView(ListView):
@@ -89,3 +103,75 @@ class CompanyListView(ListView):
 
 class CompanyDetailView(DetailView):
     model = Company
+
+
+class CompanyAddView(SuccessMessageMixin,
+                    ErrorMessageMixin,
+                    LoginRequiredMixin,
+                    FormMixin,
+                    View):
+    form_class = CompanyAddForm
+    model = Company
+    success_url = '/accounts/'
+    success_message = _("Company %(name)s was created successfully!")
+    error_message = _('Please correct the errors below.')
+    title = _('Add Company')
+
+    def get(self, request):
+        if Company.objects.all().filter(user_id=self.request.user.id).exists():
+            # messages.error(self.request, "Your company already exists!")
+            return redirect(self.success_url)
+        context = {'form': self.get_form(), 'title': self.title}
+        return render(request, 'company/company_form.html', context)
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(email=self.request.user)
+        obj.save()
+        return super(CompanyAddView, self).form_valid(form)
+
+
+    def form_invalid(self, form):
+        context = {'form': form, 'title': self.title}
+        messages.error(self.request, self.error_message)
+        return render(self.request, 'company/company_form.html', context)
+
+from django.core.exceptions import ObjectDoesNotExist
+
+
+class CompanyUpdateView(LoginRequiredMixin,
+                       SuccessMessageMixin,
+                       ErrorMessageMixin,
+                       UpdateView):
+    
+
+    form_class = CompanyUpdateForm
+    model = Company
+    success_url = '/accounts/'
+    success_message = _("Сompany %(name)s was updated successfully!")
+    error_message = _('Please correct the errors below.')
+    title = _('Сhange of company')
+
+
+    def get(self, request, **kwargs):
+        try:
+            self.object = Company.objects.get(pk=self.kwargs['pk'])
+        except Company.DoesNotExist:
+            return redirect(self.success_url)
+        
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        context = self.get_context_data(object=self.object, form=form, title = self.title)
+        return render(request, 'company/company_form.html', context)
+
+    def get_object(self, queryset=None):
+        obj = Company.objects.get(pk=self.kwargs['pk'])
+        return obj
+

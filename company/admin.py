@@ -41,6 +41,7 @@ class PriceAdmin(admin.ModelAdmin):
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
+    list_display = ['name', 'created']
 
     class Meta:
         model = Company
