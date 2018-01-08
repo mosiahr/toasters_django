@@ -1,12 +1,9 @@
-from django.shortcuts import render, redirect, reverse
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect
 
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, View
+from django.views.generic import ListView, DetailView, UpdateView, View, DeleteView
+from django.views.generic.edit import FormMixin
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
-from django.views.generic.edit import FormMixin
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -106,10 +103,10 @@ class CompanyDetailView(DetailView):
 
 
 class CompanyAddView(SuccessMessageMixin,
-                    ErrorMessageMixin,
-                    LoginRequiredMixin,
-                    FormMixin,
-                    View):
+                     ErrorMessageMixin,
+                     LoginRequiredMixin,
+                     FormMixin,
+                     View):
     form_class = CompanyAddForm
     model = Company
     success_url = '/accounts/'
@@ -119,7 +116,6 @@ class CompanyAddView(SuccessMessageMixin,
 
     def get(self, request):
         if Company.objects.all().filter(user_id=self.request.user.id).exists():
-            # messages.error(self.request, "Your company already exists!")
             return redirect(self.success_url)
         context = {'form': self.get_form(), 'title': self.title}
         return render(request, 'company/company_form.html', context)
@@ -137,28 +133,22 @@ class CompanyAddView(SuccessMessageMixin,
         obj.save()
         return super(CompanyAddView, self).form_valid(form)
 
-
     def form_invalid(self, form):
         context = {'form': form, 'title': self.title}
         messages.error(self.request, self.error_message)
         return render(self.request, 'company/company_form.html', context)
 
-from django.core.exceptions import ObjectDoesNotExist
-
 
 class CompanyUpdateView(LoginRequiredMixin,
-                       SuccessMessageMixin,
-                       ErrorMessageMixin,
-                       UpdateView):
-    
-
+                        SuccessMessageMixin,
+                        ErrorMessageMixin,
+                        UpdateView):
     form_class = CompanyUpdateForm
     model = Company
     success_url = '/accounts/'
     success_message = _("Сompany %(name)s was updated successfully!")
     error_message = _('Please correct the errors below.')
     title = _('Сhange of company')
-
 
     def get(self, request, **kwargs):
         try:
@@ -168,10 +158,31 @@ class CompanyUpdateView(LoginRequiredMixin,
         
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        context = self.get_context_data(object=self.object, form=form, title = self.title)
+        context = self.get_context_data(object=self.object, form=form, title=self.title)
         return render(request, 'company/company_form.html', context)
 
     def get_object(self, queryset=None):
         obj = Company.objects.get(pk=self.kwargs['pk'])
         return obj
 
+
+class CompanyDeleteView(LoginRequiredMixin, DeleteView):
+    model = Company
+    template_name = 'company/company_confirm_delete.html'
+    success_url = '/accounts/'
+    success_message = _("Company %(name)s was deleted successfully!")
+    title = _("Are you sure?")
+
+    def get_context_data(self, **kwargs):
+        context = super(CompanyDeleteView, self).get_context_data(**kwargs)
+        context.update({'title': self.title})
+        return context
+
+    def get_object(self, queryset=None):
+        obj = Company.objects.get(pk=self.kwargs['pk'])
+        return obj
+
+    def delete(self, request, *args, **kwargs):
+        obj = self.get_object()
+        messages.success(self.request, self.success_message % obj.__dict__)
+        return super(CompanyDeleteView, self).delete(request, *args, **kwargs)

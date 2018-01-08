@@ -34,6 +34,7 @@
             {% if request.user.company %}
                 <li><a href='{% url "company:company_detail" request.user.id  %}'>{% trans "View company" %}</a></li>
                 <li><a href='{% url "company:company_update" request.user.id%}'>{% trans "Update company" %}</a></li>
+                <li><a href='{% url "company:company_delete" request.user.id%}'>{% trans "Delete company" %}</a></li>
             {% else %}
                 <li><a href='{% url "company:company_add" %}'>{% trans "Add company" %}</a></li>
             {% endif %}
