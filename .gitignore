@@ -6,5 +6,6 @@ db.sqlite3
 media/*
 .ropeproject/*
 */.ropeproject/*
-core/email_conf.py
+core/settings/email_conf.py
+core/settings/db.cnf
 
