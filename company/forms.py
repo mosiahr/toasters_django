@@ -14,9 +14,20 @@ User = get_user_model()
 
 
 class CompanyLocationForm(forms.Form):
-    LOCATION = [('', 'Любой')] + [(l.slug, l.name) for l in Location.objects.all()]
-    TYPE = [('', 'Любой')] + [(t.slug, t.name) for t in TypeCompany.objects.all()]
-    PRICE = [('', 'Любая')] + [(p.slug, p.name) for p in Price.objects.all()]
+    try:
+        LOCATION = [('', 'Любой')] + [(l.slug, l.name) for l in Location.objects.all()]
+    except:
+        LOCATION = None
+
+    try:
+        TYPE = [('', 'Любой')] + [(t.slug, t.name) for t in TypeCompany.objects.all()]
+    except:
+        TYPE = None
+
+    try:
+        PRICE = [('', 'Любая')] + [(p.slug, p.name) for p in Price.objects.all()]
+    except:
+        PRICE = None
 
     def __init__(self, *args, **kwargs):
         super(CompanyLocationForm, self).__init__(*args, **kwargs)

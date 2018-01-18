@@ -62,10 +62,8 @@ class Company(MainAbstractModel):
     def get_locations(self):
         return "\n".join([l.name for l in self.locations.all()])
 
-
     def get_absolute_url(self):
         return reverse('company:company_detail', args=[str(self.user.id)])
-
 
     class Meta:
         verbose_name = _('Company')
