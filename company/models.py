@@ -65,6 +65,19 @@ class Company(MainAbstractModel):
     def get_absolute_url(self):
         return reverse('company:company_detail', args=[str(self.user.id)])
 
+    def save(self, *args, **kwargs):
+        try:
+            this_record = Company.objects.get(pk=self.user_id)
+            if this_record.img != self.img:
+                this_record.img.delete(save=False)
+        except:
+            pass
+        super(Company, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        self.img.delete(save=False)
+        super(Company, self).delete(*args, **kwargs)
+
     class Meta:
         verbose_name = _('Company')
         verbose_name_plural = _('Companies')
