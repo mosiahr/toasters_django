@@ -1,21 +1,29 @@
 {% extends 'core/base.html' %}
 {% load i18n %}
 
+
 {% block title %}
     {{ title }}
 {% endblock %}
 
 
 {% block content  %}
+{% url 'company:company_add' as url_company_add %}
+{% url 'company:company_update' pk=object.user_id as url_company_update %}
+
 <div class="row">
     <div class="card small-9 medium-5 large-4 float-center">
          <div class="card-divider">
             {% if title %}<h4 class=''>{{ title }}</h4>{% endif %}
         </div>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form }}
-            <button type='submit' class='button success small expanded'>{% trans "Add company" %}</button>
+            {% if request.path == url_company_add %}
+                <button type='submit' class='button success small expanded'>{% trans "Add company" %}</button>
+            {% elif request.path == url_company_update %}
+                <button type='submit' class='button success small expanded'>{% trans "Update company" %}</button>
+            {% endif %}
         </form>
     </div>
 </div>

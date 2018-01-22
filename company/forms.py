@@ -60,13 +60,15 @@ class CompanyLocationForm(forms.Form):
 class CompanyAddForm(forms.ModelForm):
     class Meta:
         model = Company
-        # fields = ('user', 'email')
-        exclude = ["user", 'publish']
+        fields = ('name', 'type', 'address', 'email', 'phone',
+                  'site', 'description', 'img', 'locations', 'tags', 'price')
+        # exclude = ["user", 'publish']
 
 
 class CompanyUpdateForm(forms.ModelForm):
     class Meta:
         model = Company
-        # fields = ('user', 'email')
-        exclude = ["user", 'publish']
+        fields = ('name', 'type', 'address', 'email', 'phone',
+                  'site', 'description', 'img', 'locations', 'tags', 'price')
+        # exclude = ["user", 'publish']
 

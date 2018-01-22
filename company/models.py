@@ -54,7 +54,7 @@ class Company(MainAbstractModel):
     phone = models.CharField(max_length=50, verbose_name=_('Phone'), blank=True)
     site = models.CharField(max_length=50, verbose_name=_('Site'), blank=True)
     description = models.TextField(max_length=350, verbose_name=_('Description'), blank=True)
-    img = models.ImageField(upload_to='img', verbose_name=_('Logo'), blank=True)
+    img = models.ImageField(upload_to='img', verbose_name=_('Logo'))
     locations = models.ManyToManyField(Location, verbose_name=_('City'), blank=True)
     tags = models.ManyToManyField(Tag, verbose_name=_('Tags'), blank=True)
     price = models.ForeignKey(Price, verbose_name=_('Price'), on_delete=models.CASCADE)

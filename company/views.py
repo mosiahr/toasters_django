@@ -131,6 +131,7 @@ class CompanyAddView(SuccessMessageMixin,
         obj = form.save(commit=False)
         obj.user = User.objects.get(email=self.request.user)
         obj.save()
+        form.save_m2m()     # save into company_company_type
         return super(CompanyAddView, self).form_valid(form)
 
     def form_invalid(self, form):
@@ -155,11 +156,19 @@ class CompanyUpdateView(LoginRequiredMixin,
             self.object = Company.objects.get(pk=self.kwargs['pk'])
         except Company.DoesNotExist:
             return redirect(self.success_url)
-        
+
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         context = self.get_context_data(object=self.object, form=form, title=self.title)
         return render(request, 'company/company_form.html', context)
+
+    # def get_initial(self):
+    #     """
+    #         Returns the initial data to use for forms on this view.
+    #     """
+    #     initial = super(CompanyUpdateView, self).get_initial()
+    #     initial['type'] = [i.id for i in self.get_object().type.all()]
+    #     return initial
 
     def get_object(self, queryset=None):
         obj = Company.objects.get(pk=self.kwargs['pk'])
