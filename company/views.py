@@ -59,7 +59,9 @@ class CompanyListView(ListView):
         else:
             form = self.form_class()
 
-        context.update({'form': form, 'header': header})
+        context.update({'form': form,
+                        'header': header})
+
         return context
 
     def get_queryset(self):
@@ -110,7 +112,7 @@ class CompanyAddView(SuccessMessageMixin,
     form_class = CompanyAddForm
     model = Company
     success_url = '/accounts/'
-    success_message = _("Company %(name)s was created successfully!")
+    success_message = _('Company %(name)s was created successfully!')
     error_message = _('Please correct the errors below.')
     title = _('Add Company')
 

@@ -45,8 +45,15 @@ class Price(MainAbstractModel):
         verbose_name_plural = _('Prices')
 
 
+def get_user(request=None):
+    try:
+        return User.objects.get(request.user)
+    except:
+        pass
+
+
 class Company(MainAbstractModel):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_user)
     name = models.CharField(max_length=140, unique=False, verbose_name=_('Name'))
     type = models.ManyToManyField(TypeCompany, verbose_name=_('Type'))
     address = models.CharField(max_length=140, verbose_name=_('Address'), blank=True)
@@ -81,4 +88,3 @@ class Company(MainAbstractModel):
     class Meta:
         verbose_name = _('Company')
         verbose_name_plural = _('Companies')
-

@@ -1,16 +1,16 @@
 from django.conf.urls import url
 
 from .views import (
-	CompanyListView,
-	CompanyAddView,
-	CompanyDetailView,
-	CompanyUpdateView,
-	CompanyDeleteView
+    CompanyListView,
+    CompanyAddView,
+    CompanyDetailView,
+    CompanyUpdateView,
+    CompanyDeleteView
 )
 
 urlpatterns = [
-    url(r'^$', CompanyListView.as_view(), name='companies'),
-    url(r'^add$', CompanyAddView.as_view(), name='company_add'),
+    url(r'^list/$', CompanyListView.as_view(), name='companies'),
+    url(r'^add/$', CompanyAddView.as_view(), name='company_add'),
     url(r'^update/(?P<pk>\d+)/$', CompanyUpdateView.as_view(), name='company_update'),
     url(r'^delete/(?P<pk>\d+)/$', CompanyDeleteView.as_view(), name='company_delete'),
     url(r'^(?P<pk>\d+)/$', CompanyDetailView.as_view(), name='company_detail'),

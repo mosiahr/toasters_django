@@ -27,11 +27,12 @@ from django.utils.translation import ugettext as _
 from django.template.response import TemplateResponse
 
 from django.contrib.messages.views import SuccessMessageMixin
-
 from django.contrib.auth import update_session_auth_hash
 
 from .tokens import account_activation_token
 from .messages import ErrorMessageMixin
+
+from company.models import Company
 
 from django.contrib.auth import get_user_model
 
@@ -46,6 +47,10 @@ class AccountHomeView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AccountHomeView, self).get_context_data(**kwargs)
+        try:
+            context['companies'] = Company.objects.filter(user_id=self.get_object())
+        except:
+            context['companies'] = None
         context['title'] = _('Account')
         return context
 

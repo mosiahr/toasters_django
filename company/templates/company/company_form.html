@@ -9,7 +9,7 @@
 
 {% block content  %}
 {% url 'company:company_add' as url_company_add %}
-{% url 'company:company_update' pk=object.user_id as url_company_update %}
+{% url 'company:company_update' pk=company.id as url_company_update %}
 
 <div class="row">
     <div class="card small-9 medium-5 large-4 float-center">

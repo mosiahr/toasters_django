@@ -16,8 +16,8 @@
                 <li>{{ user.full_name }}</li>
             {% endif %}
             <li>{{ user.email  }}</li>
-            {% if user.company %}
-                <li>{% trans "Company"%}: {{ user.company }}</li>
+            {% if company %}
+                <li>{% trans "Company"%}: {{ company.name }}</li>
             {% endif %}
         </div>
     </div>
@@ -30,14 +30,30 @@
     </div>
     <div class='card small-9 medium-4 large-4 float-left'>
         <h4 class="card-divider">{% trans "Your company" %}</h4>
-        <div class="card-section no-bullet">
-            {% if request.user.company %}
-                <li><a href='{% url "company:company_detail" request.user.id  %}'>{% trans "View company" %}</a></li>
-                <li><a href='{% url "company:company_update" request.user.id%}'>{% trans "Update company" %}</a></li>
-                <li><a href='{% url "company:company_delete" request.user.id%}'>{% trans "Delete company" %}</a></li>
+        <div class="card-section no-bullet ">
+            {% if user.is_staff %}
+                <li><a href='{% url "admin:company_company_changelist" %}'>{% trans "List of companies" %}</a></li>
             {% else %}
-                <li><a href='{% url "company:company_add" %}'>{% trans "Add company" %}</a></li>
+                {% if companies.count > 0 %}
+{#                    <ul >#}
+                        <li class="subheader">{% trans "Company" %}: {{ companies.0 }}</li>
+                        <ul class="no-bullet">
+                            <li>
+                                <a href='{% url "company:company_detail" companies.0.id %}'>{% trans "View company" %}</a>
+                            </li>
+                            <li>
+                                <a href='{% url "company:company_update" companies.0.id %}'>{% trans "Update company" %}</a>
+                            </li>
+                            <li>
+                                <a href='{% url "company:company_delete" companies.0.id %}'>{% trans "Delete company" %}</a>
+                            </li>
+                        </ul>
+{#                    </ul>#}
+                {% else %}
+                    <li><a href='{% url "company:company_add" %}'>{% trans "Add company" %}</a></li>
+                {% endif %}
             {% endif %}
+
         </div>
     </div>
 

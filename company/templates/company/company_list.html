@@ -28,7 +28,7 @@
                             <p><img src="{{ MEDIA_URL }}{{ company.img }}" alt="{{ company.name }}">
                             </p>
                             <p class="lead"><a
-                                    href="{% url 'company:company_detail' pk=company.user_id %}">{{ company.name }}</a></p>
+                                    href="{% url 'company:company_detail' pk=company.id %}">{{ company.name }}</a></p>
                         </div>
                     </div>
                 {% empty %}

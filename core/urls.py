@@ -23,7 +23,7 @@ from django.conf.urls import include
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', include(admin.site.urls)),
     # url(r'^toasters/', include('toast.urls', namespace='toast')),
     url(r'^company/', include('company.urls', namespace='company')),
     url(r'^media/(?P<path>.*)$', django.views.static.serve, {'document_root': settings.MEDIA_ROOT}),

@@ -43,7 +43,7 @@ class CompanyLocationForm(forms.Form):
             label=_('City'),
             choices=self.LOCATION,
             required=False,
-            initial=self.LOCATION[0][0],
+            # initial=self.LOCATION[0][0],
         )
 
         self.fields['price'] = forms.ChoiceField(
