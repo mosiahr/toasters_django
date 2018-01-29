@@ -60,7 +60,7 @@ class Company(MainAbstractModel):
     email = models.EmailField(blank=True, verbose_name=_('email'))
     phone = models.CharField(max_length=50, verbose_name=_('Phone'), blank=True)
     site = models.CharField(max_length=50, verbose_name=_('Site'), blank=True)
-    description = models.TextField(max_length=350, verbose_name=_('Description'), blank=True)
+    description = models.TextField(max_length=1000, verbose_name=_('Description'), blank=True)
     img = models.ImageField(upload_to='img', verbose_name=_('Logo'))
     locations = models.ManyToManyField(Location, verbose_name=_('City'), blank=True)
     tags = models.ManyToManyField(Tag, verbose_name=_('Tags'), blank=True)
@@ -68,6 +68,9 @@ class Company(MainAbstractModel):
 
     def get_locations(self):
         return ", \n".join([l.name for l in self.locations.all()])
+
+    def get_types(self):
+        return ", \n".join([t.name for t in self.type.all()])
 
     def get_absolute_url(self):
         return reverse('company:company_detail', args=[str(self.id)])

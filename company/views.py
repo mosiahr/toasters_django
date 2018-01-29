@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView, UpdateView, View, DeleteV
 from django.views.generic.edit import FormMixin
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -67,36 +68,43 @@ class CompanyListView(ListView):
     def get_queryset(self):
         try:
             location = self.request.GET['location_select']
+        except:
+            location = None
+        try:
             type_company = self.request.GET['type_company']
+        except:
+            type_company = None
+        try:
             price = self.request.GET['price']
-            if self.request.GET['location_select'] and self.request.GET['type_company'] and self.request.GET['price']:
-                return Company.pub_objects.filter(locations__slug=location,
-                                                  type__slug=type_company,
-                                                  price__slug=price)
+        except:
+            price = None
 
-            if self.request.GET['location_select'] and self.request.GET['type_company']:
-                return Company.pub_objects.filter(locations__slug=location,
-                                                  type__slug=type_company)
+        if location and type_company and price:
+            return Company.pub_objects.filter(locations__slug=location,
+                                              type__slug=type_company,
+                                              price__slug=price)
 
-            if self.request.GET['type_company'] and self.request.GET['price']:
-                return Company.pub_objects.filter(type__slug=type_company,
-                                                  price__slug=price)
+        if location and type_company:
+            return Company.pub_objects.filter(locations__slug=location,
+                                              type__slug=type_company)
 
-            if self.request.GET['location_select'] and self.request.GET['price']:
-                return Company.pub_objects.filter(locations__slug=location,
-                                                  price__slug=price)
+        if type_company and price:
+            return Company.pub_objects.filter(type__slug=type_company,
+                                              price__slug=price)
 
-            if self.request.GET['location_select']:
-                return Company.pub_objects.filter(locations__slug=location)
+        if location and price:
+            return Company.pub_objects.filter(locations__slug=location,
+                                              price__slug=price)
 
-            if self.request.GET['type_company']:
-                return Company.pub_objects.filter(type__slug=type_company)
+        if location:
+            return Company.pub_objects.filter(locations__slug=location)
 
-            if self.request.GET['price']:
-                return Company.pub_objects.filter(price__slug=price)
+        if type_company:
+            return Company.pub_objects.filter(type__slug=type_company)
 
-        except MultiValueDictKeyError:
-            pass
+        if price:
+            return Company.pub_objects.filter(price__slug=price)
+
         return Company.pub_objects.all().order_by('-created')
 
 
