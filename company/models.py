@@ -67,7 +67,7 @@ class Company(MainAbstractModel):
     price = models.ForeignKey(Price, verbose_name=_('Price'), on_delete=models.CASCADE)
 
     def get_locations(self):
-        return "\n".join([l.name for l in self.locations.all()])
+        return ", \n".join([l.name for l in self.locations.all()])
 
     def get_absolute_url(self):
         return reverse('company:company_detail', args=[str(self.id)])

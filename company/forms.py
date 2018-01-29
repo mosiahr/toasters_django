@@ -70,5 +70,10 @@ class CompanyUpdateForm(forms.ModelForm):
         model = Company
         fields = ('name', 'type', 'address', 'email', 'phone',
                   'site', 'description', 'img', 'locations', 'tags', 'price')
-        # exclude = ["user", 'publish']
+        text = 'Hold down "Control", or "Command" on a Mac, to select more than one.'
+        help_texts = {
+            'type': _(text),
+            'locations': _(text),
+            'tags': _(text),
+        }
 
