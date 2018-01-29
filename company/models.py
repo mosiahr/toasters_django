@@ -70,7 +70,7 @@ class Company(MainAbstractModel):
         return "\n".join([l.name for l in self.locations.all()])
 
     def get_absolute_url(self):
-        return reverse('company:company_detail', args=[str(self.user.id)])
+        return reverse('company:company_detail', args=[str(self.id)])
 
     def save(self, *args, **kwargs):
         try:

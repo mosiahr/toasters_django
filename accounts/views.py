@@ -1,20 +1,11 @@
 from django.shortcuts import render,  redirect
-from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import views
 from django.urls import reverse
 from django.contrib import auth
-from django.contrib.auth.forms import (
-    AuthenticationForm,
-    PasswordChangeForm,
-    UserCreationForm,
-    UserChangeForm,
-)
+from django.contrib.auth.forms import PasswordChangeForm
 
 from django.views.generic import FormView, CreateView, DetailView, View, UpdateView
-from django.views.generic.base import TemplateResponseMixin
-from django.views.generic.edit import FormMixin
-
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
@@ -24,7 +15,6 @@ from .forms import (
     UserDetailChangeForm,
 )
 from django.utils.translation import ugettext as _
-from django.template.response import TemplateResponse
 
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import update_session_auth_hash
