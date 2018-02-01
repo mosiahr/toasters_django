@@ -123,6 +123,12 @@ class LoginForm(forms.Form):
             }
         ),
     )
+    remember_me = forms.BooleanField(
+        label=_('Remember me'),
+        label_suffix='',
+        required=False,
+        widget=forms.CheckboxInput()
+    )
 
     error_messages = {
         'invalid_login': _(
@@ -144,6 +150,7 @@ class LoginForm(forms.Form):
     def clean(self):
         email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
+        remember_me = self.cleaned_data.get('remember_me')
 
         if email is not None and password:
             self.user_cache = authenticate(self.request, username=email, password=password)
@@ -155,6 +162,9 @@ class LoginForm(forms.Form):
                     )
             else:
                 self.confirm_login_allowed(self.user_cache)
+
+            if not remember_me:
+                self.request.session.set_expiry(0)
 
             login(self.request, self.user_cache)
         return self.cleaned_data

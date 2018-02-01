@@ -14,10 +14,26 @@
 {#            <img src="{{ MEDIA_URL }}img_site/765887.jpg" alt="" class="card-image">#}
             <div class="card-section">
                 <form action="" method="post">{% csrf_token %}
-                    {{ form }}
+                    {% for error in form.non_field_errors %}
+                        <div class="errorlist">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                    <div>
+                        {{ form.email.errors }}
+                        {{ form.email.label_tag }} {{ form.email }}
+                    </div>
+                    <div>
+                        {{ form.password.errors }}
+                        {{ form.password.label_tag }} {{ form.password }}
+                    </div>
+                    <div class="form-row">
+                        {{ form.remember_me.errors }}
+                        {{ form.remember_me }} {{ form.remember_me.label_tag }}
+                    </div>
                     <a href="{% url 'accounts:password_reset' %}">{% trans "Forgotten your password?" %}</a>
                     <button type='submit' class='button success small expanded'>{% trans "Log in" %}</button>
-                    <a class="button small expanded"  href="{% url 'accounts:register' %}">{% trans 'Register' %}</a>
+                    <a class="button small expanded" href="{% url 'accounts:register' %}">{% trans 'Register' %}</a>
                 </form>
             </div>
         </div>

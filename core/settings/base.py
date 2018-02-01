@@ -177,3 +177,5 @@ LOCALE_PATHS = (
     BASE_DIR + '/toast/locale',
     BASE_DIR + '/company/locale',
 )
+
+SESSION_COOKIE_AGE = 1209600    # default 2 weeks
