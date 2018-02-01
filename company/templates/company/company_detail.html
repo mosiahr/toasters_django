@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load i18n %}
 
 {% block title %}
     {{ company.name }}
@@ -30,16 +31,29 @@
         <div class="medium-7 large-7 columns">
 
             <h3 class="subheader">{{ company.name }}</h3>
-{#            <div class="">#}
-{#                {% for tag in toaster.tags.all %}#}
-{#                   <span class="label success"> <a href="{% url 'toast:tag_detail' slug=tag.slug %}">{{ tag }}</a></span>#}
-{#                {% endfor %}#}
-{#            </div>#}
+
+            {% if company.get_locations %}
+                <div class="subheader">{% trans "Location" %}: {{ company.get_locations }}</div>
+            {% endif %}
+
+            {#            <div class="">#}
+            {#                {% for tag in toaster.tags.all %}#}
+            {#                   <span class="label success"> <a href="{% url 'toast:tag_detail' slug=tag.slug %}">{{ tag }}</a></span>#}
+            {#                {% endfor %}#}
+            {#            </div>#}
             <br>
-            <div class=""><i class="fi-marker "></i> {{ company.address }}</div>
-            <div class=""><i class="fi-mail"></i> {{ company.email }}</div>
-            <div class=""><i class="fi-telephone"></i> {{ company.phone }}</div>
-            <div class=""><i class="fi-web"></i> {{ company.site }}</div>
+            {% if company.address %}
+                <div class=""><i class="fi-marker "></i> {{ company.address }}</div>
+            {% endif %}
+            {% if company.email %}
+                <div class=""><i class="fi-mail"></i> {{ company.email }}</div>
+            {% endif %}
+            {% if company.phone %}
+                <div class=""><i class="fi-telephone"></i> {{ company.phone }}</div>
+            {% endif %}
+            {% if comapny.site %}
+                <div class=""><i class="fi-web"></i> {{ company.site }}</div>
+            {% endif %}
 
 
             <label>Size
