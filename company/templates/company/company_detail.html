@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% load i18n %}
+{% load bbcode_tags %}
 
 {% block title %}
     {{ company.name }}
@@ -81,9 +82,13 @@
         </div>
 
     </div>
+
     <div class="column row">
-    <h4>Информация</h4>
-        {{ company.description }}
+        {% if company.description %}
+            <h4>{% trans "Information" %}</h4>
+            {{ company.description|bbcode|safe }}
+        {% endif %}
+
     </div>
 
     <div class="column row">

@@ -41,7 +41,7 @@ class PriceAdmin(admin.ModelAdmin):
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ['user', 'name', 'get_types', 'get_locations', 'created']
+    list_display = ['name', 'user', 'get_types', 'get_locations', 'created']
     readonly_fields = ('user',)
     fields = ('user', 'name', 'type', 'address', 'email',
               'phone', 'site', 'description', 'img', 'locations', 'tags', 'price')

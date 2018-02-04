@@ -3,6 +3,8 @@ from django.shortcuts import reverse
 from django.utils.translation import ugettext as _
 from core.models_abstract import MainAbstractModel
 
+from precise_bbcode.fields import BBCodeTextField
+
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -60,7 +62,8 @@ class Company(MainAbstractModel):
     email = models.EmailField(blank=True, verbose_name=_('email'))
     phone = models.CharField(max_length=50, verbose_name=_('Phone'), blank=True)
     site = models.CharField(max_length=50, verbose_name=_('Site'), blank=True)
-    description = models.TextField(max_length=1000, verbose_name=_('Description'), blank=True)
+    # description = models.TextField(max_length=1000, verbose_name=_('Description'), blank=True)
+    description = BBCodeTextField(max_length=1000, verbose_name=_('Description'), blank=True)
     img = models.ImageField(upload_to='img', verbose_name=_('Logo'))
     locations = models.ManyToManyField(Location, verbose_name=_('City'), blank=True)
     tags = models.ManyToManyField(Tag, verbose_name=_('Tags'), blank=True)
