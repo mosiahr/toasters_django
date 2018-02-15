@@ -36,11 +36,11 @@
                 <div class="subheader">{% trans "Location" %}: {{ company.get_locations }}</div>
             {% endif %}
 
-            {#            <div class="">#}
-            {#                {% for tag in toaster.tags.all %}#}
-            {#                   <span class="label success"> <a href="{% url 'toast:tag_detail' slug=tag.slug %}">{{ tag }}</a></span>#}
-            {#                {% endfor %}#}
-            {#            </div>#}
+            <div class="">
+                {% for tag in company.tags.all %}
+                   <span class="label success"> <a href="{% url 'tags:tag_detail' slug=tag.slug %}">{{ tag }}</a></span>
+                {% endfor %}
+            </div>
             <br>
             {% if company.address %}
                 <div class=""><i class="fi-marker "></i> {{ company.address }}</div>
@@ -55,24 +55,15 @@
                 <div class=""><i class="fi-web"></i> {{ company.site }}</div>
             {% endif %}
 
-
-            <label>Size
-                <select>
-                    <option value="husker">Small</option>
-                    <option value="starbuck">Medium</option>
-                    <option value="hotdog">Large</option>
-                    <option value="apollo">Yeti</option>
-                </select>
-            </label>
-            <div class="row">
-                <div class="small-3 columns">
-                    <label for="middle-label" class="middle">Quantity</label>
-                </div>
-                <div class="small-9 columns">
-                    <input type="text" id="middle-label" placeholder="One fish two fish">
-                </div>
-            </div>
-            <a href="#" class="button large expanded">Buy Now</a>
+{#            <div class="row">#}
+{#                <div class="small-3 columns">#}
+{#                    <label for="middle-label" class="middle">Quantity</label>#}
+{#                </div>#}
+{#                <div class="small-9 columns">#}
+{#                    <input type="text" id="middle-label" placeholder="One fish two fish">#}
+{#                </div>#}
+{#            </div>#}
+{#            <a href="#" class="button large expanded">Buy Now</a>#}
             <div class="small secondary expanded button-group">
                 <a class="button">Facebook</a>
                 <a class="button">Twitter</a>
@@ -85,7 +76,8 @@
     <div class="column row">
         {% if company.description %}
             <h4>{% trans "Information" %}</h4>
-            {{ company.description|safe }}
+            <div class="column">
+            {{ company.description|safe }}</div>
         {% endif %}
     </div>
 

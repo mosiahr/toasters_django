@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {{ tag.name }}
+{% endblock %}
+
+{#{% block header %}#}
+{#    <h1 class="subheader">{{ toaster.name }}</h1>#}
+{#{% endblock %}#}
+
+{% block content %}
+    <div class="row">
+        <h3>{{ tag.name }}</h3>
+
+        <ul class="column">
+            {% for company in companies %}
+                <li><a href="{% url 'company:company_detail' pk=company.id %}">{{ company }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

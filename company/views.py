@@ -205,3 +205,5 @@ class CompanyDeleteView(LoginRequiredMixin, DeleteView):
         obj = self.get_object()
         messages.success(self.request, self.success_message % obj.__dict__)
         return super(CompanyDeleteView, self).delete(request, *args, **kwargs)
+
+

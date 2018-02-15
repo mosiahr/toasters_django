@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    List of tags
+{% endblock %}
+
+{% block header %}
+    <h1 class="subheader">List of tags</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <ul class="column">
+            {% for tag  in tags %}
+                <li><a href="{% url 'tags:tag_detail' slug=tag.slug %}">{{ tag }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
