@@ -10,30 +10,33 @@
 {#{% endblock %}#}
 
 {% block content %}
-    <div class="row">
+    <div class="grid-x">
 
         {# FORM FILTER #}
-        {% include 'company/include/form_filter.html' %}
+        <div class="cell small-10 medium-4 large-2 column">{% include 'company/include/form_filter.html' %}</div>
 
-        <div class="small-12 medium-8 large-9 float-left">
-        <h3 class="subheader text-center">
-            {% if header.location %}{% trans 'City' %}: {{ header.location }}{% endif %}
-            {% if header.type %}{% trans 'Type' %}: {{ header.type }}{% endif %}
-            {% if header.price %}{% trans 'Price' %}: {{ header.price }}{% endif %}
-        </h3>
-            <div class="row small-up-1 medium-up-2 large-up-3 ">
-                {% for company in companies %}
-                    <div class="column">
-                        <div class="callout">
-                            <p><img src="{{ MEDIA_URL }}{{ company.img }}" alt="{{ company.name }}">
-                            </p>
-                            <p class="lead"><a
-                                    href="{% url 'company:company_detail' pk=company.id %}">{{ company.name }}</a></p>
+        <div class="cell small-12 medium-8 large-10 float-left">
+            <h3 class="subheader text-center">
+                {% if header.location %}{% trans 'City' %}: {{ header.location }}{% endif %}
+                {% if header.type %}{% trans 'Type' %}: {{ header.type }}{% endif %}
+                {% if header.price %}{% trans 'Price' %}: {{ header.price }}{% endif %}
+            </h3>
+            <div class="grid-container">
+                <div class="grid-x grid-margin-x">
+                    {% for company in companies %}
+                        <div class="cell medium-3">
+                            <div class=" thumbnail card">
+                                <a href="{% url 'company:company_detail' pk=company.id %}">
+                                    <img src="{{ MEDIA_URL }}{{ company.img }}" alt="{{ company.name }}">
+                                </a>
+                                <p class="card-section"><a
+                                        href="{% url 'company:company_detail' pk=company.id %}">{{ company.name }}</a></p>
+                            </div>
                         </div>
-                    </div>
-                {% empty %}
-                    <p>Не найдено</p>
-                {% endfor %}
+                    {% empty %}
+                        <p>Не найдено</p>
+                    {% endfor %}
+                </div>
             </div>
         </div>
 

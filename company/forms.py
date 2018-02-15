@@ -35,25 +35,30 @@ class CompanyLocationForm(forms.Form):
         self.fields['type_company'] = forms.ChoiceField(
             choices=self.TYPE,
             required=False,
-            label=_('Type'),
-            widget=forms.Select()
+            # label=_('<i class="fa fa-map-marker-alt fa-lg" aria-hidden="true"></i>&nbsp;Type'),
+            label=self.set_label('fas fa-microphone', _("Type")),
+            widget=forms.Select(),
         )
 
         self.fields['location_select'] = forms.ChoiceField(
-            label=_('City'),
+            label=self.set_label('fa fa-map-marker-alt', _('City')),
             choices=self.LOCATION,
             required=False,
             # initial=self.LOCATION[0][0],
         )
+        # self.fields['location_select'].widget.attrs.update({'class': 'fa-map-marker-alt'})
 
         self.fields['price'] = forms.ChoiceField(
             choices=self.PRICE,
             required=False,
-            label=_('Price'),
+            label=self.set_label('fas fa-dollar-sign', _('Price')),
             widget=forms.Select()
         )
-
         # self.fields['type_company'].initial = 'vedushie-tamada'
+
+    def set_label(self, fontawesome, label):
+        return '<i class="{} "></i> {}'.format(fontawesome, label)
+
     field_order = ('type_company', 'location_select', 'price')
 
 

@@ -4,22 +4,25 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{% block title %}{% endblock %} | TOASTERS</title>
-    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+{#    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">#}
 {#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">#}
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet'
-          type='text/css'>
+{#    <link href='https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet'#}
+{#          type='text/css'>#}
 {#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">#}
 
 
+    <link rel="stylesheet" href="{% static 'foundation-6.4.2-complete/css/foundation.css' %}">
+    <link rel="stylesheet" href="{% static 'foundation-6.4.2-complete/css/app.css' %}">
+{#    <link rel="stylesheet" href="{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}">#}
 
-    {# <link rel="stylesheet" href="{% static 'foundation/css/foundation.min.css' %}"> #}
-    <link rel="stylesheet" href="{% static 'foundation/css/app.css' %}">
-    <link rel="stylesheet" href="{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    {###  FONT  ###}
+    <link rel="stylesheet" href="{% static 'fontawesome-free-5.0.6/on-server/css/fontawesome-all.css' %}">
+    <script defer src="{% static 'fontawesome-free-5.0.6/on-server/js/fontawesome-all.min.js' %}"></script>
 </head>
 <body>
-
 
 <script>
     (function (i, s, o, g, r, a, m) {
@@ -39,13 +42,16 @@
 
     ga('create', 'UA-2195009-27', 'auto', {name: "foundation"});
     ga('foundation.send', 'pageview');
-
 </script>
 
-<div class="top-bar">
-    <div class="row">
+<div class="title-bar" data-responsive-toggle="top-menu">
+    <button class="menu-icon" type="button" data-toggle></button>
+    <div class="title-bar-title">Menu</div>
+</div>
+<div class="top-bar row" id="top-menu">
+{#    <div class="row">#}
         <div class="top-bar-left">
-            <ul class="dropdown menu" data-dropdown-menu>
+            <ul class="dropdown vertical medium-horizontal menu">
                 <li class="menu-text">TOASTERS</li>
 {#                <li class="has-submenu">#}
 {#                    <a href="#">One</a>#}
@@ -62,38 +68,35 @@
             </ul>
         </div>
         <div class="top-bar-right">
-            <ul class="menu">
+            <ul class="dropdown vertical medium-horizontal menu">
                 <li><input type="search" placeholder="Search"></li>
-                <li>
-                    <button type="button" class="button">Search</button>
-                </li>
-
+                <li><a class="button">Search</a></li>
 
                 {% if user.is_authenticated %}
-                {% if user.full_name != '' and user.full_name != None%}
-                    <li><a class="" href="{% url 'accounts:home' %}">
-                        <i class="fa fa-user-o fa-lg" aria-hidden="true"></i>
-                        {{ user.full_name }}</a></li>
+                    {% if user.full_name != '' and user.full_name != None%}
+                        <li><a class="" href="{% url 'accounts:home' %}">
+                            <i class="fa fa-user-o fa-lg" aria-hidden="true"></i>
+                            {{ user.full_name }}</a></li>
+                    {% else %}
+                        <li><a class="" href="{% url 'accounts:home' %}">
+                            <i class="fa fa-user-o fa-lg" aria-hidden="true"></i>
+                            {{ user }}</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'accounts:logout' %}">{% trans 'Log out' %}</a></li>
                 {% else %}
-                    <li><a class="" href="{% url 'accounts:home' %}">
-                        <i class="fa fa-user-o fa-lg" aria-hidden="true"></i>
-                        {{ user }}</a></li>
-                {% endif %}
-                <li><a class="button" href="{% url 'accounts:logout' %}">{% trans 'Log out' %}</a></li>
-                {% else %}
-                    <li><a class="button" href="{% url 'accounts:register' %}">{% trans 'Sign up' %}</a></li>
-                    <li><a class="button" href="{% url 'accounts:login' %}">{% trans "Log in" %}</a></li>
+                    <li><a href="{% url 'accounts:register' %}">{% trans 'Sign up' %}</a></li>
+                    <li><a href="{% url 'accounts:login' %}">{% trans "Log in" %}</a></li>
                 {% endif %}
             </ul>
         </div>
-    </div>
+{#    </div>#}
 </div>
 
 <br>
 
-<div class="row columns">
+<div class="row">
     <nav aria-label="You are here:" role="navigation">
-        <ul class="breadcrumbs">
+        <ul class="row breadcrumbs">
             <li><a href="#">Home</a></li>
             <li><a href="#">Features</a></li>
             <li class="disabled">Gene Splicing</li>
@@ -105,27 +108,36 @@
 </div>
 
 <br>
-<div class="row column">
+<div class="row">
 {% include 'core/include/messages.html' %}
 {% block content %}{% endblock %}
 </div>
 
-<div class="row column">
-    <hr>
+
+<div class="row ">
+{#    <hr>#}
     <ul class="menu">
-        <li>Yeti Store</li>
+{#        <li>Yeti Store</li>#}
         <li><a href="#">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
         <li class="float-right">Copyright 2018</li>
     </ul>
 </div>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+</div>
+
+{#<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>#}
 {#<script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>#}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.js"></script>
-<script>
-    $(document).foundation();
-</script>
-{#<script src="{% static 'js/app.js' %}"></script>#}
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.js"></script>#}
+
+<script src="{% static 'foundation-6.4.2-complete/js/vendor/jquery.js' %}"></script>
+<script src="{% static 'foundation-6.4.2-complete/js/vendor/what-input.js' %}"></script>
+<script src="{% static 'foundation-6.4.2-complete/js/vendor/foundation.min.js' %}"></script>
+<script src="{% static 'foundation-6.4.2-complete/js/app.js' %}"></script>
+
+
+
+
 </body>
 </html>

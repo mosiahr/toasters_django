@@ -6,15 +6,21 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="card small-9 medium-5 large-4 float-center">
-            <h4>{{ title }}</h4>
-            <form action="" method="post">{% csrf_token %}
-                {{ form }}
-                <br>
-                <br>
-                <input class="button success small expanded" type="submit" value="{{ title }}"/>
-            </form>
+    <div class="grid-x">
+        <div class="cell small-9 medium-5 large-4 float-center">
+            <div class="card ">
+                <div class="card-divider">
+                    <h4>{{ title }}</h4>
+                </div>
+                <div class="card-section">
+                    <form action="" method="post">{% csrf_token %}
+                        {{ form }}
+                        <br>
+                        <br>
+                        <input class="button success small expanded" type="submit" value="{{ title }}"/>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

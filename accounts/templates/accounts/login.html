@@ -6,37 +6,38 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="card small-9 medium-5 large-4 float-center">
-            <div class="card-divider">
-                <h4>{% trans "Log in" %}</h4>
-            </div>
-{#            <img src="{{ MEDIA_URL }}img_site/765887.jpg" alt="" class="card-image">#}
-            <div class="card-section">
-                <form action="" method="post">{% csrf_token %}
-                    {% for error in form.non_field_errors %}
-                        <div class="errorlist">
-                            <strong>{{ error|escape }}</strong>
+    <div class="grid-x">
+        <div class="cell small-9 medium-5 large-4 float-center">
+            <div class="card">
+                <div class="card-divider">
+                    <h4>{% trans "Log in" %}</h4>
+                </div>
+{#                            <img src="{{ MEDIA_URL }}img_site/765887.jpg" alt="" class="card-image">#}
+                <div class="card-section">
+                    <form action="" method="post">{% csrf_token %}
+                        {% for error in form.non_field_errors %}
+                            <div class="errorlist">
+                                {{ error|escape }}
+                            </div>
+                        {% endfor %}
+                        <div>
+                            {{ form.email.errors }}
+                            {{ form.email.label_tag }} {{ form.email }}
                         </div>
-                    {% endfor %}
-                    <div>
-                        {{ form.email.errors }}
-                        {{ form.email.label_tag }} {{ form.email }}
-                    </div>
-                    <div>
-                        {{ form.password.errors }}
-                        {{ form.password.label_tag }} {{ form.password }}
-                    </div>
-                    <div class="form-row">
-                        {{ form.remember_me.errors }}
-                        {{ form.remember_me }} {{ form.remember_me.label_tag }}
-                    </div>
-                    <a href="{% url 'accounts:password_reset' %}">{% trans "Forgotten your password?" %}</a>
-                    <button type='submit' class='button success small expanded'>{% trans "Log in" %}</button>
-                    <a class="button small expanded" href="{% url 'accounts:register' %}">{% trans 'Register' %}</a>
-                </form>
+                        <div>
+                            {{ form.password.errors }}
+                            {{ form.password.label_tag }} {{ form.password }}
+                        </div>
+                        <div class="form-row">
+                            {{ form.remember_me.errors }}
+                            {{ form.remember_me }} {{ form.remember_me.label_tag }}
+                        </div>
+                        <a href="{% url 'accounts:password_reset' %}">{% trans "Forgotten your password?" %}</a>
+                        <button type='submit' class='button success small expanded'>{% trans "Log in" %}</button>
+                        <a class="button small expanded" href="{% url 'accounts:register' %}">{% trans 'Register' %}</a>
+                    </form>
+                </div>
             </div>
         </div>
-
     </div>
 {% endblock %}
