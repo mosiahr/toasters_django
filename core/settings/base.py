@@ -52,12 +52,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'ckeditor',
+    'django_extensions',
 
     'accounts',
+    'tags',
     'company',
     # 'toast',
-
-    'precise_bbcode',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -225,4 +225,9 @@ CKEDITOR_CONFIGS = {
             ]},
         ],
     }
+}
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
 }

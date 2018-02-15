@@ -3,21 +3,14 @@ from django.shortcuts import reverse
 from django.utils.translation import ugettext as _
 from core.models_abstract import MainAbstractModel
 
+from tags.models import Tag
+
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
-
-
-class Tag(MainAbstractModel):
-    name = models.CharField(max_length=120, unique=True, verbose_name=_('Tag name'))
-    slug = models.SlugField(max_length=140, blank=True, null=True)
-
-    class Meta:
-        verbose_name = _('Tag')
-        verbose_name_plural = _('Tags')
 
 
 class Location(MainAbstractModel):
@@ -49,15 +42,15 @@ class Price(MainAbstractModel):
         verbose_name_plural = _('Prices')
 
 
-def get_user(request=None):
-    try:
-        return User.objects.get(request.user)
-    except:
-        pass
+# def get_user(request=None):
+#     try:
+#         return User.objects.get(email=request.user)[0]
+#     except:
+#         pass
 
 
 class Company(MainAbstractModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_user)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=140, unique=False, verbose_name=_('Name'))
     type = models.ManyToManyField(TypeCompany, verbose_name=_('Type'))
     address = models.CharField(max_length=140, verbose_name=_('Address'), blank=True)
@@ -65,7 +58,6 @@ class Company(MainAbstractModel):
     phone = models.CharField(max_length=50, verbose_name=_('Phone'), blank=True)
     site = models.CharField(max_length=50, verbose_name=_('Site'), blank=True)
     # description = models.TextField(max_length=1000, verbose_name=_('Description'), blank=True)
-    # description = RichTextField(verbose_name=_('Description'), blank=True)
     description = RichTextField(verbose_name=_('Description'), blank=True)
     img = models.ImageField(upload_to='img', verbose_name=_('Logo'))
     locations = models.ManyToManyField(Location, verbose_name=_('City'), blank=True)
@@ -83,11 +75,11 @@ class Company(MainAbstractModel):
 
     def save(self, *args, **kwargs):
         try:
-            this_record = Company.objects.get(pk=self.user_id)
+            this_record = Company.objects.get(id=self.id)
             if this_record.img != self.img:
                 this_record.img.delete(save=False)
-        except:
-            pass
+        except: pass
+
         super(Company, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
