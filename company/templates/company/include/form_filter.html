@@ -4,10 +4,9 @@
     <form action="" method="get">
         {% for field in form %}
             <label for="{{ field.name }}">
-                <i class="fa fa-map-marker-alt fa-lg" aria-hidden="true"></i> {{ field.label|safe }}
+                {{ field.label|safe }}
 {#                        <i class="form-filter-city"></i> {{ field.label }}#}
             </label>
-
 {#            <label for="{{ field.name }}">{{ field.label|safe }}</label>#}
             {{ field }}
         {% endfor %}

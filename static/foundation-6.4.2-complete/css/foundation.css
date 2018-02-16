@@ -3742,7 +3742,7 @@ select {
   right: 5px;
   left: auto;
   margin-top: -3px; }
-
+.menu
 .dropdown.menu a {
   padding: 0.7rem 1rem; }
   [data-whatinput='mouse'] .dropdown.menu a {

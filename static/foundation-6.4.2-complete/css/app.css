@@ -149,4 +149,18 @@
   content: "\f041";
 }
 
+.breadcrumbs{
+  margin: 10px 0 10px 0;
+}
+.has-tip{
+  border-bottom: none;
+  cursor: pointer;
+}
+
+.icon-button{
+  margin-left: 0!important;
+  margin-right: 0!important;
+  padding-left: 10px!important;
+  padding-right: 10px!important;
+}
 

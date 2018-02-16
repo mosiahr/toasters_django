@@ -15,17 +15,17 @@ User = get_user_model()
 
 class CompanyLocationForm(forms.Form):
     try:
-        LOCATION = [('', 'Любой')] + [(l.slug, l.name) for l in Location.objects.all()]
+        LOCATION = [('', 'Любой')] + [(l.slug, l.name) for l in Location.pub_objects.all()]
     except:
         LOCATION = None
 
     try:
-        TYPE = [('', 'Любой')] + [(t.slug, t.name) for t in TypeCompany.objects.all()]
+        TYPE = [('', 'Любой')] + [(t.slug, t.name) for t in TypeCompany.pub_objects.all()]
     except:
         TYPE = None
 
     try:
-        PRICE = [('', 'Любая')] + [(p.slug, p.name) for p in Price.objects.all()]
+        PRICE = [('', 'Любая')] + [(p.slug, p.name) for p in Price.pub_objects.all()]
     except:
         PRICE = None
 
@@ -36,12 +36,12 @@ class CompanyLocationForm(forms.Form):
             choices=self.TYPE,
             required=False,
             # label=_('<i class="fa fa-map-marker-alt fa-lg" aria-hidden="true"></i>&nbsp;Type'),
-            label=self.set_label('fas fa-microphone', _("Type")),
+            label=self.set_label('fas fa-microphone fa-lg', _("Type")),
             widget=forms.Select(),
         )
 
         self.fields['location_select'] = forms.ChoiceField(
-            label=self.set_label('fa fa-map-marker-alt', _('City')),
+            label=self.set_label('fa fa-map-marker-alt fa-lg', _('City'), color='#ff253a'),
             choices=self.LOCATION,
             required=False,
             # initial=self.LOCATION[0][0],
@@ -51,13 +51,13 @@ class CompanyLocationForm(forms.Form):
         self.fields['price'] = forms.ChoiceField(
             choices=self.PRICE,
             required=False,
-            label=self.set_label('fas fa-dollar-sign', _('Price')),
+            label=self.set_label('fas fa-dollar-sign fa-lg', _('Price'), color='green'),
             widget=forms.Select()
         )
         # self.fields['type_company'].initial = 'vedushie-tamada'
 
-    def set_label(self, fontawesome, label):
-        return '<i class="{} "></i> {}'.format(fontawesome, label)
+    def set_label(self, fontawesome, label, color=None):
+        return '<i class="{0} " style="color: {2}"></i> {1}'.format(fontawesome, label, color)
 
     field_order = ('type_company', 'location_select', 'price')
 

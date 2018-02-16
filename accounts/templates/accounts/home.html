@@ -5,57 +5,68 @@
     {{ title }}
 {% endblock %}
 
-{% block content  %}
-<div class="row column">
-    <div class="card small-9 medium-4 large-3 float-left">
-        <div class="card-divider">
-            <h4>{{ title }}</h4>
+{% block content %}
+    <div class="row grid-x grid-margin-x">
+        <div class="cell small-9 medium-4 large-3 float-left">
+            <div class="card">
+                <h4 class="card-divider">{{ title }}</h4>
+                <ul class="card-section no-bullet">
+                    {% if user.full_name %}
+                        <li>{{ user.full_name }}</li>
+                    {% endif %}
+                    <li>{{ user.email }}</li>
+                    {% if company %}
+                        <li>{% trans "Company" %}: {{ company.name }}</li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-        <div class="card-section no-bullet">
-            {% if user.full_name %}
-                <li>{{ user.full_name }}</li>
-            {% endif %}
-            <li>{{ user.email  }}</li>
-            {% if company %}
-                <li>{% trans "Company"%}: {{ company.name }}</li>
-            {% endif %}
+        <div class='cell small-9 medium-4 large-4 float-left'>
+            <div class="card">
+                <h4 class="card-divider">{% trans "Account Details" %}</h4>
+                <ul class="card-section no-bullet">
+                    <li><a href='{% url "accounts:user-update" %}'>
+                        <i class="fa fa-pencil-alt fa-lg" style="color: darkblue;"></i>&nbsp;
+                        {% trans "Update Account Details" %}</a></li>
+                    <li><a href='{% url "accounts:change_password" %}'>
+                        <i class="fas fa-exchange-alt fa-lg" style="color: blueviolet;"></i>&nbsp;
+                        {% trans "Change Password" %}</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class='card small-9 medium-4 large-4 float-left'>
-        <h4 class="card-divider">{% trans "Account Details" %}</h4>
-        <div class="card-section no-bullet">
-            <li><a href='{% url "accounts:user-update" %}'>{% trans "Update Account Details" %}</a></li>
-            <li><a href='{% url "accounts:change_password" %}'>{% trans "Change Password" %}</a></li>
-        </div>
-    </div>
-    <div class='card small-9 medium-4 large-4 float-left'>
-        <h4 class="card-divider">{% trans "Your company" %}</h4>
-        <div class="card-section no-bullet ">
-            {% if user.is_staff %}
-                <li><a href='{% url "admin:company_company_changelist" %}'>{% trans "List of companies" %}</a></li>
-            {% else %}
-                {% if companies.count > 0 %}
-{#                    <ul >#}
-                        <li class="subheader">{% trans "Company" %}: {{ companies.0 }}</li>
-                        <ul class="no-bullet">
-                            <li>
-                                <a href='{% url "company:company_detail" companies.0.id %}'>{% trans "View company" %}</a>
-                            </li>
-                            <li>
-                                <a href='{% url "company:company_update" companies.0.id %}'>{% trans "Update company" %}</a>
-                            </li>
-                            <li>
-                                <a href='{% url "company:company_delete" companies.0.id %}'>{% trans "Delete company" %}</a>
-                            </li>
-                        </ul>
-{#                    </ul>#}
-                {% else %}
-                    <li><a href='{% url "company:company_add" %}'>{% trans "Add company" %}</a></li>
-                {% endif %}
-            {% endif %}
+        <div class='cell small-9 medium-4 large-4 float-left'>
+            <div class="card">
+                <h4 class="card-divider">{% trans "Your company" %}</h4>
+                <ul class="card-section no-bullet">
+                    {% if user.is_staff %}
+                        <li>
+                            <a href='{% url "admin:company_company_changelist" %}'>{% trans "List of companies" %}</a>
+                        </li>
+                    {% else %}
+                        {% if companies.count > 0 %}
+{#                                                <ul >#}
+                            <li class="subheader ">{% trans "Company" %}: {{ companies.0 }}</li>
+                            <ul class="no-bullet">
+                                <li>
+                                    <a href='{% url "company:company_detail" companies.0.id %}'>{% trans "View company" %}</a>
+                                </li>
+                                <li>
+                                    <a href='{% url "company:company_update" companies.0.id %}'>{% trans "Update company" %}</a>
+                                </li>
+                                <li>
+                                    <a href='{% url "company:company_delete" companies.0.id %}'>{% trans "Delete company" %}</a>
+                                </li>
+                            </ul>
+                            {#                    </ul>#}
+                        {% else %}
+                            <li><a href='{% url "company:company_add" %}'>
+                                <i class="fas fa-plus fa-lg" style="color: green;"></i>&nbsp;
+                                {% trans "Add company" %}</a></li>
+                        {% endif %}
+                    {% endif %}
 
+                </ul>
+            </div>
         </div>
     </div>
-
-</div>
 {% endblock %}

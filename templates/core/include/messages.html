@@ -1,6 +1,6 @@
 <div class="row">
 {% for message in messages %}
-    <div data-closable class="alert-box callout {{ message.tags }}">
+    <div data-closable="slide-out-right" class="alert-box callout {{ message.tags }}">
         {% if message.tags == 'alert' %}
             <i class="fas fa-exclamation-circle fa-lg" style="font-size: 2rem;"></i>
         {% elif message.tags == 'success' %}

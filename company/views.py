@@ -37,17 +37,17 @@ class CompanyListView(ListView):
                 context.update({'form': form})
 
             try:
-                location_select_name = Location.objects.get(slug=self.request.GET['location_select']).name
+                location_select_name = Location.pub_objects.get(slug=self.request.GET['location_select']).name
             except:
                 location_select_name = None
 
             try:
-                type_company_name = TypeCompany.objects.get(slug=self.request.GET['type_company']).name
+                type_company_name = TypeCompany.pub_objects.get(slug=self.request.GET['type_company']).name
             except:
                 type_company_name = None
 
             try:
-                price_name = Price.objects.get(slug=self.request.GET['price']).name
+                price_name = Price.pub_objects.get(slug=self.request.GET['price']).name
             except:
                 price_name = None
 
