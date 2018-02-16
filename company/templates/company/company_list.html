@@ -10,33 +10,31 @@
 {#{% endblock %}#}
 
 {% block content %}
-    <div class="grid-x">
+    <div class="grid-x grid-margin-y">
 
         {# FORM FILTER #}
-        <div class="cell small-10 medium-4 large-2 column">{% include 'company/include/form_filter.html' %}</div>
+        <div class="cell small-12 medium-4 large-3">{% include 'company/include/form_filter.html' %}</div>
 
-        <div class="cell small-12 medium-8 large-10 float-left">
+        <div class="cell row small-12 medium-8 large-9">
             <h3 class="subheader text-center">
                 {% if header.location %}{% trans 'City' %}: {{ header.location }}{% endif %}
                 {% if header.type %}{% trans 'Type' %}: {{ header.type }}{% endif %}
                 {% if header.price %}{% trans 'Price' %}: {{ header.price }}{% endif %}
             </h3>
-            <div class="grid-container">
-                <div class="grid-x grid-margin-x">
-                    {% for company in companies %}
-                        <div class="cell medium-3">
-                            <div class=" thumbnail card">
-                                <a href="{% url 'company:company_detail' pk=company.id %}">
-                                    <img src="{{ MEDIA_URL }}{{ company.img }}" alt="{{ company.name }}">
-                                </a>
-                                <p class="card-section"><a
-                                        href="{% url 'company:company_detail' pk=company.id %}">{{ company.name }}</a></p>
-                            </div>
+            <div class="grid-x grid-margin-x grid-margin-y">
+                {% for company in companies %}
+                    <div class="cell small-12 medium-4 large-3">
+                        <div class="thumbnail card" style="height: 100%; width: 100%;">
+                            <a href="{% url 'company:company_detail' pk=company.id %}">
+                                <img src="{{ MEDIA_URL }}{{ company.img }}" alt="{{ company.name }}">
+                            </a>
+                            <h5 class="card-section">
+                                <a href="{% url 'company:company_detail' pk=company.id %}">{{ company.name }}</a></h5>
                         </div>
-                    {% empty %}
-                        <p>Не найдено</p>
-                    {% endfor %}
-                </div>
+                    </div>
+                {% empty %}
+                    <p>Не найдено</p>
+                {% endfor %}
             </div>
         </div>
 
