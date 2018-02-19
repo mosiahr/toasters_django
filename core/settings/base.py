@@ -179,6 +179,7 @@ MESSAGE_TAGS = {
 }
 
 LOCALE_PATHS = (
+    BASE_DIR + '/locale',
     BASE_DIR + '/accounts/locale',
     BASE_DIR + '/toast/locale',
     BASE_DIR + '/company/locale',

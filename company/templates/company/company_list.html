@@ -19,14 +19,14 @@
             <div class="grid-margin-y">
 
                 {# HEADER #}
-                <h3 class="cell subheader text-center">
+                <h3 class="subheader text-center">
                     {% if header.location %}{% trans 'City' %}: {{ header.location }}{% endif %}
                     {% if header.type %}{% trans 'Type' %}: {{ header.type }}{% endif %}
                     {% if header.price %}{% trans 'Price' %}: {{ header.price }}{% endif %}
                 </h3>
 
                 {# CARDS #}
-                <div class="cell grid-x grid-margin-x grid-margin-y">
+                <div class="grid-x grid-margin-x grid-margin-y">
                     {% for company in companies %}
                         <div class="cell small-12 medium-4 large-3">
                             <div class="thumbnail card" style="height: 100%; width: 100%;">
