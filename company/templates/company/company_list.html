@@ -49,7 +49,7 @@
                         {% if page_obj.has_previous %}
                             <li class="pagination-previous">
                                 <a href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.previous_page_number }}"
-                                   aria-label="Previous page">Previous <span class="show-for-sr">page</span>
+                                   aria-label="Previous page">{% trans "Previous" %} <span class="show-for-sr">page</span>
                                 </a></li>
                             {% for page in page_obj.paginator.page_range|slice:page_dict.prev %}
                                 <li><a {% if page_obj.number == page %} class="current" {% endif %}
@@ -57,7 +57,7 @@
                                 >{{ page }}</a></li>
                             {% endfor %}
                         {% else %}
-                            <li class="pagination-previous disabled">Previous <span class="show-for-sr"></span></li>
+                            <li class="pagination-previous disabled">{% trans "Previous" %} <span class="show-for-sr"></span></li>
                         {% endif %}
 
                         <li><a class="current"
@@ -73,9 +73,9 @@
 
                             <li class="pagination-next">
                                 <a href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.next_page_number }}"
-                                   aria-label="Next page">Next <span class="show-for-sr"></span></a></li>
+                                   aria-label="Next page">{% trans "Next" %} <span class="show-for-sr"></span></a></li>
                         {% else %}
-                            <li class="pagination-next disabled">Next <span class="show-for-sr"></span></li>
+                            <li class="pagination-next disabled">{% trans "Next" %} <span class="show-for-sr"></span></li>
                         {% endif %}
                     </ul>
                 </nav>
