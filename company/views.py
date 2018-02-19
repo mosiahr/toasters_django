@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 
 from django.views.generic import ListView, DetailView, UpdateView, View, DeleteView
+from dj_extensions.views import PaginationMixin
+
 from django.views.generic.edit import FormMixin
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -19,16 +21,18 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-class CompanyListView(ListView):
-    model = Company
-    context_object_name = 'companies'
+class CompanyListView(PaginationMixin, ListView):
     form_class = CompanyLocationForm
+    context_object_name = 'companies'
+    model = Company
     # initial = {'type_company': 'vedushie-tamada'}
     template_name = 'company/company_list.html'
+    paginate_by = 10
+    paginate_orphans = 2
+    n_list = 4    # This mixin provides list of links to previous and next n_list number of pages (PaginationMixin)
 
     def get_context_data(self, **kwargs):
         context = super(CompanyListView, self).get_context_data(**kwargs)
-        header = None
 
         if self.request.method == 'GET':
             form = self.form_class(self.request.GET)
@@ -37,28 +41,27 @@ class CompanyListView(ListView):
                 context.update({'form': form})
 
             try:
-                location_select_name = Location.pub_objects.get(slug=self.request.GET['location_select']).name
+                location_select = Location.pub_objects.get(slug=self.request.GET['location_select'])
             except:
-                location_select_name = None
-
+                location_select = None
             try:
-                type_company_name = TypeCompany.pub_objects.get(slug=self.request.GET['type_company']).name
+                type_company = TypeCompany.pub_objects.get(slug=self.request.GET['type_company'])
             except:
-                type_company_name = None
-
+                type_company = None
             try:
-                price_name = Price.pub_objects.get(slug=self.request.GET['price']).name
+                price = Price.pub_objects.get(slug=self.request.GET['price'])
             except:
-                price_name = None
+                price = None
 
             header = {
-                'location': location_select_name,
-                'type': type_company_name,
-                'price': price_name,
+                'location': location_select,
+                'type': type_company,
+                'price': price,
             }
 
         else:
             form = self.form_class()
+            header = None
 
         context.update({'form': form,
                         'header': header})
