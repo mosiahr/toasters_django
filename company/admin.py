@@ -36,12 +36,14 @@ class PriceAdmin(admin.ModelAdmin):
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ['name', 'user', 'get_types', 'get_locations', 'created']
+    list_display = ['name', 'publish', 'user', 'get_types', 'get_locations', 'created']
+    list_filter = ('user', 'type', 'locations', 'price')
     # readonly_fields = ('user',)
     fields = ('name', 'type', 'address', 'email',
-              'phone', 'site', 'description', 'img', 'locations', 'tags', 'price')
+              'phone', 'site', 'description', 'img', 'locations', 'tags', 'price', 'publish')
 
     actions = ['delete_selected']
+    list_editable = ('publish',)  # edit
 
     class Meta:
         model = Company

@@ -15,6 +15,7 @@
         {# FORM FILTER #}
         <div class="cell small-12 medium-4 large-3">{% include 'company/include/form_filter.html' %}</div>
 
+        {# LIST CARDS #}
         <div class="cell row small-12 medium-8 large-9">
             <div class="grid-margin-y">
 
@@ -26,24 +27,25 @@
                 </h3>
 
                 {# CARDS #}
-                <div class="grid-x grid-margin-x grid-margin-y">
+                <div class="grid-x grid-margin-x grid-margin-y align-left">
                     {% for company in companies %}
                         <div class="cell small-12 medium-4 large-3">
                             <div class="thumbnail card" style="height: 100%; width: 100%;">
                                 <a href="{% url 'company:company_detail' pk=company.id %}">
                                     <img src="{{ MEDIA_URL }}{{ company.img }}" alt="{{ company.name }}">
                                 </a>
-                                <h5 class="card-section">
-                                    <a href="{% url 'company:company_detail' pk=company.id %}">{{ company.name }}</a>
+                                <h5 class="card-section text-center">
+                                    <a class="" href="{% url 'company:company_detail' pk=company.id %}">{{ company.name|truncatechars:50 }}</a>
                                 </h5>
                             </div>
                         </div>
                     {% empty %}
-                        <p>Не найдено</p>
+                        <div class="float-center">Не найдено</div>
                     {% endfor %}
                 </div>
 
                 {# PAGINATION #}
+                {% if page_obj.paginator.num_pages > 1 %}
                 <nav class="cell" aria-label="Pagination">
                     <ul class="pagination text-center">
                         {% if page_obj.has_previous %}
@@ -79,6 +81,7 @@
                         {% endif %}
                     </ul>
                 </nav>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -51,7 +51,6 @@
 </div>
 
 <div class="top-bar row" id="top-menu">
-{#    <div class="row">#}
         <div class="top-bar-left">
             <ul class="dropdown vertical medium-horizontal menu">
                 <li class="menu-text">TOASTERS</li>
@@ -80,12 +79,20 @@
                 {% if user.is_authenticated %}
                     {% if user.full_name != '' and user.full_name != None%}
                         <li><a class="" href="{% url 'accounts:home' %}">
-                            <i class="far fa-user fa-lg"></i>
-                            {{ user.full_name }}</a></li>
+                         <span data-tooltip aria-haspopup="true" class="has-tip bottom" data-disable-hover="false"
+                              tabindex="4" title="{% trans 'Account' %}">
+                             <i class="far fa-user fa-lg"></i>
+                                {{ user.full_name|truncatechars:20 }}
+                         </span>
+                        </a></li>
+
                     {% else %}
                         <li><a class="" href="{% url 'accounts:home' %}">
-                            <i class="far fa-user fa-lg"></i>
-                            {{ user }}</a></li>
+                            <span data-tooltip aria-haspopup="true" class="has-tip bottom" data-disable-hover="false"
+                                  tabindex="4" title="{% trans 'Account' %}">
+                                 <i class="far fa-user fa-lg"></i>
+                                    {{ user|truncatechars:20 }}
+                            </span>
                     {% endif %}
                     <li><a class="icon-button" href="{% url 'accounts:logout' %}">
                         <span data-tooltip aria-haspopup="true" class="has-tip bottom" data-disable-hover="false"
@@ -112,7 +119,6 @@
                 {% endif %}
             </ul>
         </div>
-{#    </div>#}
 </div>
 
 <div class="grid-y row">
