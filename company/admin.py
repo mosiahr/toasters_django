@@ -40,7 +40,7 @@ class CompanyAdmin(admin.ModelAdmin):
     list_filter = ('user', 'type', 'locations', 'price')
     # readonly_fields = ('user',)
     fields = ('name', 'type', 'address', 'email',
-              'phone', 'site', 'description', 'img', 'locations', 'tags', 'price', 'publish')
+              'phone', 'site', 'description', 'avatar', 'locations', 'tags', 'price', 'publish')
 
     actions = ['delete_selected']
     list_editable = ('publish',)  # edit

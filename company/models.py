@@ -1,4 +1,8 @@
 from django.db import models
+
+from stdimage.models import StdImageField
+from stdimage.utils import UploadToUUID, UploadToClassNameDir, UploadToAutoSlug, UploadToAutoSlugClassNameDir
+
 from django.shortcuts import reverse
 from django.utils.translation import ugettext as _
 from core.models_abstract import MainAbstractModel
@@ -7,7 +11,6 @@ from tags.models import Tag
 
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
-
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -42,13 +45,6 @@ class Price(MainAbstractModel):
         verbose_name_plural = _('Prices')
 
 
-# def get_user(request=None):
-#     try:
-#         return User.objects.get(email=request.user)[0]
-#     except:
-#         pass
-
-
 class Company(MainAbstractModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=140, unique=False, verbose_name=_('Name'))
@@ -59,7 +55,17 @@ class Company(MainAbstractModel):
     site = models.CharField(max_length=50, verbose_name=_('Site'), blank=True)
     # description = models.TextField(max_length=1000, verbose_name=_('Description'), blank=True)
     description = RichTextField(verbose_name=_('Description'), blank=True)
-    img = models.ImageField(upload_to='img', verbose_name=_('Logo'))
+
+    # avatar = models.ImageField(upload_to='img', verbose_name=_('Logo'))  #upload_to='img/%Y/%m/%d
+    avatar = StdImageField(upload_to=UploadToUUID(path='images'),  #'img',
+                           variations={
+                               'medium': (400, 300),
+                               'thumbnail': {'width': 200, 'height': 200, "crop": True}
+                           })
+
+    # height = models.PositiveIntegerField(default=300)
+    # width = models.PositiveIntegerField(default=300)
+
     locations = models.ManyToManyField(Location, verbose_name=_('City'), blank=True)
     tags = models.ManyToManyField(Tag, verbose_name=_('Tags'), blank=True)
     price = models.ForeignKey(Price, verbose_name=_('Price'), on_delete=models.CASCADE)
@@ -76,16 +82,19 @@ class Company(MainAbstractModel):
     def save(self, *args, **kwargs):
         try:
             this_record = Company.objects.get(id=self.id)
-            if this_record.img != self.img:
-                this_record.img.delete(save=False)
-        except: pass
+            if this_record.avatar != self.avatar:
+                this_record.avatar.delete(save=False)
+        except:
+            pass
 
         super(Company, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        self.img.delete(save=False)
+        self.avatar.delete(save=False)
         super(Company, self).delete(*args, **kwargs)
 
     class Meta:
         verbose_name = _('Company')
         verbose_name_plural = _('Companies')
+
+

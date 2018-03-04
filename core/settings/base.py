@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
     'ckeditor',
     'django_extensions',
+    'stdimage',
 
     'accounts',
     'tags',
