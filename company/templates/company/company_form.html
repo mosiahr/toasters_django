@@ -12,8 +12,7 @@
 <div class="row">
     <div class="column small-9 medium-6 large-5 float-left">
         {% if title %}<h4 class=''>{{ title }}</h4>{% endif %}
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
             {{ form.media }}
             {{ form.as_p  }}
             {% if request.path == url_company_add %}

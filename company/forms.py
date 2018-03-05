@@ -66,7 +66,9 @@ class CompanyAddForm(forms.ModelForm):
     class Meta:
         model = Company
         fields = ('name', 'type', 'address', 'email', 'phone',
-                  'site', 'description', 'avatar', 'locations', 'tags', 'price')
+                  'site', 'description', 'avatar',
+                  'photo1', 'photo2', 'photo3',
+                  'locations', 'tags', 'price')
         text = 'Hold down "Control", or "Command" on a Mac, to select more than one.'
         help_texts = {
             'type': _(text),
@@ -79,7 +81,9 @@ class CompanyUpdateForm(forms.ModelForm):
     class Meta:
         model = Company
         fields = ('name', 'type', 'address', 'email', 'phone',
-                  'site', 'description', 'avatar', 'locations', 'tags', 'price')
+                  'site', 'description', 'avatar',
+                  'photo1', 'photo2', 'photo3',
+                  'locations', 'tags', 'price')
         text = 'Hold down "Control", or "Command" on a Mac, to select more than one.'
         help_texts = {
             'type': _(text),

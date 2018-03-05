@@ -34,13 +34,24 @@ class PriceAdmin(admin.ModelAdmin):
         model = Price
 
 
+# @admin.register(Photo)
+# class PriceAdmin(admin.ModelAdmin):
+#     list_display = ['name', 'image']
+#     # ordering = ['id']
+#
+#     class Meta:
+#         model = Photo
+
+
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
     list_display = ['name', 'publish', 'user', 'get_types', 'get_locations', 'created']
     list_filter = ('user', 'type', 'locations', 'price')
     # readonly_fields = ('user',)
     fields = ('name', 'type', 'address', 'email',
-              'phone', 'site', 'description', 'avatar', 'locations', 'tags', 'price', 'publish')
+              'phone', 'site', 'description', 'avatar',
+              'photo1', 'photo2', 'photo3',
+              'locations', 'tags', 'price', 'publish')
 
     actions = ['delete_selected']
     list_editable = ('publish',)  # edit
