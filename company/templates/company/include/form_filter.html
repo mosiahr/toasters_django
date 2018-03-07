@@ -3,12 +3,12 @@
 <div class="callout">
     <form action="" method="get">
         {% for field in form %}
-            <label for="{{ field.name }}">
-                {{ field.label|safe }}
-{#                        <i class="form-filter-city"></i> {{ field.label }}#}
-            </label>
-{#            <label for="{{ field.name }}">{{ field.label|safe }}</label>#}
-            {{ field }}
+                <label for="{{ field.name }}">
+                    {{ field.label|safe }}
+    {#                        <i class="form-filter-city"></i> {{ field.label }}#}
+                </label>
+    {#            <label for="{{ field.name }}">{{ field.label|safe }}</label>#}
+                {{ field }}
         {% endfor %}
         <input class="button secondary small" type="submit" value={% trans "Show" %} />
     </form>

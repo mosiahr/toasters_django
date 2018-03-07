@@ -102,12 +102,12 @@ class Company(MainAbstractModel):
     # photo2 = models.ForeignKey(Photo, verbose_name=_('Gallery'), on_delete=models.CASCADE, blank=True, null=True)
     # photo3 = models.ForeignKey(Photo, verbose_name=_('Gallery'), on_delete=models.CASCADE, blank=True, null=True)
 
-    locations = models.ManyToManyField(Location, verbose_name=_('City'), blank=True)
+    location = models.ManyToManyField(Location, verbose_name=_('City'), blank=True)
     tags = models.ManyToManyField(Tag, verbose_name=_('Tags'), blank=True)
     price = models.ForeignKey(Price, verbose_name=_('Price'), on_delete=models.CASCADE)
 
     def get_locations(self):
-        return ", \n".join([l.name for l in self.locations.all()])
+        return ", \n".join([l.name for l in self.location.all()])
 
     def get_types(self):
         return ", \n".join([t.name for t in self.type.all()])

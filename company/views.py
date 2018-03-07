@@ -14,7 +14,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import ugettext as _
 
 from .models import Company, Location, TypeCompany, Price
-from .forms import CompanyLocationForm, CompanyAddForm, CompanyUpdateForm
+from .forms import CompanyFilterForm, CompanyAddForm, CompanyUpdateForm
 from .messages import ErrorMessageMixin
 
 from django.contrib.auth import get_user_model
@@ -22,7 +22,7 @@ User = get_user_model()
 
 
 class CompanyListView(PaginationMixin, ListView):
-    form_class = CompanyLocationForm
+    form_class = CompanyFilterForm
     context_object_name = 'companies'
     model = Company
     # initial = {'type_company': 'vedushie-tamada'}
@@ -41,21 +41,21 @@ class CompanyListView(PaginationMixin, ListView):
                 context.update({'form': form})
 
             try:
-                location_select = Location.pub_objects.get(slug=self.request.GET['location_select'])
+                location = Location.pub_objects.get(slug=self.request.GET['location'])
             except:
-                location_select = None
+                location = None
             try:
-                type_company = TypeCompany.pub_objects.get(slug=self.request.GET['type_company'])
+                type = TypeCompany.pub_objects.get(slug=self.request.GET['type'])
             except:
-                type_company = None
+                type = None
             try:
                 price = Price.pub_objects.get(slug=self.request.GET['price'])
             except:
                 price = None
 
             header = {
-                'location': location_select,
-                'type': type_company,
+                'location': location,
+                'type': type,
                 'price': price,
             }
 
@@ -70,40 +70,40 @@ class CompanyListView(PaginationMixin, ListView):
 
     def get_queryset(self):
         try:
-            location = self.request.GET['location_select']
+            location = self.request.GET['location']
         except:
             location = None
         try:
-            type_company = self.request.GET['type_company']
+            type = self.request.GET['type']
         except:
-            type_company = None
+            type = None
         try:
             price = self.request.GET['price']
         except:
             price = None
 
-        if location and type_company and price:
-            return Company.pub_objects.filter(locations__slug=location,
-                                              type__slug=type_company,
+        if location and type and price:
+            return Company.pub_objects.filter(location__slug=location,
+                                              type__slug=type,
                                               price__slug=price)
 
-        if location and type_company:
-            return Company.pub_objects.filter(locations__slug=location,
-                                              type__slug=type_company)
+        if location and type:
+            return Company.pub_objects.filter(location__slug=location,
+                                              type__slug=type)
 
-        if type_company and price:
-            return Company.pub_objects.filter(type__slug=type_company,
+        if type and price:
+            return Company.pub_objects.filter(type__slug=type,
                                               price__slug=price)
 
         if location and price:
-            return Company.pub_objects.filter(locations__slug=location,
+            return Company.pub_objects.filter(location__slug=location,
                                               price__slug=price)
 
         if location:
-            return Company.pub_objects.filter(locations__slug=location)
+            return Company.pub_objects.filter(location__slug=location)
 
-        if type_company:
-            return Company.pub_objects.filter(type__slug=type_company)
+        if type:
+            return Company.pub_objects.filter(type__slug=type)
 
         if price:
             return Company.pub_objects.filter(price__slug=price)

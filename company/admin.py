@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext as _, ugettext_lazy
 
+from easy_select2 import select2_modelform
+
 from .models import TypeCompany, Location, Company, Price
 
 from django.contrib.auth import get_user_model
@@ -41,17 +43,21 @@ class PriceAdmin(admin.ModelAdmin):
 #
 #     class Meta:
 #         model = Photo
+#
+#
+CompanyForm = select2_modelform(Company, attrs={'width': '250px'})
 
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
+    form = CompanyForm
     list_display = ['name', 'publish', 'user', 'get_types', 'get_locations', 'created']
-    list_filter = ('user', 'type', 'locations', 'price')
+    list_filter = ('user', 'type', 'location', 'price')
     # readonly_fields = ('user',)
     fields = ('name', 'type', 'address', 'email',
               'phone', 'site', 'description', 'avatar',
               'photo1', 'photo2', 'photo3',
-              'locations', 'tags', 'price', 'publish')
+              'location', 'tags', 'price', 'publish')
 
     actions = ['delete_selected']
     list_editable = ('publish',)  # edit

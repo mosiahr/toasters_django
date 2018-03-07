@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'django_extensions',
     'stdimage',
+    'easy_select2',
 
     'accounts',
     'tags',
@@ -192,8 +193,10 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_CONFIGS = {
     'default': {
-        'skin': 'moono',
         'toolbar': 'Custom',
+
+        # 'height': 300,
+        'width': 600,
 
         'toolbar_Custom': [
             {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print']},

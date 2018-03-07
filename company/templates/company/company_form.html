@@ -9,12 +9,12 @@
 {% url 'company:company_add' as url_company_add %}
 {% url 'company:company_update' pk=company.id as url_company_update %}
 
-<div class="row">
-    <div class="column small-9 medium-6 large-5 float-left">
+<div class="row grid-x">
+    <div class="cell small-9 medium-6 large-5 float-center">
         {% if title %}<h4 class=''>{{ title }}</h4>{% endif %}
         <form method="post" enctype="multipart/form-data">{% csrf_token %}
             {{ form.media }}
-            {{ form.as_p  }}
+            {{ form  }}
             {% if request.path == url_company_add %}
                 <button type='submit' class='button success small expanded'>{% trans "Add company" %}</button>
             {% elif request.path == url_company_update %}
