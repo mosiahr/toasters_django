@@ -15,4 +15,8 @@ urlpatterns = [
     url(r'^delete/(?P<pk>\d+)/$', CompanyDeleteView.as_view(), name='company_delete'),
     url(r'^(?P<pk>\d+)/$', CompanyDetailView.as_view(), name='company_detail'),
     # url(r'^profile_update/$', ProfileCreateView.as_view(), name='profile-update'),
+
+    # url('gallery/', include('gallery.urls', namespace='gallery')),
 ]
+
+
