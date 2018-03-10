@@ -7,18 +7,46 @@
 
 {% block content  %}
 {% url 'company:company_add' as url_company_add %}
-{% url 'company:company_update' pk=company.id as url_company_update %}
+{% url 'company:company_update' pk=company.pk as url_company_update %}
 
-<div class="row grid-x">
-    <div class="cell small-9 medium-6 large-5 float-center">
-        {% if title %}<h4 class=''>{{ title }}</h4>{% endif %}
+<div class="row">
+{#    <div class="cell small-12 medium-8 float-center">#}
+    <div class="">
+        {% if title %}<h4 class='header'>{{ title }}</h4><hr>{% endif %}
         <form method="post" enctype="multipart/form-data">{% csrf_token %}
             {{ form.media }}
-            {{ form  }}
+
+            {% for field in form %}
+                <div class="grid-y grid-margin-y">
+
+                    {% if field.errors %}
+                        <div class="small-offset-3 cell" style="margin-bottom: -1rem;">{{ field.errors }}</div>
+                    {% endif %}
+                    <div class="cell grid-x grid-padding-x">
+                        <label for="{{ field.name }}" class="small-12 medium-3 cell medium-text-right large-text-right">
+                            {% trans field.label %}</label>
+                        <div class="small-12 medium-3 cell">{{ field }}
+                            {% if field.help_text %}
+                                <p class="help-text">{{ field.help_text }}</p>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+            {% endfor %}
+
             {% if request.path == url_company_add %}
-                <button type='submit' class='button success small expanded'>{% trans "Add company" %}</button>
+                <div class="button-group small medium-12 align-right">
+                <a class="button secondary" href="{% url 'accounts:home' %}">{% trans "Cancel" %}</a>
+                <button type='submit' class='button success '>{% trans "Add company" %}</button>
+                </div>
             {% elif request.path == url_company_update %}
-                <button type='submit' class='button success small expanded'>{% trans "Update company" %}</button>
+                <div class=" button-group small">
+                <a class="button alert small" href="{% url 'company:company_delete' pk=company.pk %}">{% trans "Delete" %}</a>
+                <a class="button secondary" href="{% url 'accounts:home' %}">{% trans "Cancel" %}</a>
+                <button type='submit' class='button success'>{% trans "Update company" %}</button>
+                </div>
             {% endif %}
         </form>
     </div>

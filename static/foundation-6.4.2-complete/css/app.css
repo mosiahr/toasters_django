@@ -1,3 +1,17 @@
+footer{
+  background-color: #b0b0b0;
+  margin-top: 15px;
+  min-height: 5em;
+}
+
+hr{
+  /*border-color: #1CDB60;*/
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+}
+
 /*.fi-address-book{*/
     /*font-size: 36px;*/
     /*color: #fda6db;*/
@@ -12,8 +26,8 @@
   /*.card-section > :last-child {*/
     /*margin-bottom: 0; }*/
 
-.helptext {
-    font-size: 12px;
+.help-text {
+  margin-top: 0.5rem;
 }
 
 .helptext > ul {
@@ -163,5 +177,18 @@
   padding-left: 10px!important;
   padding-right: 10px!important;
 }
+
+/*.form-select2{*/
+  /*max-height: 10px;*/
+  /*overflow-y: auto;*/
+/*}*/
+
+.header{
+  color: #000;
+  padding: 10px 0 0px 10px;
+}
+
+
+
 
 

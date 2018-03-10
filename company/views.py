@@ -165,27 +165,18 @@ class CompanyUpdateView(LoginRequiredMixin,
     title = _('Сhange of company')
 
     def get(self, request, **kwargs):
-        try:
-            self.object = Company.objects.get(pk=self.kwargs['pk'])
-        except Company.DoesNotExist:
-            return redirect(self.success_url)
-
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        context = self.get_context_data(object=self.object, form=form, title=self.title)
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object, form=self.get_form())
         return render(request, 'company/company_form.html', context)
-
-    # def get_initial(self):
-    #     """
-    #         Returns the initial data to use for forms on this view.
-    #     """
-    #     initial = super(CompanyUpdateView, self).get_initial()
-    #     initial['type'] = [i.id for i in self.get_object().type.all()]
-    #     return initial
 
     def get_object(self, queryset=None):
         obj = Company.objects.get(pk=self.kwargs['pk'])
         return obj
+
+    def get_context_data(self, **kwargs):
+        context = super(CompanyUpdateView, self).get_context_data(**kwargs)
+        context.update({'title': self.title})
+        return context
 
 
 class CompanyDeleteView(LoginRequiredMixin, DeleteView):

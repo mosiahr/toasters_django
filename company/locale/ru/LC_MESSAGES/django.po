@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-19 15:20+0200\n"
+"POT-Creation-Date: 2018-03-10 00:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,81 +20,94 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: admin.py:59
+#: admin.py:78
 #, python-format
 msgid "Delete selected %(verbose_name_plural)s"
 msgstr ""
 
-#: apps.py:8 models.py:90
+#: apps.py:8 models.py:133
 msgid "Company"
 msgstr "Компания"
 
-#: forms.py:39 models.py:55 templates/company/company_list.html:24
+#: forms.py:45 models.py:61 templates/company/company_list.html:25
 msgid "Type"
 msgstr "Тип"
 
-#: forms.py:44 models.py:17 models.py:63 templates/company/company_list.html:23
+#: forms.py:52 models.py:20 models.py:105
+#: templates/company/company_list.html:24
 msgid "City"
 msgstr "Город"
 
-#: forms.py:54 models.py:37 models.py:41 models.py:65
-#: templates/company/company_list.html:25
+#: forms.py:62 models.py:40 models.py:44 models.py:107
+#: templates/company/company_list.html:26
 msgid "Price"
 msgstr "Стоимость"
 
-#: models.py:21 templates/company/company_detail.html:36
+#: models.py:24 templates/company/company_detail.html:36
 msgid "Location"
 msgstr "Место проведения"
 
-#: models.py:22
+#: models.py:25
 msgid "Locations"
 msgstr "Места проведения"
 
-#: models.py:27 models.py:31
+#: models.py:30 models.py:34
 msgid "Company type"
 msgstr "Тип компании"
 
-#: models.py:32
+#: models.py:35
 msgid "Company types"
 msgstr "Типы компании"
 
-#: models.py:42
+#: models.py:45
 msgid "Prices"
 msgstr "Цены"
 
-#: models.py:54
+#: models.py:60
 msgid "Name"
 msgstr "Имя"
 
-#: models.py:56
+#: models.py:62
 msgid "Address"
 msgstr "Адрес"
 
-#: models.py:57
+#: models.py:63
 msgid "email"
 msgstr ""
 
-#: models.py:58
+#: models.py:64
 msgid "Phone"
 msgstr "Телефон"
 
-#: models.py:59
+#: models.py:65
 msgid "Site"
 msgstr "Сайт"
 
-#: models.py:61
+#: models.py:67
 msgid "Description"
 msgstr "Описание"
 
-#: models.py:62
+#: models.py:75
 msgid "Logo"
 msgstr "Логотип"
 
-#: models.py:64
+#: models.py:82
+msgid "Photo 1"
+msgstr ""
+
+#: models.py:89
+msgid "Photo 2"
+msgstr ""
+
+#: models.py:96
+msgid "Photo 3"
+msgstr ""
+
+#: models.py:106
 msgid "Tags"
 msgstr "Тэги"
 
-#: models.py:91
+#: models.py:134
 msgid "Companies"
 msgstr "Компании"
 
@@ -114,21 +127,29 @@ msgstr ""
 msgid "Information"
 msgstr "Информация"
 
-#: templates/company/company_form.html:20
+#: templates/company/company_form.html:36
 msgid "Add company"
 msgstr "Добавить компанию"
 
-#: templates/company/company_form.html:22
+#: templates/company/company_form.html:40
+msgid "Delete"
+msgstr ""
+
+#: templates/company/company_form.html:41
+msgid "Cancel"
+msgstr "Отмена"
+
+#: templates/company/company_form.html:42
 msgid "Update company"
 msgstr "Обновить компанию"
 
-#: templates/company/company_list.html:52
 #: templates/company/company_list.html:60
+#: templates/company/company_list.html:68
 msgid "Previous"
 msgstr "Предыдущая"
 
-#: templates/company/company_list.html:76
-#: templates/company/company_list.html:78
+#: templates/company/company_list.html:84
+#: templates/company/company_list.html:86
 msgid "Next"
 msgstr "Следующая"
 
@@ -158,12 +179,12 @@ msgstr "Компания %(name)s была успешно обновлена!"
 msgid "Сhange of company"
 msgstr "Изменение компании"
 
-#: views.py:195
+#: views.py:186
 #, python-format
 msgid "Company %(name)s was deleted successfully!"
 msgstr "Компания %(name)s была успешно удалена! "
 
-#: views.py:196
+#: views.py:187
 msgid "Are you sure?"
 msgstr "Вы уверены?"
 
