@@ -17,8 +17,9 @@
                         {% if next_url %}
                             <input type='hidden' name='next' value='{{ next_url }}'/>
                         {% endif %}
-                        {{ form }}<br>
+                        {{ form }}
                         <button type='submit' class='button success small expanded'>{% trans "Save" %}</button>
+                        <a class="button secondary small expanded" href="{% url 'accounts:home' %}">{% trans "Cancel" %}</a>
                         <a class='button small expanded'
                            href='{% url "accounts:change_password" %}'>{% trans "Change Password" %}</a>
                     </form>

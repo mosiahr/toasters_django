@@ -37,12 +37,12 @@
             {% endfor %}
 
             {% if request.path == url_company_add %}
-                <div class="button-group small medium-12 align-right">
+                <div class="button-group small medium-offset-3">
                 <a class="button secondary" href="{% url 'accounts:home' %}">{% trans "Cancel" %}</a>
                 <button type='submit' class='button success '>{% trans "Add company" %}</button>
                 </div>
             {% elif request.path == url_company_update %}
-                <div class=" button-group small">
+                <div class="button-group small medium-offset-3">
                 <a class="button alert small" href="{% url 'company:company_delete' pk=company.pk %}">{% trans "Delete" %}</a>
                 <a class="button secondary" href="{% url 'accounts:home' %}">{% trans "Cancel" %}</a>
                 <button type='submit' class='button success'>{% trans "Update company" %}</button>

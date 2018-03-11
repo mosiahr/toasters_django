@@ -77,7 +77,6 @@ class CompanyAddForm(forms.ModelForm):
         self.fields['location'].widget.attrs = {"class": 'form-select2'}
         self.fields['tags'].widget.attrs = {"class": 'form-select2'}
 
-
     class Meta:
         model = Company
         fields = ('name', 'type', 'address', 'email', 'phone',
