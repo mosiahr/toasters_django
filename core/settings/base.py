@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'tags',
     'company',
     # 'toast',
+    'gallery',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

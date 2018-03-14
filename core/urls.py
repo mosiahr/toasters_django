@@ -27,6 +27,8 @@ urlpatterns = [
     # url(r'^toasters/', include('toast.urls', namespace='toast')),
     url(r'^company/', include('company.urls', namespace='company')),
     url(r'^tags/', include('tags.urls', namespace='tags')),
+    url('gallery/', include('gallery.urls', namespace='gallery')),
+
     url(r'^media/(?P<path>.*)$', django.views.static.serve, {'document_root': settings.MEDIA_ROOT}),
 
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),

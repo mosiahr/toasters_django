@@ -1,0 +1,92 @@
+{% extends 'core/base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{#{% block header %}#}
+{#    <h2 class="subheader">Тамада и ведущий на свадьбу{% if header %}: {{ header }}{% endif %}</h2>#}
+{#{% endblock %}#}
+
+{% block content %}
+    <div class="grid-x grid-margin-y">
+
+        {# LIST CARDS #}
+        <div class="cell row small-12 medium-8 large-9">
+            <div class="grid-margin-y">
+
+                {# HEADER #}
+{#                <h3 class="subheader text-center">#}
+{#                    {% if header.location %}{% trans 'City' %}: {{ header.location }}{% endif %}#}
+{#                    {% if header.type %}{% trans 'Type' %}: {{ header.type }}{% endif %}#}
+{#                    {% if header.price %}{% trans 'Price' %}: {{ header.price }}{% endif %}#}
+{#                </h3>#}
+
+                {# CARDS #}
+                <div class="grid-x grid-margin-x grid-margin-y align-left">
+                    {% for album in albums %}
+                        <div class="cell small-12 medium-4 large-3">
+                            <div class="thumbnail card " style="height: 100%; width: 100%;">
+
+                                {% if album.get_cover_photo %}
+                                <div style="height: 200px">
+                                    <a href="{% url 'gallery:photo' album=album.slug %}">
+                                        <img class="float-center" src="{{ album.get_cover_photo.image.thumbnail.url }}">
+                                    </a>
+                                </div>
+                                {% endif %}
+                                <h5 class="card-section text-center">
+                                    <a class=""
+                                       href="{% url 'gallery:photo' album=album.slug %}">{{ album.name|truncatechars:50 }}</a>
+                                    <br>{{ album.summary|truncatechars:50 }}
+                                </h5>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="float-center">Не найдено</div>
+                    {% endfor %}
+                </div>
+
+                {# PAGINATION #}
+{#                {% if page_obj.paginator.num_pages > 1 %}#}
+{#                <nav class="cell" aria-label="Pagination">#}
+{#                    <ul class="pagination text-center">#}
+{#                        {% if page_obj.has_previous %}#}
+{#                            <li class="pagination-previous">#}
+{#                                <a href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.previous_page_number }}"#}
+{#                                   aria-label="Previous page">{% trans "Previous" %} <span class="show-for-sr">page</span>#}
+{#                                </a></li>#}
+{#                            {% for page in page_obj.paginator.page_range|slice:page_dict.prev %}#}
+{#                                <li><a {% if page_obj.number == page %} class="current" {% endif %}#}
+{#                                                                        href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page }}"#}
+{#                                >{{ page }}</a></li>#}
+{#                            {% endfor %}#}
+{#                        {% else %}#}
+{#                            <li class="pagination-previous disabled">{% trans "Previous" %} <span class="show-for-sr"></span></li>#}
+{#                        {% endif %}#}
+{##}
+{#                        <li><a class="current"#}
+{#                               href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.number }}"#}
+{#                        >{{ page_obj.number }}</a></li>#}
+{##}
+{#                        {% if page_obj.has_next %}#}
+{#                            {% for page in page_obj.paginator.page_range|slice:page_dict.next %}#}
+{#                                <li><a {% if page_obj.number == page %} class="current" {% endif %}#}
+{#                                                                        href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page }}"#}
+{#                                >{{ page }}</a></li>#}
+{#                            {% endfor %}#}
+{##}
+{#                            <li class="pagination-next">#}
+{#                                <a href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.next_page_number }}"#}
+{#                                   aria-label="Next page">{% trans "Next" %} <span class="show-for-sr"></span></a></li>#}
+{#                        {% else %}#}
+{#                            <li class="pagination-next disabled">{% trans "Next" %} <span class="show-for-sr"></span></li>#}
+{#                        {% endif %}#}
+{#                    </ul>#}
+{#                </nav>#}
+{#                {% endif %}#}
+            </div>
+        </div>
+    </div>
+{% endblock %}
