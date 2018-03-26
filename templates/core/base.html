@@ -29,6 +29,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
+    {# SLICK #}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
+
+
+    {# FOTORAMA #}
+    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+
 </head>
 <body>
 
@@ -130,7 +138,7 @@
     </div>
 </div>
 
-<div class="">
+<div class="row">
     <nav aria-label="You are here:" role="navigation">
         <ul class="row breadcrumbs">
             <li><a href="#">Home</a></li>
@@ -146,13 +154,13 @@
 <br>
 
 {#CONTENT#}
-<div class="">
+<div class="row">
     {% include 'core/include/messages.html' %}
     {% block content %}{% endblock %}
 </div>
 
 <footer style="visibility:hidden;">
-    <ul class="menu">
+    <ul class="row menu">
         {#        <li>Yeti Store</li>#}
         <li><a href="#">Home</a></li>
         <li><a href="#">About</a></li>
@@ -170,7 +178,21 @@
 <script src="{% static 'foundation-6.4.2-complete/js/vendor/foundation.min.js' %}"></script>
 <script src="{% static 'foundation-6.4.2-complete/js/app.js' %}"></script>
 
+
+{% block javascript %}
+{% endblock %}
 <script src="{% static 'js/foundationStickyFooter/stickyFooter.js' %}"></script>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+
+
+<!-- Jssor Slider Begin -->
+{#<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>#}
+<script type="text/javascript" src="{% static 'jssor.slider.devpack/js/jssor.slider.min.js' %}"></script>
+
 <script src="{% static 'js/app.js' %}"></script>
 
 </body>

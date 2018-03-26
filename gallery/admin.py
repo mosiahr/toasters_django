@@ -4,12 +4,20 @@ from .models import Photo, Album
 
 from django.utils.translation import ugettext as _, ugettext_lazy
 
+from django.contrib.contenttypes.admin import GenericTabularInline, GenericStackedInline
+
+
+# class PhotoInline(admin.TabularInline):
+#     model = Photo
 
 
 @admin.register(Album)
-class PhotoAdmin(admin.ModelAdmin):
+class AlbumAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
     list_display = ['name', 'slug']
+    # inlines = [
+    #     PhotoInline,
+    # ]
 
     class Meta:
         model = Album
@@ -30,3 +38,4 @@ class PhotoAdmin(admin.ModelAdmin):
             obj.delete()
 
     delete_selected.short_description = ugettext_lazy("Delete selected %(verbose_name_plural)s")
+

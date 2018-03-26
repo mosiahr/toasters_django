@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content  %}
+    <div class="row">
+        {% if title %}<h4 class='header'>{{ title }}</h4><hr>{% endif %}
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.media }}
+{#            {{ formset.management_form }}#}
+            {{ formset }}
+{#            {{ formset.management_form }}#}
+{#            {% for form in formset %}#}
+{#                {{ form }}#}
+{#            {% endfor %}#}
+
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+{#    <div class="cell small-12 medium-8 float-center">#}
+    <div class="">
+        {% if title %}<h4 class='header'>{{ title }}</h4><hr>{% endif %}
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.media }}
+
+            {% for field in form %}
+                <div class="grid-y grid-margin-y">
+                    {% if field.errors %}
+                        <div class="small-offset-3 cell" style="margin-bottom: -1rem;">{{ field.errors }}</div>
+                    {% endif %}
+                    <div class="cell grid-x grid-padding-x">
+                        <label for="{{ field.name }}" class="small-12 medium-3 cell medium-text-right large-text-right">
+                            {% trans field.label %}</label>
+                        <div class="small-12 medium-3 cell">{{ field }}
+                            {% if field.help_text %}
+                                <p class="help-text">{{ field.help_text }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            {% endfor %}
+            <div class="button-group small medium-offset-3">
+                <a class="button secondary" href="{% url 'accounts:home' %}">{% trans "Cancel" %}</a>
+                <button type='submit' class='button success '>{% trans "Add photo" %}</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+{% endblock %}

@@ -110,7 +110,8 @@ class LoginForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'autofocus': True,
-                'placeholder': _('Email')
+                'placeholder': _('Email'),
+                'pattern': 'email',
             }
         ),
     )

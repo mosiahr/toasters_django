@@ -1,0 +1,85 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+    {% load i18n %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{#{% load crispy_forms_tags %}#}
+{% block content  %}
+    <div class="row">
+{#        <div class="grid-x grid-margin-y align-center">#}
+            {% if title %}<h4 class='header'>{{ title }}</h4><hr>{% endif %}
+
+{#            <div class="cell row small-12 medium-6 large-6">#}
+{#                {{ photo_form }}#}
+{#                {{ photo_form.management_form }}#}
+{#                {{ photo_form.non_form_errors }}#}
+{#            <div class="cell small-12 medium-3">#}
+            <form data-abide novalidate method="post" enctype="multipart/form-data">{% csrf_token %}
+                {{ form.as_p }}
+{#                    {% crispy form %}#}
+
+                <table class="table">
+                    {{ photo_form.management_form }}
+
+                    {% for form in photo_form.forms %}
+                        {% if forloop.first %}
+                            <thead>
+                            <tr>
+                                {% for field in form.visible_fields %}
+                                    <th>{{ field.label|capfirst }}</th>
+                                {% endfor %}
+                            </tr>
+                            </thead>
+                        {% endif %}
+
+                        <tr class="formset_row">
+                            {% for field in form.visible_fields %}
+                                <td>
+                                    {# Include the hidden fields in the form #}
+                                    {% if forloop.first %}
+                                        {% for hidden in form.hidden_fields %}
+                                            {{ hidden }}
+                                        {% endfor %}
+                                    {% endif %}
+                                    {{ field.errors.as_ul }}
+                                    {{ field }}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                {% endfor %}
+                </table>
+
+{#                {{ photo_form.as_table }}#}
+{#                {{ photo_form.non_form_errors }}#}
+
+{#                {% for form in photo_form.forms %}#}
+{#                    {{ form }}#}
+{#                {% endfor %}#}
+{#                    {% crispy photo_form photo_form_helper %}#}
+{#                    {{ form.media }}#}
+{#                    {% crispy form %}#}
+{#                    {{ photo_form }}#}
+{#                    {{ photo_form.non_form_errors }}#}
+                <div class="button-group small medium-offset-3">
+                    <a class="button secondary" href="{% url 'accounts:home' %}">{% trans "Cancel" %}</a>
+                    <button type='submit' class='button success'>{% trans "Add photo" %}</button>
+                </div>
+            </form>
+{#            </div>#}
+{#        </div>#}
+    </div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'js/django-dynamic-formset/src/jquery.formset.js' %}"></script>
+<script type="text/javascript">
+    $('.formset_row').formset({
+        addText: '<i class="fas fa-plus fa-lg" style="color: green;"></i>&nbsp;{% trans "add photo" %}',
+        deleteText: '<i class="far fa-trash-alt fa-lg float-center" style="color: red;"></i>',
+        prefix: 'familymember_set'
+    });
+</script>
+{% endblock %}

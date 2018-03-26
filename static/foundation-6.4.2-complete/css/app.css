@@ -56,7 +56,9 @@ hr{
 /*Alerts*/
 .alert-box {
   padding-right: 3.25rem;
-  width: 100%;
+  position: absolute;
+  right: 30px;
+  /*width: 100%;*/
 }
 
 .alert-box.callout {
@@ -65,10 +67,10 @@ hr{
 }
 
 .alert-box.alert {
-  border: 3px solid #cc4b37;
+  border: 3px solid #cc6925;
   border-radius: 5px;
-  background-color: rgba(204, 75, 55, 0.2);
-  color: Tomato;
+  background-color: #cc1e2b;
+  /*color: Tomato;*/
 }
 /*.alert-box.alert::before {*/
   /*border: 2px solid #fefefe;*/
@@ -100,8 +102,9 @@ hr{
 .alert-box.success {
   border: 3px solid #1CDB60;
   border-radius: 5px;
-  background-color: rgba(58, 219, 118, 0.2);
-  color: #1CDB60;
+  /*background-color: rgba(58, 219, 118, 0.2);*/
+  background-color: #2D9148;
+  /*color: #1CDB60;*/
 }
 /*.alert-box.success:before {*/
   /*border: 2px solid #fefefe;*/
@@ -149,9 +152,9 @@ hr{
   font-weight: bold;
 }
 .alert>.close-button:hover {
-  color: #cc4b37;
+  color: #cc6925;
 }
-.success>.close-button:hover {
+.success>.close-button:hover{
   color: #1CDB60;
 }
 
@@ -187,6 +190,10 @@ hr{
   color: #000;
   padding: 10px 0 0px 10px;
 }
+
+/*.div-slick{*/
+  /*width: 660px;*/
+/*}*/
 
 
 

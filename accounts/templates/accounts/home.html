@@ -7,7 +7,7 @@
 
 {% block content %}
     <div class="row">
-        <div class=" grid-x grid-margin-x">
+        <div class="grid-x grid-margin-x grid-margin-y">
         <div class="cell small-9 medium-4 large-4 float-left">
             <div class="card">
                 <h4 class="card-divider">{{ title }}</h4>
@@ -66,6 +66,19 @@
                         {% endif %}
                     {% endif %}
 
+                </ul>
+            </div>
+        </div>
+        <div class='cell small-9 medium-4 large-4 float-left'>
+            <div class="card">
+                <h4 class="card-divider">{% trans "Gallery" %}</h4>
+                <ul class="card-section no-bullet">
+                    <li><a href='{% url "gallery:photo_add" %}'>
+                        <i class="fas fa-plus fa-lg" style="color: green;"></i>&nbsp;
+                        {% trans "Add photo" %}</a></li>
+                    <li><a href='{% url "gallery:album_create" %}'>
+                        <i class="fas fa-plus fa-lg" style="color: green;"></i>&nbsp;
+                        {% trans "Add album" %}</a></li>
                 </ul>
             </div>
         </div>

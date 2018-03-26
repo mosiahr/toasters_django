@@ -42,7 +42,6 @@ BASE_URL = '127.0.0.1:8000'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,6 +54,9 @@ INSTALLED_APPS = [
     'django_extensions',
     'stdimage',
     'easy_select2',
+
+    'crispy_forms',
+    'crispy_forms_foundation',
 
     'accounts',
     'tags',
@@ -237,4 +239,8 @@ GRAPH_MODELS = {
   'all_applications': True,
   'group_models': True,
 }
+
+
+# Crispy Forms
+from crispy_forms_foundation.settings import *
 

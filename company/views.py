@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from django.views.generic import ListView, DetailView, UpdateView, View, DeleteView
+from django.views.generic import ListView, DetailView, UpdateView, View, DeleteView, CreateView
 from dj_extensions.views import PaginationMixin
 
 from django.views.generic.edit import FormMixin
@@ -14,6 +14,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import ugettext as _
 
 from .models import Company, Location, TypeCompany, Price
+from gallery.models import Photo
 from .forms import CompanyFilterForm, CompanyAddForm, CompanyUpdateForm
 from .messages import ErrorMessageMixin
 
@@ -121,6 +122,7 @@ class CompanyAddView(SuccessMessageMixin,
                      FormMixin,
                      View):
     form_class = CompanyAddForm
+    # form_class = PhotoFormSet
     model = Company
     success_url = '/accounts/'
     success_message = _('Company %(name)s was created successfully!')
@@ -130,6 +132,7 @@ class CompanyAddView(SuccessMessageMixin,
     def get(self, request):
         if Company.objects.all().filter(user_id=self.request.user.id).exists():
             return redirect(self.success_url)
+        # context = {'form': self.get_form(), 'title': self.title}
         context = {'form': self.get_form(), 'title': self.title}
         return render(request, 'company/company_form.html', context)
 
@@ -151,6 +154,37 @@ class CompanyAddView(SuccessMessageMixin,
         context = {'form': form, 'title': self.title}
         messages.error(self.request, self.error_message)
         return render(self.request, 'company/company_form.html', context)
+
+
+# from django.forms import inlineformset_factory
+# PhotoFormSet = inlineformset_factory(Company, Photo, exclude=(), extra=1)
+#
+#
+# class CompanyCreate(CreateView):
+#     template_name = 'company/company_form_set.html'
+#     model = Company
+#     # form_class = PhotoFormSet
+#     fields = '__all__'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(CompanyCreate, self).get_context_data(**kwargs)
+#         if self.request.POST:
+#             context['formset'] = PhotoFormSet(self.request.POST, request.FILES)
+#         else:
+#             context['formset'] = PhotoFormSet()
+#         return context
+#
+#     def form_valid(self, form):
+#         obj = form.save(commit=False)
+#         obj.user = User.objects.get(email=self.request.user)
+#         obj.save()
+#         form.save_m2m()     # save into company_company_type
+#         return super(CompanyCreate, self).form_valid(form)
+#
+#     def form_invalid(self, form):
+#         context = {'form': form, 'title': self.title}
+#         messages.error(self.request, self.error_message)
+#         return render(self.request, 'company/company_form_set.html', context)
 
 
 class CompanyUpdateView(LoginRequiredMixin,

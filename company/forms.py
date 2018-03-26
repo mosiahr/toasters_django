@@ -14,6 +14,7 @@ from .models import (
     Company
 )
 from tags.models import Tag
+from gallery.models import Album
 
 
 User = get_user_model()
@@ -81,7 +82,7 @@ class CompanyAddForm(forms.ModelForm):
         model = Company
         fields = ('name', 'type', 'address', 'email', 'phone',
                   'site', 'description', 'avatar',
-                  'photo1', 'photo2', 'photo3',
+                  # 'album',
                   'location', 'tags', 'price')
         text = 'Hold down "Control", or "Command" on a Mac, to select more than one.'
         help_texts = {
@@ -92,4 +93,7 @@ class CompanyAddForm(forms.ModelForm):
 
 
 class CompanyUpdateForm(CompanyAddForm):
+    # def __init__(self, *args, **kwargs):
+    #     super(CompanyUpdateForm, self).__init__(*args, **kwargs)
+    #     self.fields['album'] = forms.ModelMultipleChoiceField(queryset=Album.objects.filter(company__id=kwargs['instance'].id))
     pass

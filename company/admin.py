@@ -5,6 +5,9 @@ from django.utils.translation import ugettext as _, ugettext_lazy
 from easy_select2 import select2_modelform
 
 from .models import TypeCompany, Location, Company, Price
+from gallery.models import Album, Photo
+
+from .forms import CompanyAddForm
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -45,22 +48,34 @@ class PriceAdmin(admin.ModelAdmin):
 #         model = Photo
 #
 #
+
+class PhotoInline(admin.TabularInline):
+    model = Photo
+    # fields = ('name', 'title', 'image', 'album')
+    # min_num = 0
+    extra = 0
+
 CompanyForm = select2_modelform(Company, attrs={'width': '250px'})
 
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
     form = CompanyForm
+    # form = CompanyAddForm
     list_display = ['name', 'publish', 'user', 'get_types', 'get_locations', 'created']
     list_filter = ('user', 'type', 'location', 'price')
     # readonly_fields = ('user',)
     fields = ('name', 'type', 'address', 'email',
               'phone', 'site', 'description', 'avatar',
-              'photo1', 'photo2', 'photo3',
+              # 'album',
               'location', 'tags', 'price', 'publish')
 
     actions = ['delete_selected']
     list_editable = ('publish',)  # edit
+
+    # inlines = [
+    #     PhotoInline,
+    # ]
 
     class Meta:
         model = Company

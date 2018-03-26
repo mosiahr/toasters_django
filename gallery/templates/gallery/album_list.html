@@ -35,6 +35,8 @@
                                         <img class="float-center" src="{{ album.get_cover_photo.image.thumbnail.url }}">
                                     </a>
                                 </div>
+                                {% else %}
+                                    <img class="float-center" src="https://placehold.it/200x200?text=No photo">
                                 {% endif %}
                                 <h5 class="card-section text-center">
                                     <a class=""

@@ -54,6 +54,8 @@ class Price(MainAbstractModel):
 #                            },
 #                            verbose_name=_('Image'))
 
+# from gallery.models import Album
+
 
 class Company(MainAbstractModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -73,34 +75,6 @@ class Company(MainAbstractModel):
                                'thumbnail': {'width': 200, 'height': 200, "crop": True}
                            },
                            verbose_name=_('Logo'))
-
-    photo1 = StdImageField(upload_to=UploadToUUID(path='images'),  # 'img',
-                                                      variations={
-                                                          'medium': (300, 300),
-                                                          'thumbnail': {'width': 200, 'height': 200, "crop": True}
-                                                      },
-                                                      verbose_name=_('Photo 1'), blank=True, null=True)
-
-    photo2 = StdImageField(upload_to=UploadToUUID(path='images'),  # 'img',
-                           variations={
-                               'medium': (300, 300),
-                               'thumbnail': {'width': 200, 'height': 200, "crop": True}
-                           },
-                           verbose_name=_('Photo 2'), blank=True, null=True)
-
-    photo3 = StdImageField(upload_to=UploadToUUID(path='images'),  # 'img',
-                           variations={
-                               'medium': (300, 300),
-                               'thumbnail': {'width': 200, 'height': 200, "crop": True}
-                           },
-                           verbose_name=_('Photo 3'), blank=True, null=True)
-
-    # height = models.PositiveIntegerField(default=300)
-    # width = models.PositiveIntegerField(default=300)
-
-    # photo1 = models.ForeignKey(Photo, verbose_name=_('Gallery'), on_delete=models.CASCADE, blank=True, null=True)
-    # photo2 = models.ForeignKey(Photo, verbose_name=_('Gallery'), on_delete=models.CASCADE, blank=True, null=True)
-    # photo3 = models.ForeignKey(Photo, verbose_name=_('Gallery'), on_delete=models.CASCADE, blank=True, null=True)
 
     location = models.ManyToManyField(Location, verbose_name=_('City'), blank=True)
     tags = models.ManyToManyField(Tag, verbose_name=_('Tags'), blank=True)
@@ -132,5 +106,3 @@ class Company(MainAbstractModel):
     class Meta:
         verbose_name = _('Company')
         verbose_name_plural = _('Companies')
-
-

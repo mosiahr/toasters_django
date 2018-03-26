@@ -1,9 +1,16 @@
 from django.db import models
-
 from django.utils.translation import ugettext as _
 
 from stdimage.models import StdImageField
 from stdimage.utils import UploadToUUID
+
+from company.models import Company
+
+
+# class CompanyManager(models.Manager):
+#     """ Set Filter """
+#     def get_queryset(self):
+#         return super(CompanyManager, self).get_queryset().filter(album_id=self.id)
 
 
 class Album(models.Model):
@@ -12,17 +19,27 @@ class Album(models.Model):
     summary = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    # objects = CompanyManager()
+
+    # company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.name
 
     def get_cover_photo(self):
-        if self.photo_set.filter(is_cover_photo=True).count() > 0:
+        if self.photo_set.filter(is_cover_photo=True).exists():
             return self.photo_set.filter(is_cover_photo=True)[0]
-        elif self.photo_set.all().count() > 0:
+        elif self.photo_set.all().exists():
             return self.photo_set.all()[0]
         else:
             return None
+
+    def get_photo(self):
+        if self.photo_set.filter(album_id=self.id).exists():
+            return self.photo_set.filter(album_id=self.id)
+
+
+
 
 
 DEFAULT_ID = 1
@@ -30,21 +47,22 @@ DEFAULT_ID = 1
 
 class Photo(models.Model):
     name = models.CharField(max_length=256, blank=True, null=True)
-    summary = models.TextField(blank=True, null=True)
+    title = models.CharField(max_length=256, blank=True, null=True)
     # image = models.ImageField(upload_to='photos/%Y/%m')
     image = StdImageField(upload_to=UploadToUUID(path='photos'),
                            variations={
                                # 'medium': (300, 300),
                                'thumbnail': {'width': 200, 'height': 200, "crop": True}
-                           })
+                           }, blank=True, null=True)
 
     album = models.ForeignKey(Album, on_delete=models.CASCADE, default=DEFAULT_ID)
     is_cover_photo = models.BooleanField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    # company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return 'ID: {}'.format(self.id)
 
     def save(self, *args, **kwargs):
         if self.is_cover_photo:
@@ -57,7 +75,3 @@ class Photo(models.Model):
     def delete(self, *args, **kwargs):
         self.image.delete(save=False)
         super(Photo, self).delete(*args, **kwargs)
-
-
-
-

@@ -6,17 +6,22 @@
 {% endblock %}
 
 {% block content %}
-    <div class="grid-x">
-        <div class="cell small-9 medium-5 large-4 float-center">
+    <div class="row grid-x">
+        <div class="cell small-12 medium-5 large-4 float-center">
             <div class="card">
                 <div class="card-divider">
                     <h4>{% trans "Log in" %}</h4>
                 </div>
 {#                            <img src="{{ MEDIA_URL }}img_site/765887.jpg" alt="" class="card-image">#}
                 <div class="card-section">
-                    <form action="" method="post">{% csrf_token %}
+                    <form data-abide novalidate action="." method="post">{% csrf_token %}
+                        <!-- Add "display: none" right away -->
+{#                        <div data-abide-error class="alert callout" style="display: none;">#}
+{#                          <p><i class="fi-alert"></i> There are some errors in your form.</p>#}
+{#                        </div>#}
+
                         {% for error in form.non_field_errors %}
-                            <div class="errorlist">
+                            <div class="alert callout">
                                 {{ error|escape }}
                             </div>
                         {% endfor %}
