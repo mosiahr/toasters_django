@@ -55,6 +55,7 @@ class PhotoInline(admin.TabularInline):
     # min_num = 0
     extra = 0
 
+
 CompanyForm = select2_modelform(Company, attrs={'width': '250px'})
 
 

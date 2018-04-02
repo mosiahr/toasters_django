@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block content  %}
+<div class="row grid-x">
+    <div class="cell small-9 medium-7 large-5 float-center">
+    <div class="card">
+         <div class="card-divider">
+            {% if title %}<h4 class=''>{{ title }}</h4>{% endif %}
+        </div>
+        <div class="card-section no-bullet me">
+            <p>{% trans "Are you sure you want to delete the selected Album?" %}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type='submit' class='button alert small'>{% trans "Yes, I'm sure" %}</button>
+            <a class="button secondary small " href="{% url 'accounts:home' %}">{% trans "No, take me back" %}</a>
+        </form>
+        </div>
+
+    </div>
+    </div>
+</div>
+{% endblock %}

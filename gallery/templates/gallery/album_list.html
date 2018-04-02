@@ -31,7 +31,7 @@
 
                                 {% if album.get_cover_photo %}
                                 <div style="height: 200px">
-                                    <a href="{% url 'gallery:photo' album=album.slug %}">
+                                    <a href="{% url 'gallery:photo' pk=album.id %}">
                                         <img class="float-center" src="{{ album.get_cover_photo.image.thumbnail.url }}">
                                     </a>
                                 </div>
@@ -40,7 +40,9 @@
                                 {% endif %}
                                 <h5 class="card-section text-center">
                                     <a class=""
-                                       href="{% url 'gallery:photo' album=album.slug %}">{{ album.name|truncatechars:50 }}</a>
+                                       href="{% url 'gallery:photo' pk=album.id %}">
+                                    {{ album.name|truncatechars:50 }}
+{#                                    </a>#}
                                     <br>{{ album.summary|truncatechars:50 }}
                                 </h5>
                             </div>

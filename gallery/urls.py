@@ -1,12 +1,23 @@
 from django.conf.urls import url
 
-from .views import AlbumListView, PhotoListView, PhotoAddView, AlbumCreateView
+from .views import (
+    AlbumListView,
+    PhotoListView,
+    PhotoAddView,
+    AlbumAddView,
+    AlbumUpdateView,
+    AlbumDeleteView
+)
+
 
 urlpatterns = [
     url(r'^albums/$', AlbumListView.as_view(), name='albums'),
-    url(r'^album/(?P<album>[\w-]+)/$', PhotoListView.as_view(), name='photo'),
+    url(r'^album/(?P<pk>\d+)/$', PhotoListView.as_view(), name='photo'),
     url(r'^add/$', PhotoAddView.as_view(), name='photo_add'),
-    url(r'^album_create/$', AlbumCreateView.as_view(), name='album_create'),
+    url(r'^album/add/$', AlbumAddView.as_view(), name='album_add'),
+    url(r'^album/(?P<pk>\d+)/update/$', AlbumUpdateView.as_view(), name='album_update'),
+    url(r'^album/(?P<pk>\d+)/delete/$', AlbumDeleteView.as_view(), name='album_delete'),
+
     # url(r'^add/$', CompanyAddView.as_view(), name='company_add'),
     # url(r'^update/(?P<pk>\d+)/$', CompanyUpdateView.as_view(), name='company_update'),
     # url(r'^delete/(?P<pk>\d+)/$', CompanyDeleteView.as_view(), name='company_delete'),

@@ -23,6 +23,7 @@ from .tokens import account_activation_token
 from .messages import ErrorMessageMixin
 
 from company.models import Company
+from gallery.models import Album
 
 from django.contrib.auth import get_user_model
 
@@ -36,13 +37,19 @@ class AccountHomeView(LoginRequiredMixin, DetailView):
         return self.request.user
 
     def get_context_data(self, **kwargs):
-        context = super(AccountHomeView, self).get_context_data(**kwargs)
+        ctx = super(AccountHomeView, self).get_context_data(**kwargs)
         try:
-            context['companies'] = Company.objects.filter(user_id=self.get_object())
+            ctx['companies'] = Company.objects.filter(user_id=self.get_object())
         except:
-            context['companies'] = None
-        context['title'] = _('Account')
-        return context
+            ctx['companies'] = None
+
+        try:
+            ctx['albums'] = Album.objects.filter(user_id=self.get_object())
+        except:
+            ctx['albums'] = None
+
+        ctx['title'] = _('Account')
+        return ctx
 
 
 class AccountActivateView(View):

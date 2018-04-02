@@ -76,9 +76,22 @@
                     <li><a href='{% url "gallery:photo_add" %}'>
                         <i class="fas fa-plus fa-lg" style="color: green;"></i>&nbsp;
                         {% trans "Add photo" %}</a></li>
-                    <li><a href='{% url "gallery:album_create" %}'>
+                    <li><a href='{% url "gallery:album_add" %}'>
                         <i class="fas fa-plus fa-lg" style="color: green;"></i>&nbsp;
                         {% trans "Add album" %}</a></li>
+
+{#                    {{ albums }}#}
+                    {% for album in albums %}
+{#                        {{ album }}#}
+{#                        {{ album.id }}#}
+
+
+                        <li><a href='{% url "gallery:album_update" pk=album.id %}'>
+                            <i class="fas fa-exchange-alt fa-lg" style="color: blueviolet;"></i>&nbsp;{{ album }}
+                            {% trans "Update album" %}</a>
+                        </li>
+
+                    {% endfor %}
                 </ul>
             </div>
         </div>
