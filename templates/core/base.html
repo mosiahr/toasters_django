@@ -19,7 +19,6 @@
 
     {# FOUNDATION #}
     <link rel="stylesheet" href="{% static 'foundation-6.4.2-complete/css/foundation.css' %}">
-    <link rel="stylesheet" href="{% static 'foundation-6.4.2-complete/css/app.css' %}">
 
     {###  FONT  ###}
     <link rel="stylesheet" href="{% static 'fontawesome-free-5.0.6/on-server/css/fontawesome-all.css' %}">
@@ -36,6 +35,13 @@
 
     {# FOTORAMA #}
     <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+
+
+
+    <link rel="stylesheet" href="{% static 'foundation-6.4.2-complete/css/app.css' %}">
+
+
+
 
 </head>
 <body>
@@ -179,21 +185,18 @@
 <script src="{% static 'foundation-6.4.2-complete/js/app.js' %}"></script>
 
 
-{% block javascript %}
-{% endblock %}
+{% block javascript %}{% endblock %}
+
 <script src="{% static 'js/foundationStickyFooter/stickyFooter.js' %}"></script>
 
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
-<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+{#<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->#}
 
 
 <!-- Jssor Slider Begin -->
 {#<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>#}
 {#<script type="text/javascript" src="{% static 'jssor.slider.devpack/js/jssor.slider.min.js' %}"></script>#}
 
-<script src="{% static 'js/app.js' %}"></script>
+{#<script src="{% static 'js/app.js' %}"></script>#}
 
 </body>
 </html>

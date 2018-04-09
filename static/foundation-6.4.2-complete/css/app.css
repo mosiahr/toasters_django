@@ -191,11 +191,12 @@ hr{
   padding: 10px 0 0px 10px;
 }
 
-/*.div-slick{*/
-  /*width: 660px;*/
-/*}*/
+.div-slick{
+  margin: 0 25px;
+}
 
-
-
+.slick-prev:before, .slick-next:before{
+  color: #0a0a0a;
+}
 
 

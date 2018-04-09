@@ -68,7 +68,7 @@ class AlbumAddView(SuccessMessageMixin,
     form_class = AlbumForm
     model = Album
     success_url = '/accounts/'
-    success_message = _('Album %(name)s was created successfully!')
+    success_message = _('Album "%(name)s" was created successfully!')
     template_name = 'gallery/manage_photo.html'
     title = _("Add Album")
 
@@ -132,7 +132,7 @@ class AlbumUpdateView(SuccessMessageMixin,
     form_class = AlbumForm
     model = Album
     success_url = '/accounts/'
-    success_message = _('Album %(name)s was updated successfully!')
+    success_message = _('Album "%(name)s" was updated successfully!')
     template_name = 'gallery/manage_photo.html'
     title = _("Update Album")
 
@@ -196,7 +196,7 @@ class AlbumDeleteView(LoginRequiredMixin, DeleteView):
     model = Album
     template_name = 'gallery/album_confirm_delete.html'
     success_url = '/accounts/'
-    success_message = _("Album %(name)s was deleted successfully!")
+    success_message = _('Album "%(name)s" was deleted successfully!')
     title = _("Are you sure?")
 
     def get_context_data(self, **kwargs):

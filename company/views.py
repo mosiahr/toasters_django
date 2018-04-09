@@ -18,6 +18,8 @@ from gallery.models import Photo
 from .forms import CompanyFilterForm, CompanyAddForm, CompanyUpdateForm
 from .messages import ErrorMessageMixin
 
+from gallery.models import Album, Photo
+
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -115,6 +117,16 @@ class CompanyListView(PaginationMixin, ListView):
 class CompanyDetailView(DetailView):
     model = Company
 
+    def get_context_data(self, **kwargs):
+        context = super(CompanyDetailView, self).get_context_data(**kwargs)
+        albums = Album.objects.all()
+        photos = Photo.objects.all()
+        context.update({
+            'albums': albums,
+            'photos': photos,
+        })
+        return context
+
 
 class CompanyAddView(SuccessMessageMixin,
                      ErrorMessageMixin,
@@ -125,7 +137,7 @@ class CompanyAddView(SuccessMessageMixin,
     # form_class = PhotoFormSet
     model = Company
     success_url = '/accounts/'
-    success_message = _('Company %(name)s was created successfully!')
+    success_message = _('Company "%(name)s" was created successfully!')
     error_message = _('Please correct the errors below.')
     title = _('Add Company')
 
@@ -194,7 +206,7 @@ class CompanyUpdateView(LoginRequiredMixin,
     form_class = CompanyUpdateForm
     model = Company
     success_url = '/accounts/'
-    success_message = _("Сompany %(name)s was updated successfully!")
+    success_message = _('Сompany "%(name)s" was updated successfully!')
     error_message = _('Please correct the errors below.')
     title = _('Сhange of company')
 
@@ -217,7 +229,7 @@ class CompanyDeleteView(LoginRequiredMixin, DeleteView):
     model = Company
     template_name = 'company/company_confirm_delete.html'
     success_url = '/accounts/'
-    success_message = _("Company %(name)s was deleted successfully!")
+    success_message = _('Company "%(name)s" was deleted successfully!')
     title = _("Are you sure?")
 
     def get_context_data(self, **kwargs):

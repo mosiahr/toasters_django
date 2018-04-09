@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="grid-x grid-margin-y">
-        <div class="row cell medium-5 large-5 columns">
-            <img class="thumbnail" src="{{ company.avatar.medium.url }}">
+<div class="row grid-x grid-margin-y">
+    <div class="cell medium-5 large-5 columns">
+        <img class="thumbnail" src="{{ company.avatar.medium.url }}">
 {#            <div class="cell small-up-4">#}
 {#                <div class="column">#}
 {#                    <img class="thumbnail" src="{{ company.photo1.medium.url}}">#}
@@ -23,8 +23,8 @@
 {#                    <img class="thumbnail" src="https://placehold.it/250x200">#}
 {#                </div>#}
 {#            </div>#}
-        </div>
-        <div class="row cell medium-7 large-7 columns">
+    </div>
+    <div class="cell medium-7 large-7 columns">
 
             <h3 class="subheader">{{ company.name }}</h3>
 
@@ -67,8 +67,8 @@
             </div>
         </div>
 
-
-    <div class="row cell">
+    {# DESCRIPTION #}
+    <div class="cell">
         {% if company.description %}
             <h4>{% trans "Information" %}</h4>
             <div class="column">
@@ -121,124 +121,67 @@
 {#    <br>#}
 
 
-    <div class="row cell">
-        {% for album in company.album.all %}
-            <div class="grid-y grid-margin-y">
-                {% if album.get_photo %}
-                    <h5 class="cell">{{ album.name }}</h5>
-                    <div class="cell grid-x grid-margin-x grid-margin-y">
-                        {% for photo in album.get_photo %}
-                            <div class="cell small-6 medium-2 thumbnail">
-                                <img src="{{ photo.image.thumbnail.url }}"  >
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </div>
-        {% endfor %}
-    </div>
-
-{#    <div class="column row">#}
-{#        <hr>#}
-{#        <ul class="tabs" data-tabs id="example-tabs">#}
-{#            <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Reviews</a></li>#}
-{#            <li class="tabs-title"><a href="#panel2">Similar Products</a></li>#}
-{#        </ul>#}
-{#        <div class="tabs-content" data-tabs-content="example-tabs">#}
-{#            <div class="tabs-panel is-active" id="panel1">#}
-{#                <h4>Reviews</h4>#}
-{#                <div class="media-object stack-for-small">#}
-{#                    <div class="media-object-section">#}
-{#                        <img class="thumbnail" src="https://placehold.it/200x200">#}
+{#    <div class="row cell">#}
+{#        {% for album in company.album.all %}#}
+{#            <div class="grid-y grid-margin-y">#}
+{#                {% if album.get_photo %}#}
+{#                    <h5 class="cell">{{ album.name }}</h5>#}
+{#                    <div class="cell grid-x grid-margin-x grid-margin-y">#}
+{#                        {% for photo in album.get_photo %}#}
+{#                            <div class="cell small-6 medium-2 thumbnail">#}
+{#                                <img src="{{ photo.image.thumbnail.url }}"  >#}
+{#                            </div>#}
+{#                        {% endfor %}#}
 {#                    </div>#}
-{#                    <div class="media-object-section">#}
-{#                        <h5>Mike Stevenson</h5>#}
-{#                        <p>I'm going to improvise. Listen, there's something you should know about me... about#}
-{#                            inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an#}
-{#                            idea can grow. It can grow to define or destroy you.</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="media-object stack-for-small">#}
-{#                    <div class="media-object-section">#}
-{#                        <img class="thumbnail" src="https://placehold.it/200x200">#}
-{#                    </div>#}
-{#                    <div class="media-object-section">#}
-{#                        <h5>Mike Stevenson</h5>#}
-{#                        <p>I'm going to improvise. Listen, there's something you should know about me... about#}
-{#                            inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an#}
-{#                            idea can grow. It can grow to define or destroy you</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="media-object stack-for-small">#}
-{#                    <div class="media-object-section">#}
-{#                        <img class="thumbnail" src="https://placehold.it/200x200">#}
-{#                    </div>#}
-{#                    <div class="media-object-section">#}
-{#                        <h5>Mike Stevenson</h5>#}
-{#                        <p>I'm going to improvise. Listen, there's something you should know about me... about#}
-{#                            inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an#}
-{#                            idea can grow. It can grow to define or destroy you</p>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <label>#}
-{#                    My Review#}
-{#                    <textarea placeholder="None"></textarea>#}
-{#                </label>#}
-{#                <button class="button">Submit Review</button>#}
+{#                {% endif %}#}
 {#            </div>#}
-{#            <div class="tabs-panel" id="panel2">#}
-{#                <div class="row medium-up-3 large-up-5">#}
-{#                    <div class="column">#}
-{#                        <img class="thumbnail" src="https://placehold.it/350x200">#}
-{#                        <h5>Other Product#}
-{#                            <small>$22</small>#}
-{#                        </h5>#}
-{#                        <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac#}
-{#                            euismod semper, magna diam.</p>#}
-{#                        <a href="#" class="button hollow tiny expanded">Buy Now</a>#}
-{#                    </div>#}
-{#                    <div class="column">#}
-{#                        <img class="thumbnail" src="https://placehold.it/350x200">#}
-{#                        <h5>Other Product#}
-{#                            <small>$22</small>#}
-{#                        </h5>#}
-{#                        <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac#}
-{#                            euismod semper, magna diam.</p>#}
-{#                        <a href="#" class="button hollow tiny expanded">Buy Now</a>#}
-{#                    </div>#}
-{#                    <div class="column">#}
-{#                        <img class="thumbnail" src="https://placehold.it/350x200">#}
-{#                        <h5>Other Product#}
-{#                            <small>$22</small>#}
-{#                        </h5>#}
-{#                        <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac#}
-{#                            euismod semper, magna diam.</p>#}
-{#                        <a href="#" class="button hollow tiny expanded">Buy Now</a>#}
-{#                    </div>#}
-{#                    <div class="column">#}
-{#                        <img class="thumbnail" src="https://placehold.it/350x200">#}
-{#                        <h5>Other Product#}
-{#                            <small>$22</small>#}
-{#                        </h5>#}
-{#                        <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac#}
-{#                            euismod semper, magna diam.</p>#}
-{#                        <a href="#" class="button hollow tiny expanded">Buy Now</a>#}
-{#                    </div>#}
-{#                    <div class="column">#}
-{#                        <img class="thumbnail" src="https://placehold.it/350x200">#}
-{#                        <h5>Other Product#}
-{#                            <small>$22</small>#}
-{#                        </h5>#}
-{#                        <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac#}
-{#                            euismod semper, magna diam.</p>#}
-{#                        <a href="#" class="button hollow tiny expanded">Buy Now</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
+{#        {% endfor %}#}
 {#    </div>#}
 
 
 
-    </div>
+{# SLICK #}
+<div class="cell ">
+        {% for album in albums %}
+{#            <img class="" src="{{ album.get_cover_photo.image.thumbnail.url }}">#}
+{#            {{ album.get_cover_photo }}#}
+            <h5 class=""><small>{% trans "Photo album: " %}</small>{{ album.name }}</h5>
+            <hr>
+            <div class="div-slick">
+                {% for photo in album.get_photo %}
+                    <div class="">
+                        <img class="" data-lazy="{{ photo.image.thumbnail.url }}">
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {#    {% for album in albums %}#}
+{#         {% for photo in album.get_photo %}#}
+{#             <div class="cell small-6 medium-2 thumbnail">#}
+{#                 <img src="{{ photo.image.thumbnail.url }}">#}
+{#             </div>#}
+{#         {% endfor %}#}
+{##}
+{#    {% endfor %}#}
+</div>
+
+</div>
+{% endblock %}
+
+
+{% block javascript %}
+
+{# SLICK #}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.div-slick').slick({
+        autoplay: true,
+        dots: true,
+        slidesToShow: 5,
+        slidesToScroll: 1
+    })
+})
+</script>
+
 {% endblock %}

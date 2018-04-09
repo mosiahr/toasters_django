@@ -55,9 +55,6 @@ INSTALLED_APPS = [
     'stdimage',
     'easy_select2',
 
-    'crispy_forms',
-    'crispy_forms_foundation',
-
     'accounts',
     'tags',
     'company',
@@ -66,7 +63,6 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
-
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -161,7 +157,6 @@ STATICFILES_DIRS = [
 ]
 
 
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -235,12 +230,10 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+#django-extensions
 GRAPH_MODELS = {
   'all_applications': True,
   'group_models': True,
 }
 
-
-# Crispy Forms
-from crispy_forms_foundation.settings import *
 
