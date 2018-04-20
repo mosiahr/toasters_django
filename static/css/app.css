@@ -2,6 +2,8 @@ footer{
   background-color: #b0b0b0;
   margin-top: 15px;
   min-height: 5em;
+  padding: 24px;
+
 }
 
 hr{
@@ -198,5 +200,7 @@ hr{
 .slick-prev:before, .slick-next:before{
   color: #0a0a0a;
 }
+
+
 
 

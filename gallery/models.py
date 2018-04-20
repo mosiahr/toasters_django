@@ -18,7 +18,7 @@ User = get_user_model()
 
 class Album(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=128, verbose_name=_('Name'))
+    name = models.CharField(max_length=70, verbose_name=_('Name'))
     # slug = models.SlugField()
     summary = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)

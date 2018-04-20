@@ -1,187 +1,238 @@
 {% extends 'core/base.html' %}
+{% load staticfiles %}
 {% load i18n %}
 
-{% block title %}
-    {{ company.name }}
+{% block title %}{{ company.name }}{% endblock %}
+
+{% block link %}
+    {# SLICK #}
+    <link rel="stylesheet" type="text/css" href="{% static 'slick-carousel/slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'slick-carousel/slick/slick-theme.css' %}"/>
+
+{#    jcarousel#}
+
+    <link rel="stylesheet" href="{% static 'jcarousel/jcarousel.responsive.css' %}">
+
+    {# LIGHTGALLERY #}
+{#    <link type="text/css" rel="stylesheet" href="{% static 'lightgallery.js/dist/css/lightgallery.min.css' %}"/>#}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.9/css/lightgallery.min.css">
+
+
 {% endblock %}
 
 {% block content %}
-<div class="row grid-x grid-margin-y">
-    <div class="cell medium-5 large-5 columns">
-        <img class="thumbnail" src="{{ company.avatar.medium.url }}">
-{#            <div class="cell small-up-4">#}
-{#                <div class="column">#}
-{#                    <img class="thumbnail" src="{{ company.photo1.medium.url}}">#}
-{#                </div>#}
-{#                <div class="column">#}
-{#                    <img class="thumbnail" src="{{ company.photo2.medium.url}}">#}
-{#                </div>#}
-{#                <div class="column">#}
-{#                    <img class="thumbnail" src="{{ company.photo3.medium.url}}">#}
-{#                </div>#}
-{#                <div class="column">#}
-{#                    <img class="thumbnail" src="https://placehold.it/250x200">#}
-{#                </div>#}
-{#            </div>#}
-    </div>
-    <div class="cell medium-7 large-7 columns">
 
-            <h3 class="subheader">{{ company.name }}</h3>
+    <div class="row grid-x grid-margin-x">
+        <!-- LEFT -->
+        <div class="cell small-12 medium-8 large-9">
+            <div class="grid-x grid-margin-x grid-margin-y">
+                {#    <div class="cell small-12 medium-5 large-5 columns">#}
+                <!-- CARD INFO -->
+                <div class="cell">
+                    <div class="grid-x grid-margin-x ">
 
-            {% if company.get_locations %}
-                <div class="subheader">{% trans "Location" %}: {{ company.get_locations }}</div>
-            {% endif %}
+                        <!-- PHOTO -->
+                        <div class="cell small-12 medium-12 large-4">
+                            <img class="thumbnail" src="{{ company.avatar.medium.url }}">
+                            {#            <div class="cell small-up-4">#}
+                            {#                <div class="column">#}
+                            {#                    <img class="thumbnail" src="{{ company.photo1.medium.url}}">#}
+                            {#                </div>#}
+                            {#                <div class="column">#}
+                            {#                    <img class="thumbnail" src="{{ company.photo2.medium.url}}">#}
+                            {#                </div>#}
+                            {#                <div class="column">#}
+                            {#                    <img class="thumbnail" src="{{ company.photo3.medium.url}}">#}
+                            {#                </div>#}
+                            {#                <div class="column">#}
+                            {#                    <img class="thumbnail" src="https://placehold.it/250x200">#}
+                            {#                </div>#}
+                            {#            </div>#}
+                        </div>
 
-            <div class="">
-                {% for tag in company.tags.all %}
-                   <span class="label success"> <a href="{% url 'tags:tag_detail' slug=tag.slug %}">{{ tag }}</a></span>
+                        <!-- INFO -->
+                        <div class="cell small-12 medium-12 large-8">
+                            <div class="grid-x grid-margin-x grid-margin-y">
+
+                                <div class="cell">
+                                    <h3 class="subheader">{{ company.name }}</h3>
+                                    {% if company.get_locations %}
+                                        <div class="subheader">{% trans "Location" %}: {{ company.get_locations }}</div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="cell">
+                                    {% for tag in company.tags.all %}
+                                        <a class="label label-tag"
+                                                href="{% url 'tags:tag_detail' slug=tag.slug %}">{{ tag }}</a>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="cell">
+                                    {% if company.address %}
+                                        <div class=""><i class="fi-marker "></i> {{ company.address }}</div>
+                                    {% endif %}
+                                    {% if company.email %}
+                                        <div class=""><i class="fi-mail"></i> {{ company.email }}</div>
+                                    {% endif %}
+                                    {% if company.phone %}
+                                        <div class=""><i class="fi-telephone"></i> {{ company.phone }}</div>
+                                    {% endif %}
+                                    {% if company.site %}
+                                        <div class=""><i class="fi-web"></i> {{ company.site }}</div>
+                                    {% endif %}
+                                </div>
+
+                                {#            <div class="row">#}
+                                {#                <div class="small-3 columns">#}
+                                {#                    <label for="middle-label" class="middle">Quantity</label>#}
+                                {#                </div>#}
+                                {#                <div class="small-9 columns">#}
+                                {#                    <input type="text" id="middle-label" placeholder="One fish two fish">#}
+                                {#                </div>#}
+                                {#            </div>#}
+                                {#            <a href="#" class="button large expanded">Buy Now</a>#}
+                                <div class="cell small secondary expanded button-group">
+                                    <a class="button">Facebook</a>
+                                    <a class="button">Twitter</a>
+                                    <a class="button">Yo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="cell">
+                    {% if company.description %}
+                        <h4 class="subheader">{% trans "Information" %}</h4>
+                        <div class="column">
+                            {{ company.description|safe }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- ALBUM/PHOTO (jcarousel and lightgallery)-->
+                <div class="cell wrapper">
+                <h1>Responsive Carousel</h1>
+
+                <p>This example shows how to implement a responsive carousel. Resize the browser window to see the effect.</p>
+
+                {% for album in albums %}
+                    <h5 class=""><small>{% trans "Photo album: " %}</small>
+                        {{ album.name }}</h5>
+
+                    <div class="jcarousel-wrapper">
+                        <div class="jcarousel">
+                            <ul id="lightgallery">
+                                {% for photo in album.get_photo %}
+                                        <li data-src="{{ photo.image.url }}">
+                                                <img src="{{ photo.image.thumbnail.url }}"></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+                        <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+                        <p class="jcarousel-pagination"></p>
+                    </div>
                 {% endfor %}
-            </div>
-            <br>
-            {% if company.address %}
-                <div class=""><i class="fi-marker "></i> {{ company.address }}</div>
-            {% endif %}
-            {% if company.email %}
-                <div class=""><i class="fi-mail"></i> {{ company.email }}</div>
-            {% endif %}
-            {% if company.phone %}
-                <div class=""><i class="fi-telephone"></i> {{ company.phone }}</div>
-            {% endif %}
-            {% if company.site %}
-                <div class=""><i class="fi-web"></i> {{ company.site }}</div>
-            {% endif %}
+                </div>
 
-{#            <div class="row">#}
-{#                <div class="small-3 columns">#}
-{#                    <label for="middle-label" class="middle">Quantity</label>#}
-{#                </div>#}
-{#                <div class="small-9 columns">#}
-{#                    <input type="text" id="middle-label" placeholder="One fish two fish">#}
-{#                </div>#}
-{#            </div>#}
-{#            <a href="#" class="button large expanded">Buy Now</a>#}
-            <div class="small secondary expanded button-group">
-                <a class="button">Facebook</a>
-                <a class="button">Twitter</a>
-                <a class="button">Yo</a>
             </div>
         </div>
 
-    {# DESCRIPTION #}
-    <div class="cell">
-        {% if company.description %}
-            <h4>{% trans "Information" %}</h4>
-            <div class="column">
-            {{ company.description|safe }}</div>
-        {% endif %}
-    </div>
-
-{#ALBUM#}
-{#    <div class="row grid-x grid-margin-x grid-margin-y align-left">#}
-{#        {% for album in company.album.all %}#}
-{#            <li>{{ album }}</li>#}
-{#            <li>Cover photo: {{ album.get_cover_photo }}</li>#}
-{#            <div class="cell small-12 medium-4 large-3">#}
-{#            <div class="thumbnail card " style="height: 100%; width: 100%;">#}
-{##}
-{#                {% if album.get_cover_photo %}#}
-{#                <div style="height: 200px">#}
-{#                    <a href="{% url 'gallery:photo' album=album.slug %}">#}
-{#                        <img class="float-center" src="{{ album.get_cover_photo.image.thumbnail.url }}">#}
-{#                    </a>#}
-{#                </div>#}
-{#                {% endif %}#}
-{#                <h5 class="card-section text-center">#}
-{#                    <a class=""#}
-{#                       href="{% url 'gallery:photo' album=album.slug %}">{{ album.name|truncatechars:50 }}</a>#}
-{#                    <br>{{ album.summary|truncatechars:50 }}#}
-{#                </h5>#}
-{#            </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
-
-{#    PHOTO#}
-{#    <div class="row grid-x grid-margin-x">#}
-{#        {% for album in company.album.all %}#}
-{#                {% for photo in album.get_photo %}#}
-{#                    {% if photo.image.thumbnail.url and photo.image %}#}
-{#                         <div class="cell small-12 medium-4 large-3">#}
-{#                            <a href="">#}
-{#                                <img src="{{ photo.image.thumbnail.url }}">#}
-{#                            </a>#}
-{#                         </div>#}
-{##}
-{#                    {% endif %}#}
-{#                {% endfor %}#}
-{#        {% endfor %}#}
-{#    </div>#}
-{#    <br>#}
-{#    <br>#}
-{#    <br>#}
-
-
-{#    <div class="row cell">#}
-{#        {% for album in company.album.all %}#}
-{#            <div class="grid-y grid-margin-y">#}
-{#                {% if album.get_photo %}#}
-{#                    <h5 class="cell">{{ album.name }}</h5>#}
-{#                    <div class="cell grid-x grid-margin-x grid-margin-y">#}
-{#                        {% for photo in album.get_photo %}#}
-{#                            <div class="cell small-6 medium-2 thumbnail">#}
-{#                                <img src="{{ photo.image.thumbnail.url }}"  >#}
-{#                            </div>#}
-{#                        {% endfor %}#}
-{#                    </div>#}
-{#                {% endif %}#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
-
-
-
-{# SLICK #}
-<div class="cell ">
-        {% for album in albums %}
-{#            <img class="" src="{{ album.get_cover_photo.image.thumbnail.url }}">#}
-{#            {{ album.get_cover_photo }}#}
-            <h5 class=""><small>{% trans "Photo album: " %}</small>{{ album.name }}</h5>
-            <hr>
-            <div class="div-slick">
-                {% for photo in album.get_photo %}
-                    <div class="">
-                        <img class="" data-lazy="{{ photo.image.thumbnail.url }}">
-                    </div>
-                {% endfor %}
+        <!-- RIGHT / Advertising -->
+        <div class="cell small-12 medium-4 large-3">
+            <div class="grid-x grid-margin-y">
+                <div class="cell small-12 medium-12 large-12">
+                    <img class="thumbnail float-center" src="https://placehold.it/400x500">
+                </div>
+                <div class="cell small-12 medium-12 large-12">
+                    <img class="thumbnail float-center" src="https://placehold.it/400x500">
+                </div>
+                <div class="cell small-12 medium-12 large-12">
+                    <img class="thumbnail float-center" src="https://placehold.it/400x500">
+                </div>
+                <div class="cell small-12 medium-12 large-12">
+                    <img class="thumbnail float-center" src="https://placehold.it/400x500">
+                </div>
             </div>
-        {% endfor %}
-    {#    {% for album in albums %}#}
-{#         {% for photo in album.get_photo %}#}
-{#             <div class="cell small-6 medium-2 thumbnail">#}
-{#                 <img src="{{ photo.image.thumbnail.url }}">#}
-{#             </div>#}
-{#         {% endfor %}#}
-{##}
-{#    {% endfor %}#}
-</div>
+        </div>
 
-</div>
+
+    </div>
 {% endblock %}
 
 
 {% block javascript %}
 
-{# SLICK #}
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('.div-slick').slick({
-        autoplay: true,
-        dots: true,
-        slidesToShow: 5,
-        slidesToScroll: 1
-    })
-})
-</script>
+    <!-- Include slick.js -->
+{#    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>#}
+{#    <script type="text/javascript" src="{% static 'slick-carousel/slick/slick.min.js' %}"></script>#}
+{##}
+{#     <script type="text/javascript">#}
+{#        $(document).ready(function () {#}
+{#            var $carousel = $('.div-slick');#}
+{##}
+{#            $carousel.slick({#}
+{#                arrows: false,#}
+{#                autoplay: true,#}
+                {#centerMode: true,#}
+{#                dots: true,#}
+                {#draggable: 'mobile',#}
+{#                lazyLoad: 'ondemand',#}
+{#                slidesToShow: 5,#}
+{#                slidesToScroll: 1,#}
+                {#mobileFirst: true#}
+                {#focusOnSelect: true,#}
+{#            });#}
+{#        });#}
+{##}
+{#    </script>#}
 
+    <!-- jcarousel -->
+    <script type="text/javascript" src="{% static 'jcarousel/jquery.jcarousel.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'jcarousel/jcarousel.responsive.js' %}"></script>
+
+    {# LIGHTGALLERY #}
+{#    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.0.2/lib/js/lightgallery.min.js"></script>#}
+
+{#    <!-- Include lightgallery.js -->#}
+{#    <script type="text/javascript" src="{% static 'lightgallery.js/dist/js/lightgallery.min.js' %}"></script>#}
+{##}
+{#    <!-- Include lg-thumbnail.js -->#}
+{#    <script type="text/javascript" src="{% static 'lg-thumbnail.js/dist/lg-thumbnail.min.js' %}"></script>#}
+{##}
+{#    <!-- Include lg-fullscreen.js -->#}
+{#    <script type="text/javascript" src="{% static 'lg-fullscreen.js/dist/lg-fullscreen.min.js' %}"></script>#}
+{##}
+{#    <!-- Include lg-zoom.js -->#}
+{#    <script type="text/javascript" src="{% static 'lg-zoom.js/dist/lg-zoom.min.js' %}"></script>#}
+{##}
+{#    <!-- Include lg-autoplay.min.js -->#}
+{#    <script type="text/javascript" src="{% static 'lg-autoplay.js/dist/lg-autoplay.min.js' %}"></script>#}
+
+    <!-- Include lg-video.js -->
+    {#<script type="text/javascript" src="{% static 'lg-video.js/dist/lg-video.min.js' %}"></script>#}
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.9/js/lightgallery-all.min.js"></script>
+
+{#    <script type="text/javascript">#}
+{#        $(document).ready(function () {#}
+{#            {% for album in albums %}#}
+{#                lightGallery(document.getElementById('lightgallery_{{ album.id }}'), {#}
+{#                    thumbnail: true,#}
+{#                    selector:'custom-selector',#}
+                    {#galleryId: 6,#}
+{#                });#}
+{#            {% endfor %}#}
+{#    </script>#}
+
+    <script type="text/javascript">
+	  $(document).ready(function() {
+	    $("#lightgallery").lightGallery({
+	    });
+	  });
+	</script>
 {% endblock %}

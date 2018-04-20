@@ -1,0 +1,30 @@
+{
+  "name": "toast",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "lg-autoplay.js": "^1.0.0",
+    "lg-fullscreen.js": "^1.0.0",
+    "lg-thumbnail.js": "^1.0.0",
+    "lg-video.js": "^1.0.0",
+    "lg-zoom.js": "^1.0.1",
+    "lightgallery.js": "^1.0.2",
+    "slick-carousel": "^1.8.1",
+    "smoothscroll-for-websites": "^1.4.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mosiahr/toasters_django.git"
+  },
+  "author": "Hryhorii Mosia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mosiahr/toasters_django/issues"
+  },
+  "homepage": "https://github.com/mosiahr/toasters_django#readme"
+}

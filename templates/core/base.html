@@ -1,24 +1,16 @@
 {% load staticfiles %}
 {% load i18n %}
 <!doctype html>
-<html class="no-js" lang="en">
+{#<html class="no-js" lang="en">#}
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+{#    <meta http-equiv="x-ua-compatible" content="ie=edge">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>#}
     <title>{% block title %}{% endblock %} | TOASTERS</title>
-    {% block extrahead %}{% endblock %}
-    {#    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">#}
-    {#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">#}
-    {#    <link href='https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet'#}
-    {#          type='text/css'>#}
-    {#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">#}
-
-
-    {#    <link rel="stylesheet" href="{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}">#}
+{#    {% block extrahead %}{% endblock %}#}
 
     {# FOUNDATION #}
-    <link rel="stylesheet" href="{% static 'foundation-6.4.2-complete/css/foundation.css' %}">
+    <link rel="stylesheet" href="{% static 'foundation-6.4.2-complete/css/foundation.min.css' %}">
 
     {###  FONT  ###}
     <link rel="stylesheet" href="{% static 'fontawesome-free-5.0.6/on-server/css/fontawesome-all.css' %}">
@@ -28,20 +20,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
-    {# SLICK #}
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
-
-
     {# FOTORAMA #}
-    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+{#    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->#}
 
+    {% block link %}{% endblock %}
 
-
-    <link rel="stylesheet" href="{% static 'foundation-6.4.2-complete/css/app.css' %}">
-
-
-
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
 
 </head>
 <body>
@@ -101,44 +85,26 @@
 
             {% if user.is_authenticated %}
                 {% if user.full_name != '' and user.full_name != None %}
-                    <li><a class="" href="{% url 'accounts:home' %}">
-                         <span data-tooltip aria-haspopup="true" class="has-tip bottom" data-disable-hover="false"
-                               tabindex="4" title="{% trans 'Account' %}">
-                             <i class="far fa-user fa-lg"></i>
-                                {{ user.full_name|truncatechars:20 }}
-                         </span>
-                    </a></li>
-
+                    <li><a class="has-tip bottom" href="{% url 'accounts:home' %}" data-tooltip aria-haspopup="true"
+                           data-disable-hover="false" tabindex="4" title="{% trans 'Account' %}">
+                             <i class="far fa-user fa-lg"></i>&nbsp;{{ user.full_name|truncatechars:20 }}</a></li>
                 {% else %}
-                    <li><a class="" href="{% url 'accounts:home' %}">
-                    <span data-tooltip aria-haspopup="true" class="has-tip bottom" data-disable-hover="false"
-                          tabindex="4" title="{% trans 'Account' %}">
-                                 <i class="far fa-user fa-lg"></i>
-                                    {{ user|truncatechars:20 }}
-                            </span>
+                    <li><a class="has-tip bottom" href="{% url 'accounts:home' %}" data-tooltip aria-haspopup="true"
+                           data-disable-hover="false" tabindex="4" title="{% trans 'Account' %}">
+                                 <i class="far fa-user fa-lg"></i>&nbsp;{{ user|truncatechars:20 }}</a></li>
                 {% endif %}
-                <li><a class="icon-button" href="{% url 'accounts:logout' %}">
-                        <span data-tooltip aria-haspopup="true" class="has-tip bottom" data-disable-hover="false"
-                              tabindex="4" title="{% trans 'Log out' %}">
-                            <i class="fas fa-sign-out-alt fa-lg" style="color: blueviolet"></i>
-                        </span>
-                </a>
-                </li>
+                <li><a class="icon-button has-tip bottom" href="{% url 'accounts:logout' %}" data-tooltip aria-haspopup="true"
+                       data-disable-hover="false" tabindex="4" title="{% trans 'Log out' %}">
+                            <i class="fas fa-sign-out-alt fa-lg" style="color: blueviolet"></i></a></li>
             {% else %}
-                <li><a class="icon-button" href="{% url 'accounts:register' %}">
-                        <span data-tooltip aria-haspopup="true" class="has-tip bottom right" data-disable-hover="false"
-                              tabindex="1" title="{% trans 'Registration for specialists' %}" data-alignment="right">
-                            <i class="fas fa-user-plus fa-lg" style="color: #22bb5b"></i>
-                        </span>
-                </a>
-                </li>
-                <li class=""><a class="icon-button" href="{% url 'accounts:login' %}">
-                        <span data-tooltip aria-haspopup="true" class="has-tip bottom" data-disable-hover="false"
-                              tabindex="4" title="{% trans "Log in" %}">
-                            <i class="fas fa-sign-in-alt fa-lg" style="color: blueviolet"></i>
-                        </span>
-                </a>
-                </li>
+                <li><a class="icon-button has-tip bottom right" href="{% url 'accounts:register' %}" data-tooltip aria-haspopup="true"
+                       data-disable-hover="false" tabindex="1"
+                       title="{% trans 'Registration for specialists' %}" data-alignment="right">
+                            <i class="fas fa-user-plus fa-lg" style="color: #22bb5b"></i></a></li>
+                <li class=""><a class="icon-button has-tip bottom" href="{% url 'accounts:login' %}" data-tooltip
+                                aria-haspopup="true" data-disable-hover="false" tabindex="4"
+                                title="{% trans "Log in" %}">
+                            <i class="fas fa-sign-in-alt fa-lg" style="color: blueviolet"></i></a></li>
             {% endif %}
         </ul>
     </div>
@@ -159,31 +125,53 @@
 
 <br>
 
-{#CONTENT#}
+<!-- CONTENT -->
 <div class="row">
     {% include 'core/include/messages.html' %}
     {% block content %}{% endblock %}
 </div>
 
+<!-- FOOTER -->
 <footer style="visibility:hidden;">
-    <ul class="row menu">
-        {#        <li>Yeti Store</li>#}
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li class="float-right">Copyright 2018</li>
-    </ul>
+    <div class="grid-x grid-margin-x">
+        <div class="cell large-3 grid-x grid-y grid-margin-y">
+            <a class="" href="#">О ПРОЕКТЕ</a>
+            <a class="" href="#">About</a>
+            <a class="" href="#">Contact</a>
+            <a class="" href="{% url 'accounts:register' %}">
+                {% trans 'Registration for specialists' %}</a>
+            <p>Copyright 2018</p>
+        </div>
+        <div class="cell large-3 grid-x grid-y grid-margin-y">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a class="" href="{% url 'accounts:register' %}">
+                {% trans 'Registration for specialists'|upper %}</a>
+            <p>Copyright 2018</p>
+        </div>
+    </div>
 </footer>
 
-{#<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>#}
-{#<script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>#}
-{#<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.js"></script>#}
+<!-- BUTTON UP -->
+{#<button id="go-top" class="button warning" type="button" data-tooltip tabindex="1"#}
+{#        title="{% trans 'Back to top' %}" data-position="left" data-alignment="center">#}
+{#  <i class="fas fa-chevron-up" style="font-size:2em; color:whitesmoke"></i>#}
+{#</button>#}
 
-<script src="{% static 'foundation-6.4.2-complete/js/vendor/jquery.js' %}"></script>
-<script src="{% static 'foundation-6.4.2-complete/js/vendor/what-input.js' %}"></script>
+<script type="text/javascript"
+	 src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- FOUNDATION -->
+{#<script src="{% static 'foundation-6.4.2-complete/js/vendor/jquery.js' %}"></script>#}
 <script src="{% static 'foundation-6.4.2-complete/js/vendor/foundation.min.js' %}"></script>
+{##}
+<script src="{% static 'foundation-6.4.2-complete/js/vendor/what-input.js' %}"></script>
 <script src="{% static 'foundation-6.4.2-complete/js/app.js' %}"></script>
 
+<!-- SCROLL -->
+<script src="{% static 'smoothscroll-for-websites/SmoothScroll.js' %}"></script>
+<script>SmoothScroll()</script>
 
 {% block javascript %}{% endblock %}
 
@@ -191,12 +179,11 @@
 
 {#<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->#}
 
-
 <!-- Jssor Slider Begin -->
 {#<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>#}
 {#<script type="text/javascript" src="{% static 'jssor.slider.devpack/js/jssor.slider.min.js' %}"></script>#}
 
-{#<script src="{% static 'js/app.js' %}"></script>#}
+<script src="{% static 'js/app.js' %}"></script>
 
 </body>
 </html>

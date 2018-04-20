@@ -29,8 +29,8 @@
                 {# CARDS #}
                 <div class="grid-x grid-margin-x grid-margin-y align-left">
                     {% for company in companies %}
-                        <div class="cell small-12 medium-4 large-3">
-                            <div class="thumbnail card " style="height: 100%; width: 100%;">
+                        <div class="cell small-12 medium-6 large-3">
+                            <div class="thumbnail " style="height: 100%; width: 100%;">
                                 {#                                {% if company.avatar_thumbnail %}#}
                                 <div style="height: 200px">
                                     <a href="{% url 'company:company_detail' pk=company.id %}">
