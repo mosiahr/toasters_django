@@ -24,7 +24,7 @@
 {#    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->#}
 
     {% block link %}{% endblock %}
-
+    <link rel="stylesheet" href="{% static 'upButton/upButton.css' %}">
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
 
 </head>
@@ -154,10 +154,10 @@
 </footer>
 
 <!-- BUTTON UP -->
-{#<button id="go-top" class="button warning" type="button" data-tooltip tabindex="1"#}
-{#        title="{% trans 'Back to top' %}" data-position="left" data-alignment="center">#}
-{#  <i class="fas fa-chevron-up" style="font-size:2em; color:whitesmoke"></i>#}
-{#</button>#}
+<button id="upBtn" class="button warning" type="button" data-tooltip tabindex="1"
+        title="{% trans 'Back to top' %}" data-position="left" data-alignment="center">
+    <i class="fas fa-chevron-up" style="font-size:2em; color:whitesmoke"></i>
+</button>
 
 <script type="text/javascript"
 	 src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -176,6 +176,7 @@
 {% block javascript %}{% endblock %}
 
 <script src="{% static 'js/foundationStickyFooter/stickyFooter.js' %}"></script>
+<script src="{% static 'upButton/upButton.js' %}"></script>
 
 {#<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->#}
 

@@ -1,0 +1,32 @@
+#upBtn {
+  display:none;
+  /*background-color: #FF9800;*/
+  /*width: 50px;*/
+  /*height: 50px;*/
+  /*text-align: center;*/
+  /*border-radius: 4px;*/
+  /*margin: 30px;*/
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color .3s;
+  z-index: 1000;
+}
+
+/*#upBtn:hover {*/
+    /*cursor: pointer;*/
+    /*background-color: #333;*/
+/*}*/
+/*#upBtn:active {*/
+    /*background-color: #555;*/
+/*}*/
+
+
+/*#upBtn::after {*/
+  /*font-weight: normal;*/
+  /*font-style: normal;*/
+  /*font-size: 2em;*/
+  /*line-height: 50px;*/
+  /*color: #fff;*/
+/*}*/
+
