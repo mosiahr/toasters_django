@@ -24,7 +24,7 @@
 
     <div class="row grid-x grid-margin-x">
         <!-- LEFT -->
-        <div class="cell small-12 medium-8 large-9">
+        <div class="cell small-12 medium-9 large-9">
             <div class="grid-x grid-margin-x grid-margin-y">
                 {#    <div class="cell small-12 medium-5 large-5 columns">#}
                 <!-- CARD INFO -->
@@ -113,37 +113,44 @@
 
                 <!-- ALBUM/PHOTO (jcarousel and lightgallery)-->
                 <div class="cell wrapper">
-                <h1>Responsive Carousel</h1>
-
-                <p>This example shows how to implement a responsive carousel. Resize the browser window to see the effect.</p>
-
                 {% for album in albums %}
-                    <h5 class=""><small>{% trans "Photo album: " %}</small>
+                    <h5><small>{% trans "Photo album " %}(count: {{ album.get_photo|length }}):</small>
                         {{ album.name }}</h5>
+                    <h6><small>Summary:</small>{{ album.summary }}</h6>
 
-                    <div class="jcarousel-wrapper">
+{#                    <div class="jcarousel-wrapper">#}
+                    <div class="jcarousel-wrapper thumbnail ">
                         <div class="jcarousel">
                             <ul id="lightgallery">
                                 {% for photo in album.get_photo %}
-                                        <li data-src="{{ photo.image.url }}">
-                                                <img src="{{ photo.image.thumbnail.url }}"></li>
+                                    <li data-src="{{ photo.image.url }}" data-sub-html=".caption">
+                                        <img class="float-center" src="{{ photo.image.thumbnail.url }}">
+                                        <div class="caption hide">
+                                            <h4>{% trans 'Album' %}: {{ album }}</h4>
+                                            <h4>{{ photo.name }}</h4>
+                                            <p>{{ photo.title }}</p>
+                                        </div>
+                                    </li>
                                 {% endfor %}
                             </ul>
                         </div>
 
-                        <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
-                        <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+                        <button class="jcarousel-control-prev" type="button">
+                            <i class="fas fa-arrow-circle-left" ></i>
+                        </button>
+                        <button class="jcarousel-control-next" type="button">
+                            <i class="fas fa-arrow-circle-right" ></i>
+                        </button>
 
                         <p class="jcarousel-pagination"></p>
                     </div>
                 {% endfor %}
                 </div>
-
             </div>
         </div>
 
         <!-- RIGHT / Advertising -->
-        <div class="cell small-12 medium-4 large-3">
+        <div class="cell small-12 medium-3 large-3">
             <div class="grid-x grid-margin-y">
                 <div class="cell small-12 medium-12 large-12">
                     <img class="thumbnail float-center" src="https://placehold.it/400x500">
@@ -232,6 +239,7 @@
     <script type="text/javascript">
 	  $(document).ready(function() {
 	    $("#lightgallery").lightGallery({
+            subHtmlSelectorRelative: true
 	    });
 	  });
 	</script>
