@@ -201,6 +201,21 @@ hr{
   color: #0a0a0a;
 }
 
+.fav{
+  color: red;
+}
 
-
+/*#avatar{
+  position: relative;
+  /*display: block;*/
+  /*z-index: ;*/
+}
+/*#favorite{
+  position: absolute;
+  display: block;
+  z-index: 99;
+  top: 15px;
+  right: 15px;
+  color: #fff;
+}*/
 

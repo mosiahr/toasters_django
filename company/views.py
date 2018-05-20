@@ -24,6 +24,12 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+def count_fav(request):
+    if request.session.__contains__('favorite'):
+        return len(request.session['favorite'])
+    return 0
+
+
 class CompanyListView(PaginationMixin, ListView):
     form_class = CompanyFilterForm
     context_object_name = 'companies'
@@ -66,9 +72,8 @@ class CompanyListView(PaginationMixin, ListView):
             form = self.form_class()
             header = None
 
-        context.update({'form': form,
-                        'header': header})
-
+        cnt_fav = count_fav(self.request)
+        context.update(dict(form=form, header=header, cnt_fav=cnt_fav))
         return context
 
     def get_queryset(self):
@@ -121,9 +126,20 @@ class CompanyDetailView(DetailView):
         context = super(CompanyDetailView, self).get_context_data(**kwargs)
         albums = Album.objects.all()
         photos = Photo.objects.all()
+        comp_id = self.kwargs['pk']
+        fav = False
+
+        if self.request.session.__contains__('favorite'):
+            if int(self.kwargs['pk']) in self.request.session['favorite']:
+                fav = True
+
+        cnt_fav = count_fav(self.request)
         context.update({
             'albums': albums,
             'photos': photos,
+            'comp_id': comp_id,
+            'fav': fav,
+            'cnt_fav': cnt_fav,
         })
         return context
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from django.core.exceptions import PermissionDenied
 from .models import Photo, Album
 
 from django.utils.translation import ugettext as _, ugettext_lazy
@@ -33,7 +33,7 @@ class AlbumAdmin(admin.ModelAdmin):
         if not self.has_delete_permission(request):
             raise PermissionDenied
         for obj in queryset:
-            print(obj)
+            # print(obj)
             obj.delete()
 
     delete_selected.short_description = ugettext_lazy("Delete selected %(verbose_name_plural)s")

@@ -72,14 +72,14 @@ class AlbumAddView(SuccessMessageMixin,
     template_name = 'gallery/manage_photo.html'
     title = _("Add Album")
 
-    def get(self, request, *args, **kwargs):
-        self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        photo_form = PhotoFormSet()
-        return self.render_to_response(
-            self.get_context_data(form=form, photo_form=photo_form)
-        )
+    # def get(self, request, *args, **kwargs):
+    #     self.object = None
+    #     form_class = self.get_form_class()
+    #     form = self.get_form(form_class)
+    #     photo_form = PhotoFormSet()
+    #     return self.render_to_response(
+    #         self.get_context_data(form=form, photo_form=photo_form)
+    #     )
 
     def post(self, request, *args, **kwargs):
         self.object = None

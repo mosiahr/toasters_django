@@ -32,8 +32,23 @@
                     <div class="grid-x grid-margin-x ">
 
                         <!-- PHOTO -->
-                        <div class="cell small-12 medium-12 large-4">
-                            <img class="thumbnail" src="{{ company.avatar.medium.url }}">
+                        <div class="cell small-12 medium-12 large-4" style="position: relative;">
+                            <img id="avatar" class="thumbnail" src="{{ company.avatar.medium.url }}">
+                            {# <i id="favorite" class="far fa-heart fa-lg float-right"></i> #}
+
+                            <button type="button" data-url="{% url 'api_company:favorite' pk=comp_id %}" id="addFavorite"
+                                    class="hollow success button small expanded float-center">
+                                {% if fav == False %}
+                                    <i class="far fa-heart fa-lg"></i>
+                                    <span class="hide">{% trans "In favorites" %}</span>
+                                    <span>{% trans "Add to favorites" %}</span>
+                                {% else %}
+                                    <i class="far fa-heart fa-lg fas fav"></i>
+                                    <span>{% trans "In favorites" %}</span>
+                                    <span class="hide">{% trans "Add to favorites" %}</span>
+                                {% endif %}
+                            </button>
+
                             {#            <div class="cell small-up-4">#}
                             {#                <div class="column">#}
                             {#                    <img class="thumbnail" src="{{ company.photo1.medium.url}}">#}

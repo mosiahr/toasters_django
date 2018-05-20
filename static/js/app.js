@@ -1,5 +1,103 @@
 $(document).ready(function(){
+    // SELECT 2
     $('.form-select2').select2();
+
+    // FAVORITE
+    let addFavorite = $('button#addFavorite');
+    addFavorite.click(function(event) {
+        event.preventDefault();
+
+        if ($(this).find('i').hasClass('fas') !== true){
+            $(this).find('i').addClass('fas fav');
+            $(this).find('span:eq( 0 )').removeClass('hide');
+            $(this).find('span:eq( 1 )').addClass('hide');
+        }else{
+            $(this).find('i').removeClass('fas fav');
+            $(this).find('span:eq( 0 )').addClass('hide');
+            $(this).find('span:eq( 1 )').removeClass('hide');
+        }
+
+        let thisUrl = $(this).attr("data-url");
+
+        $.ajax({
+                method: "GET",
+                url: thisUrl,
+                // data: formData
+            })
+            .done(function(data) {
+                let count_fav = data['count_fav'];
+                if (count_fav > 0){
+                    $('#heart-menu>i').addClass('fas fav');
+                    $('#count_fav').text(count_fav);
+                }else{
+                    $('#heart-menu>i').removeClass('fas fav');
+                    $('#count_fav').text('');
+                }
+            })
+            .fail(function(data) {
+                console.log("error");
+                console.log(data);
+            })
+    });
+
+    // GET FAVORITES
+    let btnHeart = $('#heart-menu');
+    btnHeart.click(function(event) {
+        event.preventDefault();
+        let thisUrl = $(this).attr("data-url");
+        console.log(thisUrl);
+        $.ajax({
+                method: "GET",
+                url: thisUrl,
+                // data: formData
+            })
+            .done(function(data) {
+                $('#getFavorites').html(data.html).foundation('open');
+                drawFavorites(data);
+            })
+            .fail(function(data) {
+                console.log("error");
+                console.log(data);
+            })
+    });
+
+    function drawFavorites(data){
+        $( "#companyFav" ).empty();
+        console.log(data);
+        $( "#companyFav" ).append('<div class="cell grid-x grid-margin-x grid-margin-y align-left">');
+
+        for (let key in data){
+            let d = {
+                id: data[key]['id'],
+                name: data[key]['name'],
+                avatarThumbnail: data[key]['avatar'].replace('jpg', 'thumbnail.jpg')
+            }
+
+            let template = [
+                '<div class="cell small-12 medium-6 large-3">',
+                    '<div class="thumbnail">',
+
+                        '<div style="height: 200px">',
+                            '<a href="/company/{{ id }}">',
+                                '<img class="float-center " src="{{ avatarThumbnail }}">',
+                            '</a>',
+                        '</div>',
+
+                        '<h5 class="card-section text-center">',
+                            '<a class="" href="/company/{{ id }}">{{ name }}</a>',
+                        '</h5>',
+
+                    '</div>',
+                '</div>'
+            ].join("\n");
+
+            let html = Mustache.render(template, d);
+            $( "#companyFav" ).append(html);
+        }
+        $( "#companyFav" ).append('</div>');
+
+
+    }
 
     // $('.related-widget-wrapper').select2();
     // $('#id_type').select2({

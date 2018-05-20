@@ -14,7 +14,7 @@
 
     {###  FONT  ###}
     <link rel="stylesheet" href="{% static 'fontawesome-free-5.0.6/on-server/css/fontawesome-all.css' %}">
-    <script defer src="{% static 'fontawesome-free-5.0.6/on-server/js/fontawesome-all.min.js' %}"></script>
+    {#<script defer src="{% static 'fontawesome-free-5.0.6/on-server/js/fontawesome-all.min.js' %}"></script> #}
 
     {# SELECT 2 #}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
@@ -79,9 +79,25 @@
     <div class="top-bar-right">
         <ul class="dropdown vertical medium-horizontal menu">
 
-            <li><input type="search" placeholder={% trans "Search" %}></li>
-            <li><a class="button small">
-                <i class="fas fa-search fa-lg"></i>&nbsp{% trans "Search" %}</a></li>
+
+
+{#            <li><input type="search" placeholder={% trans "Search" %}></li>#}
+{#            <li><a class="button small">#}
+{#                <i class="fas fa-search fa-lg"></i>&nbsp{% trans "Search" %}</a></li>#}
+
+            <li><a id="heart-menu" class="hollow alert button small" data-url="{% url 'api_company:company_list' %}">
+                {% if cnt_fav > 0 %}
+                    <i class="far fa-heart fa-lg fas fav"></i>
+                {% else %}
+                    <i class="far fa-heart fa-lg"></i>
+                {% endif %}
+                <span id="count_fav">
+                    {% if cnt_fav %}{{ cnt_fav }}{% endif %}
+                </span>
+                {% trans "Favorites" %}</a></li>
+
+{#        <p><button class="button" data-open="exampleModal1">Click me for a modal</button></p>#}
+
 
             {% if user.is_authenticated %}
                 {% if user.full_name != '' and user.full_name != None %}
@@ -93,12 +109,12 @@
                            data-disable-hover="false" tabindex="4" title="{% trans 'Account' %}">
                                  <i class="far fa-user fa-lg"></i>&nbsp;{{ user|truncatechars:20 }}</a></li>
                 {% endif %}
-                <li><a class="icon-button has-tip bottom" href="{% url 'accounts:logout' %}" data-tooltip aria-haspopup="true"
-                       data-disable-hover="false" tabindex="4" title="{% trans 'Log out' %}">
+                <li><a class="icon-button has-tip bottom" href="{% url 'accounts:logout' %}" data-tooltip
+                       aria-haspopup="true" data-disable-hover="false" tabindex="4" title="{% trans 'Log out' %}">
                             <i class="fas fa-sign-out-alt fa-lg" style="color: blueviolet"></i></a></li>
             {% else %}
-                <li><a class="icon-button has-tip bottom right" href="{% url 'accounts:register' %}" data-tooltip aria-haspopup="true"
-                       data-disable-hover="false" tabindex="1"
+                <li><a class="icon-button has-tip bottom right" href="{% url 'accounts:register' %}" data-tooltip
+                       aria-haspopup="true" data-disable-hover="false" tabindex="1"
                        title="{% trans 'Registration for specialists' %}" data-alignment="right">
                             <i class="fas fa-user-plus fa-lg" style="color: #22bb5b"></i></a></li>
                 <li class=""><a class="icon-button has-tip bottom" href="{% url 'accounts:login' %}" data-tooltip
@@ -159,6 +175,9 @@
     <i class="fas fa-chevron-up" style="font-size:2em; color:whitesmoke"></i>
 </button>
 
+<!-- MODAL FAVORITES -->
+{% include 'core/include/modal_fav.html' %}
+
 <script type="text/javascript"
 	 src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -178,6 +197,9 @@
 <script src="{% static 'js/foundationStickyFooter/stickyFooter.js' %}"></script>
 <script src="{% static 'upButton/upButton.js' %}"></script>
 
+<!-- MUSTACHE JS -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+
 {#<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->#}
 
 <!-- Jssor Slider Begin -->
@@ -185,6 +207,5 @@
 {#<script type="text/javascript" src="{% static 'jssor.slider.devpack/js/jssor.slider.min.js' %}"></script>#}
 
 <script src="{% static 'js/app.js' %}"></script>
-
 </body>
 </html>
