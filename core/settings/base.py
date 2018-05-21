@@ -165,13 +165,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = 'accounts:login'    # LOGIN_URL = '/accounts/login/'
 LOGOUT_URL = 'accounts:logout'
 LOGIN_REDIRECT_URL = 'toast:toasters'
-
-
-#LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'company:companies'
 
 DATETIME_FORMAT = 'Y-m-d H:i'
 
-#added foundation classes
+#Added foundation classes
 MESSAGE_TAGS = {
     messages.DEBUG: 'secondary',
     messages.INFO: 'secondary',

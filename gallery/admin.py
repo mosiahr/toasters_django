@@ -13,8 +13,8 @@ class PhotoInline(admin.TabularInline):
 
 @admin.register(Album)
 class AlbumAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name']
-    fields = ('name', 'summary')
+    list_display = ['name', 'company', 'get_count_photo']
+    fields = ('name', 'summary', 'company')
 
     inlines = [
         PhotoInline,

@@ -15,6 +15,11 @@ User = get_user_model()
 #     def get_queryset(self):
 #         return super(CompanyManager, self).get_queryset().filter(album_id=self.id)
 
+def set_default_name(pk, name=_('Portfolio')):
+    if Photo.objects.filter(album_id=pk).count() > 1:
+        return ''
+    return name
+
 
 class Album(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -23,9 +28,9 @@ class Album(models.Model):
     summary = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    # objects = CompanyManager()
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True)
 
-    # company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True)
+    # objects = CompanyManager()
 
     class Meta:
         verbose_name = _('Album')
@@ -45,6 +50,10 @@ class Album(models.Model):
     def get_photo(self):
         if self.photo_set.filter(album_id=self.id).exists():
             return self.photo_set.filter(album_id=self.id)
+
+    def get_count_photo(self):
+        photos = self.get_photo()
+        return photos.count()
 
     def delete(self, *args, **kwargs):
         for photo in self.photo_set.all():

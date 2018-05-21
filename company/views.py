@@ -122,11 +122,11 @@ class CompanyListView(PaginationMixin, ListView):
 class CompanyDetailView(DetailView):
     model = Company
 
+
     def get_context_data(self, **kwargs):
         context = super(CompanyDetailView, self).get_context_data(**kwargs)
-        albums = Album.objects.all()
+        albums = Album.objects.filter(company=self.kwargs.get('pk'))
         photos = Photo.objects.all()
-        comp_id = self.kwargs['pk']
         fav = False
 
         if self.request.session.__contains__('favorite'):
@@ -137,7 +137,6 @@ class CompanyDetailView(DetailView):
         context.update({
             'albums': albums,
             'photos': photos,
-            'comp_id': comp_id,
             'fav': fav,
             'cnt_fav': cnt_fav,
         })

@@ -126,10 +126,6 @@ class DoneRegisterView(View):
         return render(request, self.template_name, context)
 
 
-class AppLogoutView(views.LogoutView):
-    next_page = '/accounts/login/'
-
-
 class UserDetailUpdateView(LoginRequiredMixin,
                            SuccessMessageMixin,
                            ErrorMessageMixin,

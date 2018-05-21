@@ -52,7 +52,7 @@ $(document).ready(function(){
                 // data: formData
             })
             .done(function(data) {
-                $('#getFavorites').html(data.html).foundation('open');
+                $('#getFavorites').foundation('open');
                 drawFavorites(data);
             })
             .fail(function(data) {
@@ -81,6 +81,9 @@ $(document).ready(function(){
                             '<a href="/company/{{ id }}">',
                                 '<img class="float-center " src="{{ avatarThumbnail }}">',
                             '</a>',
+                            // '<button class="close-button" data-close aria-label="Close modal" type="button">',
+                            //     '<span aria-hidden="true">&times;</span>',
+                            // '</button>',
                         '</div>',
 
                         '<h5 class="card-section text-center">',

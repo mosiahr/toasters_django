@@ -7,7 +7,6 @@ from .views import (
     LoginView,
     RegisterView,
     DoneRegisterView,
-    AppLogoutView,
     UserDetailUpdateView,
     UserPasswordChangeView,
 )
@@ -15,7 +14,7 @@ from .views import (
 urlpatterns = [
     url(r'^$', AccountHomeView.as_view(), name='home'),
     url(r'^login/$', LoginView.as_view(), name='login'),
-    url(r'^logout/$', AppLogoutView.as_view(), name='logout'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^register/$', RegisterView.as_view(), name='register'),
     url(r'^register/done/$', DoneRegisterView.as_view(), name='register_done'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',

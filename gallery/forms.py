@@ -36,6 +36,7 @@ class AlbumForm(forms.ModelForm):
     def save(self, commit=True):
         instance = super(AlbumForm, self).save(commit=False)
         instance.user = self.user
+        instance.company = Company.pub_objects.filter(user_id=self.user).first()
         if commit:
             instance.save()
         return instance
