@@ -13,7 +13,7 @@ class PhotoInline(admin.TabularInline):
 
 @admin.register(Album)
 class AlbumAdmin(admin.ModelAdmin):
-    list_display = ['name', 'company', 'get_count_photo']
+    list_display = ['name', 'cover_photo', 'company', 'get_count_photo']
     fields = ('name', 'summary', 'company')
 
     inlines = [
@@ -35,13 +35,20 @@ class AlbumAdmin(admin.ModelAdmin):
         for obj in queryset:
             # print(obj)
             obj.delete()
-
     delete_selected.short_description = ugettext_lazy("Delete selected %(verbose_name_plural)s")
+
+    def cover_photo(self, obj):
+        cover_photo = obj.get_cover_photo()
+        img = None
+        if cover_photo:
+            img = Photo.objects.get(id=cover_photo.id).image.small.url
+        return '<img src="%s" title="%s" />' % (img, obj.name)
+    cover_photo.allow_tags = True
 
 
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ['name', 'image', 'album']
+    list_display = ['small_photo', 'name', 'image', 'album']
     actions = ['delete_selected']
 
     class Meta:
@@ -52,6 +59,9 @@ class PhotoAdmin(admin.ModelAdmin):
             raise PermissionDenied
         for obj in queryset:
             obj.delete()
-
     delete_selected.short_description = ugettext_lazy("Delete selected %(verbose_name_plural)s")
 
+    def small_photo(self, obj):
+        photo = obj.image.small.url
+        return '<img src="%s" title="%s" />' % (photo, obj.name)
+    small_photo.allow_tags = True

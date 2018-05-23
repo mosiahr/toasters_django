@@ -130,11 +130,10 @@
 
                     <!-- Show the first album -->
                     {% if forloop.first %}
-                    <h5><small>{% trans "Photo album" %}</small></h5>
-                    <hr>
-                    <h6><small>{% trans "count" %}: {{ album.get_count_photo }}</small></h6>
+                    <h5><small>{% trans "Photo album" %}</small>
+                        <span class="badge success">{{ album.get_count_photo }}</span><hr></h5>
 
-                    <h4>{{ album.name }}</h4>
+                    <h5>{{ album.name }}</h5>
                     {% if album.summary  %}
                         <h6><small>{% trans "Description" %}: </small>{{ album.summary }}</h6>
                     {% endif %}
@@ -169,30 +168,31 @@
                 {% endfor %}
                 </div>
 
-                <!-- Show more albums -->
-                <div class="cell grid-x grid-margin-y align-left" >
-                <h5 class="cell">
-                    <small>{% trans "More albums" %}({% trans "count" %}: {{ albums.all.count }})</small><hr>
-                </h5>
-                    {% for album in albums %}
-                        <div class="cell small-12 medium-6 large-3">
-                            <div class="thumbnail">
-                                <div style="height: 200px">
-                                    <a href="/company/{{ id }}">
-                                    <img class="float-center" src="{{ album.get_cover_photo.image.thumbnail.url }}">
-                                    </a>
+                <!-- Show albums -->
+                {% if albums.all.count > 0 %}
+                    <div class="cell grid-x align-left" >
+                        <h5 class="cell">
+                            <small>{% trans "All albums" %}</small>
+                            <span class="badge success">{{ albums.all.count }}</span><hr>
+                        </h5>
+
+                        {% for album in albums %}
+                            <div class="cell small-12 medium-6 large-3">
+                                <div class="thumbnail">
+                                    <div style="height: 200px">
+                                        <a href="{% url 'gallery:photo' pk=album.id %}">
+                                        <img class="float-center"   src="{{ album.get_cover_photo.image.thumbnail.url }}">
+                                        </a>
+                                    </div>
+
+                                    <h5 class="card-section text-center">
+                                        <a class="" href="{% url 'gallery:photo' pk=album.id %}">{{ album.name }}</a>
+                                    </h5>
                                 </div>
-
-                                <h5 class="card-section text-center">
-                                    <a class="" href="/company/{{ id }}">{{ album.name }}</a>
-                                </h5>
                             </div>
-                        </div>
-                    {% endfor %}
-                </div>
-
-
-
+                        {% endfor %}
+                    </div>
+                {% endif %}
 
             </div>
         </div>

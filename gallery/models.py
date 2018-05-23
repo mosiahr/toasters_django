@@ -28,7 +28,7 @@ class Album(models.Model):
     summary = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
 
     # objects = CompanyManager()
 
@@ -52,8 +52,13 @@ class Album(models.Model):
             return self.photo_set.filter(album_id=self.id)
 
     def get_count_photo(self):
-        photos = self.get_photo()
-        return photos.count()
+        try:
+            photos = self.get_photo()
+            return photos.count()
+        except Exception as e:
+            print(e)
+
+    get_count_photo.short_description = _("Count")
 
     def delete(self, *args, **kwargs):
         for photo in self.photo_set.all():
@@ -68,7 +73,8 @@ class Photo(models.Model):
     image = StdImageField(upload_to=UploadToUUID(path='photos'),
                           variations={
                               # 'medium': (300, 300),
-                              'thumbnail': {'width': 200, 'height': 200, "crop": True}
+                              'thumbnail': {'width': 200, 'height': 200, "crop": True},
+                              'small': {'width': 100, 'height': 100, "crop": True}
                           },
                           verbose_name=_('Image'))
 
@@ -83,7 +89,7 @@ class Photo(models.Model):
         verbose_name_plural = _('Photos')
 
     def __str__(self):
-        return 'ID: {}'.format(self.id)
+        return 'Photo with ID: %s' % self.id
 
     def save(self, *args, **kwargs):
         if self.is_cover_photo:

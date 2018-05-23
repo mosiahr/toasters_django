@@ -1,6 +1,5 @@
 from django.shortcuts import render, render_to_response
 from django.db import transaction
-
 from django.http import HttpResponseRedirect
 
 from django.views.generic import ListView, DetailView, UpdateView, View, DeleteView, CreateView
@@ -32,13 +31,15 @@ class AlbumListView(ListView):
 
 class PhotoListView(ListView):
     model = Photo
-    template_name = 'gallery/gallery_list.html'
+    template_name = 'gallery/photo_list.html'
     context_object_name = 'photos'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(PhotoListView, self).get_context_data(**kwargs)
-    #     # context.update({'title': self.title})
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super(PhotoListView, self).get_context_data(**kwargs)
+        current_album = Album.objects.get(id=self.kwargs['pk'])
+        # context.update({'title': self.title})
+        context.update({'current_album': current_album})
+        return context
 
     def get_queryset(self):
         return Photo.objects.filter(album_id=self.kwargs['pk']).order_by('-created')
