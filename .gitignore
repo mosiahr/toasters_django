@@ -9,4 +9,5 @@ core/settings/email_conf.py
 core/settings/db.cnf
 core/conf/*
 node_modules
+toast/
 

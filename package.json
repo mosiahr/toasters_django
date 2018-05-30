@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "foundation-sites": "^6.4.4-rc1",
     "lg-autoplay.js": "^1.0.0",
     "lg-fullscreen.js": "^1.0.0",
     "lg-thumbnail.js": "^1.0.0",

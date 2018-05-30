@@ -1,7 +1,8 @@
 from django.db import models
 
 from stdimage.models import StdImageField
-from stdimage.utils import UploadToUUID, UploadToClassNameDir, UploadToAutoSlug, UploadToAutoSlugClassNameDir
+from stdimage.utils import (UploadToUUID, UploadToClassNameDir,
+                            UploadToAutoSlug, UploadToAutoSlugClassNameDir)
 
 from django.shortcuts import reverse
 from django.utils.translation import ugettext as _

@@ -20,7 +20,8 @@ class CompanyListAPIView(ListAPIView):
         # for comp in Company.pub_objects.all():
         #     if comp.id in self.get_favorites():
         #         qs.append(comp)
-        return [comp for comp in Company.pub_objects.all() if int(comp.id) in self.get_favorites()]
+        return [comp for comp in Company.pub_objects.all()
+                if int(comp.id) in self.get_favorites()]
 
     # def get_context_data(self, **kwargs):
     #     super(CompanyListAPIView, self).get_context_data(**kwargs)
@@ -47,7 +48,6 @@ class SessionAPIView(RetrieveUpdateDestroyAPIView):
                 
             # Delete pk to favorite
             else:
-                print('del')
                 self.serializer_class.update(self, request)
         except Exception as e:
             print(e)

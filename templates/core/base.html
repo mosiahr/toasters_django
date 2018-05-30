@@ -10,7 +10,8 @@
 {#    {% block extrahead %}{% endblock %}#}
 
     {# FOUNDATION #}
-    <link rel="stylesheet" href="{% static 'foundation-6.4.2-complete/css/foundation.min.css' %}">
+{#    <link rel="stylesheet" href="{% static 'foundation-6.4.2-complete/css/foundation.min.css' %}">#}
+    <link rel="stylesheet" href="{% static 'foundation-sites/dist/css/foundation.css' %}">
 
     {###  FONT  ###}
     <link rel="stylesheet" href="{% static 'fontawesome-free-5.0.6/on-server/css/fontawesome-all.css' %}">
@@ -178,15 +179,17 @@
 <!-- MODAL FAVORITES -->
 {% include 'core/include/modal_fav.html' %}
 
-<script type="text/javascript"
-	 src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{#<script type="text/javascript"#}
+{#	 src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>#}
+
+<script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
 
 <!-- FOUNDATION -->
 {#<script src="{% static 'foundation-6.4.2-complete/js/vendor/jquery.js' %}"></script>#}
-<script src="{% static 'foundation-6.4.2-complete/js/vendor/foundation.min.js' %}"></script>
-{##}
-<script src="{% static 'foundation-6.4.2-complete/js/vendor/what-input.js' %}"></script>
-<script src="{% static 'foundation-6.4.2-complete/js/app.js' %}"></script>
+<script src="{% static 'foundation-sites/dist/js/foundation.min.js' %}"></script>
+{#<script src="{% static 'foundation-6.4.2-complete/js/vendor/what-input.js' %}"></script>#}
+<script src="{% static 'what-input/src/what-input.js' %}"></script>
+<script>$(document).foundation();</script>
 
 <!-- SCROLL -->
 <script src="{% static 'smoothscroll-for-websites/SmoothScroll.js' %}"></script>

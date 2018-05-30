@@ -6,8 +6,8 @@
 
 {% block link %}
     {# SLICK #}
-    <link rel="stylesheet" type="text/css" href="{% static 'slick-carousel/slick/slick.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'slick-carousel/slick/slick-theme.css' %}"/>
+{#    <link rel="stylesheet" type="text/css" href="{% static 'slick-carousel/slick/slick.css' %}"/>#}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'slick-carousel/slick/slick-theme.css' %}"/>#}
 
 {#    jcarousel#}
 
@@ -130,40 +130,38 @@
 
                     <!-- Show the first album -->
                     {% if forloop.first %}
-                    <h5><small>{% trans "Photo album" %}</small>
-                        <span class="badge success">{{ album.get_count_photo }}</span><hr></h5>
+                        <h5>{{ album.name }}
+                            <span class="badge success">{{ album.get_count_photo }}</span><hr></h5>
 
-                    <h5>{{ album.name }}</h5>
-                    {% if album.summary  %}
-                        <h6><small>{% trans "Description" %}: </small>{{ album.summary }}</h6>
-                    {% endif %}
+                        {% if album.summary  %}
+                            <h6><small>{% trans "Description" %}: </small>{{ album.summary }}</h6>
+                        {% endif %}
 
-{#                    <div class="jcarousel-wrapper">#}
-                    <div class="jcarousel-wrapper thumbnail ">
-                        <div class="jcarousel">
-                            <ul id="lightgallery">
-                                {% for photo in album.get_photo %}
-                                      <li data-src="{{ photo.image.url }}" data-sub-html=".caption">
-                                        <img class="float-center" src="{{ photo.image.thumbnail.url }}">
-                                        <div class="caption hide">
-                                            <h4>{% trans 'Album' %}: {{ album }}</h4>
-                                            <h4>{{ photo.name }}</h4>
-                                            <p>{{ photo.title }}</p>
-                                        </div>
-                                    </li>
-                                {% endfor %}
-                            </ul>
+                        <div class="jcarousel-wrapper thumbnail ">
+                            <div class="jcarousel">
+                                <ul id="lightgallery">
+                                    {% for photo in album.get_photo %}
+                                          <li data-src="{{ photo.image.url }}" data-sub-html=".caption">
+                                            <img class="float-center" src="{{ photo.image.thumbnail.url }}">
+                                            <div class="caption hide">
+                                                <h4>{% trans 'Album' %}: {{ album }}</h4>
+                                                <h4>{{ photo.name }}</h4>
+                                                <p>{{ photo.title }}</p>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                            <button class="jcarousel-control-prev" type="button">
+                                <i class="fas fa-arrow-circle-left" ></i>
+                            </button>
+                            <button class="jcarousel-control-next" type="button">
+                                <i class="fas fa-arrow-circle-right" ></i>
+                            </button>
+
+                            <p class="jcarousel-pagination"></p>
                         </div>
-
-                        <button class="jcarousel-control-prev" type="button">
-                            <i class="fas fa-arrow-circle-left" ></i>
-                        </button>
-                        <button class="jcarousel-control-next" type="button">
-                            <i class="fas fa-arrow-circle-right" ></i>
-                        </button>
-
-                        <p class="jcarousel-pagination"></p>
-                    </div>
                     {% endif %}
                 {% endfor %}
                 </div>
@@ -177,6 +175,8 @@
                         </h5>
 
                         {% for album in albums %}
+                            {% if album.get_count_photo > 0 %}
+
                             <div class="cell small-12 medium-6 large-3">
                                 <div class="thumbnail">
                                     <div style="height: 200px">
@@ -190,6 +190,7 @@
                                     </h5>
                                 </div>
                             </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 {% endif %}

@@ -89,6 +89,7 @@ class AlbumAddView(SuccessMessageMixin,
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         photo_form = PhotoFormSet(self.request.POST, self.request.FILES, instance=self.object)
+
         if form.is_valid() and photo_form.is_valid():
             return self.form_valid(form, photo_form)
         else:
@@ -157,6 +158,7 @@ class AlbumUpdateView(SuccessMessageMixin,
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         photo_form = PhotoFormSet(self.request.POST, self.request.FILES, instance=self.object)
+
         if form.is_valid() and photo_form.is_valid():
             return self.form_valid(form, photo_form)
         else:

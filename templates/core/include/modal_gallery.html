@@ -1,0 +1,41 @@
+<!-- Gallery/Albums List -->
+{% load i18n %}
+
+<div class="large reveal" id="getGallery" data-reveal>
+    <h3>{% trans "Albums list" %}</h3>
+
+{#    <div id="" class="grid-x grid-margin-y">#}
+        {# CARDS #}
+        <div class="grid-x grid-margin-x grid-margin-y align-left">
+            {% for album in albums %}
+                <div class="cell small-12 medium-4 large-3">
+                    <div class="thumbnail card " style="height: 100%; width: 100%;">
+
+                        {% if album.get_cover_photo %}
+                        <div style="height: 200px">
+                            <a href="{% url 'gallery:photo' pk=album.id %}">
+                                <img class="float-center" src="{{ album.get_cover_photo.image.thumbnail.url }}">
+                            </a>
+                        </div>
+                        {% else %}
+                            <img class="float-center" src="https://placehold.it/200x200?text=No photo">
+                        {% endif %}
+                        <h5 class="card-section text-center">
+                            <a class="" href="{% url 'gallery:photo' pk=album.id %}">
+                                {{ album.name|truncatechars:50 }}</a>
+                        </h5>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="float-center">Не найдено</div>
+            {% endfor %}
+        </div>
+
+
+{#    </div>#}
+
+
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>

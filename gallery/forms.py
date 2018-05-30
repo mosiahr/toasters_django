@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import inlineformset_factory
 
+
 from django.utils.translation import ugettext as _
 from .models import Photo, Album
 from company.models import Company
@@ -9,6 +10,7 @@ from company.models import Company
 class PhotoAddForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PhotoAddForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs = {'initial':_('Portfolio')}
         # self.fields['type'].widget.attrs = {"class": 'form-select2'}
         # self.fields['location'].widget.attrs = {"class": 'form-select2'}
         # self.fields['tags'].widget.attrs = {"class": 'form-select2'}
@@ -16,17 +18,13 @@ class PhotoAddForm(forms.ModelForm):
     class Meta:
         model = Photo
         fields = ('name', 'title', 'image', 'album', 'is_cover_photo')
-        # text = 'Hold down "Control", or "Command" on a Mac, to select more than one.'
-        # help_texts = {
-        #     'type': _(text),
-        #     'location': _(text),
-        #     'tags': _(text),
-        # }
 
 
 class AlbumForm(forms.ModelForm):
+    name = forms.CharField(initial=_('Portfolio'))
+
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user')
+        self.user = kwargs.pop('user', None)
         super(AlbumForm, self).__init__(*args, **kwargs)
 
     class Meta:
@@ -59,4 +57,7 @@ PhotoFormSet = inlineformset_factory(
     form=PhotoForm,
     # max_num=30,
     # can_delete=True,
+    # min_num=1,
     )
+
+

@@ -55,11 +55,11 @@ class Album(models.Model):
         try:
             photos = self.get_photo()
             return photos.count()
-        except Exception as e:
-            print(e)
+        except:
+            return 0
 
     get_count_photo.short_description = _("Count")
-
+    
     def delete(self, *args, **kwargs):
         for photo in self.photo_set.all():
             Photo.objects.get(id=photo.id).delete(*args, **kwargs)
@@ -108,3 +108,4 @@ class Photo(models.Model):
     def delete(self, *args, **kwargs):
         self.image.delete(save=False)
         super(Photo, self).delete(*args, **kwargs)
+

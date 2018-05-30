@@ -63,7 +63,6 @@ $(document).ready(function(){
 
     function drawFavorites(data){
         $( "#companyFav" ).empty();
-        console.log(data);
         $( "#companyFav" ).append('<div class="cell grid-x grid-margin-x grid-margin-y align-left">');
 
         for (let key in data){

@@ -1,0 +1,92 @@
+{% extends 'core/base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="grid-x grid-margin-x grid-margin-y">
+        <div class="cell small-9 medium-4 large-4 float-left">
+            <div class="card">
+                <h4 class="card-divider">{% trans "Account Details" %}</h4>
+                <ul class="card-section no-bullet">
+                    {% if user.full_name %}
+                        <li>{{ user.full_name }}</li>
+                    {% endif %}
+                    <li>{{ user.email }}</li>
+                    {% if company %}
+                        <li>{% trans "Company" %}: {{ company.name }}</li>
+                    {% endif %}
+                    <li><a href='{% url "accounts:user-update" %}'>
+                        <i class="fa fa-pencil-alt fa-lg" style="color: darkblue;"></i>&nbsp;
+                        {% trans "Update Account Details" %}</a></li>
+                    <li><a href='{% url "accounts:change_password" %}'>
+                        <i class="fas fa-exchange-alt fa-lg" style="color: blueviolet;"></i>&nbsp;
+                        {% trans "Change Password" %}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class='cell small-9 medium-4 large-4 float-left'>
+            <div class="card">
+                <h4 class="card-divider">{% trans "Your company" %}</h4>
+                <ul class="card-section no-bullet">
+                    {% if user.is_staff %}
+                        <li>
+                            <a href='{% url "admin:company_company_changelist" %}'>{% trans "List of companies" %}</a>
+                        </li>
+                    {% else %}
+                        {% if companies.count > 0 %}
+{#                                                <ul >#}
+                            <li class="subheader ">{% trans "Company" %}: {{ companies.0 }}</li>
+                            <ul class="no-bullet">
+                                <li>
+                                    <a href='{% url "company:company_detail" companies.0.id %}'>{% trans "View company" %}</a>
+                                </li>
+                                <li>
+                                    <a href='{% url "company:company_update" companies.0.id %}'>{% trans "Update company" %}</a>
+                                </li>
+                                <li>
+                                    <a href='{% url "company:company_delete" companies.0.id %}'>{% trans "Delete company" %}</a>
+                                </li>
+                            </ul>
+                            {#                    </ul>#}
+                        {% else %}
+                            <li><a href='{% url "company:company_add" %}'>
+                                <i class="fas fa-plus fa-lg" style="color: green;"></i>&nbsp;
+                                {% trans "Add company" %}</a></li>
+                        {% endif %}
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+        <div class='cell small-9 medium-4 large-4 float-left'>
+            <div class="card">
+                <h4 class="card-divider">{% trans "Gallery" %}</h4>
+                <ul class="card-section no-bullet">
+                    <li><a href='{% url "gallery:photo_add" %}'>
+                        <i class="fas fa-plus fa-lg" style="color: green;"></i>&nbsp;
+                        {% trans "Add photo" %}</a></li>
+                    <li><a href='{% url "gallery:album_add" %}'>
+                        <i class="fas fa-plus fa-lg" style="color: green;"></i>&nbsp;
+                        {% trans "Add album" %}</a></li>
+
+                    <br>
+                    <button class="hollow button success" id="linkAlbumsList" data-open="getGallery">{% trans "Your albums" %}
+                        <span class="badge success">{{ albums.all.count }}</span>
+                    </button>
+
+
+{#                    {% for album in albums %}#}
+{#                        <li><a href='{% url "gallery:album_update" pk=album.id %}'>#}
+{#                            <i class="fas fa-exchange-alt fa-lg" style="color: blueviolet;"></i>&nbsp;{{ album }}</a>#}
+{#                        </li>#}
+{#                    {% endfor %}#}
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

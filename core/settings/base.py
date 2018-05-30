@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     'accounts',
     'tags',
     'company',
-    # 'toast',
     'gallery',
 ]
 

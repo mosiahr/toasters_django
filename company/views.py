@@ -122,7 +122,6 @@ class CompanyListView(PaginationMixin, ListView):
 class CompanyDetailView(DetailView):
     model = Company
 
-
     def get_context_data(self, **kwargs):
         context = super(CompanyDetailView, self).get_context_data(**kwargs)
         albums = Album.objects.filter(company=self.kwargs.get('pk'))
@@ -159,7 +158,6 @@ class CompanyAddView(SuccessMessageMixin,
     def get(self, request):
         if Company.objects.all().filter(user_id=self.request.user.id).exists():
             return redirect(self.success_url)
-        # context = {'form': self.get_form(), 'title': self.title}
         context = {'form': self.get_form(), 'title': self.title}
         return render(request, 'company/company_form.html', context)
 
