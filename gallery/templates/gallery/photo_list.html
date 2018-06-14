@@ -3,7 +3,10 @@
 {% load i18n %}
 
 {% block title %}
-    List of Photos
+    {{ current_album }} | {{ current_company }}
+{% endblock %}
+{% block link %}
+    <link href="{% static 'css/user_card.css' %}" rel="stylesheet"/>
 {% endblock %}
 
 {#{% block header %}#}
@@ -11,87 +14,30 @@
 {#{% endblock %}#}
 
 {% block content %}
-    <div class="grid-x grid-margin-y">
+    <div class="grid-x grid-margin-x">
 
-        {# FORM FILTER #}
-{#        <div class="cell small-12 medium-4 large-3">{% include 'company/include/form_filter.html' %}</div>#}
-
-        {# LIST CARDS #}
+        {# LEFT #}
         <div class="cell row small-12 medium-8 large-9">
             <div class="grid-margin-y">
 
-                {# HEADER #}
-                <h3 class="subheader text-center">
-                    {% if header.location %}{% trans 'City' %}: {{ header.location }}{% endif %}
-                    {% if header.type %}{% trans 'Type' %}: {{ header.type }}{% endif %}
-                    {% if header.price %}{% trans 'Price' %}: {{ header.price }}{% endif %}
-                </h3>
-
-
-                {# CARDS #}
-{#                <div class="grid-x grid-margin-x grid-margin-y align-left">#}
-{#                    {% for photo in photos %}#}
-{#                        <div class="cell small-12 medium-4 large-3">#}
-{#                            <div class="thumbnail card " style="height: 100%; width: 100%;">#}
-{#                                {% if photo.image %}#}
-{#                                <div style="height: 200px">#}
-{#                                    <a href="{% url 'company:company_detail' pk=company.id %}">#}
-{#                                        <img class="float-center" src="{{ photo.image.thumbnail.url }}">#}
-{#                                    </a>#}
-{#                                </div>#}
-{#                                {% endif %}#}
-{#                                <h5 class="card-section text-center">#}
-{#                                    <a class=""#}
-{#                                       href="{% url 'company:company_detail' pk=company.id %}">{{ company.name|truncatechars:50 }}</a>#}
-{#                                    {{ photo.name|truncatechars:50 }}#}
-{#                                    <br>{{ photo.summary|truncatechars:50 }}#}
-{##}
-{#                                    <br>{{ photo.album }}#}
-{#                                </h5>#}
-{#                            </div>#}
-{#                        </div>#}
-{##}
-{##}
-{#                    {% empty %}#}
-{#                        <div class="float-center">Не найдено</div>#}
-{#                    {% endfor %}#}
-{#                </div>#}
-
-                <!-- Show albums -->
-                {% if albums.all.count > 0 %}
-                    <div class="cell grid-x grid-margin-y align-left" >
-                    <h5 class="cell">
-                        <small>{% trans "More albums" %}({% trans "count" %}: {{ albums.all.count }})</small><hr>
+                {#  Show photos #}
+                <div class="cell grid-x align-left">
+                    <h5 class="cell">{{ current_album.name }}
+                        <span class="badge success">{{ photos.all.count }}</span>
+                        <hr>
                     </h5>
-                        {% for album in albums %}
-                            <div class="cell small-12 medium-6 large-3">
-                                <div class="thumbnail">
-                                    <div style="height: 200px">
-                                        <img class="float-center" src="{{ album.get_cover_photo.image.thumbnail.url }}">
-                                        </a>
-                                    </div>
-
-                                    <h5 class="card-section text-center">
-                                        <a class="" href="/company/{{ id }}">{{ album.name }}</a>
-                                    </h5>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-
-
-                <div class="cell grid-x grid-margin-y align-left" >
-                <h5 class="cell">{{ current_album.name }}
-                    <span class="badge success">{{ photos.all.count }}</span><hr>
-                </h5>
                     {% for photo in photos %}
                         <div class="cell small-12 medium-6 large-3">
-                            <div class="thumbnail">
-                                <div style="height: 200px">
-                                    <img class="float-center" src="{{ photo.image.thumbnail.url }}">
-                                    </a>
+                            <div class="portfolio-item thumbnail">
+                                <div class="hover-bg">
+                                    <div style="height: 200px">
+                                        <div class="hover-text">
+                                        <h4>Lorem Ipsum</h4>
+                                    </div>
+                                    <img class="float-center " src="{{ photo.image.thumbnail.url }}">
                                 </div>
+                                </div>
+
                             </div>
                         </div>
                     {% empty %}
@@ -99,9 +45,98 @@
                     {% endfor %}
                 </div>
 
+                {# Current company #}
+                <h5 class="cell">
+
+                <a href="">
+                <img id="avatar" class="thumbnail" src="{{ current_company.avatar.small.url }}">
+                </a>
+
+                    {% trans "Author" %}: {{ current_company }}<hr>
+                </h5>
+                <!-- Show more albums -->
+                <div class="cell grid-x grid-margin-y align-left" >
+                <h5 class="cell">
+                    <small>{% trans "All albums" %}</small>
+                    <span class="badge success"> {{ more_albums|length }}</span><hr>
+                </h5>
+                    {% for album in more_albums %}
+                        <div class="cell small-12 medium-6 large-3">
+                            <div class="thumbnail">
+                                <div style="height: 200px">
+                                    <a href="{% url 'gallery:photo' pk=album.id %}">
+                                    <img class="float-center"
+                                         src="{{ album.get_cover_photo.image.thumbnail.url }}">
+                                    </a>
+                                </div>
+
+                                <h5 class="card-section text-center">
+                                    <a href="{% url 'gallery:photo' pk=album.id %}">
+                                    {{ album.name }}</a>
+                                </h5>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
 
 
             </div>
         </div>
+
+        <!-- RIGHT / Advertising -->
+
+
+
+{#    <!-- User card example #1 -->#}
+{#    <div class="cell small-12 medium-3 large-3 card-user-container">#}
+{##}
+{#  <!--card's image-->#}
+{#  <div class="card-user-avatar">#}
+{#    <img src="{{ current_company.avatar.thumbnail.url }}" alt="" class="user-image">#}
+{#  </div>#}
+{##}
+{#  <!--user info name, bio and location-->#}
+{#  <div class="card-user-bio">#}
+{#    <h4>{{ current_company }}</h4>#}
+{#    <p>{{ current_company }}/p>#}
+{#    <span class="location"><span class="location-icon fa fa-map-marker"></span><span class="location-text">Makkah Al-Mukaramah</span></span>#}
+{#  </div>#}
+{##}
+{#  <!--card's socail icons-->#}
+{#  <div class="card-user-social">#}
+{#    <ul class="menu">#}
+{#      <li class="fa fa-twitter"></li>#}
+{#      <li class="fa fa-dribbble"></li>#}
+{#      <li class="fa fa-instagram"></li>#}
+{#      <li class="fa fa-github"></li>#}
+{#    </ul>#}
+{#  </div>#}
+{##}
+{#  <!--card's follow button-->#}
+{#  <div class="card-user-button">#}
+{#    <a href="#" class="hollow button">FOLLOW</a>#}
+{#  </div>#}
+{#</div>#}
+
+
+
+
+{#        <div class="cell small-12 medium-3 large-3">#}
+{#            <div class="grid-x grid-margin-y">#}
+{#                <div class="cell small-12 medium-12 large-12">#}
+{#                    <img class="thumbnail float-center" src="https://placehold.it/400x500">#}
+{#                </div>#}
+{#                <div class="cell small-12 medium-12 large-12">#}
+{#                    <img class="thumbnail float-center" src="https://placehold.it/400x500">#}
+{#                </div>#}
+{#                <div class="cell small-12 medium-12 large-12">#}
+{#                    <img class="thumbnail float-center" src="https://placehold.it/400x500">#}
+{#                </div>#}
+{#                <div class="cell small-12 medium-12 large-12">#}
+{#                    <img class="thumbnail float-center" src="https://placehold.it/400x500">#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
     </div>
 {% endblock %}

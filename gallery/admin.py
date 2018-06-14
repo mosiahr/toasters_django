@@ -15,6 +15,7 @@ class PhotoInline(admin.TabularInline):
 class AlbumAdmin(admin.ModelAdmin):
     list_display = ['name', 'cover_photo', 'company', 'get_count_photo']
     fields = ('name', 'summary', 'company')
+    list_filter = ('company',)
 
     inlines = [
         PhotoInline,

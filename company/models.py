@@ -73,7 +73,8 @@ class Company(MainAbstractModel):
     avatar = StdImageField(upload_to=UploadToUUID(path='images'),  #'img',
                            variations={
                                'medium': (300, 300),
-                               'thumbnail': {'width': 200, 'height': 200, "crop": True}
+                               'thumbnail': {'width': 200, 'height': 200, "crop": True},
+                               'small': {'width': 100, 'height': 100, "crop": True}
                            },
                            verbose_name=_('Logo'))
 

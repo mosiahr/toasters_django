@@ -58,6 +58,12 @@ class Album(models.Model):
         except:
             return 0
 
+    def is_album_empty(self):
+        if self.get_count_photo() > 0:
+            return False
+        else:
+            return True
+
     get_count_photo.short_description = _("Count")
     
     def delete(self, *args, **kwargs):

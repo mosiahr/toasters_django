@@ -37,8 +37,14 @@ class PhotoListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PhotoListView, self).get_context_data(**kwargs)
         current_album = Album.objects.get(id=self.kwargs['pk'])
-        # context.update({'title': self.title})
-        context.update({'current_album': current_album})
+        current_company = current_album.company
+        more_albums = [album for album in Album.objects.filter(company_id=current_company.id)
+                       if album.is_album_empty() is False]
+        context.update({
+            'current_album': current_album,
+            'current_company': current_company,
+            'more_albums': more_albums,
+        })
         return context
 
     def get_queryset(self):
