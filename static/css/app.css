@@ -1,9 +1,27 @@
-footer{
-  background-color: #b0b0b0;
-  margin-top: 15px;
-  min-height: 5em;
-  padding: 24px;
+@font-face {
+    font-family: OstrichSans-Bold;
+    src: url('/static/ostrich-sans/OstrichSans-Bold.otf');
+}
+@font-face {
+    font-family: ItimCyrillic;
+    src: url('/static/ItimCyrillic.otf');
+}
+/*@font-face {*/
+    /*font-family: OstrichSans-Black;*/
+    /*src: url('/static/ostrich-sans/OstrichSans-Black.otf');*/
+/*}*/
+@font-face {
+    font-family: notperfect;
+    src: url('/static/notperfect.ttf');
+}
 
+footer{
+    background-color: coral;
+    margin-top: 15px;
+    min-height: 5em;
+    padding: 24px;
+    color: white;
+    font-family: ItimCyrillic;
 }
 
 hr{
@@ -283,4 +301,34 @@ hr{
 .hover-bg:hover .hover-text {
 	opacity: 1;
 }
+
+/* Top, Menu*/
+.top-bar, .top-bar ul{
+    background-color: coral;
+}
+.menu {
+    font-family: ItimCyrillic;
+}
+.menu .menu-text{
+    font-size: 36px;
+    font-family: OstrichSans-Bold;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.top-bar-left{
+    color: white;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.top-bar-left a {
+    color: white;
+    font-size: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.menu a:hover{
+    color: #1CDB60;
+}
+
 

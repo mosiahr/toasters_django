@@ -10,7 +10,7 @@
   bottom: 30px;
   right: 50px;
   transition: background-color .3s;
-  z-index: 1000;
+  z-index: 100;
 }
 
 /*#upBtn:hover {*/

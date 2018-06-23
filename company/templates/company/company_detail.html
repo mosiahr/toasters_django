@@ -16,8 +16,32 @@
     {# LIGHTGALLERY #}
 {#    <link type="text/css" rel="stylesheet" href="{% static 'lightgallery.js/dist/css/lightgallery.min.css' %}"/>#}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.9/css/lightgallery.min.css">
+{% endblock %}
 
 
+
+{% block header %}
+<input type="hidden" id="myVar" name="variable" value="{{ company.avatar.url }}">
+<header id="header">
+  <div class="intro">
+    <div class="overlay">
+      <div class="container">
+        <div class="row">
+          <div class="intro-text"> <span>Welcome to</span>
+            <h1>Standout</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipiscing. <br>
+              Duis sed dapibus leo nec ornare diam.</p>
+            <a href="#about" class="btn btn-custom btn-lg page-scroll">Learn More</a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+<!-- NAV COMPANY -->
+{% block nav-company %}
+    {% include 'core/include/nav_company.html' %}
 {% endblock %}
 
 {% block content %}
@@ -144,21 +168,25 @@
                                           <li data-src="{{ photo.image.url }}" data-sub-html=".caption">
                                             <img class="float-center" src="{{ photo.image.thumbnail.url }}">
                                             <div class="caption hide">
-                                                <h4>{% trans 'Album' %}: {{ album }}</h4>
-                                                <h4>{{ photo.name }}</h4>
-                                                <p>{{ photo.title }}</p>
+                                                {% if album %}
+                                                    <h4>{% trans 'Album' %}: {{ album }}</h4>
+                                                {% endif %}
+                                                <h4>{{ photo.name|default_if_none:"" }}</h4>
+                                                <p>{{ photo.title|default_if_none:"" }}</p>
                                             </div>
                                         </li>
                                     {% endfor %}
                                 </ul>
                             </div>
 
-                            <button class="jcarousel-control-prev" type="button">
-                                <i class="fas fa-arrow-circle-left" ></i>
-                            </button>
-                            <button class="jcarousel-control-next" type="button">
-                                <i class="fas fa-arrow-circle-right" ></i>
-                            </button>
+                            {% if album.get_count_photo > 5 %}
+                                <button class="jcarousel-control-prev" type="button">
+                                    <i class="fas fa-arrow-circle-left" ></i>
+                                </button>
+                                <button class="jcarousel-control-next" type="button">
+                                    <i class="fas fa-arrow-circle-right" ></i>
+                                </button>
+                            {% endif %}
 
                             <p class="jcarousel-pagination"></p>
                         </div>

@@ -1,9 +1,17 @@
 $(document).ready(function(){
+
+    var headerImgUrl = $("#myVar").val();
+    // console.log(headerImgUrl);
+    $('.intro').css('background-image', 'url(' + headerImgUrl + ')');
+
+
+
+
     // SELECT 2
     $('.form-select2').select2();
 
     // FAVORITE
-    let addFavorite = $('button#addFavorite');
+    var addFavorite = $('button#addFavorite');
     addFavorite.click(function(event) {
         event.preventDefault();
 
@@ -17,7 +25,7 @@ $(document).ready(function(){
             $(this).find('span:eq( 1 )').removeClass('hide');
         }
 
-        let thisUrl = $(this).attr("data-url");
+        var thisUrl = $(this).attr("data-url");
 
         $.ajax({
                 method: "GET",
@@ -25,7 +33,7 @@ $(document).ready(function(){
                 // data: formData
             })
             .done(function(data) {
-                let count_fav = data['count_fav'];
+                var count_fav = data['count_fav'];
                 if (count_fav > 0){
                     $('#heart-menu>i').addClass('fas fav');
                     $('#count_fav').text(count_fav);
@@ -41,10 +49,10 @@ $(document).ready(function(){
     });
 
     // GET FAVORITES
-    let btnHeart = $('#heart-menu');
+    var btnHeart = $('#heart-menu');
     btnHeart.click(function(event) {
         event.preventDefault();
-        let thisUrl = $(this).attr("data-url");
+        var thisUrl = $(this).attr("data-url");
         console.log(thisUrl);
         $.ajax({
                 method: "GET",
@@ -65,14 +73,14 @@ $(document).ready(function(){
         $( "#companyFav" ).empty();
         $( "#companyFav" ).append('<div class="cell grid-x grid-margin-x grid-margin-y align-left">');
 
-        for (let key in data){
-            let d = {
+        for (var key in data){
+            var d = {
                 id: data[key]['id'],
                 name: data[key]['name'],
                 avatarThumbnail: data[key]['avatar'].replace('jpg', 'thumbnail.jpg')
             }
 
-            let template = [
+            var template = [
                 '<div class="cell small-12 medium-6 large-3">',
                     '<div class="thumbnail">',
 
@@ -93,7 +101,7 @@ $(document).ready(function(){
                 '</div>'
             ].join("\n");
 
-            let html = Mustache.render(template, d);
+            var html = Mustache.render(template, d);
             $( "#companyFav" ).append(html);
         }
         $( "#companyFav" ).append('</div>');

@@ -1,0 +1,163 @@
+{#{% load i18n %}#}
+{##}
+{# MENU #}
+{#<div data-sticky-container>#}
+{#<div class="small-12 sticky" data-sticky data-options="marginTop: 0;" style="width:100%">#}
+{#<div class="title-bar show-for-small-only" data-responsive-toggle="top-menu">#}
+{#    <button class="menu-icon" type="button" data-toggle></button>#}
+{#    <div class="title-bar-title" data-toggle>Menu</div>#}
+{#</div>#}
+{##}
+{##}
+{##}
+{#<div class="top-bar row" id="top-menu">#}
+{#    <div class="top-bar-left">#}
+{#        <ul class="dropdown vertical medium-horizontal menu">#}
+{#            <li class="menu-text">TOASTERS</li>#}
+            {#                <li class="has-submenu">#}
+            {#                    <a href="#">One</a>#}
+            {#                    <ul class="submenu menu vertical" data-submenu>#}
+            {#                        <li><a href="#">One</a></li>#}
+            {#                        <li><a href="#">Two</a></li>#}
+            {#                        <li><a href="#">Three</a></li>#}
+            {#                    </ul>#}
+            {#                </li>#}
+{##}
+{#            <li><a href="{% url 'company:companies' %}">Companies</a></li>#}
+{#            <li><a href="{% url 'gallery:albums' %}">Gallery</a></li>#}
+            {#                <li><a href="{% url 'toast:toasters' %}">Toasters</a></li>#}
+            {#                <li><a href="{% url 'toast:tags' %}">Tags</a></li>#}
+{#        </ul>#}
+{#    </div>#}
+{##}
+{#    <div class="top-bar-left">#}
+{#        <ul class="medium-horizontal menu">#}
+{#            <li><a href="{% url 'company:companies' %}">Companies</a></li>#}
+{#            <li><a href="{% url 'gallery:albums' %}">Gallery</a></li>#}
+{#            <li><a href="#">Blog</a></li>#}
+{#            <li><a href="#">About</a></li>#}
+{#        </ul>#}
+{#    </div>#}
+{##}
+{#    <div class="top-bar-right">#}
+{#        <ul class="dropdown vertical medium-horizontal menu">#}
+{##}
+{#            <li><input type="search" placeholder={% trans "Search" %}></li>#}
+{#            <li><a class="button small">#}
+{#                <i class="fas fa-search fa-lg"></i>&nbsp{% trans "Search" %}</a></li>#}
+{##}
+{#            <li><a id="heart-menu" class="hollow alert button small" data-url="{% url 'api_company:company_list' %}">#}
+{#                {% if cnt_fav > 0 %}#}
+{#                    <i class="far fa-heart fa-lg fas fav"></i>#}
+{#                {% else %}#}
+{#                    <i class="far fa-heart fa-lg"></i>#}
+{#                {% endif %}#}
+{#                <span id="count_fav">#}
+{#                    {% if cnt_fav %}{{ cnt_fav }}{% endif %}#}
+{#                </span>#}
+{#                {% trans "Favorites" %}</a></li>#}
+{##}
+{#        <p><button class="button" data-open="exampleModal1">Click me for a modal</button></p>#}
+{##}
+{##}
+{#            {% if user.is_authenticated %}#}
+{#                {% if user.full_name != '' and user.full_name != None %}#}
+{#                    <li><a class="has-tip bottom" href="{% url 'accounts:home' %}" data-tooltip aria-haspopup="true"#}
+{#                           data-disable-hover="false" tabindex="4" title="{% trans 'Account' %}">#}
+{#                             <i class="far fa-user fa-lg"></i>&nbsp;{{ user.full_name|truncatechars:20 }}</a></li>#}
+{#                {% else %}#}
+{#                    <li><a class="has-tip bottom" href="{% url 'accounts:home' %}" data-tooltip aria-haspopup="true"#}
+{#                           data-disable-hover="false" tabindex="4" title="{% trans 'Account' %}">#}
+{#                                 <i class="far fa-user fa-lg"></i>&nbsp;{{ user|truncatechars:20 }}</a></li>#}
+{#                {% endif %}#}
+{#                <li><a class="icon-button has-tip bottom" href="{% url 'accounts:logout' %}" data-tooltip#}
+{#                       aria-haspopup="true" data-disable-hover="false" tabindex="4" title="{% trans 'Log out' %}">#}
+{#                            <i class="fas fa-sign-out-alt fa-lg" style="color: blueviolet"></i></a></li>#}
+{#            {% else %}#}
+{#                <li><a class="icon-button has-tip bottom right" href="{% url 'accounts:register' %}" data-tooltip#}
+{#                       aria-haspopup="true" data-disable-hover="false" tabindex="1"#}
+{#                       title="{% trans 'Registration for specialists' %}" data-alignment="right">#}
+{#                            <i class="fas fa-user-plus fa-lg" style="color: #22bb5b"></i></a></li>#}
+{#                <li class=""><a class="icon-button has-tip bottom" href="{% url 'accounts:login' %}" data-tooltip#}
+{#                                aria-haspopup="true" data-disable-hover="false" tabindex="4"#}
+{#                                title="{% trans "Log in" %}">#}
+{#                            <i class="fas fa-sign-in-alt fa-lg" style="color: blueviolet"></i></a></li>#}
+{#            {% endif %}#}
+{#        </ul>#}
+{#    </div>#}
+{#</div>#}
+{#</div></div>#}
+{#<div class="row">#}
+{#    <nav aria-label="You are here:" role="navigation">#}
+{#        <ul class="row breadcrumbs">#}
+{#            <li><a href="#">Home</a></li>#}
+{#            <li><a href="#">Features</a></li>#}
+{#            <li class="disabled">Gene Splicing</li>#}
+{#            <li>#}
+{#                <span class="show-for-sr">Current: </span> Cloning#}
+{#            </li>#}
+{#        </ul>#}
+{#    </nav>#}
+{#</div>#}
+{##}
+{#<br>#}
+
+
+{#<section class="page-section sub-nav light">#}
+{#    <div class="small-12 columns text-center sub-nav-links">#}
+{#        <ul class="sub-nav-scroll filter-dropdown-links page-section-sub-nav">#}
+{#            <li class="page-section-sub-nav-link">#}
+{#                <a class="nav-text-link" data-toggle="services-dropdown"><span class="dropdown-arrow">#}
+{#All Services#}
+{#</span></a>#}
+{#                <div class="dropdown-pane" id="services-dropdown" data-dropdown data-close-on-click="true">#}
+{#                    <ul class="subnav-dropdown-links">#}
+{#                        <li class="filter-link-container">#}
+{#                            <a href="/work" class="filter-text-link">All Services</a>#}
+{#                        </li>#}
+{#                        <li class="filter-link-container"><a class="filter-text-link"#}
+{#                                                             href="/work/services/web-applications">Web Applications</a>#}
+{#                        </li>#}
+{#                        <li class="filter-link-container"><a class="filter-text-link"#}
+{#                                                             href="/work/services/ecommerce-sites">eCommerce Sites</a>#}
+{#                        </li>#}
+{#                        <li class="filter-link-container"><a class="filter-text-link" href="/work/services/web-portals">Web#}
+{#                            Portals</a></li>#}
+{#                        <li class="filter-link-container"><a class="filter-text-link" href="/work/services/mobile-apps">Mobile#}
+{#                            Apps</a></li>#}
+{#                        <li class="filter-link-container"><a class="filter-text-link"#}
+{#                                                             href="/work/services/user-advocacy">User Advocacy</a></li>#}
+{#                        <li class="filter-link-container"><a class="filter-text-link"#}
+{#                                                             href="/work/services/emerging-technologies">Emerging#}
+{#                            Technologies</a></li>#}
+{#                        <li class="filter-link-container"><a class="filter-text-link"#}
+{#                                                             href="/work/services/email-design-development-and-strategy">Email#}
+{#                            Design Systems</a></li>#}
+{#                        <li class="filter-link-container"><a class="filter-text-link"#}
+{#                                                             href="/work/services/major-and-data-driven-websites">Data#}
+{#                            Driven Websites</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </li>#}
+{#            <li class="page-section-sub-nav-link">#}
+{#                <a href="/work/customers" class="nav-text-link">Customers</a>#}
+{#            </li>#}
+{#        </ul>#}
+{#    </div>#}
+{#</section>#}
+
+
+<div data-sticky-container>
+<div class="small-12 sticky" data-sticky  data-stick-to="bottom" data-top-anchor="2"  style="width:100%">
+
+<section class="sticky-shrinknav-header">
+{#  <h1 class="sticky-shrinknav-header-title">sticky-shrinknav</h1>#}
+  <ul class="menu align-center">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</section>
+
+</div></div>
