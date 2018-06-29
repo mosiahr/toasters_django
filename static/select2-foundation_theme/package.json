@@ -1,0 +1,44 @@
+{
+  "_from": "git+https://github.com/zflat/select2-foundation.git",
+  "_id": "select2-foundation_theme@0.0.2",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/select2-foundation_theme",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/zflat/select2-foundation.git",
+    "rawSpec": "https://github.com/zflat/select2-foundation.git",
+    "saveSpec": "git+https://github.com/zflat/select2-foundation.git",
+    "fetchSpec": "https://github.com/zflat/select2-foundation.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/zflat/select2-foundation.git#b4ef957ffba00f514f44fcb78b01a194215ad173",
+  "_spec": "https://github.com/zflat/select2-foundation.git",
+  "_where": "/home/mosia/dev/templates/mytemplates/proba-selct2-founation",
+  "author": {
+    "name": "William Wedler"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^0.6.1"
+  },
+  "deprecated": false,
+  "description": "Select2 Foundation Theme",
+  "devDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "engines": {
+    "node": ">=0.8.15"
+  },
+  "keywords": [
+    "Select2-Foundation-Theme"
+  ],
+  "name": "select2-foundation_theme",
+  "version": "0.0.2"
+}

@@ -5,49 +5,53 @@
     List of companies
 {% endblock %}
 
-{#{% block header %}#}
+{% block header %}
+{#    <div class="header-company-list align-center">#}
+{#        <h3 class="text-center">#}
+{#            {% if header.type %}{% trans 'Type' %}: {{ header.type }}{% endif %}#}
+{#            {% if header.location %}{% trans 'City' %}: {{ header.location }}{% endif %}#}
+{#            {% if header.price %}{% trans 'Price' %}: {{ header.price }}{% endif %}#}
+{#        </h3>#}
+{##}
+{#    </div>#}
+
+
+<!-- FILTER -->
+{% include 'company/include/form_filter.html' %}
 {#    <h2 class="subheader">Тамада и ведущий на свадьбу{% if header %}: {{ header }}{% endif %}</h2>#}
-{#{% endblock %}#}
+{% endblock %}
 
 {% block content %}
     <div class="grid-x grid-margin-y">
-
-        {# FORM FILTER #}
-        <div class="cell small-12 medium-4 large-3">{% include 'company/include/form_filter.html' %}</div>
-
+        {# HEADER #}
+        <div class="cell small-12 medium-6 float-center">
+            <h3 class="text-center">{% if header.type %}{{ header.type }}{% endif %}</h3>
+            <h3 class="text-center">{% if header.location %}{{ header.location }}{% endif %}</h3>
+            <h3 class="text-center">{% if header.price %}{{ header.price }}{% endif %}</h3>
+        </div>
         {# LIST CARDS #}
-        <div class="cell row small-12 medium-8 large-9">
+        <div class="cell row small-12 medium-12 large-12">
             <div class="grid-margin-y">
 
-                {# HEADER #}
-                <h3 class="subheader text-center">
-                    {% if header.location %}{% trans 'City' %}: {{ header.location }}{% endif %}
-                    {% if header.type %}{% trans 'Type' %}: {{ header.type }}{% endif %}
-                    {% if header.price %}{% trans 'Price' %}: {{ header.price }}{% endif %}
-                </h3>
-
                 {# CARDS #}
-                <div class="grid-x grid-margin-x grid-margin-y align-left">
+                <div class="grid-container full">
+                    <div class="grid-x grid-margin-x grid-margin-y">
                     {% for company in companies %}
-                        <div class="cell small-12 medium-6 large-3">
-                            <div class="thumbnail " style="height: 100%; width: 100%;">
-                                {#                                {% if company.avatar_thumbnail %}#}
-                                <div style="height: 200px">
-                                    <a href="{% url 'company:company_detail' pk=company.id %}">
-                                        {# <img src="{{ MEDIA_URL }}{{ company.img }}" alt="{{ company.name }}">#}
+                        <div class="cell small-6 medium-4 large-3 ">
+                            <div class="float-center">
+{#                                <div class=" thumbnail ">#}
+                                    <a class="thumbnail-new" href="{% url 'company:company_detail' pk=company.id %}">
                                         <img class="float-center " src="{{ company.avatar.thumbnail.url }}">
+                                        <h5 class="card-section text-center">{{ company.name|truncatechars:50 }}</h5>
                                     </a>
-                                </div>
-                                {#                                {% endif %}#}
-                                <h5 class="card-section text-center">
-                                    <a class=""
-                                       href="{% url 'company:company_detail' pk=company.id %}">{{ company.name|truncatechars:50 }}</a>
-                                </h5>
+
+{#                                </div>#}
                             </div>
                         </div>
                     {% empty %}
                         <div class="float-center">Не найдено</div>
                     {% endfor %}
+                    </div>
                 </div>
 
                 {# PAGINATION #}

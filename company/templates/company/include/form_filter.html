@@ -1,16 +1,12 @@
 {% load i18n %}
-<div class="row">
-<div class="callout">
-    <form action="" method="get">
-        {% for field in form %}
-                <label for="{{ field.name }}">
-                    {{ field.label|safe }}
-    {#                        <i class="form-filter-city"></i> {{ field.label }}#}
-                </label>
-    {#            <label for="{{ field.name }}">{{ field.label|safe }}</label>#}
-                {{ field }}
-        {% endfor %}
-        <input class="button secondary small" type="submit" value={% trans "Show" %} />
-    </form>
-</div>
+<div class="align-center" id="form-filter">
+<form action="" method="get">
+    {% for field in form %}
+        <label for="{{ field.name }}">{{ field.label|safe }}</label>
+        {{ field }}
+    {% endfor %}
+    <button class="input-group-button hollow button expanded" type="submit">
+        {% trans "Search" %}
+    </button>
+</form>
 </div>

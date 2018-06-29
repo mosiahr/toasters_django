@@ -61,7 +61,7 @@ class Price(MainAbstractModel):
 class Company(MainAbstractModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=140, unique=False, verbose_name=_('Name'))
-    type = models.ManyToManyField(TypeCompany, verbose_name=_('Type'))
+    type = models.ForeignKey(TypeCompany, verbose_name=_('Type'))
     address = models.CharField(max_length=140, verbose_name=_('Address'), blank=True)
     email = models.EmailField(blank=True, verbose_name=_('email'))
     phone = models.CharField(max_length=50, verbose_name=_('Phone'), blank=True)
@@ -85,8 +85,8 @@ class Company(MainAbstractModel):
     def get_locations(self):
         return ", \n".join([l.name for l in self.location.all()])
 
-    def get_types(self):
-        return ", \n".join([t.name for t in self.type.all()])
+    # def get_types(self):
+    #     return ", \n".join([t.name for t in self.type.all()])
 
     def get_absolute_url(self):
         return reverse('company:company_detail', args=[str(self.id)])

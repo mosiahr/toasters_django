@@ -63,7 +63,7 @@ CompanyForm = select2_modelform(Company, attrs={'width': '250px'})
 class CompanyAdmin(admin.ModelAdmin):
     form = CompanyForm
     # form = CompanyAddForm
-    list_display = ['name', 'publish', 'user', 'get_types', 'get_locations', 'created']
+    list_display = ['name', 'publish', 'user', 'type', 'get_locations', 'created']
     list_filter = ('user', 'type', 'location', 'price')
     # readonly_fields = ('user',)
     fields = ('name', 'type', 'address', 'email',

@@ -20,7 +20,7 @@
 
     {# SELECT 2 #}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <link rel="stylesheet" href="{% static 'select2-foundation_theme/dist/select2-foundation-theme.css' %}">
 
     {# FOTORAMA #}
 {#    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->#}
@@ -61,39 +61,19 @@
 
 <!-- HEADER -->
 {% block header %}{% endblock %}
-
-{% block nav-company %}{% endblock %}
-
-
+{#{% block nav-company %}{% endblock %}#}
 
 
 <!-- CONTENT -->
-<div class="row">
+<div class="row content">
     {% include 'core/include/messages.html' %}
     {% block content %}{% endblock %}
 </div>
 
 <!-- FOOTER -->
-<footer style="visibility:hidden;">
-    <div class="grid-x grid-margin-x">
-        <div class="cell large-3 grid-x grid-y grid-margin-y">
-            <a class="" href="#">О ПРОЕКТЕ</a>
-            <a class="" href="#">About</a>
-            <a class="" href="#">Contact</a>
-            <a class="" href="{% url 'accounts:register' %}">
-                {% trans 'Registration for specialists' %}</a>
-            <p>Copyright 2018</p>
-        </div>
-        <div class="cell large-3 grid-x grid-y grid-margin-y">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-            <a class="" href="{% url 'accounts:register' %}">
-                {% trans 'Registration for specialists'|upper %}</a>
-            <p>Copyright 2018</p>
-        </div>
-    </div>
-</footer>
+{% include 'core/include/footer.html' %}
+
+
 
 <!-- BUTTON UP -->
 <button id="upBtn" class="button warning" type="button" data-tooltip tabindex="1"
@@ -135,6 +115,9 @@
 <!-- Jssor Slider Begin -->
 {#<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>#}
 {#<script type="text/javascript" src="{% static 'jssor.slider.devpack/js/jssor.slider.min.js' %}"></script>#}
+
+<!-- SELECT 2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 </body>

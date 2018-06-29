@@ -4,11 +4,54 @@ $(document).ready(function(){
     // console.log(headerImgUrl);
     $('.intro').css('background-image', 'url(' + headerImgUrl + ')');
 
-
-
-
     // SELECT 2
-    $('.form-select2').select2();
+    $('.form-select2').select2({
+        // adaptContainerCssClass: false,
+        // adaptDropdownCssClass: false,
+        // allowClear: true,
+        // containerCss: true,
+        // dataAdapter: false,
+        // debug: true,
+        // dropdownAutoWidth: true,
+        theme: "foundation",
+        // theme: "classic",
+        // selectOnClose: true,
+        allowClear: true,
+        // placeholder: 'This is my placeholder',
+        // minimumResultsForSearch: Infinity,  //непоказ. строку поиска
+    });
+
+    $('.form-select2-type').select2({
+        allowClear: true,
+        theme: "foundation",
+        placeholder: 'Выбирете категорию',
+        minimumResultsForSearch: Infinity,  //непоказ. строку поиска
+    });
+
+    $('.form-select2-city').select2({
+        allowClear: true,
+        theme: "foundation",
+        placeholder: 'Выбирете город',
+        language: {
+            noResults: function (params) {
+              return "Результатов не найдено";
+            }
+        }
+    });
+
+    $('.form-select2-price').select2({
+        allowClear: true,
+        theme: "foundation",
+        placeholder: 'Выбирете стоимость',
+        minimumResultsForSearch: Infinity,  //непоказ. строку поиска
+    });
+
+    // $('#form-filter').on('select2:open', function (e) {
+    //     $('html, body').css({
+    //         overflow: 'hidden',
+    //         // height: '100%',
+    //     });
+    // });
 
     // FAVORITE
     var addFavorite = $('button#addFavorite');

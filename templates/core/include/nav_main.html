@@ -2,8 +2,7 @@
 
 {# MENU #}
 <div data-sticky-container>
-<div class="small-12 sticky" data-sticky data-options="marginTop: 0;" style="width:100%"
-    data-top-anchor="1" data-btm-anchor="header:bottom">
+<div class="small-12 sticky" data-sticky data-options="marginTop: 0;" style="width:100%">
 <div class="title-bar show-for-small-only" data-responsive-toggle="top-menu">
     <button class="menu-icon" type="button" data-toggle></button>
     <div class="title-bar-title" data-toggle>Menu</div>
@@ -11,28 +10,19 @@
 
 <div class="top-bar row" id="top-menu">
     <div class="top-bar-left">
-        <ul class="dropdown vertical medium-horizontal menu">
-            <li class="menu-text">TOASTERS</li>
-            {#                <li class="has-submenu">#}
-            {#                    <a href="#">One</a>#}
-            {#                    <ul class="submenu menu vertical" data-submenu>#}
-            {#                        <li><a href="#">One</a></li>#}
-            {#                        <li><a href="#">Two</a></li>#}
-            {#                        <li><a href="#">Three</a></li>#}
-            {#                    </ul>#}
-            {#                </li>#}
-
-{#            <li><a href="{% url 'company:companies' %}">Companies</a></li>#}
-{#            <li><a href="{% url 'gallery:albums' %}">Gallery</a></li>#}
-            {#                <li><a href="{% url 'toast:toasters' %}">Toasters</a></li>#}
-            {#                <li><a href="{% url 'toast:tags' %}">Tags</a></li>#}
+        <ul class="vertical medium-horizontal menu">
+            <li class="menu-text"><a href="{% url 'company:companies' %}">TOASTERS</a></li>
         </ul>
     </div>
 
     <div class="top-bar-left">
         <ul class="medium-horizontal menu">
-            <li><a href="{% url 'company:companies' %}">{% trans 'Companies' %}</a></li>
-            <li><a href="{% url 'gallery:albums' %}">{% trans 'Gallery' %}</a></li>
+
+            <li class="{% if request.resolver_match.view_name == 'company:companies' %}active-menu{% endif %}">
+                <a href="{% url 'company:companies' %}">{% trans 'Companies' %}</a></li>
+            <li class="{% if request.resolver_match.view_name == 'gallery:albums' %}active-menu{% endif %}">
+                <a href="{% url 'gallery:albums' %}">{% trans 'Gallery' %}</a></li>
+{#            <li><a href="{% url 'gallery:albums' %}">{% trans 'Gallery' %}</a></li>#}
             <li><a href="#">{% trans 'Blog' %}</a></li>
             <li><a href="#">{% trans 'About' %}</a></li>
         </ul>

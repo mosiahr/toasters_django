@@ -1,0 +1,24 @@
+{% load i18n %}
+<footer style="visibility:hidden;">
+    <div class="grid-x grid-margin-x grid-margin-y">
+        <div class="cell small-12 medium-3 large-2 footer-logo">
+            <a class="" href="{% url 'company:companies' %}">TOASTERS</a>
+        </div>
+        <div class="cell small-12 medium-3 large-3 grid-x grid-y grid-margin-y">
+            <a class="" href="#">О ПРОЕКТЕ</a>
+            <a class="" href="#">About</a>
+            <a class="" href="#">Contact</a>
+            <a class="" href="{% url 'accounts:register' %}">
+                {% trans 'Registration for specialists' %}</a>
+            <p>Copyright 2018</p>
+        </div>
+        <div class="cell small-12 medium-3 large-3 grid-x grid-y grid-margin-y">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a class="" href="{% url 'accounts:register' %}">
+                {% trans 'Registration for specialists'|upper %}</a>
+            <p>Copyright 2018</p>
+        </div>
+    </div>
+</footer>
