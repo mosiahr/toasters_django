@@ -1,12 +1,18 @@
+{% load staticfiles %}
 {% load i18n %}
-<div class="align-center" id="form-filter">
-<form action="" method="get">
-    {% for field in form %}
-        <label for="{{ field.name }}">{{ field.label|safe }}</label>
-        {{ field }}
-    {% endfor %}
-    <button class="input-group-button hollow button expanded" type="submit">
-        {% trans "Search" %}
-    </button>
-</form>
+<div class=" align-center" id="form-filter">
+
+{#    <img class="" src="{% static 'img/man-on-one-knee-3075387_960_720_a.png' %}" alt="">#}
+
+
+    <form class="" action="" method="get">
+
+        {% for field in form %}
+            <label for="{{ field.name }}">{{ field.label|safe }}</label>
+            {{ field }}
+        {% endfor %}
+        <button class="input-group-button hollow button expanded" type="submit">
+            {% trans "Search" %}
+        </button>
+    </form>
 </div>

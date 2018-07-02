@@ -235,4 +235,5 @@ GRAPH_MODELS = {
   'group_models': True,
 }
 
+# JPEG_QUALITY = 95
 

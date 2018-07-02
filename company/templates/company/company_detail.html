@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 
-{% block title %}{{ company.name }}{% endblock %}
+{% block title %}{{ company.get_short_name }}{% endblock %}
 
 {% block link %}
     {# SLICK #}

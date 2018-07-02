@@ -23,7 +23,7 @@ def set_default_name(pk, name=_('Portfolio')):
 
 class Album(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=70, verbose_name=_('Name'))
+    name = models.CharField(max_length=70, verbose_name=_('Name'), default=_('Portfolio'))
     # slug = models.SlugField()
     summary = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)

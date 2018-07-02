@@ -117,9 +117,13 @@ $(document).ready(function(){
         $( "#companyFav" ).append('<div class="cell grid-x grid-margin-x grid-margin-y align-left">');
 
         for (var key in data){
+            var name = data[key]['name'];
+            if (name.length>25){
+                name = name.slice(0, 25) + '...';
+            }
             var d = {
                 id: data[key]['id'],
-                name: data[key]['name'],
+                name: name,
                 avatarThumbnail: data[key]['avatar'].replace('jpg', 'thumbnail.jpg')
             }
 

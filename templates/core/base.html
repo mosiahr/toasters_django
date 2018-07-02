@@ -3,15 +3,19 @@
 <!doctype html>
 {#<html class="no-js" lang="en">#}
 <head>
-    <meta charset="utf-8"/>
-{#    <meta http-equiv="x-ua-compatible" content="ie=edge">#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>#}
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    {# Setting the viewport to make your website look good on all devices #}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{% block title %}{% endblock %} | TOASTERS</title>
 {#    {% block extrahead %}{% endblock %}#}
 
     {# FOUNDATION #}
 {#    <link rel="stylesheet" href="{% static 'foundation-6.4.2-complete/css/foundation.min.css' %}">#}
-    <link rel="stylesheet" href="{% static 'foundation-sites/dist/css/foundation.css' %}">
+    <link rel="stylesheet" href="{% static 'foundation-sites/dist/css/foundation.min.css' %}">
+{#    <link rel="stylesheet" href="{% static 'foundation-sites/dist/css/foundation-prototype.css' %}">#}
+{#    <link rel="stylesheet" href="{% static 'foundation-sites/dist/css/foundation-float.css' %}">#}
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
 
     {###  FONT  ###}
@@ -76,7 +80,7 @@
 
 
 <!-- BUTTON UP -->
-<button id="upBtn" class="button warning" type="button" data-tooltip tabindex="1"
+<button id="upBtn" class="button" type="button" data-tooltip tabindex="1"
         title="{% trans 'Back to top' %}" data-position="left" data-alignment="center">
     <i class="fas fa-chevron-up" style="font-size:2em; color:whitesmoke"></i>
 </button>

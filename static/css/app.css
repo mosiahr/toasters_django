@@ -318,9 +318,17 @@ hr{
 }
 
 .sticky-container {
-    z-index: 1061;   // .select2-dropdown z-index: 1051 // выпадающий список поверх .sticky-container
+    z-index: 1061;   /* .select2-dropdown z-index: 1051 // выпадающий список поверх .sticky-container */
 }
-
+.lg-backdrop{
+    z-index: 1070;   /* light gallery поверх sticky-container */
+}
+.lg-outer{
+    z-index: 1071;   /* light gallery поверх sticky-container */
+}
+.reveal-overlay {
+    z-index: 1081;   /* modal favorites  */
+}
 
 /*CARD*/
 .thumbnail-new {
@@ -355,12 +363,150 @@ a.thumbnail-new image {
             box-shadow: none;
 }
 
-.card-user-container:hover {
+/*.card-user-container:hover {*/
     /*-moz-transform: scale(1.05); !* Для Firefox *!*/
     /*-ms-transform: scale(1.05); !* Для IE *!*/
     /*-webkit-transform: scale(1.05); !* Для Safari, Chrome, iOS *!*/
     /*-o-transform: scale(1.05); !* Для Opera *!*/
     /*transform: scale(1.05);*/
 
+/*}*/
+
+/*.company-card {*/
+    /*display: flex;*/
+    /*display: -moz-flex;*/
+    /*display: -webkit-flex;*/
+    /*display: -ms-flex;*/
+    /*display: -webkit-box;*/
+
+    /*flex-flow: row wrap;*/
+    /*!*flex-wrap: wrap;*!*/
+    /*align-content: center;*/
+    /*!*justify-content: center;*!*/
+
+    /*border: 1px solid black;*/
+/*}*/
+/*.company-card-img{*/
+    /*width: 200px;*/
+/*}*/
+
+/*.company-card-name {*/
+    /*flex: 1;*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*min-width: 0;*/
+/*}*/
+/*.company-card-description {*/
+    /*!*flex: 1;*!*/
+    /*white-space: normal;*/
+    /*!*overflow: hidden;*!*/
+    /*!*text-overflow: ellipsis;*!*/
+    /*!*min-width: 0;*!*/
+/*}*/
+
+
+
+
+/*CARD*/
+.card-companies {
+    display: grid;
+    grid-template-columns: 100%;
+    /*grid-template-columns: 200px 1fr 200px;*/
+    /*grid-template-rows: 100px auto 100px;*/
+    border: 1px solid red;
 }
+.card-company-image {
+    grid-area: card-company-image;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.card-company-image img{
+    width: 100%;
+}
+
+.card-company-header {
+    grid-area: card-company-header;
+    /*background-color: dimgrey;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*min-width: 0;*/
+}
+
+.card-company-type {
+    grid-area: card-company-type;
+    /*background-color: grey;*/
+}
+.card-company-location {
+    grid-area: card-company-location;
+    /*background-color: #99ffff;*/
+}
+.card-company-price {
+    grid-area: card-company-price;
+}
+
+.card-company {
+    display: grid;
+    /*grid-gap: 10px;    !* вместо padding margin *!*/
+    grid-column-gap: 10px;
+    /*grid-row-gap: 5px;*/
+    grid-template-areas:
+            "card-company-image card-company-header "
+            "card-company-image card-company-type "
+            "card-company-image card-company-location"
+            "card-company-image card-company-price";
+
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto auto auto auto;
+    /*grid-template-rows: repeat(minmax(30px, 50px));*/
+    /*grid-auto-rows: 50px;*/
+
+    margin: 10px;
+    padding: 5px;
+    /*background: #000;*/
+    /*color: #fff;*/
+    /*border-radius: 5px;*/
+    border: 1px solid coral;
+}
+
+@media screen and (max-width: 480px) {
+    .card-companies{
+        grid-template-columns: 1fr;
+    }
+    .card-company{
+        grid-template-areas:
+            "card-company-image"
+            "card-company-header"
+            "card-company-type"
+            "card-company-location"
+            "card-company-price";
+
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(5, auto);
+        /*grid-template-rows: auto auto auto auto auto;*/
+        /*padding: 5px;*/
+        grid-gap: 10px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 640px) {
+    .card-companies{
+        grid-template-columns: 1fr 1fr;
+    }
+    .card-company{
+        grid-template-areas:
+            "card-company-image"
+            "card-company-header"
+            "card-company-type"
+            "card-company-location"
+            "card-company-price";
+
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(5, auto);
+        /*grid-template-rows: auto auto auto auto auto;*/
+        /*padding: 5px;*/
+        grid-gap: 10px;
+    }
+}
+
 

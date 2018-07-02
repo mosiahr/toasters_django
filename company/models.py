@@ -78,9 +78,14 @@ class Company(MainAbstractModel):
                            },
                            verbose_name=_('Logo'))
 
-    location = models.ManyToManyField(Location, verbose_name=_('City'), blank=True)
+    location = models.ManyToManyField(Location, verbose_name=_('City'))
     tags = models.ManyToManyField(Tag, verbose_name=_('Tags'), blank=True)
     price = models.ForeignKey(Price, verbose_name=_('Price'), on_delete=models.CASCADE)
+
+    def get_short_name(self, short_len=25):
+        if self.name.__len__() > short_len:
+            return '{}...'.format(self.name[:short_len])
+        return self.name
 
     def get_locations(self):
         return ", \n".join([l.name for l in self.location.all()])
