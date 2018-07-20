@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 
 from .views import (
-    AccountHomeView,
+    AccountDashboardView,
     AccountActivateView,
     LoginView,
     RegisterView,
@@ -12,7 +12,7 @@ from .views import (
 )
 
 urlpatterns = [
-    url(r'^$', AccountHomeView.as_view(), name='home'),
+    url(r'^dashboard/$', AccountDashboardView.as_view(), name='dashboard'),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^register/$', RegisterView.as_view(), name='register'),

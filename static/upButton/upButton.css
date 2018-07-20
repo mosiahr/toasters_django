@@ -16,12 +16,9 @@
     background-color: coral;
 }
 
-
-/*#upBtn::after {*/
-  /*font-weight: normal;*/
-  /*font-style: normal;*/
-  /*font-size: 2em;*/
-  /*line-height: 50px;*/
-  /*color: #fff;*/
-/*}*/
+@media screen and (max-width: 640px) {
+    #upBtn {
+        right: 15px;
+    }
+}
 

@@ -7,17 +7,39 @@
 
 {% block content %}
     <div class="grid-x">
-        <div class="cell small-9 medium-5 large-4 float-center">
+        <div class="cell small-12 medium-5 large-4 float-center">
             <div class="card">
                 <div class="card-divider">
                     <h4>{{ title }}</h4>
                 </div>
                 <div class="card-section">
-                    <form action="" method="post">{% csrf_token %}
-                        {{ form }}
-                        <br>
-                        <br>
-                        <input class="button success small expanded" type="submit" value="{{ title }}"/>
+                    <form data-abide novalidate action="." method="post">{% csrf_token %}
+{#                        {{ form }}#}
+{#                        <button class="button success small expanded" type="submit" value="{{ title }}">{{ title }}</button>#}
+
+
+                        {% for error in form.non_field_errors %}
+                            <div class="alert callout">
+                                {{ error|escape }}
+                            </div>
+                        {% endfor %}
+                        <div>
+                            {{ form.email.errors }}
+                            {{ form.email.label_tag }} {{ form.email }}
+                        </div>
+                        <div>
+                            {{ form.password1.errors }}
+                            {{ form.password1.label_tag }} {{ form.password1 }}
+                            <div class="help-text">{{ form.password1.help_text|safe }}</div>
+                        </div>
+                        <div>
+                            {{ form.password2.errors }}
+                            {{ form.password2.label_tag }} {{ form.password2 }}
+                            <p class="help-text">{{ form.password2.help_text }}</p>
+                        </div>
+                        <button class="button success small expanded" type="submit" value="{{ title }}">{{ title }}</button>
+
+
                     </form>
                 </div>
             </div>

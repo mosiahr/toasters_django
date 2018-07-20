@@ -2,6 +2,7 @@ from django.shortcuts import render,  redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import views
 from django.urls import reverse
+from django.core.urlresolvers import reverse_lazy
 from django.contrib import auth
 from django.contrib.auth.forms import PasswordChangeForm
 
@@ -30,14 +31,14 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-class AccountHomeView(LoginRequiredMixin, DetailView):
+class AccountDashboardView(LoginRequiredMixin, DetailView):
     template_name = 'accounts/home.html'
 
     def get_object(self, queryset=None):
         return self.request.user
 
     def get_context_data(self, **kwargs):
-        ctx = super(AccountHomeView, self).get_context_data(**kwargs)
+        ctx = super(AccountDashboardView, self).get_context_data(**kwargs)
         try:
             ctx['companies'] = Company.objects.filter(user_id=self.get_object())
         except:
@@ -81,7 +82,7 @@ class LoginView(SuccessMessageMixin,
                 FormView):
 
     form_class = LoginForm
-    success_url = '/accounts/'
+    success_url = reverse_lazy('accounts:dashboard')
     template_name = 'accounts/login.html'
     default_next = '/'
     success_message = _("Login successful!")
@@ -132,8 +133,9 @@ class UserDetailUpdateView(LoginRequiredMixin,
                            UpdateView):
 
     form_class = UserDetailChangeForm
+    success_url = reverse_lazy('accounts:dashboard')
     template_name = 'accounts/detail_update_view.html'
-    success_message = _("Your account %(email)s was updated successfully!")
+    success_message = _("Your account was updated successfully!")
     error_message = _('Please correct the errors below.')
 
     def get_object(self, queryset=None):
@@ -144,15 +146,13 @@ class UserDetailUpdateView(LoginRequiredMixin,
         context['title'] = _('Change Your Account Details')
         return context
 
-    def get_success_url(self):
-        return reverse("accounts:home")
-
 
 class UserPasswordChangeView(LoginRequiredMixin,
                              SuccessMessageMixin,
                              ErrorMessageMixin,
                              FormView):
     form_class = PasswordChangeForm
+    success_url = reverse_lazy('accounts:dashboard')
     template_name = 'accounts/change_password.html'
     success_message = _("Your password was successfully updated!")
     error_message = _('Please correct the errors below.')
@@ -168,9 +168,6 @@ class UserPasswordChangeView(LoginRequiredMixin,
         # except the current one.
         update_session_auth_hash(self.request, form.user)
         return super(UserPasswordChangeView, self).form_valid(form)
-
-    def get_success_url(self):
-        return reverse("accounts:home")
 
     def get_context_data(self, *args, **kwargs):
         context = super(UserPasswordChangeView, self).get_context_data(*args, **kwargs)

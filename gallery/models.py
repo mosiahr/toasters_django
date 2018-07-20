@@ -5,6 +5,7 @@ from stdimage.models import StdImageField
 from stdimage.utils import UploadToUUID
 
 from company.models import Company
+from core.models_abstract import MainAbstractModel
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -21,16 +22,22 @@ def set_default_name(pk, name=_('Portfolio')):
     return name
 
 
-class Album(models.Model):
+class UserManager(models.Manager):
+    """ Set Filter only current user """
+    def get_queryset(self):
+        return super(UserManager, self).get_queryset().filter(user=self.request.user)
+
+
+class Album(MainAbstractModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=70, verbose_name=_('Name'), default=_('Portfolio'))
     # slug = models.SlugField()
     summary = models.TextField(blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    # created = models.DateTimeField(auto_now_add=True)
+    # updated = models.DateTimeField(auto_now=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
 
-    # objects = CompanyManager()
+    # objects = UserManager()
 
     class Meta:
         verbose_name = _('Album')
@@ -72,7 +79,7 @@ class Album(models.Model):
         super(Album, self).delete(*args, **kwargs)
 
 
-class Photo(models.Model):
+class Photo(MainAbstractModel):
     name = models.CharField(max_length=256, blank=True, null=True, verbose_name=_('Name'))
     title = models.CharField(max_length=256, blank=True, null=True, verbose_name=_('Title'))
     # image = models.ImageField(upload_to='photos/%Y/%m')
@@ -86,8 +93,8 @@ class Photo(models.Model):
 
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     is_cover_photo = models.BooleanField(verbose_name=_('Is cover photo '))
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    # created = models.DateTimeField(auto_now_add=True)
+    # updated = models.DateTimeField(auto_now=True)
     # company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
@@ -96,6 +103,11 @@ class Photo(models.Model):
 
     def __str__(self):
         return 'Photo with ID: %s' % self.id
+
+    # def small_photo(self):
+    #     photo = self.image.small.url
+    #     return '<img src="%s" title="%s" />' % (photo, self.name)
+    # small_photo.allow_tags = True
 
     def save(self, *args, **kwargs):
         if self.is_cover_photo:

@@ -51,11 +51,11 @@
 
             {% if user.is_authenticated %}
                 {% if user.full_name != '' and user.full_name != None %}
-                    <li><a class="has-tip bottom" href="{% url 'accounts:home' %}" data-tooltip aria-haspopup="true"
+                    <li><a class="has-tip bottom" href="{% url 'dashboard' %}" data-tooltip aria-haspopup="true"
                            data-disable-hover="false" tabindex="4" title="{% trans 'Account' %}">
                              <i class="far fa-user fa-lg"></i>&nbsp;{{ user.full_name|truncatechars:20 }}</a></li>
                 {% else %}
-                    <li><a class="has-tip bottom" href="{% url 'accounts:home' %}" data-tooltip aria-haspopup="true"
+                    <li><a class="has-tip bottom" href="{% url 'dashboard' %}" data-tooltip aria-haspopup="true"
                            data-disable-hover="false" tabindex="4" title="{% trans 'Account' %}">
                                  <i class="far fa-user fa-lg"></i>&nbsp;{{ user|truncatechars:20 }}</a></li>
                 {% endif %}

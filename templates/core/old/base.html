@@ -56,12 +56,12 @@
         <ul class="menu">
             {% if user.is_authenticated %}
                 {% if user.full_name != '' and user.full_name != None%}
-                    <li><a class="" href="{% url 'accounts:home' %}">
+                    <li><a class="" href="{% url 'dashboard' %}">
                         <span class="icon">
                         <i class="fi-torso "></i></span>
                         {{ user.full_name }}</a></li>
                 {% else %}
-                    <li><a class="" href="{% url 'accounts:home' %}">{{ user }}</a></li>
+                    <li><a class="" href="{% url 'dashboard' %}">{{ user }}</a></li>
                 {% endif %}
                 <li><a class="button" href="{% url 'accounts:logout' %}">{% trans 'Log out' %}</a></li>
             {% else %}

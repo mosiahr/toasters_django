@@ -26,12 +26,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="{% static 'select2-foundation_theme/dist/select2-foundation-theme.css' %}">
 
-    {# FOTORAMA #}
-{#    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->#}
-
     {% block link %}{% endblock %}
     <link rel="stylesheet" href="{% static 'upButton/upButton.css' %}">
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main_app.css' %}">
 
 </head>
 <body>
@@ -60,7 +58,8 @@
 
 
 <!-- NAV -->
-{% include 'core/include/nav_main.html' %}
+{#{% include 'core/include/nav_main.html' %}#}
+{% include 'core/include/nav_main_one.html' %}
 
 
 <!-- HEADER -->
@@ -76,7 +75,6 @@
 
 <!-- FOOTER -->
 {% include 'core/include/footer.html' %}
-
 
 
 <!-- BUTTON UP -->

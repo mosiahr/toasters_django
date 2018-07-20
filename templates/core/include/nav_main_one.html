@@ -1,0 +1,54 @@
+{% load i18n %}
+
+<div data-sticky-container>
+    <div class="small-12 sticky" data-sticky data-options="marginTop: 0;" style="width:100%">
+        <nav class="top-bar topbar-responsive">
+            <div class="top-bar-title">
+                <span data-responsive-toggle="topbar-responsive" data-hide-for="medium">
+                  <button class="menu-icon" type="button" data-toggle></button>
+                </span>
+                <a class="topbar-responsive-logo menu-text" href="{% url 'company:companies' %}">TOASTERS</a>
+            </div>
+            <div id="topbar-responsive" class="topbar-responsive-links">
+                <div class="top-bar-right">
+                    <ul class="menu dropdown simple vertical medium-horizontal" data-dropdown-menu>
+                        <li class="{% if request.resolver_match.view_name == 'company:companies' %}active-menu{% endif %}">
+                            <a href="{% url 'company:companies' %}">{% trans 'Companies' %}</a></li>
+                        <li class="{% if request.resolver_match.view_name == 'gallery:albums' %}active-menu{% endif %}">
+                            <a href="{% url 'gallery:albums' %}">{% trans 'Gallery' %}</a></li>
+                        <li><a href="#">{% trans 'Blog' %}</a></li>
+                        <li><a href="#">{% trans 'About' %}</a></li>
+
+                        {% if user.is_authenticated %}
+                            {% if user.full_name != '' and user.full_name != None %}
+                                <li><a class="bottom
+                                    {% if request.resolver_match.view_name == 'accounts:dashboard' %}active-menu{% endif %}"
+                                       href="{% url 'accounts:dashboard' %}" title="{% trans 'Account' %}">
+                                    <i class="far fa-user fa-lg"></i>&nbsp;{{ user.full_name|truncatechars:20 }}</a>
+                                </li>
+                            {% else %}
+                                <li><a class="bottom
+                                    {% if request.resolver_match.view_name == 'accounts:dashboard' %}active-menu{% endif %}"
+                                       href="{% url 'accounts:dashboard' %}" title="{% trans 'Account' %}">
+                                    <i class="far fa-user fa-lg"></i>&nbsp;{{ user|truncatechars:20 }}</a></li>
+                            {% endif %}
+                            <li><a class="button hollow button-log" href="{% url 'accounts:logout' %}"
+                                   title="{% trans 'Log out' %}">{% trans 'Log out' %}</a></li>
+
+                        {% else %}
+                            <li><a class="button hollow button-register
+                                    {% if request.resolver_match.view_name == 'accounts:register' %}active-menu{% endif %}"
+                                   href="{% url 'accounts:register' %}"
+                                   title="{% trans "Log in" %}">{% trans 'Register' %}
+                            </a></li>
+                            <li><a class="button hollow button-log
+                                    {% if request.resolver_match.view_name == 'accounts:login' %}active-menu{% endif %}"
+                                   href="{% url 'accounts:login' %}" title="{% trans "Log in" %}">{% trans "Log in" %}
+                            </a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

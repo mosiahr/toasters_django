@@ -58,13 +58,13 @@
 
                 {% if request.path == url_album_add %}
                     <div class="button-group small medium-offset-3">
-                        <a class="button secondary" href="{% url 'accounts:home' %}">{% trans "Cancel" %}</a>
+                        <a class="button secondary" href="{% url 'accounts:dashboard' %}">{% trans "Cancel" %}</a>
                         <button type='submit' class='button success'>{% trans "Add album" %}</button>
                     </div>
                 {% elif request.path == url_album_update %}
                     <div class="button-group small medium-offset-3">
                         <a class="button alert small" href="{% url 'gallery:album_delete' pk=album.pk %}">{% trans "Delete" %}</a>
-                        <a class="button secondary" href="{% url 'accounts:home' %}">{% trans "Cancel" %}</a>
+                        <a class="button secondary" href="{% url 'accounts:dashboard' %}">{% trans "Cancel" %}</a>
                         <button type='submit' class='button success'>{% trans "Update album" %}</button>
                     </div>
                 {% endif %}

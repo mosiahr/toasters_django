@@ -18,7 +18,7 @@
         <form method="post">
             {% csrf_token %}
             <button type='submit' class='button alert small'>{% trans "Yes, I'm sure" %}</button>
-            <a class="button secondary small " href="{% url 'accounts:home' %}">{% trans "No, take me back" %}</a>
+            <a class="button secondary small " href="{% url 'accounts:dashboard' %}">{% trans "No, take me back" %}</a>
         </form>
         </div>
 

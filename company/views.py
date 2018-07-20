@@ -7,6 +7,7 @@ from django.views.generic.edit import FormMixin
 from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.core.urlresolvers import reverse_lazy
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -150,7 +151,7 @@ class CompanyAddView(SuccessMessageMixin,
     form_class = CompanyAddForm
     # form_class = PhotoFormSet
     model = Company
-    success_url = '/accounts/'
+    success_url = reverse_lazy('accounts:dashboard')
     success_message = _('Company "%(name)s" was created successfully!')
     error_message = _('Please correct the errors below.')
     title = _('Add Company')
@@ -218,7 +219,7 @@ class CompanyUpdateView(LoginRequiredMixin,
                         UpdateView):
     form_class = CompanyUpdateForm
     model = Company
-    success_url = '/accounts/'
+    success_url = reverse_lazy('accounts:dashboard')
     success_message = _('Сompany "%(name)s" was updated successfully!')
     error_message = _('Please correct the errors below.')
     title = _('Сhange of company')
@@ -241,7 +242,7 @@ class CompanyUpdateView(LoginRequiredMixin,
 class CompanyDeleteView(LoginRequiredMixin, DeleteView):
     model = Company
     template_name = 'company/company_confirm_delete.html'
-    success_url = '/accounts/'
+    success_url = reverse_lazy('accounts:dashboard')
     success_message = _('Company "%(name)s" was deleted successfully!')
     title = _("Are you sure?")
 

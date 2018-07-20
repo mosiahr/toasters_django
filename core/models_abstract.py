@@ -8,6 +8,8 @@ class PublishManager(models.Manager):
         return super(PublishManager, self).get_queryset().filter(publish=publ)
 
 
+
+
 class MainAbstractModel(models.Model):
     name = None
     created = models.DateTimeField(auto_now_add=True)

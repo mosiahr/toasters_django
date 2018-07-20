@@ -192,8 +192,7 @@ CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
 
-        # 'height': 300,
-        'width': 600,
+        'width': '100%',
 
         'toolbar_Custom': [
             {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print']},

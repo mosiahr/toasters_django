@@ -13,20 +13,17 @@
 {% endblock %}
 
 {% block content %}
-    <div class="grid-y grid-margin-y">
+    <div class="content-container">
         {# HEADER #}
-        <div class="cell small-12 medium-6 float-center">
-            <h3 class="text-center">{% if header.type %}{{ header.type }}{% endif %}</h3>
-            <h3 class="text-center">{% if header.location %}{{ header.location }}{% endif %}</h3>
-            <h3 class="text-center">{% if header.price %}{{ header.price }}{% endif %}</h3>
-        </div>
+{#        <div class="cell small-12 medium-6 float-center">#}
+{#            <h3 class="text-center">{% if header.type %}{{ header.type }}{% endif %}</h3>#}
+{#            <h3 class="text-center">{% if header.location %}{{ header.location }}{% endif %}</h3>#}
+{#            <h3 class="text-center">{% if header.price %}{{ header.price }}{% endif %}</h3>#}
+{#        </div>#}
 
-        <div class="cell grid-x">
 
 
         {# LIST CARDS #}
-        <div class="cell row small-12 medium-8 large-9">
-            <div class="grid-margin-y">
 
                 {# CARDS #}
 {#                <div class="grid-x grid-margin-x grid-margin-y">#}
@@ -35,10 +32,10 @@
                         <div class="card-company">
                             <a class="card-company-image" href="{% url 'company:company_detail' pk=company.id %}">
                                 <img  src="{{ company.avatar.thumbnail.url }}"></a>
-                            <h4 class="card-company-header">{{ company.name|truncatechars:50 }}</h4>
-                            <div class="card-company-type">
+                            <div class="card-company-header">{{ company.name|truncatechars:50 }}</div>
+                            <a href="{% url 'company:companies' %}?type={{ company.type.slug }}" class="card-company-type">
                                 <span class="label success">{{ company.type }}</span>
-                            </div>
+                            </a>
                             {% if company.get_locations %}
                                 <div class="card-company-location">
                                 <i class="fa fa-map-marker-alt fa-lg"></i>&nbsp;{{ company.get_locations }}</div>
@@ -46,8 +43,6 @@
                             <div class="card-company-price">
                                 <i class="fas fa-dollar-sign fa-lg"></i>&nbsp;{{ company.price }}</div>
                         </div>
-
-
 
 {#                        <div class="cell small-12 medium-3 large-2 align-center">#}
 {#                            <a class="float-center thumbnail-new" href="{% url 'company:company_detail' pk=company.id %}">#}
@@ -98,7 +93,7 @@
 
                 {# PAGINATION #}
                 {% if page_obj.paginator.num_pages > 1 %}
-                <nav class="cell" aria-label="Pagination">
+                <nav class="card-paginator" aria-label="Pagination">
                     <ul class="pagination text-center">
                         {% if page_obj.has_previous %}
                             <li class="pagination-previous">
@@ -134,28 +129,13 @@
                     </ul>
                 </nav>
                 {% endif %}
-            </div>
-        </div>
 
         <!-- RIGHT / Advertising -->
-        <div class="cell small-12 medium-4 large-3">
-            <div class="grid-y grid-margin-y">
-                <div class="cell">
-                    <img class="thumbnail float-center" src="https://placehold.it/400x500">
-                </div>
-                <div class="cell">
-                    <img class="thumbnail float-center" src="https://placehold.it/400x500">
-                </div>
-                <div class="cell">
-                    <img class="thumbnail float-center" src="https://placehold.it/400x500">
-                </div>
-                <div class="cell">
-                    <img class="thumbnail float-center" src="https://placehold.it/400x500">
-                </div>
-            </div>
-        </div>
-
-        </div>
+        <aside>
+            <img class="thumbnail float-center" src="https://placehold.it/400x500">
+            <img class="thumbnail float-center" src="https://placehold.it/400x500">
+            <img class="thumbnail float-center" src="https://placehold.it/400x500">
+        </aside>
 
     </div>
 {% endblock %}

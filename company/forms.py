@@ -79,9 +79,9 @@ class CompanyFilterForm(forms.Form):
 class CompanyAddForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CompanyAddForm, self).__init__(*args, **kwargs)
-        self.fields['type'].widget.attrs = {"class": 'form-select2'}
-        self.fields['location'].widget.attrs = {"class": 'form-select2-location'}
-        self.fields['tags'].widget.attrs = {"class": 'form-select2'}
+        self.fields['type'].widget.attrs = {'class': 'form-select2-type'}
+        self.fields['location'].widget.attrs = {'class': 'form-select2-city'}
+        self.fields['price'].widget.attrs = {'class': 'form-select2-price'}
 
     class Meta:
         model = Company

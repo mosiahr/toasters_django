@@ -6,6 +6,7 @@ from django.views.generic import ListView, DetailView, UpdateView, View, DeleteV
 from django.utils.translation import ugettext as _
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.urlresolvers import reverse_lazy
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -57,8 +58,7 @@ class PhotoAddView(SuccessMessageMixin,
                    CreateView):
     form_class = PhotoAddForm
     model = Photo
-    # fields = '__all__'
-    success_url = '/accounts/'
+    success_url = reverse_lazy('accounts:dashboard')
     success_message = _('Photo %(name)s was created successfully!')
     error_message = _('Please correct the errors below.')
     title = _("Add Photo")
@@ -76,7 +76,7 @@ class AlbumAddView(SuccessMessageMixin,
     error_message = _('Please correct the errors below.')
     form_class = AlbumForm
     model = Album
-    success_url = '/accounts/'
+    success_url = reverse_lazy('accounts:dashboard')
     success_message = _('Album "%(name)s" was created successfully!')
     template_name = 'gallery/manage_photo.html'
     title = _("Add Album")
@@ -141,7 +141,7 @@ class AlbumUpdateView(SuccessMessageMixin,
     error_message = _('Please correct the errors below.')
     form_class = AlbumForm
     model = Album
-    success_url = '/accounts/'
+    success_url = reverse_lazy('accounts:dashboard')
     success_message = _('Album "%(name)s" was updated successfully!')
     template_name = 'gallery/manage_photo.html'
     title = _("Update Album")
@@ -206,7 +206,7 @@ class AlbumUpdateView(SuccessMessageMixin,
 class AlbumDeleteView(LoginRequiredMixin, DeleteView):
     model = Album
     template_name = 'gallery/album_confirm_delete.html'
-    success_url = '/accounts/'
+    success_url = reverse_lazy('accounts:dashboard')
     success_message = _('Album "%(name)s" was deleted successfully!')
     title = _("Are you sure?")
 
