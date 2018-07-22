@@ -107,7 +107,6 @@ class Photo(MainAbstractModel):
     # def small_photo(self):
     #     photo = self.image.small.url
     #     return '<img src="%s" title="%s" />' % (photo, self.name)
-    # small_photo.allow_tags = True
 
     def save(self, *args, **kwargs):
         if self.is_cover_photo:

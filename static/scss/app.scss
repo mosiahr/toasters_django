@@ -13,7 +13,6 @@ $main-color-background: coral;
 $color-item-light: lightcoral;
 
 
-
 // Dependencies
 @import 'menu';
 @import 'card-companies';
@@ -28,11 +27,19 @@ $color-item-light: lightcoral;
   }
 
   form {
+    // запрет выдиления текста
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
     input {
       border: 1px solid $color-item-light;
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
       box-shadow: none;
+      cursor: pointer;
+
 
       &:focus {
         border: 1px solid $color-item-light;
@@ -64,7 +71,7 @@ $color-item-light: lightcoral;
         box-shadow: none;
       }
     }
-    label[for="id_remember_me"] {
+    label[for="id_is_cover_photo"] {
       color: $color-item-light;
     }
 
@@ -80,6 +87,31 @@ $color-item-light: lightcoral;
       font-size: 0.8125rem;
       font-style: italic;
       color: #0a0a0a;
+    }
+    .inputfile {
+      border: none;
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+      cursor: pointer;
+    }
+    .button-addfile{
+      background-color: $color-item-light;
+      color: white;
+
+      white-space: nowrap; /* Запрещаем перенос строк */
+      overflow: hidden; /* Обрезаем все, что не помещается в область */
+      text-overflow: ellipsis; /* Добавляем многоточие */
+
+      &:hover{background-color: #C66969}
+
+      //&:focus{
+      //  outline: 1px dotted #000;
+	   // outline: -webkit-focus-ring-color auto 5px;
+      //}
     }
   }
 }

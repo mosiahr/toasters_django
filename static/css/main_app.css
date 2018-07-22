@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: OstrichSans-Bold;
   src: url("/static/fonts/OstrichSans-Bold.otf");
@@ -247,11 +248,18 @@ footer {
   color: #fefefe;
   font-family: ItimCyrillic;
 }
+.card form {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .card form input {
   border: 1px solid lightcoral;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+  cursor: pointer;
 }
 .card form input:focus {
   border: 1px solid lightcoral;
@@ -284,7 +292,7 @@ footer {
   -moz-box-shadow: none;
   box-shadow: none;
 }
-.card form label[for=id_remember_me] {
+.card form label[for=id_is_cover_photo] {
   color: lightcoral;
 }
 .card form ul {
@@ -299,6 +307,29 @@ footer {
   font-size: 0.8125rem;
   font-style: italic;
   color: #0a0a0a;
+}
+.card form .inputfile {
+  border: none;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  cursor: pointer;
+}
+.card form .button-addfile {
+  background-color: lightcoral;
+  color: white;
+  white-space: nowrap;
+  /* Запрещаем перенос строк */
+  overflow: hidden;
+  /* Обрезаем все, что не помещается в область */
+  text-overflow: ellipsis;
+  /* Добавляем многоточие */
+}
+.card form .button-addfile:hover {
+  background-color: #C66969;
 }
 
 .pagination a:hover {

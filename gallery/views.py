@@ -65,8 +65,14 @@ class PhotoAddView(SuccessMessageMixin,
 
     def get_context_data(self, **kwargs):
         context = super(PhotoAddView, self).get_context_data(**kwargs)
-        context.update({'title': self.title})
+        albums = Album.pub_objects.filter(user=self.request.user)
+        context.update({'title': self.title, 'albums': albums})
         return context
+
+    def get_form_kwargs(self):
+        kwargs = super(PhotoAddView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
 
 
 class AlbumAddView(SuccessMessageMixin,

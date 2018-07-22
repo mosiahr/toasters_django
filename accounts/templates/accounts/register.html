@@ -38,6 +38,7 @@
                             <p class="help-text">{{ form.password2.help_text }}</p>
                         </div>
                         <button class="button success small expanded" type="submit" value="{{ title }}">{{ title }}</button>
+                        <a class="button secondary hollow small expanded" href="{% url 'company:companies' %}">{% trans "Cancel" %}</a>
 
 
                     </form>

@@ -46,6 +46,13 @@ $(document).ready(function(){
         minimumResultsForSearch: Infinity,  //непоказ. строку поиска
     });
 
+    $('.form-select2-addPhoto').select2({
+        allowClear: true,
+        theme: "foundation",
+        placeholder: 'Выбирете альбом',
+        minimumResultsForSearch: Infinity,  //непоказ. строку поиска
+    });
+
     // $('#form-filter').on('select2:open', function (e) {
     //     $('html, body').css({
     //         overflow: 'hidden',
@@ -156,13 +163,17 @@ $(document).ready(function(){
 
     }
 
-    // $('.related-widget-wrapper').select2();
-    // $('#id_type').select2({
-    //     placeholder: 'Select an option',
-    //     // dropdownAutoWidth: true,
-    //     // disabled: true
-    //     // theme: "classic"
-    // });
+
+    // INPUT FILE
+
+    $(".inputfile").on('change', function (event) {
+        var fileName = $(this).val().split('\\').pop();
+        // console.log(event.target.value.split( '\\' ).pop())
+        var label = $(this).prev();
+        if (fileName)
+            label.find('span').html(fileName);
+
+    });
 
 
 
