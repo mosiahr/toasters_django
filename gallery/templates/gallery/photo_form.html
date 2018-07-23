@@ -37,13 +37,14 @@
                 {{ form.title.errors }}
                 {{ form.title.label_tag }} {{ form.title }}
             </div>
-            <div>
+            <div class="container">
                 {{ form.is_cover_photo.errors }}
-                {{ form.is_cover_photo }}{{ form.is_cover_photo.label_tag }}
+{#                {{ form.is_cover_photo }}<span class="checkmark"></span>#}
+                {{ form.is_cover_photo.label_tag }}
             </div>
 
             <button type='submit' class='button success expanded'>{% trans "Add photo" %}</button>
-            <a class="button secondary expanded" href="{% url 'accounts:dashboard' %}">{% trans "Cancel" %}</a>
+            <a class="button secondary hollow expanded" href="{% url 'accounts:dashboard' %}">{% trans "Cancel" %}</a>
 
             </form>
         </div>

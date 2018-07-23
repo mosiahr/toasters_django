@@ -30,25 +30,24 @@ class PhotoAddForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 # 'autofocus': True,
-                'placeholder': _('Name'),
-            }
-        ),
-    )
-    title = forms.CharField(
-        label='',
-        required=False,
-        widget=forms.TextInput(
-            attrs={
-                'placeholder': _('Title'),
+                'placeholder': _('Name (optional field)'),
             }
         ),
     )
 
     is_cover_photo = forms.BooleanField(
-        label=_('Cover photo'),
+        # label=_('Cover photo'),
+        label=mark_safe(
+            "{}<input type='checkbox' name='is_cover_photo'"
+            " id='id_is_cover_photo'><span class='checkmark'></span>".format(_('Is cover photo'))
+        ),
         label_suffix='',
         required=False,
-        widget=forms.CheckboxInput()
+        widget=forms.CheckboxInput(
+            attrs={
+                # 'class': 'checkmark'
+            }
+        )
     )
 
     def __init__(self, *args, **kwargs):
@@ -68,7 +67,7 @@ class PhotoAddForm(forms.ModelForm):
 
     class Meta:
         model = Photo
-        fields = ('name', 'title', 'image', 'album', 'is_cover_photo')
+        fields = ('name', 'image', 'album', 'is_cover_photo')
 
 
 class AlbumForm(forms.ModelForm):
@@ -99,7 +98,7 @@ class PhotoForm(forms.ModelForm):
 
     class Meta:
         model = Photo
-        fields = ('name', 'title', 'image', 'is_cover_photo')
+        fields = ('name', 'image', 'is_cover_photo')
 
 
 PhotoFormSet = inlineformset_factory(

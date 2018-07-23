@@ -27,6 +27,8 @@ $color-item-light: lightcoral;
   }
 
   form {
+    font-family: ItimCyrillic;
+
     // запрет выдиления текста
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -61,19 +63,6 @@ $color-item-light: lightcoral;
         color: $color-item-light;
       }
     }
-    input[type="checkbox"] {
-      border: 1px solid $color-item-light;
-      background-color: $color-item-light;
-      &:focus {
-        border: 1px solid $color-item-light;
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        box-shadow: none;
-      }
-    }
-    label[for="id_is_cover_photo"] {
-      color: $color-item-light;
-    }
 
     ul {
       list-style-type: none;
@@ -106,12 +95,79 @@ $color-item-light: lightcoral;
       overflow: hidden; /* Обрезаем все, что не помещается в область */
       text-overflow: ellipsis; /* Добавляем многоточие */
 
-      &:hover{background-color: #C66969}
+      &:hover{background-color: darken($color-item-light, 7%);}
 
       //&:focus{
       //  outline: 1px dotted #000;
 	   // outline: -webkit-focus-ring-color auto 5px;
       //}
+    }
+
+
+    .container {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 22px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      label {color: $color-item-light;}
+
+      /* Hide the browser's default checkbox */
+      & input {
+        cursor: pointer;
+        position: absolute;
+        opacity: 0;
+      }
+
+      /* On mouse-over, add a grey background color */
+      &:hover input ~ .checkmark {background-color: darken($color-item-light, 7%);}
+
+      /* When the checkbox is checked, add a blue background */
+      & input:checked ~ .checkmark {
+        //background-color: #3ADB76;
+        background-color: darken($color-item-light, 10%);
+      }
+
+      /* Show the checkmark when checked */
+      & input:checked ~ .checkmark:after {
+        display: block;
+      }
+
+      /* Style the checkmark/indicator */
+      & .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 7px;
+        height: 13px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+    }
+
+    /* Create a custom checkbox */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: $color-item-light;
+
+      /* Create the checkmark/indicator (hidden when not checked) */
+      &:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
     }
   }
 }
@@ -125,14 +181,53 @@ $color-item-light: lightcoral;
     background-color: $main-color-background;
   }
 }
+
+
+// SELECT2
 @media screen and (max-width: 767px) {
   .form-select2-type, .form-select2-city, .form-select2-price {
     width: 100%;
   }
 }
+
+.select2-results__option{
+  color: $color-item-light;
+}
 .select2-container--foundation .select2-results__option--highlighted[aria-selected]{
   background-color: $color-item-light;
+  color: #ffffff;
 }
+#select2-id_album-container {
+  .select2-selection__placeholder{
+    color: $color-item-light;
+  }
+}
+
+
+// select border
+.select2-container--foundation .select2-selection,
+.select2-container--foundation.select2-container--focus .select2-selection,
+.select2-container--foundation.select2-container--open .select2-selection {
+  border: 1px solid $color-item-light;
+}
+.select2-container--foundation .select2-selection--single .select2-selection__arrow b,
+.select2-container--foundation .selection .select2-selection--single .select2-selection__arrow b {
+  border-color: $color-item-light transparent;
+}
+.select2-container--foundation .select2-dropdown {
+  border: 1px solid $color-item-light;
+  border-top: 1px solid lighten($color-item-light, 10%);
+}
+.select2-container--foundation .select2-selection--single .select2-selection__rendered,
+.select2-container--foundation .selection .select2-selection--single .select2-selection__rendered {
+  color: darken($color-item-light, 20%);
+  padding-left: 0;
+}
+.select2-container--foundation .select2-selection__clear {
+  color: darken($color-item-light, 15%);
+  &:hover{color: darken($color-item-light, 20%);}
+}
+
 
 .short-text {
   overflow: hidden;

@@ -81,7 +81,7 @@ class Album(MainAbstractModel):
 
 class Photo(MainAbstractModel):
     name = models.CharField(max_length=256, blank=True, null=True, verbose_name=_('Name'))
-    title = models.CharField(max_length=256, blank=True, null=True, verbose_name=_('Title'))
+    # title = models.CharField(max_length=256, blank=True, null=True, verbose_name=_('Title'))
     # image = models.ImageField(upload_to='photos/%Y/%m')
     image = StdImageField(upload_to=UploadToUUID(path='photos'),
                           variations={

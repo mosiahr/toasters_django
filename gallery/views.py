@@ -85,7 +85,7 @@ class AlbumAddView(SuccessMessageMixin,
     success_url = reverse_lazy('accounts:dashboard')
     success_message = _('Album "%(name)s" was created successfully!')
     template_name = 'gallery/manage_photo.html'
-    title = _("Add Album")
+    title = _("Сreate an album")
 
     def get(self, request, *args, **kwargs):
         self.object = None
