@@ -13,7 +13,7 @@ from .views import (
 urlpatterns = [
     url(r'^albums/$', AlbumListView.as_view(), name='albums'),
     url(r'^album/(?P<pk>\d+)/$', PhotoListView.as_view(), name='photo'),
-    url(r'^add/$', PhotoAddView.as_view(), name='photo_add'),
+    url(r'^photo-add/$', PhotoAddView.as_view(), name='photo_add'),
     url(r'^album/add/$', AlbumAddView.as_view(), name='album_add'),
     url(r'^album/(?P<pk>\d+)/update/$', AlbumUpdateView.as_view(), name='album_update'),
     url(r'^album/(?P<pk>\d+)/delete/$', AlbumDeleteView.as_view(), name='album_delete'),

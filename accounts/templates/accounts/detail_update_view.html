@@ -19,7 +19,7 @@
                         {% endif %}
                         {{ form.as_p }}
                         <button type='submit' class='button success small expanded'>{% trans "Save" %}</button>
-                        <a class="button secondary small expanded" href="{% url 'accounts:dashboard' %}">{% trans "Cancel" %}</a>
+                        <a class="button secondary small hollow expanded" href="{% url 'accounts:dashboard' %}">{% trans "Cancel" %}</a>
                         <a class='button small expanded'
                            href='{% url "accounts:change_password" %}'>{% trans "Change Password" %}</a>
                     </form>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-10 12:27+0300\n"
+"POT-Creation-Date: 2018-07-24 11:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,335 +20,329 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: accounts/admin.py:26
+#: admin.py:26
 msgid "Email address"
 msgstr ""
 
-#: accounts/admin.py:26
+#: admin.py:26
 msgid "and"
 msgstr ""
 
-#: accounts/admin.py:26 accounts/forms.py:33 accounts/forms.py:82
-#: accounts/forms.py:123 accounts/forms.py:217
+#: admin.py:26 forms.py:33 forms.py:82 forms.py:123 forms.py:217
 msgid "Password"
 msgstr ""
 
-#: accounts/admin.py:28
+#: admin.py:28
 msgid "Personal info"
 msgstr ""
 
-#: accounts/admin.py:29
+#: admin.py:29
 msgid "Permissions"
 msgstr ""
 
-#: accounts/admin.py:34
+#: admin.py:34
 msgid "User permissions:"
 msgstr ""
 
-#: accounts/apps.py:7
+#: apps.py:7
 msgid "Accounts"
 msgstr "Аккаунты"
 
-#: accounts/forms.py:29 accounts/forms.py:202
+#: forms.py:29 forms.py:202
 msgid "The two password fields didn't match."
 msgstr ""
 
-#: accounts/forms.py:39 accounts/forms.py:226
+#: forms.py:39 forms.py:226
 msgid "Password confirmation"
 msgstr ""
 
-#: accounts/forms.py:42 accounts/forms.py:229
+#: forms.py:42 forms.py:229
 msgid "Enter the same password as before, for verification."
 msgstr ""
 
-#: accounts/forms.py:84
+#: forms.py:84
 msgid ""
 "Raw passwords are not stored, so there is no way to see this user's "
 "password, but you can change the password using <a href=\"../password/"
 "\">this form</a>."
 msgstr ""
 
-#: accounts/forms.py:113 accounts/forms.py:209 accounts/forms.py:262
+#: forms.py:113 forms.py:209 forms.py:262
 msgid "Email"
 msgstr ""
 
-#: accounts/forms.py:128
+#: forms.py:128
 msgid "Remember me"
 msgstr "Запомнить меня"
 
-#: accounts/forms.py:136
+#: forms.py:136
 #, python-format
 msgid ""
 "Please enter a correct %(username)s and password. Note that both fields may "
 "be case-sensitive."
 msgstr ""
 
-#: accounts/forms.py:139
+#: forms.py:139
 msgid "This account is inactive."
 msgstr ""
 
-#: accounts/forms.py:265
+#: forms.py:265
 msgid "Email address can not be changed."
 msgstr "Адрес электронной почты не может быть изменен."
 
-#: accounts/forms.py:269
+#: forms.py:269
 msgid "Name"
 msgstr "Имя"
 
-#: accounts/models.py:71
+#: models.py:71
 msgid "date joined"
 msgstr ""
 
-#: accounts/models.py:80
+#: models.py:80
 msgid "user"
 msgstr ""
 
-#: accounts/models.py:81
+#: models.py:81
 msgid "users"
 msgstr ""
 
-#: accounts/models.py:127
+#: models.py:127
 msgid "Activate your account at to"
 msgstr "Активируйте свою учетную запись на сайте"
 
-#: accounts/templates/accounts/admin/add_form.html:6
+#: templates/accounts/admin/add_form.html:6
 msgid ""
 "First, enter a email and password. Then, you'll be able to edit more user "
 "options."
 msgstr ""
 
-#: accounts/templates/accounts/admin/add_form.html:8
+#: templates/accounts/admin/add_form.html:8
 msgid "Enter a email and password."
 msgstr ""
 
-#: accounts/templates/accounts/change_password.html:19
+#: templates/accounts/change_password.html:19
 msgid "Save changes"
 msgstr "Сохранить изменения"
 
-#: accounts/templates/accounts/change_password.html:20
-#: accounts/templates/accounts/detail_update_view.html:22
+#: templates/accounts/change_password.html:20
+#: templates/accounts/detail_update_view.html:22
+#: templates/accounts/register.html:41
 msgid "Cancel"
 msgstr ""
 
-#: accounts/templates/accounts/detail_update_view.html:21
-msgid "Save"
-msgstr ""
+#: templates/accounts/dashboard.html:12
+msgid "Account Details"
+msgstr "Детали аккаунта"
 
-#: accounts/templates/accounts/detail_update_view.html:24
-#: accounts/templates/accounts/home.html:27
+#: templates/accounts/dashboard.html:20
+msgid "Update Account Details"
+msgstr "Редактирование вашего аккаунта"
+
+#: templates/accounts/dashboard.html:23
+#: templates/accounts/detail_update_view.html:24
 msgid "Change Password"
 msgstr "Изменить пароль"
 
-#: accounts/templates/accounts/email/verify.html:3
+#: templates/accounts/dashboard.html:29
+msgid "Your company"
+msgstr "Ваша компания"
+
+#: templates/accounts/dashboard.html:33
+msgid "List of companies"
+msgstr "Список компаний"
+
+#: templates/accounts/dashboard.html:38
+msgid "Company"
+msgstr "Компания"
+
+#: templates/accounts/dashboard.html:41
+msgid "View company"
+msgstr "Посмотреть компанию"
+
+#: templates/accounts/dashboard.html:44
+msgid "Update company"
+msgstr "Обновить компанию"
+
+#: templates/accounts/dashboard.html:47
+msgid "Delete company"
+msgstr "Удалить компанию"
+
+#: templates/accounts/dashboard.html:54
+msgid "Add company"
+msgstr "Добавить компанию"
+
+#: templates/accounts/dashboard.html:63
+msgid "Gallery"
+msgstr "Галерея"
+
+#: templates/accounts/dashboard.html:67
+msgid "Add photo"
+msgstr "Добавить фото"
+
+#: templates/accounts/dashboard.html:70
+msgid "Create album"
+msgstr "Создать альбом"
+
+#: templates/accounts/dashboard.html:80
+msgid "Update album"
+msgstr "Редактировать альбом"
+
+#: templates/accounts/detail_update_view.html:21
+msgid "Save"
+msgstr ""
+
+#: templates/accounts/email/verify.html:3
 msgid "Hello"
 msgstr "Здравствуйте"
 
-#: accounts/templates/accounts/email/verify.html:5
+#: templates/accounts/email/verify.html:5
 #, python-format
 msgid "Please activate your account for %(email)s by clicking the link below:"
 msgstr ""
 "Пожалуйста, активируйте свою учетную запись для %(email)s, нажав на ссылку "
 "ниже:"
 
-#: accounts/templates/accounts/email/verify.html:7
+#: templates/accounts/email/verify.html:7
 msgid "Once you activate, you can login!"
 msgstr "После активации вы можете войти в систему!"
 
-#: accounts/templates/accounts/email/verify.html:9
-#: accounts/templates/password_reset/password_reset_email.html:10
+#: templates/accounts/email/verify.html:9
+#: templates/password_reset/password_reset_email.html:10
 msgid "Thanks for using our site!"
 msgstr ""
 
-#: accounts/templates/accounts/email/verify.html:10
-#: accounts/templates/password_reset/password_reset_email.html:12
+#: templates/accounts/email/verify.html:10
+#: templates/password_reset/password_reset_email.html:12
 #, python-format
 msgid "The %(site_name)s team"
 msgstr ""
 
-#: accounts/templates/accounts/home.html:13
-msgid "Account Details"
-msgstr "Детали аккаунта"
-
-#: accounts/templates/accounts/home.html:20
-#: accounts/templates/accounts/home.html:42
-#, fuzzy
-#| msgid "Add company"
-msgid "Company"
-msgstr "Добавить компанию"
-
-#: accounts/templates/accounts/home.html:24
-msgid "Update Account Details"
-msgstr "Редактирование вашего аккаунта"
-
-#: accounts/templates/accounts/home.html:33
-msgid "Your company"
-msgstr "Ваша компания"
-
-#: accounts/templates/accounts/home.html:37
-msgid "List of companies"
-msgstr ""
-
-#: accounts/templates/accounts/home.html:45
-msgid "View company"
-msgstr "Посмотреть компанию"
-
-#: accounts/templates/accounts/home.html:48
-msgid "Update company"
-msgstr "Обновить компанию"
-
-#: accounts/templates/accounts/home.html:51
-msgid "Delete company"
-msgstr "Удалить компанию"
-
-#: accounts/templates/accounts/home.html:58
-msgid "Add company"
-msgstr "Добавить компанию"
-
-#: accounts/templates/accounts/home.html:67
-msgid "Gallery"
-msgstr ""
-
-#: accounts/templates/accounts/home.html:71
-msgid "Add photo"
-msgstr ""
-
-#: accounts/templates/accounts/home.html:74
-msgid "Add album"
-msgstr ""
-
-#: accounts/templates/accounts/home.html:84
-#, fuzzy
-#| msgid "Update company"
-msgid "Update album"
-msgstr "Обновить компанию"
-
-#: accounts/templates/accounts/login.html:5
-#: accounts/templates/accounts/login.html:13
-#: accounts/templates/accounts/login.html:41
-#: accounts/templates/password_reset/password_reset_complete.html:12
+#: templates/accounts/login.html:5 templates/accounts/login.html:13
+#: templates/accounts/login.html:41
+#: templates/password_reset/password_reset_complete.html:12
 msgid "Log in"
 msgstr ""
 
-#: accounts/templates/accounts/login.html:40
+#: templates/accounts/login.html:40
 msgid "Forgotten your password?"
 msgstr "Забыли пароль?"
 
-#: accounts/templates/accounts/login.html:42 accounts/views.py:112
+#: templates/accounts/login.html:42 views.py:113
 msgid "Register"
 msgstr "Регистрация"
 
-#: accounts/templates/password_reset/password_reset_complete.html:11
+#: templates/password_reset/password_reset_complete.html:11
 msgid "Your password has been set.  You may go ahead and log in now."
 msgstr ""
 
-#: accounts/templates/password_reset/password_reset_confirm.html:14
-#: accounts/templates/password_reset/password_reset_confirm.html:20
+#: templates/password_reset/password_reset_confirm.html:14
+#: templates/password_reset/password_reset_confirm.html:20
 msgid "Change password"
 msgstr ""
 
-#: accounts/templates/password_reset/password_reset_confirm.html:24
+#: templates/password_reset/password_reset_confirm.html:24
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
 
-#: accounts/templates/password_reset/password_reset_done.html:13
+#: templates/password_reset/password_reset_done.html:13
 msgid ""
 "We've emailed you instructions for setting your password, if an account "
 "exists with the email you entered. You should receive them shortly."
 msgstr ""
 
-#: accounts/templates/password_reset/password_reset_done.html:14
+#: templates/password_reset/password_reset_done.html:14
 msgid ""
 "If you don't receive an email, please make sure you've entered the address "
 "you registered with, and check your spam folder."
 msgstr ""
 
-#: accounts/templates/password_reset/password_reset_email.html:2
+#: templates/password_reset/password_reset_email.html:2
 #, python-format
 msgid ""
 "You're receiving this email because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
 
-#: accounts/templates/password_reset/password_reset_email.html:4
+#: templates/password_reset/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
 msgstr ""
 
-#: accounts/templates/password_reset/password_reset_email.html:8
+#: templates/password_reset/password_reset_email.html:8
 msgid "Your username, in case you've forgotten:"
 msgstr ""
 
-#: accounts/templates/password_reset/password_reset_form.html:16
+#: templates/password_reset/password_reset_form.html:16
 msgid ""
 "Forgotten your password? Enter your email address below, and we'll email "
 "instructions for setting a new one."
 msgstr ""
 
-#: accounts/templates/password_reset/password_reset_form.html:21
+#: templates/password_reset/password_reset_form.html:21
 msgid "Reset my password"
 msgstr ""
 
-#: accounts/templates/password_reset/password_reset_subject.txt:2
+#: templates/password_reset/password_reset_subject.txt:2
 #, python-format
 msgid "Password reset on %(site_name)s"
 msgstr ""
 
-#: accounts/views.py:51
+#: views.py:52
 msgid "Account"
 msgstr "Аккаунт"
 
-#: accounts/views.py:68
+#: views.py:69
 msgid "Thank you for your email confirmation. Now you can login your account."
 msgstr ""
 "Спасибо за ваше подтверждение по электронной почте. Теперь вы можете войти в "
 "свою учетную запись."
 
-#: accounts/views.py:70
+#: views.py:71
 msgid "Activation link is invalid!"
 msgstr "Ссылка активации недействительна!"
 
-#: accounts/views.py:73
+#: views.py:74
 msgid "Email confirmation"
 msgstr "Подтверждение электонной почты"
 
-#: accounts/views.py:87
+#: views.py:88
 msgid "Login successful!"
 msgstr "Авторизация успешна!"
 
-#: accounts/views.py:88 accounts/views.py:108 accounts/views.py:141
-#: accounts/views.py:162
+#: views.py:89 views.py:109 views.py:139 views.py:158
 msgid "Please correct the errors below."
 msgstr ""
 
-#: accounts/views.py:107
+#: views.py:108
 #, python-format
 msgid "Account %(email)s was created successfully!"
 msgstr "Учетная запись %(email)s была успешно создана!"
 
-#: accounts/views.py:120
+#: views.py:121
 msgid "Please confirm your email address  to complete the registration."
 msgstr ""
 "Пожалуйста, подтвердите свой адрес электронной почты, чтобы завершить "
 "регистрацию."
 
-#: accounts/views.py:123
+#: views.py:124
 msgid "Register is done"
 msgstr "Регистрация выполнена"
 
-#: accounts/views.py:140
-#, python-format
-msgid "Your account %(email)s was updated successfully!"
+#: views.py:138
+#, fuzzy
+#| msgid "Your account %(email)s was updated successfully!"
+msgid "Your account was updated successfully!"
 msgstr "Ваша учетная запись %(email)s была успешно обновлена!"
 
-#: accounts/views.py:148
+#: views.py:146
 msgid "Change Your Account Details"
 msgstr "Редактирование вашего аккаунта"
 
-#: accounts/views.py:161
+#: views.py:157
 msgid "Your password was successfully updated!"
 msgstr "Ваш пароль был успешно изменен!"
 
-#: accounts/views.py:181
+#: views.py:174
 msgid "Password change"
 msgstr ""

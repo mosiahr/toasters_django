@@ -7,6 +7,12 @@
   font-family: ItimCyrillic;
   src: url("/static/fonts/ItimCyrillic.otf");
 }
+/**
+ * Foundation for Sites by ZURB
+ * Version 6.4.4-rc1
+ * foundation.zurb.com
+ * Licensed under MIT Open Source
+ */
 /* Top, Menu*/
 .top-bar, .top-bar ul {
   background-color: coral;
@@ -223,6 +229,233 @@
     padding: 0 10px;
   }
 }
+.card-form {
+  border: 1px solid lightcoral;
+}
+.card-form .card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-bottom: 1rem;
+  border: 1px solid #e6e6e6;
+  border-radius: 0;
+  background: #fefefe;
+  box-shadow: none;
+  overflow: hidden;
+  color: #0a0a0a;
+}
+.card-form .card > :last-child {
+  margin-bottom: 0;
+}
+.card-form .card-divider {
+  flex: 0 1 auto;
+  display: flex;
+  padding: 1rem;
+  background: #e6e6e6;
+}
+.card-form .card-divider > :last-child {
+  margin-bottom: 0;
+}
+.card-form .card-section {
+  flex: 1 0 auto;
+  padding: 1rem;
+}
+.card-form .card-section > :last-child {
+  margin-bottom: 0;
+}
+.card-form .card-image {
+  min-height: 1px;
+}
+.card-form .card-divider {
+  background: lightcoral;
+  color: #fefefe;
+  font-family: ItimCyrillic;
+}
+.card-form form {
+  font-family: ItimCyrillic;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Create a custom checkbox */
+}
+.card-form form input {
+  border: 1px solid lightcoral;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+.card-form form input:focus {
+  border: 1px solid lightcoral;
+  -webkit-box-shadow: 0 0 2px lightcoral;
+  -moz-box-shadow: 0 0 2px lightcoral;
+  box-shadow: 0 0 2px lightcoral;
+  transition: box-shadow 0.5s, border-color 0.25s ease-in-out, -webkit-box-shadow 0.5s;
+}
+.card-form form input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: lightcoral;
+  opacity: 1;
+  /* Firefox */
+}
+.card-form form input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: lightcoral;
+}
+.card-form form input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: lightcoral;
+}
+.card-form form ul {
+  list-style-type: none;
+  margin-left: 0;
+}
+.card-form form ul li {
+  margin-bottom: 5px;
+}
+.card-form form .help-text, .card-form form .helptext {
+  margin-top: -0.5rem;
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: #0a0a0a;
+}
+.card-form form .inputfile {
+  border: none;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  cursor: pointer;
+}
+.card-form form .button-addfile {
+  background-color: lightcoral;
+  color: white;
+  white-space: nowrap;
+  /* Запрещаем перенос строк */
+  overflow: hidden;
+  /* Обрезаем все, что не помещается в область */
+  text-overflow: ellipsis;
+  /* Добавляем многоточие */
+}
+.card-form form .button-addfile:hover {
+  background-color: #ec6060;
+}
+.card-form form .container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Hide the browser's default checkbox */
+  /* On mouse-over, add a grey background color */
+  /* When the checkbox is checked, add a blue background */
+  /* Show the checkmark when checked */
+  /* Style the checkmark/indicator */
+}
+.card-form form .container label {
+  color: lightcoral;
+  cursor: pointer;
+}
+.card-form form .container input {
+  cursor: pointer;
+  position: absolute;
+  opacity: 0;
+}
+.card-form form .container:hover input ~ .checkmark {
+  background-color: #ec6060;
+}
+.card-form form .container input:checked ~ .checkmark {
+  background-color: #eb5252;
+}
+.card-form form .container input:checked ~ .checkmark:after {
+  display: block;
+}
+.card-form form .container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 7px;
+  height: 13px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.card-form form .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: lightcoral;
+  /* Create the checkmark/indicator (hidden when not checked) */
+}
+.card-form form .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.card-form .select2-container--foundation .select2-selection,
+.card-form .select2-container--foundation.select2-container--focus .select2-selection,
+.card-form .select2-container--foundation.select2-container--open .select2-selection {
+  border: 1px solid lightcoral;
+}
+.card-form .select2-container--foundation .select2-selection:focus,
+.card-form .select2-container--foundation.select2-container--focus .select2-selection:focus,
+.card-form .select2-container--foundation.select2-container--open .select2-selection:focus {
+  -webkit-box-shadow: 0 0 2px lightcoral;
+  -moz-box-shadow: 0 0 2px lightcoral;
+  box-shadow: 0 0 2px lightcoral;
+}
+.card-form .select2-container--foundation .select2-selection--single .select2-selection__arrow b,
+.card-form .select2-container--foundation .selection .select2-selection--single .select2-selection__arrow b {
+  border-color: lightcoral transparent;
+}
+.card-form .select2-container--foundation .select2-dropdown {
+  border: 1px solid lightcoral;
+  border-top: 1px solid #f5aeae;
+}
+.card-form .select2-container--foundation .select2-selection--single .select2-selection__rendered,
+.card-form .select2-container--foundation .selection .select2-selection--single .select2-selection__rendered {
+  color: #e52525;
+  padding-left: 0;
+}
+.card-form .select2-container--foundation .select2-selection__clear {
+  color: #e83c3c;
+}
+.card-form .select2-container--foundation .select2-selection__clear:hover {
+  color: #e52525;
+}
+
+#select2-id_album-container .select2-selection__placeholder {
+  color: lightcoral;
+}
+
+.select2-container--foundation #select2-id_album-results .select2-results__option--highlighted[aria-selected] {
+  background-color: lightcoral;
+  color: #ffffff;
+}
+.select2-container--foundation #select2-id_album-results .select2-results__option {
+  color: lightcoral;
+}
+
+.select2-container--foundation .select2-dropdown {
+  border: none;
+  border-top: none;
+}
+.select2-container--foundation .select2-dropdown #select2-id_album-results {
+  border: 1px solid lightcoral;
+  border-top: 1px solid #f5aeae;
+}
+
 footer {
   background-color: #2e353d;
   margin-top: 15px;
@@ -240,198 +473,16 @@ footer {
   padding-bottom: 0;
 }
 
-.card {
-  border: 1px solid lightcoral;
-}
-.card .card-divider {
-  background: lightcoral;
-  color: #fefefe;
-  font-family: ItimCyrillic;
-}
-.card form {
-  font-family: ItimCyrillic;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  /* Create a custom checkbox */
-}
-.card form input {
-  border: 1px solid lightcoral;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  cursor: pointer;
-}
-.card form input:focus {
-  border: 1px solid lightcoral;
-  -webkit-box-shadow: inset 0 1px 2px lightcoral;
-  -moz-box-shadow: inset 0 1px 2px lightcoral;
-  box-shadow: inset 0 1px 2px lightcoral;
-  transition: box-shadow 0.5s, border-color 0.25s ease-in-out, -webkit-box-shadow 0.5s;
-}
-.card form input::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: lightcoral;
-  opacity: 1;
-  /* Firefox */
-}
-.card form input:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: lightcoral;
-}
-.card form input::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: lightcoral;
-}
-.card form ul {
-  list-style-type: none;
-  margin-left: 0;
-}
-.card form ul li {
-  margin-bottom: 5px;
-}
-.card form .help-text, .card form .helptext {
-  margin-top: -0.5rem;
-  font-size: 0.8125rem;
-  font-style: italic;
-  color: #0a0a0a;
-}
-.card form .inputfile {
-  border: none;
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-  cursor: pointer;
-}
-.card form .button-addfile {
-  background-color: lightcoral;
-  color: white;
-  white-space: nowrap;
-  /* Запрещаем перенос строк */
-  overflow: hidden;
-  /* Обрезаем все, что не помещается в область */
-  text-overflow: ellipsis;
-  /* Добавляем многоточие */
-}
-.card form .button-addfile:hover {
-  background-color: #ec6060;
-}
-.card form .container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  /* Hide the browser's default checkbox */
-  /* On mouse-over, add a grey background color */
-  /* When the checkbox is checked, add a blue background */
-  /* Show the checkmark when checked */
-  /* Style the checkmark/indicator */
-}
-.card form .container label {
-  color: lightcoral;
-}
-.card form .container input {
-  cursor: pointer;
-  position: absolute;
-  opacity: 0;
-}
-.card form .container:hover input ~ .checkmark {
-  background-color: #ec6060;
-}
-.card form .container input:checked ~ .checkmark {
-  background-color: #eb5252;
-}
-.card form .container input:checked ~ .checkmark:after {
-  display: block;
-}
-.card form .container .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 7px;
-  height: 13px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-.card form .checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: lightcoral;
-  /* Create the checkmark/indicator (hidden when not checked) */
-}
-.card form .checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-.pagination a:hover {
-  background-color: lightcoral;
-}
-.pagination a.current {
-  background-color: coral;
-}
-
 @media screen and (max-width: 767px) {
   .form-select2-type, .form-select2-city, .form-select2-price {
     width: 100%;
   }
 }
-.select2-results__option {
-  color: lightcoral;
-}
-
-.select2-container--foundation .select2-results__option--highlighted[aria-selected] {
+.pagination a:hover {
   background-color: lightcoral;
-  color: #ffffff;
 }
-
-#select2-id_album-container .select2-selection__placeholder {
-  color: lightcoral;
-}
-
-.select2-container--foundation .select2-selection,
-.select2-container--foundation.select2-container--focus .select2-selection,
-.select2-container--foundation.select2-container--open .select2-selection {
-  border: 1px solid lightcoral;
-}
-
-.select2-container--foundation .select2-selection--single .select2-selection__arrow b,
-.select2-container--foundation .selection .select2-selection--single .select2-selection__arrow b {
-  border-color: lightcoral transparent;
-}
-
-.select2-container--foundation .select2-dropdown {
-  border: 1px solid lightcoral;
-  border-top: 1px solid #f5aeae;
-}
-
-.select2-container--foundation .select2-selection--single .select2-selection__rendered,
-.select2-container--foundation .selection .select2-selection--single .select2-selection__rendered {
-  color: #e52525;
-  padding-left: 0;
-}
-
-.select2-container--foundation .select2-selection__clear {
-  color: #e83c3c;
-}
-.select2-container--foundation .select2-selection__clear:hover {
-  color: #e52525;
+.pagination a.current {
+  background-color: coral;
 }
 
 .short-text {

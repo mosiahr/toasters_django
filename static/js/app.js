@@ -49,7 +49,7 @@ $(document).ready(function(){
     $('.form-select2-addPhoto').select2({
         allowClear: true,
         theme: "foundation",
-        placeholder: 'Выбирете альбом',
+        placeholder: 'Выберите альбом',
         minimumResultsForSearch: Infinity,  //непоказ. строку поиска
     });
 

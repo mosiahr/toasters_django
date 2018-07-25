@@ -8,7 +8,7 @@
 {% block content %}
 <div class="grid-x">
     <div class="cell small-12 medium-5 large-4 float-center">
-        <div class="card">
+        <div class="card-form">
             <div class="card-divider">
                 <h4>{{ title }}</h4>
             </div>
@@ -39,7 +39,6 @@
             </div>
             <div class="container">
                 {{ form.is_cover_photo.errors }}
-{#                {{ form.is_cover_photo }}<span class="checkmark"></span>#}
                 {{ form.is_cover_photo.label_tag }}
             </div>
 
@@ -51,30 +50,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block javascript %}
-    <script type="text/javascript">
-        {#var inputs = document.querySelectorAll( '.inputfile' );#}
-        {#console.log(inputs);#}
-        {#Array.prototype.forEach.call( inputs, function( input )#}
-        {#{#}
-        {#    var label	 = input.nextElementSibling,#}
-        {#        labelVal = label.innerHTML;#}
-        {##}
-        {#    input.addEventListener( 'change', function( e )#}
-        {#    {#}
-        {#        var fileName = '';#}
-        {#        if( this.files && this.files.length > 1 )#}
-        {#            fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );#}
-        {#        else#}
-        {#            fileName = e.target.value.split( '\\' ).pop();#}
-        {##}
-        {#        if( fileName )#}
-        {#            label.querySelector( 'span' ).innerHTML = fileName;#}
-        {#        else#}
-        {#            label.innerHTML = labelVal;#}
-        {#    });#}
-        {#});#}
-    </script>
 {% endblock %}

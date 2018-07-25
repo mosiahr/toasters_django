@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-10 12:27+0300\n"
+"POT-Creation-Date: 2018-07-24 10:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,135 +20,8 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: core/models_abstract.py:15
+#: core/models_abstract.py:17
 msgid "Publish"
-msgstr ""
-
-#: gallery/admin.py:39 gallery/admin.py:56
-#, python-format
-msgid "Delete selected %(verbose_name_plural)s"
-msgstr ""
-
-#: gallery/forms.py:46 gallery/models.py:64
-msgid "Image"
-msgstr ""
-
-#: gallery/models.py:21 gallery/models.py:56
-msgid "Name"
-msgstr ""
-
-#: gallery/models.py:31
-msgid "Album"
-msgstr ""
-
-#: gallery/models.py:32 gallery/views.py:23
-msgid "Albums"
-msgstr ""
-
-#: gallery/models.py:57
-msgid "Title"
-msgstr ""
-
-#: gallery/models.py:67
-msgid "Is cover photo "
-msgstr ""
-
-#: gallery/models.py:73
-msgid "Photo"
-msgstr ""
-
-#: gallery/models.py:74
-msgid "Photos"
-msgstr ""
-
-#: gallery/templates/gallery/album_confirm_delete.html:17
-msgid "Are you sure you want to delete the selected Album?"
-msgstr ""
-
-#: gallery/templates/gallery/album_confirm_delete.html:20
-msgid "Yes, I'm sure"
-msgstr ""
-
-#: gallery/templates/gallery/album_confirm_delete.html:21
-msgid "No, take me back"
-msgstr ""
-
-#: gallery/templates/gallery/gallery_list.html:25
-msgid "City"
-msgstr ""
-
-#: gallery/templates/gallery/gallery_list.html:26
-msgid "Type"
-msgstr ""
-
-#: gallery/templates/gallery/gallery_list.html:27
-msgid "Price"
-msgstr ""
-
-#: gallery/templates/gallery/manage_photo.html:61
-#: gallery/templates/gallery/manage_photo.html:67
-#: gallery/templates/gallery/photo_form.html:34
-msgid "Cancel"
-msgstr ""
-
-#: gallery/templates/gallery/manage_photo.html:62
-msgid "Add album"
-msgstr ""
-
-#: gallery/templates/gallery/manage_photo.html:66
-msgid "Delete"
-msgstr ""
-
-#: gallery/templates/gallery/manage_photo.html:68
-msgid "Update album"
-msgstr ""
-
-#: gallery/templates/gallery/manage_photo.html:79
-msgid "add photo"
-msgstr ""
-
-#: gallery/templates/gallery/photo_form.html:35
-msgid "Add photo"
-msgstr ""
-
-#: gallery/views.py:53
-#, python-format
-msgid "Photo %(name)s was created successfully!"
-msgstr ""
-
-#: gallery/views.py:54 gallery/views.py:67 gallery/views.py:131
-msgid "Please correct the errors below."
-msgstr ""
-
-#: gallery/views.py:55
-msgid "Add Photo"
-msgstr ""
-
-#: gallery/views.py:71
-#, python-format
-msgid "Album \"%(name)s\" was created successfully!"
-msgstr ""
-
-#: gallery/views.py:73
-msgid "Add Album"
-msgstr ""
-
-#: gallery/views.py:135
-#, python-format
-msgid "Album \"%(name)s\" was updated successfully!"
-msgstr ""
-
-#: gallery/views.py:137
-msgid "Update Album"
-msgstr ""
-
-#: gallery/views.py:199
-#, python-format
-msgid "Album \"%(name)s\" was deleted successfully!"
-msgstr ""
-
-#: gallery/views.py:200
-msgid "Are you sure?"
 msgstr ""
 
 #: tags/apps.py:7 tags/models.py:13
@@ -163,31 +36,68 @@ msgstr ""
 msgid "Tag"
 msgstr ""
 
-#: templates/core/base.html:82 templates/core/base.html:84
-msgid "Search"
-msgstr "Поиск"
-
-#: templates/core/base.html:89 templates/core/base.html:93
-msgid "Account"
+#: templates/core/base.html:82
+msgid "Back to top"
 msgstr ""
 
-#: templates/core/base.html:97 templates/core/old/base.html:66
-msgid "Log out"
-msgstr ""
-
-#: templates/core/base.html:102 templates/core/base.html:142
-#: templates/core/base.html:150
+#: templates/core/include/footer.html:12 templates/core/include/footer.html:20
+#: templates/core/include/nav_main.html:68
 msgid "Registration for specialists"
 msgstr "Регистрация специалистов"
 
-#: templates/core/base.html:106 templates/core/old/base.html:69
+#: templates/core/include/modal_gallery.html:5
+msgid "Albums list"
+msgstr ""
+
+#: templates/core/include/nav_main.html:22
+#: templates/core/include/nav_main_one.html:16
+msgid "Companies"
+msgstr ""
+
+#: templates/core/include/nav_main.html:24
+#: templates/core/include/nav_main_one.html:18
+msgid "Gallery"
+msgstr ""
+
+#: templates/core/include/nav_main.html:26
+#: templates/core/include/nav_main_one.html:19
+msgid "Blog"
+msgstr ""
+
+#: templates/core/include/nav_main.html:27
+#: templates/core/include/nav_main_one.html:20
+msgid "About"
+msgstr ""
+
+#: templates/core/include/nav_main.html:47
+msgid "Favorites"
+msgstr ""
+
+#: templates/core/include/nav_main.html:55
+#: templates/core/include/nav_main.html:59
+#: templates/core/include/nav_main_one.html:26
+#: templates/core/include/nav_main_one.html:32
+msgid "Account"
+msgstr ""
+
+#: templates/core/include/nav_main.html:63
+#: templates/core/include/nav_main_one.html:36 templates/core/old/base.html:66
+msgid "Log out"
+msgstr ""
+
+#: templates/core/include/nav_main.html:72
+#: templates/core/include/nav_main_one.html:42
+#: templates/core/include/nav_main_one.html:46 templates/core/old/base.html:69
 msgid "Log in"
 msgstr ""
 
-#: templates/core/base.html:158
-msgid "Back to top"
+#: templates/core/include/nav_main_one.html:42
+msgid "Register"
 msgstr ""
 
 #: templates/core/old/base.html:68
 msgid "Sign up"
 msgstr ""
+
+#~ msgid "Search"
+#~ msgstr "Поиск"
