@@ -71,11 +71,11 @@ class PhotoAddForm(forms.ModelForm):
 
 
 class AlbumForm(forms.ModelForm):
-    name = forms.CharField(initial=_('Portfolio'))
-
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(AlbumForm, self).__init__(*args, **kwargs)
+        count_album = Album.pub_objects.filter(user=self.user).count()
+        self.fields['name'] = forms.CharField(initial='{} {}'.format(_('Portfolio'), count_album+1))
 
     class Meta:
         model = Album

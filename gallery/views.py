@@ -202,6 +202,11 @@ class AlbumUpdateView(SuccessMessageMixin,
     def get_context_data(self, **kwargs):
         ctx = super(AlbumUpdateView, self).get_context_data(**kwargs)
         ctx.update({'title': self.title})
+        # photos = self.get_object().get_photo()
+        ctx.update({
+            'title': self.title,
+            # 'photos': photos
+        })
         if self.request.POST:
             form_class = self.get_form_class()
             ctx['form'] = form_class(self.request.POST, instance=self.object)

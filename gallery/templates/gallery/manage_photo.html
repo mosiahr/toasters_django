@@ -24,6 +24,9 @@
                         </div>
                     </div>
                 </div>
+{#                {% for photo in photos %}#}
+{#                    <img src="{{ photo.image.small.url }}" alt="">#}
+{#                {% endfor %}#}
 
                 <table class="table">
                     {{ photo_form.management_form }}
@@ -50,6 +53,10 @@
                                     {% endif %}
                                     {{ field.errors.as_ul }}
                                     {{ field }}
+{#                                    {% if field.name == 'image' %}#}
+{#                                        <img src="{{ field.value.small.url }}" alt="">#}
+{#                                        {{ field.value }}#}
+{#                                    {% endif %}#}
                                 </td>
                             {% endfor %}
                         </tr>
