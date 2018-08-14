@@ -7,13 +7,13 @@
 
 {% block header %}
 
-<!-- FILTER -->
-{% include 'company/include/form_filter.html' %}
+{#<!-- FILTER -->#}
+{#{% include 'company/include/form_filter.html' %}#}
 {#    <h2 class="subheader">Тамада и ведущий на свадьбу{% if header %}: {{ header }}{% endif %}</h2>#}
 {% endblock %}
 
 {% block content %}
-    <div class="content-container">
+    <div class="content-container-companies-list">
         {# HEADER #}
 {#        <div class="cell small-12 medium-6 float-center">#}
 {#            <h3 class="text-center">{% if header.type %}{{ header.type }}{% endif %}</h3>#}
@@ -21,117 +21,75 @@
 {#            <h3 class="text-center">{% if header.price %}{{ header.price }}{% endif %}</h3>#}
 {#        </div>#}
 
-
-
         {# LIST CARDS #}
-
-                {# CARDS #}
-{#                <div class="grid-x grid-margin-x grid-margin-y">#}
-                <div class="card-companies">
-                    {% for company in companies %}
-                        <div class="card-company">
-                            <a class="card-company-image" href="{% url 'company:company_detail' pk=company.id %}">
-                                <img  src="{{ company.avatar.thumbnail.url }}"></a>
-                            <div class="card-company-header">{{ company.name|truncatechars:50 }}</div>
-                            <a href="{% url 'company:companies' %}?type={{ company.type.slug }}" class="card-company-type">
-                                <span class="label success">{{ company.type }}</span>
-                            </a>
-                            {% if company.get_locations %}
-                                <div class="card-company-location">
-                                <i class="fa fa-map-marker-alt fa-lg"></i>&nbsp;{{ company.get_locations }}</div>
-                            {% endif %}
-                            <div class="card-company-price">
-                                <i class="fas fa-dollar-sign fa-lg"></i>&nbsp;{{ company.price }}</div>
-                        </div>
-
-{#                        <div class="cell small-12 medium-3 large-2 align-center">#}
-{#                            <a class="float-center thumbnail-new" href="{% url 'company:company_detail' pk=company.id %}">#}
-{#                                <img class="float-center " src="{{ company.avatar.thumbnail.url }}">#}
-{#                                <h5 class="card-section text-center">{{ company.name|truncatechars:50 }}</h5>#}
-{#                            </a>#}
-{#                        </div>#}
-
-{#                        <div class="cell card-section">#}
-{#                            <img class="" src="{{ company.avatar.thumbnail.url }}" >#}
-{#                            <h5 class="company-card-name ">{{ company.name }}</h5>#}
-{#                            <div class="company-card-description">#}
-{#                                {{ company.description|safe }}#}
-{#                            </div>#}
-{#                        </div>#}
-
-
-{#                        <div class="cell grid-x company-card" style="">#}
-{##}
-{#                            <div class="cell small-4 medium-3 large-2">#}
-{#                                <img class="" src="{{ company.avatar.thumbnail.url }}" >#}
-{#                                <button type="button" data-url="{% url 'api_company:favorite' pk=company.id %}"#}
-{#                                        id="addFavorite" class="hollow success button small expanded float-center">#}
-{#                                    {% if fav == False %}#}
-{#                                        <i class="far fa-heart fa-lg"></i>#}
-{#                                        <span class="hide">{% trans "In favorites" %}</span>#}
-{#                                        <span>{% trans "Add to favorites" %}</span>#}
-{#                                    {% else %}#}
-{#                                        <i class="far fa-heart fa-lg fas fav"></i>#}
-{#                                        <span>{% trans "In favorites" %}</span>#}
-{#                                        <span class="hide">{% trans "Add to favorites" %}</span>#}
-{#                                    {% endif %}#}
-{#                                </button>#}
-{#                            </div>#}
-{#                            <div class="cell card-section">#}
-{#                                <h5 class="company-card-name ">{{ company.name }}</h5>#}
-{#                                <div class="company-card-description">#}
-{#                                    {{ company.description|safe }}#}
-{#                                </div>#}
-{#                            </div>#}
-{##}
-{#                        </div>#}
-
-                    {% empty %}
-                        <h2 class="float-center">По данному запросу результатов не найдено!</h2>
-                    {% endfor %}
+        <div class="card-companies">
+            {% for company in companies %}
+                <div class="card-company">
+                    <a class="card-company-image" href="{% url 'company:company_detail' pk=company.id %}">
+                        <img  src="{{ company.avatar.thumbnail.url }}"></a>
+                    <div class="card-company-header">{{ company.name|truncatechars:50 }}</div>
+                    <div class="card-company-type">
+                        <a href="{% url 'company:companies' %}?type={{ company.type.slug }}" class="">
+                            <span class="label success">{{ company.type }}</span>
+                        </a>
+                    </div>
+                    {% if company.get_locations %}
+                        <div class="card-company-location">
+                        <i class="fa fa-map-marker-alt fa-lg"></i>&nbsp;{{ company.get_locations }}</div>
+                    {% endif %}
+                    <div class="card-company-price">
+                        <i class="fas fa-dollar-sign fa-lg"></i>&nbsp;{{ company.price }}</div>
                 </div>
 
-                {# PAGINATION #}
-                {% if page_obj.paginator.num_pages > 1 %}
-                <nav class="card-paginator" aria-label="Pagination">
-                    <ul class="pagination text-center">
-                        {% if page_obj.has_previous %}
-                            <li class="pagination-previous">
-                                <a href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.previous_page_number }}"
-                                   aria-label="Previous page">{% trans "Previous" %} <span class="show-for-sr">page</span>
-                                </a></li>
-                            {% for page in page_obj.paginator.page_range|slice:page_dict.prev %}
-                                <li><a {% if page_obj.number == page %} class="current" {% endif %}
-                                                                        href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page }}"
-                                >{{ page }}</a></li>
-                            {% endfor %}
-                        {% else %}
-                            <li class="pagination-previous disabled">{% trans "Previous" %} <span class="show-for-sr"></span></li>
-                        {% endif %}
+            {% empty %}
+                <h2 class="float-center">По данному запросу результатов не найдено!</h2>
+            {% endfor %}
+        </div>
 
-                        <li><a class="current"
-                               href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.number }}"
-                        >{{ page_obj.number }}</a></li>
-
-                        {% if page_obj.has_next %}
-                            {% for page in page_obj.paginator.page_range|slice:page_dict.next %}
-                                <li><a {% if page_obj.number == page %} class="current" {% endif %}
-                                                                        href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page }}"
-                                >{{ page }}</a></li>
-                            {% endfor %}
-
-                            <li class="pagination-next">
-                                <a href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.next_page_number }}"
-                                   aria-label="Next page">{% trans "Next" %} <span class="show-for-sr"></span></a></li>
-                        {% else %}
-                            <li class="pagination-next disabled">{% trans "Next" %} <span class="show-for-sr"></span></li>
-                        {% endif %}
-                    </ul>
-                </nav>
+        {# PAGINATION #}
+        {% if page_obj.paginator.num_pages > 1 %}
+        <nav class="card-paginator" aria-label="Pagination">
+            <ul class="pagination text-center">
+                {% if page_obj.has_previous %}
+                    <li class="pagination-previous">
+                        <a href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.previous_page_number }}"
+                           aria-label="Previous page">{% trans "Previous" %} <span class="show-for-sr">page</span>
+                        </a></li>
+                    {% for page in page_obj.paginator.page_range|slice:page_dict.prev %}
+                        <li><a {% if page_obj.number == page %} class="current" {% endif %}
+                                                                href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page }}"
+                        >{{ page }}</a></li>
+                    {% endfor %}
+                {% else %}
+                    <li class="pagination-previous disabled">{% trans "Previous" %} <span class="show-for-sr"></span></li>
                 {% endif %}
+
+                <li><a class="current"
+                       href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.number }}"
+                >{{ page_obj.number }}</a></li>
+
+                {% if page_obj.has_next %}
+                    {% for page in page_obj.paginator.page_range|slice:page_dict.next %}
+                        <li><a {% if page_obj.number == page %} class="current" {% endif %}
+                                                                href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page }}"
+                        >{{ page }}</a></li>
+                    {% endfor %}
+
+                    <li class="pagination-next">
+                        <a href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.next_page_number }}"
+                           aria-label="Next page">{% trans "Next" %} <span class="show-for-sr"></span></a></li>
+                {% else %}
+                    <li class="pagination-next disabled">{% trans "Next" %} <span class="show-for-sr"></span></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
 
         <!-- RIGHT / Advertising -->
         <aside>
+            <!-- FILTER -->
+            {% include 'company/include/form_filter.html' %}
+
             <img class="thumbnail float-center" src="https://placehold.it/400x500">
             <img class="thumbnail float-center" src="https://placehold.it/400x500">
             <img class="thumbnail float-center" src="https://placehold.it/400x500">

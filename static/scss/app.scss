@@ -25,6 +25,7 @@ $color-item-light: lightcoral;
 @import 'menu';
 @import 'card-companies';
 @import 'card-form';
+@import 'filter';
 @import 'footer';
 
 
@@ -52,23 +53,6 @@ $color-item-light: lightcoral;
 }
 
 
-/*FILTER*/
-#form-filter {
-    background-color: $main-color-background;
 
-    display: flex;
-    display: -moz-flex;
-    display: -webkit-flex;
-    display: -ms-flex;
-    display: -webkit-box;
-
-    /*flex-flow: row ;*/
-    /*flex-wrap: wrap;*/
-    align-content: center;
-    justify-content: center;
-    color: white;
-
-    label{color: white;}
-}
 
 

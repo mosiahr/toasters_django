@@ -6,16 +6,12 @@ from django.contrib.auth import get_user_model
 from easy_select2.widgets import Select2, Select2Multiple
 # from easy_select2.utils import apply_select2
 
-
 from .models import (
     Location,
     TypeCompany,
     Price,
     Company
 )
-from tags.models import Tag
-from gallery.models import Album
-
 
 User = get_user_model()
 
@@ -43,14 +39,14 @@ class CompanyFilterForm(forms.Form):
             choices=self.TYPE,
             required=False,
             # label=_('<i class="fa fa-map-marker-alt fa-lg" aria-hidden="true"></i>&nbsp;Type'),
-            label=self.set_label('fas fa-microphone fa-lg', _('Type'), color='white'),
+            label=self.set_label('fas fa-microphone fa-lg', _('Type')),
             widget=forms.Select(attrs={
                 'class': 'form-select2-type',
             })
         )
 
         self.fields['location'] = forms.ChoiceField(
-            label=self.set_label('fa fa-map-marker-alt fa-lg', _('City'), color='white'),
+            label=self.set_label('fa fa-map-marker-alt fa-lg', _('City')),
             choices=self.LOCATION,
             required=False,
             # initial=self.LOCATION[0][0],
@@ -63,7 +59,7 @@ class CompanyFilterForm(forms.Form):
         self.fields['price'] = forms.ChoiceField(
             choices=self.PRICE,
             required=False,
-            label=self.set_label('fas fa-dollar-sign fa-lg', _('Price'), color='white'),
+            label=self.set_label('fas fa-dollar-sign fa-lg', _('Price')),
             widget=forms.Select(attrs={
                 'class': 'form-select2-price',
             }),

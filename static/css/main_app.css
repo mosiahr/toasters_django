@@ -180,6 +180,9 @@
 .card-company-type {
   grid-area: card-company-type;
 }
+.card-company-type .label {
+  cursor: pointer;
+}
 
 .card-company-location {
   grid-area: card-company-location;
@@ -192,7 +195,7 @@
 .card-company {
   display: grid;
   grid-column-gap: 10px;
-  grid-template-areas: "card-company-image card-company-header " "card-company-image card-company-type " "card-company-image card-company-location" "card-company-image card-company-price";
+  grid-template-areas: "card-company-image card-company-header" "card-company-image card-company-type" "card-company-image card-company-location" "card-company-image card-company-price";
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto auto auto;
   border: 1px solid coral;
@@ -456,6 +459,79 @@
   border-top: 1px solid #f5aeae;
 }
 
+/*FILTER*/
+#form-filter {
+  display: flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: -webkit-box;
+  /*flex-flow: row ;*/
+  /*flex-wrap: wrap;*/
+  align-content: center;
+  justify-content: center;
+}
+#form-filter label {
+  color: coral;
+}
+#form-filter .select2-container--foundation .select2-selection,
+#form-filter .select2-container--foundation.select2-container--focus .select2-selection,
+#form-filter .select2-container--foundation.select2-container--open .select2-selection {
+  border: 1px solid coral;
+}
+#form-filter .select2-container--foundation .select2-selection:focus,
+#form-filter .select2-container--foundation.select2-container--focus .select2-selection:focus,
+#form-filter .select2-container--foundation.select2-container--open .select2-selection:focus {
+  -webkit-box-shadow: 0 0 2px coral;
+  -moz-box-shadow: 0 0 2px coral;
+  box-shadow: 0 0 2px coral;
+}
+#form-filter .select2-container--foundation .select2-selection--single .select2-selection__arrow b,
+#form-filter .select2-container--foundation .selection .select2-selection--single .select2-selection__arrow b {
+  border-color: coral transparent;
+}
+#form-filter .select2-container--foundation .select2-dropdown {
+  border: 1px solid coral;
+  border-top: 1px solid #ffa483;
+}
+#form-filter .select2-container--foundation .select2-selection--single .select2-selection__rendered,
+#form-filter .select2-container--foundation .selection .select2-selection--single .select2-selection__rendered {
+  color: #e93f00;
+  padding-left: 0;
+}
+#form-filter .select2-container--foundation .select2-selection__clear {
+  color: #ff4704;
+}
+#form-filter .select2-container--foundation .select2-selection__clear:hover {
+  color: #e93f00;
+}
+#form-filter .select2-selection__placeholder {
+  color: lightcoral;
+}
+
+.select2-container--foundation .select2-results__option--highlighted[aria-selected] {
+  background-color: lightcoral;
+  color: #ffffff;
+}
+.select2-container--foundation .select2-results__option {
+  color: lightcoral;
+}
+
+.select2-container--foundation .select2-dropdown {
+  border: 1px solid lightcoral;
+  border-top: 1px solid #f5aeae;
+}
+
+.select2-container--foundation .select2-search--dropdown .select2-search__field {
+  border: 1px solid coral;
+  color: coral;
+}
+.select2-container--foundation .select2-search--dropdown .select2-search__field:focus {
+  -webkit-box-shadow: 0 0 2px coral;
+  -moz-box-shadow: 0 0 2px coral;
+  box-shadow: 0 0 2px coral;
+}
+
 footer {
   background-color: #2e353d;
   margin-top: 15px;
@@ -488,24 +564,6 @@ footer {
 .short-text {
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-/*FILTER*/
-#form-filter {
-  background-color: coral;
-  display: flex;
-  display: -moz-flex;
-  display: -webkit-flex;
-  display: -ms-flex;
-  display: -webkit-box;
-  /*flex-flow: row ;*/
-  /*flex-wrap: wrap;*/
-  align-content: center;
-  justify-content: center;
-  color: white;
-}
-#form-filter label {
-  color: white;
 }
 
 /*# sourceMappingURL=main_app.css.map */
