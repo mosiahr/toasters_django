@@ -232,6 +232,32 @@
     padding: 0 10px;
   }
 }
+/*CONTENT-CONTAINER*/
+.card-paginator {
+  grid-area: card-paginator;
+}
+
+.content-container-companies-list aside {
+  grid-area: content-container-aside;
+  display: grid;
+  align-content: start;
+}
+
+.content-container-companies-list {
+  display: grid;
+  grid-template-areas: "card-companies content-container-aside" "card-paginator content-container-aside";
+  grid-template-columns: 18fr 6fr;
+  grid-gap: 10px;
+  grid-template-rows: auto 1fr;
+}
+
+@media screen and (max-width: 767px) {
+  .content-container-companies-list {
+    grid-template-areas: "card-companies" "card-paginator" "content-container-aside";
+    grid-template-columns: 100%;
+    grid-gap: 10px;
+  }
+}
 .card-form {
   border: 1px solid lightcoral;
 }
@@ -564,6 +590,17 @@ footer {
 .short-text {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.header-company-list {
+  background-color: coral;
+  color: white;
+  height: 200px;
+}
+
+.content {
+  margin-top: 10px;
+  max-width: 980px;
 }
 
 /*# sourceMappingURL=main_app.css.map */

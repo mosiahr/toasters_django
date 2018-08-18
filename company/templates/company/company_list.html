@@ -29,7 +29,7 @@
                         <img  src="{{ company.avatar.thumbnail.url }}"></a>
                     <div class="card-company-header">{{ company.name|truncatechars:50 }}</div>
                     <div class="card-company-type">
-                        <a href="{% url 'company:companies' %}?type={{ company.type.slug }}" class="">
+                        <a href="{% url 'company:companies' location='empty/' type=company.type.slug %}/" class="">
                             <span class="label success">{{ company.type }}</span>
                         </a>
                     </div>
@@ -52,12 +52,13 @@
             <ul class="pagination text-center">
                 {% if page_obj.has_previous %}
                     <li class="pagination-previous">
-                        <a href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.previous_page_number }}"
+{#                        <a href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.previous_page_number }}"#}
+                        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}"
                            aria-label="Previous page">{% trans "Previous" %} <span class="show-for-sr">page</span>
                         </a></li>
                     {% for page in page_obj.paginator.page_range|slice:page_dict.prev %}
                         <li><a {% if page_obj.number == page %} class="current" {% endif %}
-                                                                href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page }}"
+                                                                href="{{ request.path }}?page={{ page }}"
                         >{{ page }}</a></li>
                     {% endfor %}
                 {% else %}
@@ -65,18 +66,18 @@
                 {% endif %}
 
                 <li><a class="current"
-                       href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.number }}"
+                       href="{{ request.path }}?page={{ page_obj.number }}"
                 >{{ page_obj.number }}</a></li>
 
                 {% if page_obj.has_next %}
                     {% for page in page_obj.paginator.page_range|slice:page_dict.next %}
                         <li><a {% if page_obj.number == page %} class="current" {% endif %}
-                                                                href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page }}"
+                                                                href="{{ request.path }}?page={{ page }}"
                         >{{ page }}</a></li>
                     {% endfor %}
 
                     <li class="pagination-next">
-                        <a href="?type_company={{ request.GET.type_company }}&location_select={{ request.GET.location_select }}&price={{ request.GET.price }}&page={{ page_obj.next_page_number }}"
+                        <a href="{{ request.path }}?page={{ page_obj.next_page_number }}"
                            aria-label="Next page">{% trans "Next" %} <span class="show-for-sr"></span></a></li>
                 {% else %}
                     <li class="pagination-next disabled">{% trans "Next" %} <span class="show-for-sr"></span></li>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-24 10:53+0300\n"
+"POT-Creation-Date: 2018-08-18 16:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Имя (необязательное поле)"
 msgid "Is cover photo"
 msgstr "Фото обложки"
 
-#: gallery/forms.py:74 gallery/models.py:19 gallery/models.py:33
+#: gallery/forms.py:78 gallery/models.py:19 gallery/models.py:33
 msgid "Portfolio"
 msgstr "Портфолио"
 
@@ -85,29 +85,29 @@ msgstr ""
 msgid "No, take me back"
 msgstr ""
 
-#: gallery/templates/gallery/manage_photo.html:61
-#: gallery/templates/gallery/manage_photo.html:67
-#: gallery/templates/gallery/photo_form.html:47
+#: gallery/templates/gallery/manage_photo.html:68
+#: gallery/templates/gallery/manage_photo.html:74
+#: gallery/templates/gallery/photo_form.html:46
 msgid "Cancel"
 msgstr ""
 
-#: gallery/templates/gallery/manage_photo.html:62
+#: gallery/templates/gallery/manage_photo.html:69
 msgid "Add album"
 msgstr ""
 
-#: gallery/templates/gallery/manage_photo.html:66
+#: gallery/templates/gallery/manage_photo.html:73
 msgid "Delete"
 msgstr "Удалить"
 
-#: gallery/templates/gallery/manage_photo.html:68
+#: gallery/templates/gallery/manage_photo.html:75
 msgid "Update album"
 msgstr "Редактировать альбом"
 
-#: gallery/templates/gallery/manage_photo.html:79
+#: gallery/templates/gallery/manage_photo.html:86
 msgid "add photo"
 msgstr "Добавить фото"
 
-#: gallery/templates/gallery/photo_form.html:46
+#: gallery/templates/gallery/photo_form.html:45
 msgid "Add photo"
 msgstr "Добавить фото"
 
@@ -128,7 +128,7 @@ msgstr ""
 msgid "Photo %(name)s was created successfully!"
 msgstr ""
 
-#: gallery/views.py:63 gallery/views.py:82 gallery/views.py:148
+#: gallery/views.py:63 gallery/views.py:86 gallery/views.py:151
 msgid "Please correct the errors below."
 msgstr ""
 
@@ -136,29 +136,29 @@ msgstr ""
 msgid "Add Photo"
 msgstr "Добавить фото"
 
-#: gallery/views.py:86
+#: gallery/views.py:90
 #, python-format
 msgid "Album \"%(name)s\" was created successfully!"
 msgstr ""
 
-#: gallery/views.py:88
+#: gallery/views.py:92
 msgid "Сreate an album"
 msgstr "Создать альбом"
 
-#: gallery/views.py:152
+#: gallery/views.py:155
 #, python-format
 msgid "Album \"%(name)s\" was updated successfully!"
 msgstr ""
 
-#: gallery/views.py:154
+#: gallery/views.py:157
 msgid "Update Album"
 msgstr "Редактировать альбом"
 
-#: gallery/views.py:217
+#: gallery/views.py:225
 #, python-format
 msgid "Album \"%(name)s\" was deleted successfully!"
 msgstr ""
 
-#: gallery/views.py:218
+#: gallery/views.py:226
 msgid "Are you sure?"
 msgstr ""

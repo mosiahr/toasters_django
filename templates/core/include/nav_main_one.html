@@ -1,5 +1,7 @@
 {% load i18n %}
-
+{% url 'company:companies' location='' type='' price='' as url_companies %}
+{% url 'company:companies' location='empty/' type='vedushie-tamada/' as url_tamada %}
+{% url 'company:companies' location='empty/' type='fotografy/' as url_foto %}
 <div data-sticky-container>
     <div class="small-12 sticky" data-sticky data-options="marginTop: 0;" style="width:100%">
         <nav class="top-bar topbar-responsive">
@@ -12,7 +14,15 @@
             <div id="topbar-responsive" class="topbar-responsive-links">
                 <div class="top-bar-right">
                     <ul class="menu dropdown simple vertical medium-horizontal" data-dropdown-menu>
-                        <li class="{% if request.resolver_match.view_name == 'company:companies' %}active-menu{% endif %}">
+{#                        {{ request.get_full_path }}#}
+{#                        {{ url_foto }}#}
+                        <li class="{% if 'vedushie-tamada/' in request.path %}active-menu{% endif %}">
+                            <a href="{{ url_tamada }}">{% trans 'Toasters' %}</a></li>
+                        <li class="{% if 'fotografy/' in request.path %}active-menu{% endif %}">
+                            <a href="{{ url_foto }}">{% trans 'Photographers' %}</a></li>
+{#                        <li class="{% if request.resolver_match.view_name == 'company:companies' %}active-menu{% endif %}">#}
+{#                            <a href="{% url 'company:companies' %}?type=videooperator">{% trans 'Videographer' %}</a></li>#}
+                        <li class="{% if request.path == url_companies %}active-menu{% endif %}">
                             <a href="{% url 'company:companies' %}">{% trans 'Companies' %}</a></li>
                         <li class="{% if request.resolver_match.view_name == 'gallery:albums' %}active-menu{% endif %}">
                             <a href="{% url 'gallery:albums' %}">{% trans 'Gallery' %}</a></li>

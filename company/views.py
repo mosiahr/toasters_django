@@ -35,7 +35,6 @@ class CompanyListView(PaginationMixin, ListView):
     form_class = CompanyFilterForm
     context_object_name = 'companies'
     model = Company
-    # initial = {'type_company': 'vedushie-tamada'}
     template_name = 'company/company_list.html'
     paginate_by = 10
     paginate_orphans = 2
@@ -43,65 +42,50 @@ class CompanyListView(PaginationMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CompanyListView, self).get_context_data(**kwargs)
-
         if self.request.method == 'GET':
             form = self.form_class(self.request.GET)
-
             if form.is_valid():
                 context.update({'form': form})
-
-            try:
-                location = Location.pub_objects.get(slug=self.request.GET['location'])
-            except:
-                location = None
-            try:
-                type = TypeCompany.pub_objects.get(slug=self.request.GET['type'])
-            except:
-                type = None
-            try:
-                price = Price.pub_objects.get(slug=self.request.GET['price'])
-            except:
-                price = None
-
-            header = {
-                'location': location,
-                'type': type,
-                'price': price,
-            }
-
         else:
             form = self.form_class()
-            header = None
-
-        cnt_fav = count_fav(self.request)
-        context.update(dict(form=form, header=header, cnt_fav=cnt_fav))
+        # cnt_fav = count_fav(self.request)
+        context.update(dict(form=form))
         return context
 
     def get_queryset(self):
+        empty = 'empty'
         try:
-            location = self.request.GET['location']
+            location = self.kwargs.get('location')
+            if location == empty:
+                location = None
         except:
             location = None
+
         try:
-            type = self.request.GET['type']
+            type_company = self.kwargs.get('type')
+            if type_company == empty:
+                type_company = None
         except:
-            type = None
+            type_company = None
+
         try:
-            price = self.request.GET['price']
+            price = self.kwargs.get('price')
+            if price == empty:
+                price = None
         except:
             price = None
 
-        if location and type and price:
+        if location and type_company and price:
             return Company.pub_objects.filter(location__slug=location,
-                                              type__slug=type,
+                                              type__slug=type_company,
                                               price__slug=price)
 
-        if location and type:
+        if location and type_company:
             return Company.pub_objects.filter(location__slug=location,
-                                              type__slug=type)
+                                              type__slug=type_company)
 
-        if type and price:
-            return Company.pub_objects.filter(type__slug=type,
+        if type_company and price:
+            return Company.pub_objects.filter(type__slug=type_company,
                                               price__slug=price)
 
         if location and price:
@@ -111,13 +95,100 @@ class CompanyListView(PaginationMixin, ListView):
         if location:
             return Company.pub_objects.filter(location__slug=location)
 
-        if type:
-            return Company.pub_objects.filter(type__slug=type)
+        if type_company:
+            return Company.pub_objects.filter(type__slug=type_company)
 
         if price:
             return Company.pub_objects.filter(price__slug=price)
 
         return Company.pub_objects.all().order_by('-created')
+
+
+# class CompanyListView(PaginationMixin, ListView):
+#     form_class = CompanyFilterForm
+#     context_object_name = 'companies'
+#     model = Company
+#     template_name = 'company/company_list.html'
+#     paginate_by = 10
+#     paginate_orphans = 2
+#     n_list = 4    # This mixin provides list of links to previous and next n_list number of pages (PaginationMixin)
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(CompanyListView, self).get_context_data(**kwargs)
+#         if self.request.method == 'GET':
+#             form = self.form_class(self.request.GET)
+#
+#             if form.is_valid():
+#                 context.update({'form': form})
+#
+#             try:
+#                 location = Location.pub_objects.get(slug=self.request.GET['location'])
+#             except:
+#                 location = None
+#             try:
+#                 type = TypeCompany.pub_objects.get(slug=self.request.GET['type'])
+#             except:
+#                 type = None
+#             try:
+#                 price = Price.pub_objects.get(slug=self.request.GET['price'])
+#             except:
+#                 price = None
+#
+#             header = {
+#                 'location': location,
+#                 'type': type,
+#                 'price': price,
+#             }
+#
+#         else:
+#             form = self.form_class()
+#             header = None
+#
+#         cnt_fav = count_fav(self.request)
+#         context.update(dict(form=form, header=header, cnt_fav=cnt_fav))
+#         return context
+#
+#     def get_queryset(self):
+#         try:
+#             location = self.request.GET['location']
+#         except:
+#             location = None
+#         try:
+#             type = self.request.GET['type']
+#         except:
+#             type = None
+#         try:
+#             price = self.request.GET['price']
+#         except:
+#             price = None
+#
+#         if location and type and price:
+#             return Company.pub_objects.filter(location__slug=location,
+#                                               type__slug=type,
+#                                               price__slug=price)
+#
+#         if location and type:
+#             return Company.pub_objects.filter(location__slug=location,
+#                                               type__slug=type)
+#
+#         if type and price:
+#             return Company.pub_objects.filter(type__slug=type,
+#                                               price__slug=price)
+#
+#         if location and price:
+#             return Company.pub_objects.filter(location__slug=location,
+#                                               price__slug=price)
+#
+#         if location:
+#             return Company.pub_objects.filter(location__slug=location)
+#
+#         if type:
+#             return Company.pub_objects.filter(type__slug=type)
+#
+#         if price:
+#             return Company.pub_objects.filter(price__slug=price)
+#
+#         return Company.pub_objects.all().order_by('-created')
 
 
 class CompanyDetailView(DetailView):

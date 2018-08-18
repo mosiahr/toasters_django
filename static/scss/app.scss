@@ -9,10 +9,10 @@
     src: url('/static/fonts/ItimCyrillic.otf');
 }
 
-$main-color-background: coral;
-$color-item-light: lightcoral;
+$main-color: coral;
+$light-color: lightcoral;
 
-
+$max-width-content: 980px;
 
 
 
@@ -23,7 +23,7 @@ $color-item-light: lightcoral;
 
 // Dependencies
 @import 'menu';
-@import 'card-companies';
+@import 'companies';
 @import 'card-form';
 @import 'filter';
 @import 'footer';
@@ -39,11 +39,11 @@ $color-item-light: lightcoral;
 
 .pagination{
   a:hover{
-    background-color: $color-item-light;
+    background-color: $light-color;
   }
 
   a.current{
-    background-color: $main-color-background;
+    background-color: $main-color;
   }
 }
 
@@ -52,7 +52,15 @@ $color-item-light: lightcoral;
   text-overflow: ellipsis;
 }
 
+.header-company-list {
+    background-color: coral;
+    color: white;
+    height: 200px;
+}
 
-
+.content {
+    margin-top: 10px;
+    max-width: $max-width-content;
+}
 
 

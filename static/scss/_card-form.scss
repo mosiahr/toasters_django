@@ -1,8 +1,8 @@
 .card-form {
   @include foundation-card;
-  border: 1px solid $color-item-light;
+  border: 1px solid $light-color;
   .card-divider {
-    background: $color-item-light;
+    background: $light-color;
     color: #fefefe;
     font-family: ItimCyrillic;
   }
@@ -17,7 +17,7 @@
     user-select: none;
 
     input {
-      border: 1px solid $color-item-light;
+      border: 1px solid $light-color;
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
       box-shadow: none;
@@ -25,23 +25,23 @@
 
 
       &:focus {
-        border: 1px solid $color-item-light;
-        -webkit-box-shadow: 0 0 2px  $color-item-light;
-        -moz-box-shadow: 0 0 2px  $color-item-light;
-        box-shadow:  0 0 2px  $color-item-light;
+        border: 1px solid $light-color;
+        -webkit-box-shadow: 0 0 2px $light-color;
+        -moz-box-shadow: 0 0 2px $light-color;
+        box-shadow:  0 0 2px $light-color;
 
         transition: box-shadow .5s,border-color .25s ease-in-out,-webkit-box-shadow .5s;
 
       }
       &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-        color: $color-item-light;
+        color: $light-color;
         opacity: 1; /* Firefox */
       }
       &:-ms-input-placeholder { /* Internet Explorer 10-11 */
-        color: $color-item-light;
+        color: $light-color;
       }
       &::-ms-input-placeholder { /* Microsoft Edge */
-        color: $color-item-light;
+        color: $light-color;
       }
     }
 
@@ -69,14 +69,14 @@
       cursor: pointer;
     }
     .button-addfile{
-      background-color: $color-item-light;
+      background-color: $light-color;
       color: white;
 
       white-space: nowrap; /* Запрещаем перенос строк */
       overflow: hidden; /* Обрезаем все, что не помещается в область */
       text-overflow: ellipsis; /* Добавляем многоточие */
 
-      &:hover{background-color: darken($color-item-light, 7%);}
+      &:hover{background-color: darken($light-color, 7%);}
 
       //&:focus{
       //  outline: 1px dotted #000;
@@ -98,7 +98,7 @@
       user-select: none;
 
       label {
-        color: $color-item-light;
+        color: $light-color;
         cursor: pointer;
       }
 
@@ -110,12 +110,12 @@
       }
 
       /* On mouse-over, add a grey background color */
-      &:hover input ~ .checkmark {background-color: darken($color-item-light, 7%);}
+      &:hover input ~ .checkmark {background-color: darken($light-color, 7%);}
 
       /* When the checkbox is checked, add a blue background */
       & input:checked ~ .checkmark {
         //background-color: #3ADB76;
-        background-color: darken($color-item-light, 10%);
+        background-color: darken($light-color, 10%);
       }
 
       /* Show the checkmark when checked */
@@ -144,7 +144,7 @@
       left: 0;
       height: 25px;
       width: 25px;
-      background-color: $color-item-light;
+      background-color: $light-color;
 
 
       /* Create the checkmark/indicator (hidden when not checked) */
@@ -164,43 +164,43 @@
   .select2-container--foundation .select2-selection,
   .select2-container--foundation.select2-container--focus .select2-selection,
   .select2-container--foundation.select2-container--open .select2-selection {
-    border: 1px solid $color-item-light;
+    border: 1px solid $light-color;
     &:focus {
-      -webkit-box-shadow: 0 0 2px  $color-item-light;
-      -moz-box-shadow: 0 0 2px  $color-item-light;
-      box-shadow:  0 0 2px  $color-item-light;
+      -webkit-box-shadow: 0 0 2px $light-color;
+      -moz-box-shadow: 0 0 2px $light-color;
+      box-shadow:  0 0 2px $light-color;
     }
   }
   .select2-container--foundation .select2-selection--single .select2-selection__arrow b,
   .select2-container--foundation .selection .select2-selection--single .select2-selection__arrow b {
-    border-color: $color-item-light transparent;
+    border-color: $light-color transparent;
   }
   .select2-container--foundation .select2-dropdown  {
-    border: 1px solid $color-item-light;
-    border-top: 1px solid lighten($color-item-light, 10%);
+    border: 1px solid $light-color;
+    border-top: 1px solid lighten($light-color, 10%);
   }
   .select2-container--foundation .select2-selection--single .select2-selection__rendered,
   .select2-container--foundation .selection .select2-selection--single .select2-selection__rendered {
-    color: darken($color-item-light, 20%);
+    color: darken($light-color, 20%);
     padding-left: 0;
   }
   .select2-container--foundation .select2-selection__clear {
-    color: darken($color-item-light, 15%);
-    &:hover{color: darken($color-item-light, 20%);}
+    color: darken($light-color, 15%);
+    &:hover{color: darken($light-color, 20%);}
   }
 }
 
 #select2-id_album-container {
-  .select2-selection__placeholder{color: $color-item-light;}
+  .select2-selection__placeholder{color: $light-color;}
 }
 
 .select2-container--foundation #select2-id_album-results{
   .select2-results__option--highlighted[aria-selected] {
-    background-color: $color-item-light;
+    background-color: $light-color;
     color: #ffffff;
   }
   .select2-results__option{
-    color: $color-item-light;
+    color: $light-color;
   }
 }
 
@@ -208,8 +208,8 @@
   border: none;
   border-top: none;
   #select2-id_album-results{
-    border: 1px solid $color-item-light;
-    border-top: 1px solid lighten($color-item-light, 10%);
+    border: 1px solid $light-color;
+    border-top: 1px solid lighten($light-color, 10%);
   }
 }
 

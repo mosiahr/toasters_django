@@ -6,8 +6,51 @@
             <label for="{{ field.name }}">{{ field.label|safe }}</label>
             {{ field }}
         {% endfor %}
-        <button class="hollow button success expanded" type="submit">
+        <button class="hollow button success expanded" type="button"  onclick="filter()">
             {% trans "Search" %}
         </button>
     </form>
 </div>
+<script>
+
+    (function () {
+        var empty = 'empty';
+        var loc = empty,
+            type_c = empty,
+            price = empty;
+        var parser = document.createElement('a');
+        parser.href = "{{ request.get_full_path }}";
+        loc = parser.pathname.split('/')[2];
+        type_c = parser.pathname.split('/')[3];
+        price = parser.pathname.split('/')[4];
+        document.getElementById('id_location').value = loc;
+        document.getElementById('id_type').value = type_c;
+        document.getElementById('id_price').value = price;
+
+    })();
+    function filter() {
+        var empty = 'empty';
+        var loc = empty,
+            type_c = empty,
+            price = empty;
+        if (document.getElementById('id_location').value){
+            loc = document.getElementById('id_location').value;
+        }
+        if (document.getElementById('id_type').value){
+            type_c = document.getElementById('id_type').value;
+        }
+        if (document.getElementById('id_price').value){
+            price = document.getElementById('id_price').value;
+        }
+
+        var url = "{% url 'company:companies' %}";
+        if (loc === empty && type_c === empty && price === empty) {
+            document.location.href = url;
+        }else if (type_c === empty && price === empty){
+            document.location.href = url + loc + '/';
+        }else if (price === empty) {
+            document.location.href = url + loc + '/' + type_c + '/';
+        }else document.location.href = url + loc + '/' + type_c + '/' + price + '/';
+    }
+
+</script>

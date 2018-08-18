@@ -35,16 +35,6 @@ class CompanyFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(CompanyFilterForm, self).__init__(*args, **kwargs)
 
-        self.fields['type'] = forms.ChoiceField(
-            choices=self.TYPE,
-            required=False,
-            # label=_('<i class="fa fa-map-marker-alt fa-lg" aria-hidden="true"></i>&nbsp;Type'),
-            label=self.set_label('fas fa-microphone fa-lg', _('Type')),
-            widget=forms.Select(attrs={
-                'class': 'form-select2-type',
-            })
-        )
-
         self.fields['location'] = forms.ChoiceField(
             label=self.set_label('fa fa-map-marker-alt fa-lg', _('City')),
             choices=self.LOCATION,
@@ -55,6 +45,17 @@ class CompanyFilterForm(forms.Form):
             }),
         )
         # self.fields['location_select'].widget.attrs.update({'class': 'fa-map-marker-alt'})
+
+        self.fields['type'] = forms.ChoiceField(
+            choices=self.TYPE,
+            required=False,
+            # label=_('<i class="fa fa-map-marker-alt fa-lg" aria-hidden="true"></i>&nbsp;Type'),
+            label=self.set_label('fas fa-microphone fa-lg', _('Type')),
+            widget=forms.Select(attrs={
+                'class': 'form-select2-type',
+            }),
+            initial='vedushie-tamada',
+        )
 
         self.fields['price'] = forms.ChoiceField(
             choices=self.PRICE,
@@ -69,14 +70,14 @@ class CompanyFilterForm(forms.Form):
     def set_label(self, fontawesome, label, color=None):
         return '<i class="{0} " style="color: {2}"></i> {1}'.format(fontawesome, label, color)
 
-    field_order = ('type', 'location', 'price')
+    field_order = ('location', 'type', 'price')
 
 
 class CompanyAddForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CompanyAddForm, self).__init__(*args, **kwargs)
-        self.fields['type'].widget.attrs = {'class': 'form-select2-type'}
         self.fields['location'].widget.attrs = {'class': 'form-select2-city'}
+        self.fields['type'].widget.attrs = {'class': 'form-select2-type'}
         self.fields['price'].widget.attrs = {'class': 'form-select2-price'}
 
     class Meta:
