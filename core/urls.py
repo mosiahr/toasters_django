@@ -33,8 +33,9 @@ urlpatterns = [
 
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
 
-    url(r'^api/company/', include('company.api.urls', namespace='api_company'))
-]   
+    url(r'^api/v1/company/', include('company.api.urls', namespace='api_company')),
+    url(r'^api/v1/gallery/', include('gallery.api.urls', namespace='api_gallery'))
+]
 
 # if settings.DEBUG:
 #     if settings.MEDIA_URL:

@@ -12,7 +12,6 @@
     </form>
 </div>
 <script>
-
     (function () {
         var empty = 'empty';
         var loc = empty,
@@ -20,9 +19,9 @@
             price = empty;
         var parser = document.createElement('a');
         parser.href = "{{ request.get_full_path }}";
-        loc = parser.pathname.split('/')[2];
-        type_c = parser.pathname.split('/')[3];
-        price = parser.pathname.split('/')[4];
+        loc = parser.pathname.split('/')[3];
+        type_c = parser.pathname.split('/')[4];
+        price = parser.pathname.split('/')[5];
         document.getElementById('id_location').value = loc;
         document.getElementById('id_type').value = type_c;
         document.getElementById('id_price').value = price;
@@ -52,5 +51,4 @@
             document.location.href = url + loc + '/' + type_c + '/';
         }else document.location.href = url + loc + '/' + type_c + '/' + price + '/';
     }
-
 </script>

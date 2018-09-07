@@ -101,7 +101,7 @@ class CompanyListView(PaginationMixin, ListView):
         if price:
             return Company.pub_objects.filter(price__slug=price)
 
-        return Company.pub_objects.all().order_by('-created')
+        return Company.pub_objects.get_queryset().order_by('-created')
 
 
 # class CompanyListView(PaginationMixin, ListView):

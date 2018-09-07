@@ -11,7 +11,7 @@ from .views import (
 
 urlpatterns = [
     # url(r'^$', CompanyListView.as_view(), name='companies'),
-    url(r'^(?P<location>[a-z\-]+)?/?(?P<type>[a-z\-]+)?/?(?P<price>[a-z0-9\-]+)?/?$', CompanyListView.as_view(), name='companies'),
+    url(r'^filter/(?P<location>[a-z\-]+)?/?(?P<type>[a-z\-]+)?/?(?P<price>[a-z0-9\-]+)?/?$', CompanyListView.as_view(), name='companies'),
     # url(r'^toaster/$', CompanyListView.as_view(), name='companies'),
     url(r'^add/$', CompanyAddView.as_view(), name='company_add'),
     # url(r'^add/$', CompanyCreate.as_view(), name='company_add'),

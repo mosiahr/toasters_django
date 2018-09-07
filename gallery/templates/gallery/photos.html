@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+
+ <div id="app">
+    <h1> ${title} </h1>
+{#    <ul>#}
+{#        <li v-for="photo in photos">#}
+{#            <h4> ${ photo.id }</h4>#}
+{#        </li>#}
+{#    </ul>#}
+
+
+    <div class="grid-x grid-margin-x  small-12 medium-6 large-3">
+        <div v-for="photo in photos">
+            <div class="cell grid-margin-x portfolio-item thumbnail">
+{#                <div class="hover-bg">#}
+{#                    <div style="height: 200px">#}
+{#                        <div class="hover-text">#}
+{#                            <h4>Lorem Ipsum</h4>#}
+{#                        </div>#}
+
+                        <img class="float-center" :src="photo.imgThumbnail">
+{#                    </div>#}
+{#                </div>#}
+            </div>
+        </div>
+    </div>
+{#    {% empty %}#}
+{#        {% trans "Empty" %}#}
+{#    {% endfor %}#}
+
+</div>
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>#}
+
+{#<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>#}
+{#<script src="{% static 'vue/dist/vue.min.js' %}"></script>#}
+{#<script src="{% static 'vue-resource/dist/vue-resource.min.js' %}"></script>    {# Vue.$http.get() #}
+{#<script src="{% static 'vue-preload/vue-preload.js' %}"></script>            {# preload #}
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'dist/bundle.js' %}"></script>
+{% endblock %}

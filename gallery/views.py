@@ -52,6 +52,11 @@ class PhotoListView(ListView):
         return Photo.objects.filter(album_id=self.kwargs['pk']).order_by('-created')
 
 
+class PhotosListView(ListView):
+    model = Photo
+    template_name = 'gallery/photos.html'
+
+
 class PhotoAddView(SuccessMessageMixin,
                    ErrorMessageMixin,
                    LoginRequiredMixin,

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-18 16:45+0300\n"
+"POT-Creation-Date: 2018-08-20 01:03+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,145 +20,152 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: gallery/admin.py:39 gallery/admin.py:63
+#: admin.py:39 admin.py:64
 #, python-format
 msgid "Delete selected %(verbose_name_plural)s"
 msgstr ""
 
-#: gallery/forms.py:10
+#: admin.py:48
+msgid "Cover photo"
+msgstr "Фото обложки"
+
+#: apps.py:7
+msgid "Gallery"
+msgstr "Галерея"
+
+#: forms.py:10
 msgid "Choose a file"
 msgstr "Выберите файл"
 
-#: gallery/forms.py:33
+#: forms.py:33
 msgid "Name (optional field)"
 msgstr "Имя (необязательное поле)"
 
-#: gallery/forms.py:42
+#: forms.py:42
 msgid "Is cover photo"
 msgstr "Фото обложки"
 
-#: gallery/forms.py:78 gallery/models.py:19 gallery/models.py:33
+#: forms.py:78 models.py:19 models.py:33
 msgid "Portfolio"
 msgstr "Портфолио"
 
-#: gallery/forms.py:95 gallery/models.py:92
+#: forms.py:95 models.py:92
 msgid "Image"
 msgstr ""
 
-#: gallery/models.py:33 gallery/models.py:83
+#: models.py:33 models.py:83
 msgid "Name"
 msgstr "Имя"
 
-#: gallery/models.py:43
+#: models.py:43
 msgid "Album"
 msgstr "Альбом"
 
-#: gallery/models.py:44 gallery/views.py:25
+#: models.py:44 views.py:25
 msgid "Albums"
 msgstr "Альбомы"
 
-#: gallery/models.py:74
+#: models.py:74
 msgid "Count"
-msgstr ""
+msgstr "Количество"
 
-#: gallery/models.py:95
+#: models.py:95
 msgid "Is cover photo "
 msgstr "Фото обложки"
 
-#: gallery/models.py:101
+#: models.py:101
 msgid "Photo"
 msgstr "Фото"
 
-#: gallery/models.py:102
+#: models.py:102
 msgid "Photos"
 msgstr "Фотографии"
 
-#: gallery/templates/gallery/album_confirm_delete.html:17
+#: templates/gallery/album_confirm_delete.html:17
 msgid "Are you sure you want to delete the selected Album?"
 msgstr ""
 
-#: gallery/templates/gallery/album_confirm_delete.html:20
+#: templates/gallery/album_confirm_delete.html:20
 msgid "Yes, I'm sure"
 msgstr ""
 
-#: gallery/templates/gallery/album_confirm_delete.html:21
+#: templates/gallery/album_confirm_delete.html:21
 msgid "No, take me back"
 msgstr ""
 
-#: gallery/templates/gallery/manage_photo.html:68
-#: gallery/templates/gallery/manage_photo.html:74
-#: gallery/templates/gallery/photo_form.html:46
+#: templates/gallery/manage_photo.html:68
+#: templates/gallery/manage_photo.html:74 templates/gallery/photo_form.html:46
 msgid "Cancel"
 msgstr ""
 
-#: gallery/templates/gallery/manage_photo.html:69
+#: templates/gallery/manage_photo.html:69
 msgid "Add album"
 msgstr ""
 
-#: gallery/templates/gallery/manage_photo.html:73
+#: templates/gallery/manage_photo.html:73
 msgid "Delete"
 msgstr "Удалить"
 
-#: gallery/templates/gallery/manage_photo.html:75
+#: templates/gallery/manage_photo.html:75
 msgid "Update album"
 msgstr "Редактировать альбом"
 
-#: gallery/templates/gallery/manage_photo.html:86
+#: templates/gallery/manage_photo.html:86
 msgid "add photo"
 msgstr "Добавить фото"
 
-#: gallery/templates/gallery/photo_form.html:45
+#: templates/gallery/photo_form.html:45
 msgid "Add photo"
 msgstr "Добавить фото"
 
-#: gallery/templates/gallery/photo_list.html:44
+#: templates/gallery/photo_list.html:44
 msgid "Empty"
 msgstr ""
 
-#: gallery/templates/gallery/photo_list.html:55
+#: templates/gallery/photo_list.html:55
 msgid "Author"
 msgstr ""
 
-#: gallery/templates/gallery/photo_list.html:60
+#: templates/gallery/photo_list.html:60
 msgid "All albums"
 msgstr ""
 
-#: gallery/views.py:62
+#: views.py:62
 #, python-format
 msgid "Photo %(name)s was created successfully!"
 msgstr ""
 
-#: gallery/views.py:63 gallery/views.py:86 gallery/views.py:151
+#: views.py:63 views.py:86 views.py:151
 msgid "Please correct the errors below."
 msgstr ""
 
-#: gallery/views.py:64
+#: views.py:64
 msgid "Add Photo"
 msgstr "Добавить фото"
 
-#: gallery/views.py:90
+#: views.py:90
 #, python-format
 msgid "Album \"%(name)s\" was created successfully!"
 msgstr ""
 
-#: gallery/views.py:92
+#: views.py:92
 msgid "Сreate an album"
 msgstr "Создать альбом"
 
-#: gallery/views.py:155
+#: views.py:155
 #, python-format
 msgid "Album \"%(name)s\" was updated successfully!"
 msgstr ""
 
-#: gallery/views.py:157
+#: views.py:157
 msgid "Update Album"
 msgstr "Редактировать альбом"
 
-#: gallery/views.py:225
+#: views.py:225
 #, python-format
 msgid "Album \"%(name)s\" was deleted successfully!"
 msgstr ""
 
-#: gallery/views.py:226
+#: views.py:226
 msgid "Are you sure?"
 msgstr ""

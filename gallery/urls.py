@@ -6,7 +6,9 @@ from .views import (
     PhotoAddView,
     AlbumAddView,
     AlbumUpdateView,
-    AlbumDeleteView
+    AlbumDeleteView,
+
+    PhotosListView,
 )
 
 
@@ -17,6 +19,8 @@ urlpatterns = [
     url(r'^album/add/$', AlbumAddView.as_view(), name='album_add'),
     url(r'^album/(?P<pk>\d+)/update/$', AlbumUpdateView.as_view(), name='album_update'),
     url(r'^album/(?P<pk>\d+)/delete/$', AlbumDeleteView.as_view(), name='album_delete'),
+
+    url(r'^photos/$', PhotosListView.as_view(), name='photos'),
 
     # url(r'^add/$', CompanyAddView.as_view(), name='company_add'),
     # url(r'^update/(?P<pk>\d+)/$', CompanyUpdateView.as_view(), name='company_update'),

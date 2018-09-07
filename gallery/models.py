@@ -35,7 +35,7 @@ class Album(MainAbstractModel):
     summary = models.TextField(blank=True, null=True)
     # created = models.DateTimeField(auto_now_add=True)
     # updated = models.DateTimeField(auto_now=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, verbose_name=_("Company"))
 
     # objects = UserManager()
 
@@ -104,9 +104,15 @@ class Photo(MainAbstractModel):
     def __str__(self):
         return 'Photo with ID: %s' % self.id
 
+    @property
+    def image_thumbnail(self):
+        return self.image.thumbnail.url
+
+
     # def small_photo(self):
     #     photo = self.image.small.url
     #     return '<img src="%s" title="%s" />' % (photo, self.name)
+
 
     def save(self, *args, **kwargs):
         if self.is_cover_photo:

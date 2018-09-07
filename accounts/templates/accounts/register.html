@@ -7,17 +7,13 @@
 
 {% block content %}
     <div class="grid-x">
-        <div class="cell small-12 medium-5 large-4 float-center">
+        <div class="cell small-12 medium-6 large-5 float-center">
             <div class="card">
                 <div class="card-divider">
                     <h4>{{ title }}</h4>
                 </div>
                 <div class="card-section">
                     <form data-abide novalidate action="." method="post">{% csrf_token %}
-{#                        {{ form }}#}
-{#                        <button class="button success small expanded" type="submit" value="{{ title }}">{{ title }}</button>#}
-
-
                         {% for error in form.non_field_errors %}
                             <div class="alert callout">
                                 {{ error|escape }}
@@ -39,8 +35,6 @@
                         </div>
                         <button class="button success small expanded" type="submit" value="{{ title }}">{{ title }}</button>
                         <a class="button secondary hollow small expanded" href="{% url 'company:companies' %}">{% trans "Cancel" %}</a>
-
-
                     </form>
                 </div>
             </div>

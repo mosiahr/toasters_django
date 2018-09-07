@@ -26,6 +26,8 @@
                             <a href="{% url 'company:companies' %}">{% trans 'Companies' %}</a></li>
                         <li class="{% if request.resolver_match.view_name == 'gallery:albums' %}active-menu{% endif %}">
                             <a href="{% url 'gallery:albums' %}">{% trans 'Gallery' %}</a></li>
+                        <li class="{% if request.resolver_match.view_name == 'gallery:photos' %}active-menu{% endif %}">
+                            <a href="{% url 'gallery:photos' %}">{% trans 'Photos' %}</a></li>
                         <li><a href="#">{% trans 'Blog' %}</a></li>
                         <li><a href="#">{% trans 'About' %}</a></li>
 

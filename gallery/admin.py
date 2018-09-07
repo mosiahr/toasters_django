@@ -45,6 +45,7 @@ class AlbumAdmin(admin.ModelAdmin):
             img = Photo.objects.get(id=cover_photo.id).image.small.url
         return '<img src="%s" title="%s" />' % (img, obj.name)
     cover_photo.allow_tags = True
+    cover_photo.short_description = _("Cover photo")
 
 
 @admin.register(Photo)

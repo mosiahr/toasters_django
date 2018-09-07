@@ -57,7 +57,7 @@ msgstr ""
 #: templates/core/include/nav_main.html:24
 #: templates/core/include/nav_main_one.html:28
 msgid "Gallery"
-msgstr ""
+msgstr "Галерея"
 
 #: templates/core/include/nav_main.html:26
 #: templates/core/include/nav_main_one.html:29
