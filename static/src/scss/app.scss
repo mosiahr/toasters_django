@@ -1,4 +1,37 @@
-//@include hamburger($color, $color-hover, $width, $height, $weight, $bars)
+//https://foundation.zurb.com/sites/docs/sass.html#adjusting-css-output
+
+@import 'settings';
+@import '~foundation-sites/scss/foundation';
+
+@include foundation-everything;
+
+//// Global styles
+//@include foundation-global-styles;
+//@include foundation-forms;
+//@include foundation-typography;
+//
+//// Grids
+//@include foundation-grid;
+//
+//// Generic components
+//@include foundation-button;
+//@include foundation-button-group;
+//@include foundation-label;
+//
+//// Basic components
+//@include foundation-card;
+//@include foundation-pagination;
+//
+//// Containers
+////@include foundation-accordion;
+//@include foundation-media-object;
+//@include foundation-orbit;
+//@include foundation-responsive-embed;
+//@include foundation-tabs;
+//@include foundation-thumbnail;
+
+
+
 
 @font-face {
     font-family: OstrichSans-Bold;
@@ -9,7 +42,8 @@
     src: url('/static/fonts/ItimCyrillic.otf');
 }
 
-$main-color: #fff;
+//$main-color: coral;
+$main-color: coral;
 $light-color: lightcoral;
 
 $max-width-content: 980px;
@@ -17,11 +51,7 @@ $max-width-content: 980px;
 
 
 
-@import '../../node_modules/foundation-sites/scss/foundation.scss';
-
-
-
-// Dependencies
+ //Dependencies
 @import 'menu';
 @import 'companies';
 @import 'card-form';

@@ -18,22 +18,26 @@
 {#        </li>#}
 {#    </ul>#}
 
-
+    <header-gallery></header-gallery>
     <div class="grid-x grid-margin-x  small-12 medium-6 large-3">
         <div v-for="photo in photos">
-            <div class="cell grid-margin-x portfolio-item thumbnail">
+{#            <div class="cell grid-margin-x portfolio-item thumbnail">#}
+            <div  v-on:mouseover="mouseOver" v-on:click="showImg" class="cell grid-margin-x ">
 {#                <div class="hover-bg">#}
 {#                    <div style="height: 200px">#}
 {#                        <div class="hover-text">#}
 {#                            <h4>Lorem Ipsum</h4>#}
 {#                        </div>#}
 
-                        <img class="float-center" :src="photo.imgThumbnail">
+                        <img  class="float-center" :src="photo.imgThumbnail">
 {#                    </div>#}
 {#                </div>#}
             </div>
         </div>
     </div>
+
+    <button class="button success" @click="showImg">HII</button>
+    <button class="button success" v-on:click="showImg">HII</button>
 {#    {% empty %}#}
 {#        {% trans "Empty" %}#}
 {#    {% endfor %}#}
@@ -47,6 +51,6 @@
 {#<script src="{% static 'vue-preload/vue-preload.js' %}"></script>            {# preload #}
 {% endblock %}
 
-{% block javascript %}
-    <script src="{% static 'dist/bundle.js' %}"></script>
-{% endblock %}
+{#{% block javascript %}#}
+{#    <script src="{% static 'dist/bundle.js' %}"></script>#}
+{#{% endblock %}#}

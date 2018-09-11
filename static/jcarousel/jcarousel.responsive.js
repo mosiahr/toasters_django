@@ -3,7 +3,7 @@
         var jcarousel = $('.jcarousel');
 
         var numItems = $('#lightgallery li').length;
-        console.log(numItems);
+        // console.log(numItems);
 
         $('.jcarousel-wrapper').show();
 
@@ -12,7 +12,7 @@
         // }
         // if (numItems / )
         // $('.jcarousel-control-prev, .jcarousel-control-next').show();
-        console.log(jcarousel.innerWidth());
+        // console.log(jcarousel.innerWidth());
 
 
         jcarousel

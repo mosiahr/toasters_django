@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="{% static 'jcarousel/jcarousel.responsive.css' %}">
 
     {# LIGHTGALLERY #}
-{#    <link type="text/css" rel="stylesheet" href="{% static 'lightgallery.js/dist/css/lightgallery.min.css' %}"/>#}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.9/css/lightgallery.min.css">
+    <link type="text/css" rel="stylesheet" href="{% static 'lightgallery.js/dist/css/lightgallery.min.css' %}"/>
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.9/css/lightgallery.min.css">#}
 {% endblock %}
 
 
@@ -275,32 +275,9 @@
 {##}
 {#    </script>#}
 
-    <!-- jcarousel -->
-    <script type="text/javascript" src="{% static 'jcarousel/jquery.jcarousel.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'jcarousel/jcarousel.responsive.js' %}"></script>
 
-    {# LIGHTGALLERY #}
-{#    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.0.2/lib/js/lightgallery.min.js"></script>#}
 
-{#    <!-- Include lightgallery.js -->#}
-{#    <script type="text/javascript" src="{% static 'lightgallery.js/dist/js/lightgallery.min.js' %}"></script>#}
-{##}
-{#    <!-- Include lg-thumbnail.js -->#}
-{#    <script type="text/javascript" src="{% static 'lg-thumbnail.js/dist/lg-thumbnail.min.js' %}"></script>#}
-{##}
-{#    <!-- Include lg-fullscreen.js -->#}
-{#    <script type="text/javascript" src="{% static 'lg-fullscreen.js/dist/lg-fullscreen.min.js' %}"></script>#}
-{##}
-{#    <!-- Include lg-zoom.js -->#}
-{#    <script type="text/javascript" src="{% static 'lg-zoom.js/dist/lg-zoom.min.js' %}"></script>#}
-{##}
-{#    <!-- Include lg-autoplay.min.js -->#}
-{#    <script type="text/javascript" src="{% static 'lg-autoplay.js/dist/lg-autoplay.min.js' %}"></script>#}
-
-    <!-- Include lg-video.js -->
-    {#<script type="text/javascript" src="{% static 'lg-video.js/dist/lg-video.min.js' %}"></script>#}
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.9/js/lightgallery-all.min.js"></script>
+{#    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.9/js/lightgallery-all.min.js"></script>#}
 
 {#    <script type="text/javascript">#}
 {#        $(document).ready(function () {#}
@@ -313,11 +290,47 @@
 {#            {% endfor %}#}
 {#    </script>#}
 
+
+{% endblock %}
+
+{% block js %}
+    <!-- jcarousel -->
+    <script type="text/javascript" src="{% static 'jcarousel/jquery.jcarousel.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'jcarousel/jcarousel.responsive.js' %}"></script>
+
+     {# LIGHTGALLERY #}
+
+    <script type="text/javascript" src="{% static 'lightgallery.js/dist/js/lightgallery.min.js' %}"></script>
+{#    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.0.2/lib/js/lightgallery.min.js"></script>#}
+
+    <!-- Include lightgallery.js -->
+    <script type="text/javascript" src="{% static 'lightgallery.js/dist/js/lightgallery.min.js' %}"></script>
+
+    <!-- Include lg-thumbnail.js -->
+    <script type="text/javascript" src="{% static 'lg-thumbnail.js/dist/lg-thumbnail.min.js' %}"></script>
+
+    <!-- Include lg-fullscreen.js -->
+    <script type="text/javascript" src="{% static 'lg-fullscreen.js/dist/lg-fullscreen.min.js' %}"></script>
+
+    <!-- Include lg-zoom.js -->
+    <script type="text/javascript" src="{% static 'lg-zoom.js/dist/lg-zoom.min.js' %}"></script>
+
+    <!-- Include lg-autoplay.min.js -->
+    <script type="text/javascript" src="{% static 'lg-autoplay.js/dist/lg-autoplay.min.js' %}"></script>
+
+    <!-- Include lg-video.js -->
+    <script type="text/javascript" src="{% static 'lg-video.js/dist/lg-video.min.js' %}"></script>
+
     <script type="text/javascript">
-	  $(document).ready(function() {
-	    $("#lightgallery").lightGallery({
-            subHtmlSelectorRelative: true
-	    });
-	  });
+        lightGallery(document.getElementById('lightgallery'),
+            {subHtmlSelectorRelative: true}
+        );
+{#        $(document).ready(function () {#}
+{#            console.log("di");#}
+{#            $("#lightgallery").lightGallery({#}
+{#                subHtmlSelectorRelative: true#}
+{#            });#}
+{##}
+{#        });#}
 	</script>
 {% endblock %}

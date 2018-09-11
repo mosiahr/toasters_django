@@ -55,6 +55,12 @@ class PhotoListView(ListView):
 class PhotosListView(ListView):
     model = Photo
     template_name = 'gallery/photos.html'
+    title = _("Gallery")
+
+    def get_context_data(self, **kwargs):
+        context = super(PhotosListView, self).get_context_data(**kwargs)
+        context.update({'title': self.title})
+        return context
 
 
 class PhotoAddView(SuccessMessageMixin,
