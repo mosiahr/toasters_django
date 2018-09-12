@@ -1,8 +1,8 @@
 //https://foundation.zurb.com/sites/docs/sass.html#adjusting-css-output
 
+// Foundation 6
 @import 'settings';
 @import '~foundation-sites/scss/foundation';
-
 @include foundation-everything;
 
 //// Global styles
@@ -30,7 +30,8 @@
 //@include foundation-tabs;
 //@include foundation-thumbnail;
 
-
+// Select 2
+@import '~select2/src/scss/core';
 
 
 @font-face {
@@ -43,8 +44,8 @@
 }
 
 //$main-color: coral;
-$main-color: coral;
-$light-color: lightcoral;
+//$main-color: coral;
+//$light-color: lightcoral;
 
 $max-width-content: 980px;
 

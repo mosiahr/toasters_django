@@ -16,9 +16,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: core/models_abstract.py:17
 msgid "Publish"
@@ -38,12 +35,12 @@ msgstr ""
 
 #: templates/core/base.html:78
 msgid "Back to top"
-msgstr ""
+msgstr "Назад вгору"
 
 #: templates/core/include/footer.html:12 templates/core/include/footer.html:20
 #: templates/core/include/nav_main.html:68
 msgid "Registration for specialists"
-msgstr "Регистрация специалистов"
+msgstr ""
 
 #: templates/core/include/modal_gallery.html:5
 msgid "Albums list"
@@ -52,7 +49,7 @@ msgstr ""
 #: templates/core/include/nav_main.html:22
 #: templates/core/include/nav_main_one.html:26
 msgid "Companies"
-msgstr ""
+msgstr "Компанії"
 
 #: templates/core/include/nav_main.html:24
 #: templates/core/include/nav_main_one.html:28
@@ -62,7 +59,7 @@ msgstr "Галерея"
 #: templates/core/include/nav_main.html:26
 #: templates/core/include/nav_main_one.html:31
 msgid "Blog"
-msgstr ""
+msgstr "Блог"
 
 #: templates/core/include/nav_main.html:27
 #: templates/core/include/nav_main_one.html:32
@@ -71,47 +68,42 @@ msgstr ""
 
 #: templates/core/include/nav_main.html:47
 msgid "Favorites"
-msgstr ""
+msgstr "Обране"
 
 #: templates/core/include/nav_main.html:55
 #: templates/core/include/nav_main.html:59
 #: templates/core/include/nav_main_one.html:38
 #: templates/core/include/nav_main_one.html:44
 msgid "Account"
-msgstr ""
+msgstr "Аккаунт"
 
 #: templates/core/include/nav_main.html:63
 #: templates/core/include/nav_main_one.html:48 templates/core/old/base.html:66
 msgid "Log out"
-msgstr ""
+msgstr "Вихід"
 
 #: templates/core/include/nav_main.html:72
 #: templates/core/include/nav_main_one.html:54
 #: templates/core/include/nav_main_one.html:58 templates/core/old/base.html:69
 msgid "Log in"
-msgstr ""
+msgstr "Вхід"
 
 #: templates/core/include/nav_main_one.html:20
 msgid "Toasters"
-msgstr "Ведущие"
+msgstr "Тамада"
 
 #: templates/core/include/nav_main_one.html:22
 msgid "Photographers"
-msgstr "Фотографы"
+msgstr "Фотографи"
 
 #: templates/core/include/nav_main_one.html:30
-#, fuzzy
-#| msgid "Photographers"
 msgid "Photos"
-msgstr "Фотографы"
+msgstr "Фотографії"
 
 #: templates/core/include/nav_main_one.html:54
 msgid "Register"
-msgstr ""
+msgstr "Реєстрація"
 
 #: templates/core/old/base.html:68
 msgid "Sign up"
 msgstr ""
-
-#~ msgid "Search"
-#~ msgstr "Поиск"

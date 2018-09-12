@@ -3,4 +3,3 @@
 
 // import './scss/app.scss';
 import './gallery';
-// require('./gallery');

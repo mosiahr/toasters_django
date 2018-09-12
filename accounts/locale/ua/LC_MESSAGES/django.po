@@ -16,9 +16,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: accounts/admin.py:26
 msgid "Email address"
@@ -47,7 +44,7 @@ msgstr ""
 
 #: accounts/apps.py:7
 msgid "Accounts"
-msgstr "Аккаунты"
+msgstr ""
 
 #: accounts/forms.py:29 accounts/forms.py:202
 msgid "The two password fields didn't match."
@@ -74,7 +71,7 @@ msgstr ""
 
 #: accounts/forms.py:128
 msgid "Remember me"
-msgstr "Запомнить меня"
+msgstr ""
 
 #: accounts/forms.py:136
 #, python-format
@@ -89,11 +86,11 @@ msgstr ""
 
 #: accounts/forms.py:265
 msgid "Email address can not be changed."
-msgstr "Адрес электронной почты не может быть изменен."
+msgstr ""
 
 #: accounts/forms.py:269
 msgid "Name"
-msgstr "Имя"
+msgstr ""
 
 #: accounts/models.py:71
 msgid "date joined"
@@ -109,7 +106,7 @@ msgstr ""
 
 #: accounts/models.py:127
 msgid "Activate your account at to"
-msgstr "Активируйте свою учетную запись на сайте"
+msgstr ""
 
 #: accounts/templates/accounts/admin/add_form.html:6
 msgid ""
@@ -123,7 +120,7 @@ msgstr ""
 
 #: accounts/templates/accounts/change_password.html:19
 msgid "Save changes"
-msgstr "Сохранить изменения"
+msgstr ""
 
 #: accounts/templates/accounts/change_password.html:20
 #: accounts/templates/accounts/detail_update_view.html:22
@@ -133,60 +130,60 @@ msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:12
 msgid "Account Details"
-msgstr "Детали аккаунта"
+msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:20
 msgid "Update Account Details"
-msgstr "Редактирование вашего аккаунта"
+msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:23
 #: accounts/templates/accounts/detail_update_view.html:24
 msgid "Change Password"
-msgstr "Изменить пароль"
+msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:29
 msgid "Your company"
-msgstr "Ваша компания"
+msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:33
 msgid "List of companies"
-msgstr "Список компаний"
+msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:38
 msgid "Company"
-msgstr "Компания"
+msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:41
 msgid "View company"
-msgstr "Посмотреть компанию"
+msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:44
 msgid "Update company"
-msgstr "Обновить компанию"
+msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:47
 msgid "Delete company"
-msgstr "Удалить компанию"
+msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:54
 msgid "Add company"
-msgstr "Добавить компанию"
+msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:63
 msgid "Gallery"
-msgstr "Галерея"
+msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:67
 msgid "Add photo"
-msgstr "Добавить фото"
+msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:70
 msgid "Create album"
-msgstr "Создать альбом"
+msgstr ""
 
 #: accounts/templates/accounts/dashboard.html:80
 msgid "Update album"
-msgstr "Редактировать альбом"
+msgstr ""
 
 #: accounts/templates/accounts/detail_update_view.html:21
 msgid "Save"
@@ -194,18 +191,16 @@ msgstr ""
 
 #: accounts/templates/accounts/email/verify.html:3
 msgid "Hello"
-msgstr "Здравствуйте"
+msgstr ""
 
 #: accounts/templates/accounts/email/verify.html:5
 #, python-format
 msgid "Please activate your account for %(email)s by clicking the link below:"
 msgstr ""
-"Пожалуйста, активируйте свою учетную запись для %(email)s, нажав на ссылку "
-"ниже:"
 
 #: accounts/templates/accounts/email/verify.html:7
 msgid "Once you activate, you can login!"
-msgstr "После активации вы можете войти в систему!"
+msgstr ""
 
 #: accounts/templates/accounts/email/verify.html:9
 #: accounts/templates/password_reset/password_reset_email.html:10
@@ -227,11 +222,11 @@ msgstr ""
 
 #: accounts/templates/accounts/login.html:40
 msgid "Forgotten your password?"
-msgstr "Забыли пароль?"
+msgstr ""
 
 #: accounts/templates/accounts/login.html:42 accounts/views.py:113
 msgid "Register"
-msgstr "Регистрация"
+msgstr ""
 
 #: accounts/templates/password_reset/password_reset_complete.html:11
 msgid "Your password has been set.  You may go ahead and log in now."
@@ -292,25 +287,23 @@ msgstr ""
 
 #: accounts/views.py:52
 msgid "Account"
-msgstr "Аккаунт"
+msgstr ""
 
 #: accounts/views.py:69
 msgid "Thank you for your email confirmation. Now you can login your account."
 msgstr ""
-"Спасибо за ваше подтверждение по электронной почте. Теперь вы можете войти в "
-"свою учетную запись."
 
 #: accounts/views.py:71
 msgid "Activation link is invalid!"
-msgstr "Ссылка активации недействительна!"
+msgstr ""
 
 #: accounts/views.py:74
 msgid "Email confirmation"
-msgstr "Подтверждение электонной почты"
+msgstr ""
 
 #: accounts/views.py:88
 msgid "Login successful!"
-msgstr "Авторизация успешна!"
+msgstr ""
 
 #: accounts/views.py:89 accounts/views.py:109 accounts/views.py:139
 #: accounts/views.py:158
@@ -320,31 +313,27 @@ msgstr ""
 #: accounts/views.py:108
 #, python-format
 msgid "Account %(email)s was created successfully!"
-msgstr "Учетная запись %(email)s была успешно создана!"
+msgstr ""
 
 #: accounts/views.py:121
 msgid "Please confirm your email address  to complete the registration."
 msgstr ""
-"Пожалуйста, подтвердите свой адрес электронной почты, чтобы завершить "
-"регистрацию."
 
 #: accounts/views.py:124
 msgid "Register is done"
-msgstr "Регистрация выполнена"
+msgstr ""
 
 #: accounts/views.py:138
-#, fuzzy
-#| msgid "Your account %(email)s was updated successfully!"
 msgid "Your account was updated successfully!"
-msgstr "Ваша учетная запись %(email)s была успешно обновлена!"
+msgstr ""
 
 #: accounts/views.py:146
 msgid "Change Your Account Details"
-msgstr "Редактирование вашего аккаунта"
+msgstr ""
 
 #: accounts/views.py:157
 msgid "Your password was successfully updated!"
-msgstr "Ваш пароль был успешно изменен!"
+msgstr ""
 
 #: accounts/views.py:174
 msgid "Password change"

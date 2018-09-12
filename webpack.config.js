@@ -5,11 +5,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");  //
 
 module.exports = {
     mode: 'development',
-    // entry: ['./static/src/main.js', './static/src/scss/app.scss'],
-    // entry: './static/src/main.js',
-    // entry: {
-    //     main: ['./static/src/main.js', './static/src/scss/app.scss'],
-    // },
     entry: [
         './static/src/main.js',
         './static/src/scss/app.scss'
