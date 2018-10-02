@@ -174,5 +174,4 @@ $(document).ready(function(){
             label.find('span').html(fileName);
 
     });
-
 });

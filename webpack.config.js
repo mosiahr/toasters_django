@@ -5,16 +5,19 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");  //
 
 module.exports = {
     mode: 'development',
-    entry: [
-        './static/src/main.js',
-        './static/src/scss/app.scss'
-    ],
+    context: path.resolve(__dirname, 'static'),
+    entry: {
+        main: './src/main.js',
+        gallery: './gallery/gallery.js',
+        app: './src/scss/app.scss'
+    },
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, './static/dist'),
+        path: path.resolve(__dirname, 'static/dist'),
+        filename: '[name].js',
         publicPath: "./static/dist"
     },
     resolve: {
+        extensions: ['*', '.js', '.jsx'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
         }
@@ -48,8 +51,8 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "style.bundle.css",
-            // chunkFilename: "[name].css"
+            // filename: "style.bundle.css",
+            chunkFilename: "[name].css"
         })
     ],
 };

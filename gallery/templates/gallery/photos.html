@@ -51,6 +51,8 @@
 {#<script src="{% static 'vue-preload/vue-preload.js' %}"></script>            {# preload #}
 {% endblock %}
 
-{#{% block javascript %}#}
+{% block javascript %}
 {#    <script src="{% static 'dist/bundle.js' %}"></script>#}
-{#{% endblock %}#}
+<script src="{% static 'dist/gallery.js' %}"></script>
+
+{% endblock %}

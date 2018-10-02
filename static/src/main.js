@@ -3,3 +3,6 @@
 
 // import './scss/app.scss';
 import './gallery';
+
+
+console.log(()=>"Hi");
