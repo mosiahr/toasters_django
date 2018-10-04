@@ -1,30 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Gallery from 'react-photo-gallery';
-import Lightbox from 'react-images';
-
-const photos = [
-    { src: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599', width: 4, height: 3, caption: 'hello' },
-    { src: 'https://source.unsplash.com/Dm-qxdynoEc/800x799', width: 1, height: 1 },
-    { src: 'https://source.unsplash.com/qDkso9nvCg0/600x799', width: 3, height: 4 },
-    { src: 'https://source.unsplash.com/iecJiKe_RNg/600x799', width: 3, height: 4 },
-    { src: 'https://source.unsplash.com/epcsn8Ed8kY/600x799', width: 3, height: 4 },
-    { src: 'https://source.unsplash.com/NQSWvyVRIJk/800x599', width: 4, height: 3 },
-    { src: 'https://source.unsplash.com/zh7GEuORbUw/600x799', width: 3, height: 4 },
-    { src: 'https://source.unsplash.com/PpOHJezOalU/800x599', width: 4, height: 3 },
-    { src: 'https://source.unsplash.com/I1ASdgphUH4/800x599', width: 4, height: 3 }
-];
+// import Gallery from 'react-photo-gallery';
+import Gallery from 'react-grid-gallery';
+// import Lightbox from 'react-images';
+import './gallery.css';
 
 
-class App extends React.Component {
+class App extends Component {
     constructor() {
         super();
-        this.state = { currentImage: 0 };
+        this.state = {
+            currentImage: 0,
+
+            items: [],
+            isLoaded: false,
+        };
         this.closeLightbox = this.closeLightbox.bind(this);
         this.openLightbox = this.openLightbox.bind(this);
         this.gotoNext = this.gotoNext.bind(this);
         this.gotoPrevious = this.gotoPrevious.bind(this);
     }
+
+    componentDidMount() {
+        fetch('/api/v1/gallery/photo-list/')
+            .then(res => res.json())
+            .then(json => {
+                this.setState({
+                    items: json,
+                    isLoaded: true,
+                })
+            });
+    }
+
     openLightbox(event, obj) {
         this.setState({
             currentImage: obj.index,
@@ -48,18 +55,54 @@ class App extends React.Component {
         });
     }
     render() {
-        return (
-            <div>
-                <Gallery photos={photos} margin={5} direction={"column"} onClick={this.openLightbox} />
-                <Lightbox images={photos}
-                    onClose={this.closeLightbox}
-                    onClickPrev={this.gotoPrevious}
-                    onClickNext={this.gotoNext}
-                    currentImage={this.state.currentImage}
-                    isOpen={this.state.lightboxIsOpen}
-                />
-            </div>
-    )
+
+        let {isLoaded, items} = this.state;
+        const photos = [];
+
+        items.forEach(function (item) {
+            if (item.album === 24) {
+                photos.push({
+                    src: item.image,
+                    thumbnail: item.image_thumbnail,
+                    thumbnailWidth: item.image_thumbnail_size[0],
+                    thumbnailHeight: item.image_thumbnail_size[1],
+                    thumbnailCaption:  (
+                        <button type="button" className="hollow success button tiny expanded float-center"
+                            style={{
+                            // color: "white",
+                            // background: "lightgrey",
+                            // textAlign: "center",
+                                margin: "0",
+                                marginTop: "1px"
+                            }}>
+                            Нравится <i class="far fa-heart fa-lg"></i> 2
+                        </button>
+                    )
+                });
+            }
+        });
+
+        console.log(photos);
+
+        let styleLoaded = {marginTop: '100px', color: 'red', fontSize: '24px'};
+        if (!isLoaded) {
+            return <div className='text-center' style={styleLoaded}>Loading...</div>
+        }
+        else {
+            return (
+                <div className="div-gallery">
+
+                    <Gallery
+                        images={photos}
+                        showLightboxThumbnails={true}
+                        backdropClosesModal={true}
+                        // enableLightbox={false}
+                        enableImageSelection={false}
+                    />
+
+                </div>
+            )
+        }
     }
 }
 render(<App />, document.getElementById('app'));

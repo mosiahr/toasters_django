@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext as _
 
 from stdimage.models import StdImageField
+from PIL import Image
 from stdimage.utils import UploadToUUID
 
 from company.models import Company
@@ -82,11 +83,12 @@ class Album(MainAbstractModel):
 class Photo(MainAbstractModel):
     name = models.CharField(max_length=256, blank=True, null=True, verbose_name=_('Name'))
     # title = models.CharField(max_length=256, blank=True, null=True, verbose_name=_('Title'))
-    # image = models.ImageField(upload_to='photos/%Y/%m')
+    # image = models.ImageField(upload_to=UploadToUUID(path='photo'))
+
     image = StdImageField(upload_to=UploadToUUID(path='photos'),
                           variations={
                               # 'medium': (300, 300),
-                              'thumbnail': {'width': 200, 'height': 200, "crop": True},
+                              'thumbnail': (320, 320),
                               'small': {'width': 100, 'height': 100, "crop": True}
                           },
                           verbose_name=_('Image'))
@@ -108,11 +110,17 @@ class Photo(MainAbstractModel):
     def image_thumbnail(self):
         return self.image.thumbnail.url
 
+    @property
+    def image_thumbnail_size(self):
+        try:
+            width, height = Image.open(self.image.thumbnail).size
+        except:
+            width = height = None
+        return width, height
 
-    # def small_photo(self):
-    #     photo = self.image.small.url
-    #     return '<img src="%s" title="%s" />' % (photo, self.name)
-
+    def small_photo(self):
+        photo = self.image.small.url
+        return '<img src="%s" title="%s" />' % (photo, self.name)
 
     def save(self, *args, **kwargs):
         if self.is_cover_photo:

@@ -50,7 +50,7 @@ class AlbumAdmin(admin.ModelAdmin):
 
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ['small_photo', 'name', 'image', 'album']
+    list_display = ['small_photo', 'name', 'image', 'album', 'image_thumbnail', 'image_thumbnail_size']
     actions = ['delete_selected']
 
     class Meta:
