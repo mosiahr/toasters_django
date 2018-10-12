@@ -13,7 +13,7 @@ class PhotoAddForm(forms.ModelForm):
         label=mark_safe(
             "<a class='button button-addfile expanded'"
             " for='id_image'><i class='fas fa-upload fa-lg'></i>&nbsp;<span>{}</span></a>"
-                .format(label_img)),
+            .format(label_img)),
         # label="Add",
         label_suffix='',
         required=True,
@@ -53,7 +53,7 @@ class PhotoAddForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
         super(PhotoAddForm, self).__init__(*args, **kwargs)
-        albums = Album.pub_objects.filter(user_id=self.user.id)
+        albums = Album.pub_objects.filter(author=self.user)
         self.fields['album'] = forms.ModelChoiceField(
             queryset=albums,
             label='',
@@ -69,13 +69,20 @@ class PhotoAddForm(forms.ModelForm):
         model = Photo
         fields = ('name', 'image', 'album', 'is_cover_photo')
 
+    def save(self, commit=True):
+        instance = super(PhotoAddForm, self).save(commit=False)
+        instance.author = self.user
+        if commit:
+            instance.save()
+        return instance
+
 
 class AlbumForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user', None)
+        self.user = kwargs.pop('user')
         super(AlbumForm, self).__init__(*args, **kwargs)
-        count_album = Album.pub_objects.filter(user=self.user).count()
-        self.fields['name'] = forms.CharField(initial='{} {}'.format(_('Portfolio'), count_album+1))
+        count_album = Album.pub_objects.filter(author=self.user).count()
+        self.fields['name'] = forms.CharField(initial='{} {}'.format(_('Portfolio'), count_album + 1))
 
     class Meta:
         model = Album
@@ -83,7 +90,7 @@ class AlbumForm(forms.ModelForm):
 
     def save(self, commit=True):
         instance = super(AlbumForm, self).save(commit=False)
-        instance.user = self.user
+        instance.author = self.user
         instance.company = Company.pub_objects.filter(user_id=self.user).first()
         if commit:
             instance.save()
@@ -100,14 +107,12 @@ class PhotoForm(forms.ModelForm):
         model = Photo
         fields = ('name', 'image', 'is_cover_photo')
 
-
 PhotoFormSet = inlineformset_factory(
     Album,
     Photo,
     form=PhotoForm,
+    # form=PhotoAddForm,
     # max_num=30,
     # can_delete=True,
     # min_num=1,
-    )
-
-
+)

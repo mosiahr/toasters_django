@@ -13,6 +13,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from .messages import ErrorMessageMixin
 from .models import Album, Photo
 
+from django.forms import inlineformset_factory
 from .forms import PhotoAddForm, AlbumForm, PhotoFormSet
 
 from company.models import Company
@@ -90,6 +91,73 @@ class PhotoAddView(SuccessMessageMixin,
         return render(self.request, 'gallery/photo_form.html', context)
 
 
+# class AlbumAddView(SuccessMessageMixin,
+#                    ErrorMessageMixin,
+#                    LoginRequiredMixin,
+#                    CreateView):
+#     error_message = _('Please correct the errors below.')
+#     form_class = AlbumForm
+#     model = Album
+#     success_url = reverse_lazy('accounts:dashboard')
+#     success_message = _('Album "%(name)s" was created successfully!')
+#     template_name = 'gallery/manage_photo.html'
+#     title = _("Сreate an album")
+#
+#     def get(self, request, *args, **kwargs):
+#         self.object = None
+#         form_class = self.get_form_class()
+#         form = self.get_form(form_class)
+#         photo_form = PhotoFormSet()
+#         return self.render_to_response(
+#             self.get_context_data(form=form, photo_form=photo_form)
+#         )
+#
+#     def post(self, request, *args, **kwargs):
+#         self.object = None
+#         form_class = self.get_form_class()
+#         form = self.get_form(form_class)
+#         photo_form = PhotoFormSet(self.request.POST, self.request.FILES, instance=self.object)
+#
+#         if form.is_valid() and photo_form.is_valid():
+#             return self.form_valid(form, photo_form)
+#         else:
+#             return self.form_invalid(form, photo_form)
+#
+#     def get_form_kwargs(self):
+#         kwargs = super(AlbumAddView, self).get_form_kwargs()
+#         kwargs.update({'user': self.request.user})
+#         print("KWARGS: ", kwargs)
+#         return kwargs
+#
+#     def form_valid(self, form, photo_form):
+#         with transaction.atomic():
+#             self.object = form.save()
+#             if photo_form.is_valid():
+#                 photo_form.instance = self.object
+#                 print("photo_form", photo_form)
+#                 print("photo_form.instance", photo_form.instance.author_id)
+#                 photo_form.save()
+#         return super(AlbumAddView, self).form_valid(form)
+#
+#     def form_invalid(self, form, photo_form):
+#         messages.error(self.request, self.error_message)
+#         return self.render_to_response(
+#             self.get_context_data(form=form, photo_form=photo_form)
+#         )
+#
+#     def get_context_data(self, **kwargs):
+#         ctx = super(AlbumAddView, self).get_context_data(**kwargs)
+#         ctx.update({'title': self.title})
+#         if self.request.POST:
+#             form_class = self.get_form_class()
+#             ctx['form'] = form_class(self.request.POST, instance=self.object)
+#             ctx['photo_form'] = PhotoFormSet(self.request.POST, self.request.FILES, instance=self.object)
+#         else:
+#             form_class = self.get_form_class()
+#             ctx['form'] = self.get_form(form_class)
+#             ctx['photo_form'] = PhotoFormSet(instance=self.object)
+#         return ctx
+
 class AlbumAddView(SuccessMessageMixin,
                    ErrorMessageMixin,
                    LoginRequiredMixin,
@@ -101,38 +169,44 @@ class AlbumAddView(SuccessMessageMixin,
     success_message = _('Album "%(name)s" was created successfully!')
     template_name = 'gallery/manage_photo.html'
     title = _("Сreate an album")
+    PhotosFormSet = inlineformset_factory(Album, Photo, fields=('name', 'image', 'is_cover_photo'))
 
     def get(self, request, *args, **kwargs):
         self.object = None
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        photo_form = PhotoFormSet()
+        photo_formset = self.PhotosFormSet()
         return self.render_to_response(
-            self.get_context_data(form=form, photo_form=photo_form)
+            self.get_context_data(form=form, photo_form=photo_formset)
         )
 
     def post(self, request, *args, **kwargs):
         self.object = None
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        photo_form = PhotoFormSet(self.request.POST, self.request.FILES, instance=self.object)
 
-        if form.is_valid() and photo_form.is_valid():
-            return self.form_valid(form, photo_form)
+        photo_formset = self.PhotosFormSet(self.request.POST, self.request.FILES, instance=self.object)
+
+        if form.is_valid() and photo_formset.is_valid():
+            return self.form_valid(form, photo_formset)
         else:
-            return self.form_invalid(form, photo_form)
+            return self.form_invalid(form, photo_formset)
 
     def get_form_kwargs(self):
         kwargs = super(AlbumAddView, self).get_form_kwargs()
-        kwargs['user'] = self.request.user
+        kwargs.update({'user': self.request.user})
         return kwargs
 
-    def form_valid(self, form, photo_form):
+    def form_valid(self, form, photo_formset):
+        kwargs = self.get_form_kwargs()
         with transaction.atomic():
             self.object = form.save()
-            if photo_form.is_valid():
-                photo_form.instance = self.object
-                photo_form.save()
+            if photo_formset.is_valid():
+                photo_formset.instance = self.object
+                formset = photo_formset.save(commit=False)
+                for photo in formset:
+                    photo.author = kwargs['user']
+                photo_formset.save()
         return super(AlbumAddView, self).form_valid(form)
 
     def form_invalid(self, form, photo_form):

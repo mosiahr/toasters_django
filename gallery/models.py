@@ -8,6 +8,8 @@ from stdimage.utils import UploadToUUID
 from company.models import Company
 from core.models_abstract import MainAbstractModel
 
+from django.db.models.signals import post_save
+
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -30,7 +32,7 @@ class UserManager(models.Manager):
 
 
 class Album(MainAbstractModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)  # save into form.py and save_model into admin.py
     name = models.CharField(max_length=70, verbose_name=_('Name'), default=_('Portfolio'))
     # slug = models.SlugField()
     summary = models.TextField(blank=True, null=True)
@@ -81,6 +83,7 @@ class Album(MainAbstractModel):
 
 
 class Photo(MainAbstractModel):
+    author = models.ForeignKey(User, on_delete=models.CASCADE) # save into form.py and save_model into admin.py
     name = models.CharField(max_length=256, blank=True, null=True, verbose_name=_('Name'))
     # title = models.CharField(max_length=256, blank=True, null=True, verbose_name=_('Title'))
     # image = models.ImageField(upload_to=UploadToUUID(path='photo'))
@@ -95,8 +98,6 @@ class Photo(MainAbstractModel):
 
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     is_cover_photo = models.BooleanField(verbose_name=_('Is cover photo '))
-    # created = models.DateTimeField(auto_now_add=True)
-    # updated = models.DateTimeField(auto_now=True)
     # company = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True)
 
     class Meta:
@@ -122,7 +123,7 @@ class Photo(MainAbstractModel):
         photo = self.image.small.url
         return '<img src="%s" title="%s" />' % (photo, self.name)
 
-    def save(self, *args, **kwargs):
+    def save(self, request=False, *args, **kwargs):
         if self.is_cover_photo:
             other_cover_photo = Photo.objects.filter(album=self.album).filter(is_cover_photo=True)
             for photo in other_cover_photo:
@@ -139,4 +140,3 @@ class Photo(MainAbstractModel):
     def delete(self, *args, **kwargs):
         self.image.delete(save=False)
         super(Photo, self).delete(*args, **kwargs)
-

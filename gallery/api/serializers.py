@@ -5,11 +5,22 @@ from django.contrib.sessions.models import Session
 # from django.contrib.auth.validators import UnicodeUsernameValidator
 
 from gallery.models import Album, Photo
+from accounts.api.serializers import UserSerializer
+
+
+class AlbumSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
+
+    class Meta:
+        model = Album
+        fields = ('id', 'name', 'author', 'summary', 'company')
 
 
 class PhotoSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
+    album = AlbumSerializer()
+
     class Meta:
         model = Photo
-        # fields = ('image_thumbnail',)
-        fields = ('id', 'name', 'album', 'is_cover_photo', 'image', 'image_thumbnail', 'image_thumbnail_size')
+        fields = ('id', 'name', 'author', 'album', 'is_cover_photo', 'image', 'image_thumbnail', 'image_thumbnail_size')
 
