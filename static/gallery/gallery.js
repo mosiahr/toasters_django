@@ -147,7 +147,7 @@ class App extends Component {
                         onClickNext={this.gotoNext}
                         currentImage={this.state.currentImage}
                         isOpen={this.state.lightboxIsOpen}
-                        // showImageCount={false}
+                        showImageCount={false}
                     />
                 </div>
             )

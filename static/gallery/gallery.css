@@ -10,6 +10,6 @@
   max-width: none;
 }
 
-/*.tile-description {*/
-    /*background: lightgrey;*/
-/*}*/
+.voice-yes i {
+  color: red;
+}
